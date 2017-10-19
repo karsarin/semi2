@@ -4,7 +4,7 @@
 <html>
  <head>
         <meta charset="utf-8">
-        <title>Flex - Responsive HTML Template</title>
+        <title>다재다능 재능 기부 사이트</title>
     	<meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
@@ -25,6 +25,7 @@
         <script type="text/javascript">
         function goBoardPage() { location.href="views/board/boardView.jsp"; }
         function goChatPage() { location.href="views/chatting/chat.html"; }
+        function goCategoryPage(){location.href="views/category/categoryListView.jsp"}
         </script>
 
 
@@ -55,7 +56,7 @@
 										</form>
 										</li>
                                         <li class="active"><a href="index.jsp">Home</a></li>
-                                        <li><a href="#">카테고리</a></li>
+                                        <li><a href="javascript:goCategory()">카테고리</a></li>
                                         <li><a href="javascript:goBoardPage()">공지사항</a></li>
                                         <li><a href="#">게시판</a></li>                                       
                                         <li><a href="#">마이페이지</a></li>
