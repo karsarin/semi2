@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
  <head>
-        <meta charset="utf-8">
+        <meta charset="UTF-8">
         <title>다재다능 재능 기부 사이트</title>
     	<meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -38,7 +38,10 @@
 
 
 <!-- 헤더 바  -->
-
+	<%@ include file = "header.jsp" %>
+	<br>
+	<br>
+	<hr>
                 <div class="main-header">
                     <div class="container">
                         <div id="menu-wrapper">

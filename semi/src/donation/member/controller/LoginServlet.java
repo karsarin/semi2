@@ -1,11 +1,17 @@
 package donation.member.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import donation.member.model.service.MemberService;
+import donation.member.model.vo.Member;
 
 /**
  * Servlet implementation class LoginServlet
@@ -26,8 +32,24 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// �α��� ��Ʈ�ѷ�
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// 로그인 컨트롤러
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		String memberId= request.getParameter("memberid");
+		String memberPwd= request.getParameter("memberpwd");
+		
+		Member member = new MemberService().login(memberId,memberPwd);
+		RequestDispatcher view = null;
+		if(member != null){
+			HttpSession session = request.getSession();
+			session.setAttribute("member", member);
+			view = request.getRequestDispatcher("index.jsp");
+			view.forward(request, response);
+		}else{
+			view = request.getRequestDispatcher("views/member/memberError.jsp");
+			request.setAttribute("message", "로그인실패! 아이디 또는 암호를 확인하세요");
+		}
 	}
 
 	/**
