@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="donation.member.model.vo.Member, java.util.*"%>
+<% ArrayList<Member> list = (ArrayList<Member>) request.getAttribute("list"); %>
 <!DOCTYPE>
 <html>
 <head>	
@@ -11,13 +12,13 @@
     <script src="/semi/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>
 <body>
-	<br><br>
+	<br><br>	
 	<div class="container">
 		<div id="menu-wrapper">
 			<div class="row">
 				<div class="logo-wrapper col-md-2 col-sm-2">
 					<h1>
-						<a href="#">han</a>
+						<a href="#"></a>
 					</h1>
 				</div>
 				<div class="col-md-10 col-sm-10 main-menu text-right">
@@ -35,138 +36,49 @@
 			</div>
 		</div>
 	</div>
+	
 	<br><br><br><br>
-
-	<div class="container1">
-		<!-- <div class="wrap">
-			<div class="search">
-				<input type="text" class="searchTerm"
-					placeholder="keyword">
-				<button type="submit" class="searchButton">
-					<i class="fa fa-search"></i>
+	<div class="row">
+		<div class="container1 col-md-4 col-sm-12 col-md-offset-2">
+			<form id="search-body">
+				<button id="s-btn-body" type="submit">
+					<span id="s-btn"></span>
 				</button>
-			</div>
-		</div><br><br><br> -->
-		<form action="" method="post">
-				<select name="searchType">
-					<option value="0" selected>아이디</option>
-					<option value="1">이름</option>
-					<option value="2">재능</option>
-				</select>
-				<input  id="searchinput" type="search" autocomplete name="keyword" length="70" placeholder="키워드">
-				<input id="searchbt" type="submit" value="검색">
-		</form><br>
+				<div id="s-form-body">
+					<input id="s-form" type="text" placeholder="Search Keyword">
+				</div>
+			</form><br>
 
-		<table class="memberList">
-			<thead>
-				<tr>
-					<th scope="cols">아이디</th>
-					<th scope="cols">이름</th>
-					<th scope="cols">재능</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>wltjs1796</td>
-					<td>윤지선</td>
-					<td>JAVA</td>
-				</tr>
-				<tr>
-					<td>yeojin</td>
-					<td>김여진</td>
-					<td>HTML, CSS</td>
-				</tr>
-				<tr>
-					<td>subin</td>
-					<td>한수빈</td>
-					<td>C, JAVA, CSS</td>
-				</tr>
-				<tr>
-					<td>shshsh</td>
-					<td>정세화</td>
-					<td>C, JAVA, CSS</td>
-				</tr>
-				<tr>
-					<td>leehs</td>
-					<td>이홍섭</td>
-					<td>C, JAVA, CSS</td>
-				</tr>
-				<tr>
-					<td>kimjh</td>
-					<td>김지훈</td>
-					<td>C, JAVA, CSS</td>
-				</tr>
-				<tr>
-					<td>wltjs1796</td>
-					<td>윤지선</td>
-					<td>JAVA</td>
-				</tr>
-				<tr>
-					<td>yeojin</td>
-					<td>김여진</td>
-					<td>HTML, CSS</td>
-				</tr>
-				<tr>
-					<td>subin</td>
-					<td>한수빈</td>
-					<td>C, JAVA, CSS</td>
-				</tr>
-				<tr>
-					<td>shshsh</td>
-					<td>정세화</td>
-					<td>C, JAVA, CSS</td>
-				</tr>
-				<tr>
-					<td>leehs</td>
-					<td>이홍섭</td>
-					<td>C, JAVA, CSS</td>
-				</tr>
-				<tr>
-					<td>kimjh</td>
-					<td>김지훈</td>
-					<td>C, JAVA, CSS</td>
-				</tr>
-				<tr>
-					<td>wltjs1796</td>
-					<td>윤지선</td>
-					<td>JAVA</td>
-				</tr>
-				<tr>
-					<td>yeojin</td>
-					<td>김여진</td>
-					<td>HTML, CSS</td>
-				</tr>
-				<tr>
-					<td>subin</td>
-					<td>한수빈</td>
-					<td>C, JAVA, CSS</td>
-				</tr>
-				<tr>
-					<td>shshsh</td>
-					<td>정세화</td>
-					<td>C, JAVA, CSS</td>
-				</tr>
-				<tr>
-					<td>leehs</td>
-					<td>이홍섭</td>
-					<td>C, JAVA, CSS</td>
-				</tr>
-				<tr>
-					<td>kimjh</td>
-					<td>김지훈</td>
-					<td>C, JAVA, CSS</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-	<div class="container2" style="background:lightgray; align:right;">
-		<div class="row">
+			<table class="memberList">
+				<thead>
+					<tr>
+						<th scope="cols">아이디</th>
+						<th scope="cols">이름</th>
+						<th scope="cols">재능</th>
+					</tr>
+				</thead>
+				<tbody>
+					<% for(Member member : list) { %>
+					<tr>
+						<td><%=member.getMemberId()%></td>
+						<td><%=member.getMemberName()%></td>
+						<td><%=member.getTalent()%></td>
+					</tr>
+					<% } %>
+				</tbody>
+			</table>
+		</div>
+		
+		<div class="container2  col-md-4 col-sm-12">
 			<div class="heading-section col-md-12 text-center">
-				<h2>회원 상세 정보</h2>
+				<h2
+					style="background: white; border-bottom: 0px; text-shadow: 1px 1px 2px gray;">&nbsp;상세 정보&nbsp;</h2>
 			</div>
+			<br>
+			<div class="container2-1"></div>
 		</div>
 	</div>
-
+	
 	<%@ include file="managerFooter.jsp" %>
 </body>
 </html>

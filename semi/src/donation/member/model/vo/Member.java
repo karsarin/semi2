@@ -13,11 +13,14 @@ public class Member {
 	private String memberPhone;
 	private Date memberDate;
 	private String connection;
+	private String talent;
+	private String mgrChat;
+	private String mgrLogin;
 	public Member() {
 		super();
 	}
 	public Member(String memberId, String memberPwd, String memberName, String memberNo, String memberNik,
-			String memberAddress, String memberEmail, String memberPhone, Date memberDate, String connection) {
+			String memberAddress, String memberEmail, String memberPhone, Date memberDate, String connection, String talent, String mgrChat, String mgrLogin) {
 		super();
 		this.memberId = memberId;
 		this.memberPwd = memberPwd;
@@ -29,6 +32,9 @@ public class Member {
 		this.memberPhone = memberPhone;
 		this.memberDate = memberDate;
 		this.connection = connection;
+		this.talent = talent;
+		this.mgrChat = mgrChat;
+		this.mgrLogin = mgrLogin;
 	}
 	public String getMemberId() {
 		return memberId;
@@ -89,13 +95,31 @@ public class Member {
 	}
 	public void setConnection(String connection) {
 		this.connection = connection;
+	}	
+	public String getMgrChat() {
+		return mgrChat;
 	}
-	 @Override
+	public void setMgrChat(String mgrChat) {
+		this.mgrChat = mgrChat;
+	}
+	public String getMgrLogin() {
+		return mgrLogin;
+	}
+	public void setMgrLogin(String mgrLogin) {
+		this.mgrLogin = mgrLogin;
+	}
+	public String getTalent() {
+		return talent;
+	}
+	public void setTalent(String talent) {
+		this.talent = talent;
+	}
+	@Override
 	 public String toString(){
 		 return this.getMemberId() + "," + this.getMemberPwd() + "," + this.getMemberName() + ","
 				 + this.getMemberNo() + "," + this.getMemberNik() + this.getMemberAddress() +  "," 
 				 + this.getMemberEmail() + "," + this.getMemberPhone() + "," + this.getMemberDate() +","
-				 + this.getConnection();
+				 + this.getConnection() + "," + this.talent + "," + this.mgrChat + "," + this.mgrLogin;
 	 }
 	
 }
