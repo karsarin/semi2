@@ -10,6 +10,11 @@
 	<link href="/semi/css/manager/member.css" rel="stylesheet" type="text/css" media="all"/>
 	<link href="/semi/css/manager/mainFonts.css" rel="stylesheet" type="text/css" media="all"/>
     <script src="/semi/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+    <script type="text/javascript">
+		function detail() {
+			alert("dd");
+		}
+	</script>
 </head>
 <body>
 	<br><br>	
@@ -59,7 +64,7 @@
 				</thead>
 				<tbody>
 					<% for(Member member : list) { %>
-					<tr>
+					<tr onclick="detail();">
 						<td><%=member.getMemberId()%></td>
 						<td><%=member.getMemberName()%></td>
 						<td><%=member.getTalent()%></td>
@@ -71,11 +76,48 @@
 		
 		<div class="container2  col-md-4 col-sm-12">
 			<div class="heading-section col-md-12 text-center">
-				<h2
-					style="background: white; border-bottom: 0px; text-shadow: 1px 1px 2px gray;">&nbsp;상세 정보&nbsp;</h2>
+				<h2	style="background: white; border-bottom: 0px; text-shadow: 1px 1px 2px gray;">&nbsp;상세 정보&nbsp;</h2>
+			</div><br>
+			<div class="container2-1">
+				<table class="memberDetail">
+					<tr>
+						<th>아이디</th>
+						<td><input name="memberId" value="" readonly></td>						
+						<th>닉네임</th>
+						<td><input name="memberNic" value="" readonly></td>
+					</tr>
+					<tr>
+						<th>이름</th>
+						<td><input name="memberName" value="" readonly></td>						
+						<th>번호</th>
+						<td><input type="number" name="phone" value="" readonly></td>
+					</tr>
+					<tr>
+						<th>이메일</th>
+						<td><input type="email" name="email" value="" readonly></td>						
+						<th>주소</th>
+						<td><input name="address" value="" readonly></td>
+					</tr>
+					<tr>
+						<th>재능</th>
+						<td><input id="talent" name="talent" colspan="3" value="" readonly></td>
+					</tr>
+					<tr>
+						<th>접속가능</th>
+						<td colspan="3">
+							<input type="radio" name="mgrlogin" value="on"> ON
+							<input type="radio" name="mgrlogin" value="off"> OFF
+						</td>
+					</tr>
+					<tr>												
+						<th>채팅가능</th>
+						<td colspan="3">
+							<input type="radio" name="mgrChat" value="on"> ON
+							<input type="radio" name="mgrChat" value="off"> OFF
+						</td>
+					</tr>
+				</table>
 			</div>
-			<br>
-			<div class="container2-1"></div>
 		</div>
 	</div>
 	
