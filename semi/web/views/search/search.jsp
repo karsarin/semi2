@@ -22,25 +22,15 @@
 
 
 
-<%-- 헤더바 --%>
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800'
-	rel='stylesheet' type='text/css'>
 
-<link rel="stylesheet" href="css/bootstrap.min.css">
-<link rel="stylesheet" href="css/font-awesome.css">
-<link rel="stylesheet" href="css/animate.css">
-<link rel="stylesheet" href="css/templatemo_misc.css">
-<link rel="stylesheet" href="css/templatemo_style.css">
-
-<script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
-<%-- 헤더바 끝 --%>
 
 <%-- 세로목록 --%>
 <style>
 ul#navi {
 	width: 200px;
 	text-indent: 10px;
+	background-color:lightgray;
+	
 }
 
 ul#navi, ul#navi ul {
@@ -51,16 +41,19 @@ ul#navi, ul#navi ul {
 
 li.group {
 	margin-bottom: 3px;
+	
 }
 
 li.group div.title {
 	height: 35px;
 	line-height: 35px;
-	background: lightgray;
+	background: lightblue;
 	cursor: pointer;
+	
 }
 
 ul.sub li {
+
 	margin-bottom: 2px;
 	height: 35px;
 	line-height: 35px;
@@ -77,7 +70,7 @@ ul.sub li a {
 }
 
 ul.sub li:hover {
-	background: gray;
+	background: lightblue;
 }
 </style>
 <!-- 세로목록 끝 -->
@@ -162,45 +155,7 @@ $(document).ready(function() {
 
 <body>
 
-	<!-- 반복 -->
-	<div class="main-header">
-		<div class="container">
-			<div id="menu-wrapper">
-				<div class="row">
-					<div class="logo-wrapper col-md-2 col-sm-2">
-						
-					</div>
-					<!-- /.logo-wrapper -->
-					<div class="col-md-10 col-sm-10 main-menu text-right">
-						<div class="toggle-menu visible-sm visible-xs">
-							<i class="fa fa-bars"></i>
-						</div>
-						<ul class="menu-first">
-							<li>
-								<form action="/semi/tsearch" method="post">
-									<input type="search" name="keyword" autocomplete> <input
-										type="submit" value="제목검색">
-								</form>
-							</li>
-							<li class="active"><a href="../../semi/index.html">Home</a></li>
-							<li><a href="#">카테고리</a></li>
-							<li><a href="#">공지사항</a></li>
-							<li><a href="#">게시판</a></li>
-							<li><a href="#">마이페이지</a></li>
-						</ul>
-					</div>
-					<!-- /.main-menu -->
-				</div>
-				<!-- /.row -->
-			</div>
-			<!-- /#menu-wrapper -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /.main-header -->
-	</div>
-	<!-- /.site-header -->
-
+	<%@ include file="../../headerbar.jsp" %>
 	
 	<br>
 	<br>
@@ -212,20 +167,21 @@ $(document).ready(function() {
 	<br>
 	<br>
 	<br>
-
-	<div style="width: 300px; height: 500px; float: left;">
-
+	
+	<div style="margin-left:30px;width: 230px; height: 500px; float: left;">
+	
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
 				<ul class="sub">
-					<li><a href="#">IT 재능</a></li>
-					<li><a href="#">집안일</a></li>
+					<li><a href="#">IT</a></li>
+					<li><a href="#">디자인</a></li>
 					<li><a href="#">마케팅</a></li>
-					<li><a href="#">홍보</a></li>
-					<li><a href="#">문학</a></li>
-					<li><a href="#">수작업</a></li>
-					<li><a href="#">한수빈</a></li>
+					<li><a href="#">음악</a></li>
+					<li><a href="#">노하우/상담</a></li>
+					<li><a href="#">번역</a></li>
+					<li><a href="#">건강</a></li>
+					<li><a href="#">기타</a></li>
 
 				</ul>
 			</li>
@@ -239,7 +195,7 @@ $(document).ready(function() {
 	<!-- 반복 끝 -->
 
 	<!--  그림 -->
-	<div >
+	<div style="float:left;">
 		<hgroup>
 			<h1 style="font-size:20pt">[검색 결과]</h1>
 
@@ -386,6 +342,37 @@ $(document).ready(function() {
 	</div>
 
 	<!-- 그림 끝 -->
+	
+	
+<!--  오른쪽 메뉴바 -->
+<div  style="float:right;border:1px solid black; width:200px;height:800px;
+	margin-right:10px; tex-align:center; ">
+	<ul align="center">
+		<li style="background-color:#648CFF;color:white; text-align:center; ">새로운 재능<br> 기부문화 다재다능</li>
+		<li style=" text-align:center;">
+		<a href="#" onclick="window.open('../../semi/views/usage/usage.html','usage','resizable=no ,width=650,left=500,top=100, height=650');return false">
+		<image src="../../semi/images/verticalList1.PNG" align="center"width="198px" height="150px"></image></a>
+		이용방법</li>
+		<a href="#" onclick="window.open('../../semi/views/usage/usage2.html','usage1','resizable=no ,width=650,left=500,top=100, height=400');return false">
+		<image src="../../semi/images/verticalList2.png" align="center"width="198px" height="150px"></image></a>
+		이용방법2<br>
+		동영상편
+		</li>
+		<a href="#" onclick="window.open('../../semi/views/usage/usage3.html','usage2','resizable=no ,width=450,left=500,top=100, height=450');return false">
+		<image src="../../semi/images/verticalList3.png" align="center"width="198px" height="150px"></image></a>
+		필수사항</li>
+		<a href="#" onclick="window.open('../../semi/views/usage/usage4.html','usage3','resizable=no ,width=500,left=500,top=100, height=400');return false">
+		<image src="../../semi/images/verticalList4.png" align="center"width="198px" height="150px"></image></a>
+		이벤트</li>
+		
+	
+	
+	</ul>
+	
+	
+	</div>
+	
+
 
 
 
