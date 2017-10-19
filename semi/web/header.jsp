@@ -18,7 +18,7 @@ div#loginbar{
 <div id=loginbar>
 <a>로그인</a>
 <a>회원가입</a>
-
+<a></a>
 
 </div>
 </body>
