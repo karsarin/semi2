@@ -56,7 +56,7 @@
 										</form>
 										</li>
                                         <li class="active"><a href="index.jsp">Home</a></li>
-                                        <li><a href="javascript:goCategory()">카테고리</a></li>
+                                        <li><a href="javascript:goCategoryPage()">카테고리</a></li>
                                         <li><a href="javascript:goBoardPage()">공지사항</a></li>
                                         <li><a href="#">게시판</a></li>                                       
                                         <li><a href="#">마이페이지</a></li>
