@@ -30,4 +30,9 @@ public class MemberDao {
 		return member;
 	}
 
+	public int memberInsert(Connection con, Member member) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

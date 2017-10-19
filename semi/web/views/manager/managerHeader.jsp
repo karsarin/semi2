@@ -21,7 +21,9 @@
 		<div id="menu-wrapper">
 			<div class="row">
 				<div class="logo-wrapper col-md-2 col-sm-2">
-					
+					<h1>
+						<a href="#">han</a>
+					</h1>
 				</div>
 				<div class="col-md-10 col-sm-10 main-menu text-right">
 					<div class="toggle-menu visible-sm visible-xs">
@@ -31,7 +33,7 @@
 						<li class="active"><a href="#">Home_관리자</a></li>
 						<li><a href="/semi/views/manager/managerMember.jsp">회원정보</a></li>
 						<li><a href="#">카테고리</a></li>
-						<li><a href="/semi/views/board/boardView.jsp">공지사항</a></li>
+						<li><a href="#">공지사항</a></li>
 						<li><a href="#">게시판</a></li>
 					</ul>
 				</div>
