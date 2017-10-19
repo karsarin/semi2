@@ -1,0 +1,133 @@
+/*********************************************************************************/
+/* container Style                                                                  */
+/*********************************************************************************/
+.container1 {
+	float: left;
+	margin-left: 220px;
+}
+
+.container2 {
+	float: right;
+	margin-right:220px;
+	width:650px;
+	height:465px;
+}
+
+@media screen and (max-width: 1000px) {
+	.container1 {
+		float:none;
+	}
+	.container2 {
+		float:none;
+		margin-left:220px;
+		margin-top:100px;
+		width:auto;
+	}
+}
+
+/*********************************************************************************/
+/* Table Style                                                                  */
+/*********************************************************************************/
+.memberList {
+    display: block;
+    border-collapse: collapse;
+    text-align: center;
+    line-height: 1.5;
+    width:420px;
+}
+.memberList tbody {
+	display:block;
+	overflow: auto;
+	height: 360px;
+}
+.memberList thead th {
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #369;
+    border-bottom: 3px solid #036;
+}
+.memberList td {
+    padding: 10px;
+    vertical-align: top;
+    border-bottom: 1px solid #ccc;
+}
+
+.memberList th:nth-of-type(1), .memberList td:nth-of-type(1) {
+    background: #f3f6f7;
+	width: 100px;
+}
+.memberList th:nth-of-type(2), .memberList td:nth-of-type(2) {
+	width: 100px;
+}
+.memberList th:nth-of-type(3), .memberList td:nth-of-type(3) {
+    background: #f3f6f7;
+	width: 200px;
+}
+
+
+
+
+
+
+/*********************************************************************************/
+/* Search Style                                                                  */
+/*********************************************************************************/
+#searchbt {
+	background:lightgray;
+	color:white;
+	font-weight:bold;
+	margin-left:10px;
+	width: 60px;
+}
+#searchinput {
+	margin-left:10px;
+	width: 200px;
+}
+
+
+
+.search {
+  width: 100%;
+  position: relative
+}
+
+.searchTerm {
+  float: left;
+  width: 50%;
+  border: 3px solid #00B4CC;
+  padding: 5px;
+  height: 40px;
+  border-radius: 5px;
+  outline: none;
+  color: #9DBFAF;
+}
+
+.searchTerm:focus{
+  color: #00B4CC;
+}
+
+.searchButton {
+  position: absolute;  
+  right: -50px;
+  width: 40px;
+  height: 36px;
+  border: 1px solid #00B4CC;
+  background: #00B4CC;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+/*Resize the wrap to see the search bar change!*/
+/* .wrap{
+  width: 30%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+} */
+
