@@ -14,4 +14,13 @@ public class MemberService {
 		return member;
 	}
 
+	public int memberInsert(Member member) {
+		Connection con = getConnection();
+		int result =new MemberDao().memberInsert(con,member);
+		close(con);
+		return result;
+	}
+
+
+
 }
