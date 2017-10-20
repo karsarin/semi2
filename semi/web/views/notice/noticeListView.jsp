@@ -315,8 +315,6 @@ table.type10 .even {
 	
 	
 	
-	
-	
 <div align="right">
 <button onclick="javascript:insertPage();">글쓰기</button>
 
