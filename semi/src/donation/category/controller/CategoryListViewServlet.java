@@ -47,7 +47,7 @@ public class CategoryListViewServlet extends HttpServlet {
 				CategoryService cservice = new CategoryService();
 				
 				// 전체 목록 개수 조회함
-				int clistCount = cservice.getListCount();
+				int clistCount = 10;
 				//System.out.println("listCount : " + listCount);
 				// 해당 페이지용 목록 조회
 				ArrayList<Category> clist = cservice.selectList(currentPage, limit);

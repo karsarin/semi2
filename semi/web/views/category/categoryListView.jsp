@@ -3,7 +3,7 @@
 	import="java.util.*, java.sql.*, donation.search.model.vo.Notice"%>
 <% 
 	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
-	//int clistCount = ((Integer)request.getAttribute("clistCount")).intValue();
+	int clistCount = ((Integer)request.getAttribute("clistCount")).intValue();
 %>
 <!DOCTYPE html>
 <html>
