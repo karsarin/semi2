@@ -103,14 +103,21 @@ public class NoticeService {
 		
 		return result;
 	}
-	public ArrayList<Notice> selectSearch(String keyword) {
+	public ArrayList<Notice> selectSearch(String keyword, int currentPage, int limit) {
 		Connection con = getConnection();
-		ArrayList<Notice> list = new NoticeDao().selectTitleSearch(con, keyword);
+		ArrayList<Notice> list = new NoticeDao().selectTitleSearch(con, keyword, currentPage, limit);
 		
 		close(con);
 		
 		return list;
 		
+	}
+
+	public int getSearchListCount(String keyword) {
+		Connection con = getConnection();
+		int listCount = new NoticeDao().getSearchListCount(con, keyword);
+		close(con);
+		return listCount;
 	}	
 }
 

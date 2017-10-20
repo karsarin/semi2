@@ -35,7 +35,7 @@ public class NoticeDeleteServlet extends HttpServlet {
 		
 		if( new NoticeService().deleteNotice(Integer.parseInt(request.getParameter("no"))) > 0){
 			//삭제하면 목록으로 바로 보내기
-			response.sendRedirect("/first/nlist");
+			response.sendRedirect("/semi/nlist");
 		}else{
 			RequestDispatcher errorPage = null;
 			errorPage = request.getRequestDispatcher("views/notice/noticeEorr");

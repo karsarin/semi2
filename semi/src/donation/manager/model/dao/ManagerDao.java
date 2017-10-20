@@ -29,7 +29,6 @@ public class ManagerDao {
 						rset.getString("member_email"), rset.getString("member_phone"), rset.getDate("signup_date"),
 						rset.getString("connection"), rset.getString("talent"), rset.getString("mgrchat"), rset.getString("mgrlogin")
 					);
-					System.out.println(member);
 					list.add(member);
 				}
 			}
