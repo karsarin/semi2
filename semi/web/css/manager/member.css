@@ -56,9 +56,25 @@
 }
 
 
-
-
-
+.container2-1 .memberDetail {
+	align:center;
+	border-collapse: collapse;
+    width:420px;
+}
+.container2-1 .memberDetail th {
+	padding-top:30px;
+	width:100px;
+}
+.container2-1 .memberDetail input {
+	height:20px;
+	width:100px;
+	font-size:10pt;
+}
+.container2-1 .memberDetail #talent {
+	height:20px;
+	width:200px;
+	font-size:10pt;
+}
 
 /*********************************************************************************/
 /* Search Style                                                                  */
