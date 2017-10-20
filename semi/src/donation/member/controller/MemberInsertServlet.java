@@ -56,8 +56,7 @@ public class MemberInsertServlet extends HttpServlet {
 		Member member = new Member(memberId,memberPwd,memberName,memberNo,memberNik,memberAddress,memberEmail,memberPhone,null,null,talent,null,null);
 		if((result = new MemberService().memberInsertCheck(member,memberPwd2))==0){
 			int result2 = new MemberService().memberInsert(member);
-		
-			if(member!=null){
+			if(result2 >0){
 			
 			}else{
 			
