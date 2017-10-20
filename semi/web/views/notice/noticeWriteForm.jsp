@@ -208,7 +208,7 @@ table.type10 .even {
 	</tr>
 	<tr><th width="150" bgcolor="#fff">작성자</th>
 	
-	<td  align="left"><input type="text" name="writer" value="<%//member.getMemberId() %>" readonly></td>
+	<td  align="left"><input type="text" name="writer" value="<%=member.getMemberId() %>" readonly></td>
 	</tr>
 	<tr><th width="150" bgcolor="#fff">첨부파일</th>
 	<td  align="left"><input type="file" name="file"></td>
