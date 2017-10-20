@@ -1,9 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"
 	import="java.util.*, java.sql.*, donation.search.model.vo.Notice"%>
+
+<%@ page import="donation.category.vo.Category" %>
 <% 
-	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+	ArrayList<Category> category = (ArrayList<Category>)request.getAttribute("clist");
 	int clistCount = ((Integer)request.getAttribute("clistCount")).intValue();
+	int ccurrentPage = ((Integer)request.getAttribute("ccurrentPage")).intValue();
+	int cstartPage = ((Integer)request.getAttribute("cstartPage")).intValue();
+	int cendPage = ((Integer)request.getAttribute("cendPage")).intValue();
+	int cmaxPage = ((Integer)request.getAttribute("cmaxPage")).intValue();
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -18,7 +25,6 @@
 </script>
 
 <!-- 카테고리  -->
-
 
 
 
@@ -221,12 +227,12 @@ $(document).ready(function() {
 				<div class="title">카테고리</div>
 				<ul class="sub">
 					<li><a href="#">IT</a></li>
-					<li><a href="#">집안일</a></li>
-					<li><a href="#">마케팅</a></li>
-					<li><a href="#">홍보</a></li>
-					<li><a href="#">문학</a></li>
-					<li><a href="#">수작업</a></li>
-					<li><a href="#">한수빈</a></li>
+					<li><a href="#">디자인</a></li>
+					<li><a href="#">음악</a></li>
+					<li><a href="#">노하우/상담</a></li>
+					<li><a href="#">번역</a></li>
+					<li><a href="#">건강</a></li>
+					<li><a href="#">기타</a></li>
 
 				</ul>
 			</li>
@@ -253,10 +259,14 @@ $(document).ready(function() {
 						src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img27.jpg" />
 				</div>
 				<strong>Sunset Lake</strong>
-				<p>A peaceful sunset view...</p>
-				<div class="meta">by j osborn</div>
+				<p>by user id &nbsp; 50,000원</p>
+				<p>★★★★★ 후기 5건</p>
+				
+				<<!-- div class="meta">by j osborn</div> -->
 			</div>
-			<div class="grid">
+			
+			
+			<!--  <div class="grid">
 				<div class="imgholder">
 					<img
 						src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img26.jpg" />
@@ -363,8 +373,8 @@ $(document).ready(function() {
 				<strong>Beach</strong>
 				<p>Something on beach...</p>
 				<div class="meta">by unknown</div>
-			</div>
-			<div class="grid">
+			</div> -->
+			<!-- <div class="grid">
 				<div class="imgholder">
 					<img
 						src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img25.jpg" />
@@ -372,8 +382,8 @@ $(document).ready(function() {
 				<strong>Flowers</strong>
 				<p>Hello flowers...</p>
 				<div class="meta">by R A Stanley</div>
-			</div>
-			<div class="grid">
+			</div> -->
+			<!-- <div class="grid">
 				<div class="imgholder">
 					<img
 						src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img20.jpg" />
@@ -381,15 +391,41 @@ $(document).ready(function() {
 				<strong>Alone</strong>
 				<p>Lonely plant...</p>
 				<div class="meta">by Zsolt Zsigmond</div>
-			</div>
+			</div> -->
 			<!---->
 		</div>
 	</div>
 </form>
 	<!-- 그림 끝 -->
 
+	<!-- 페이지 번호 처리 -->
+	<br>
+	<div align="center">
+	<% if(ccurrentPage <= 1){ %>
+		[이전] &nbsp;
+	<%} else {%>
+		<a href="/semi/clist?page=<%= ccurrentPage - 1 %>">[이전]</a>
+	<%} %>
+	<!-- 현재 페이지 숫자 보여주기 -->
+	<% for(int p = cstartPage; p <= cendPage; p++){
+		if(p == ccurrentPage){	
+	%>
+	<b><font size="4" color="red">[<%= p %>]</font></b>
+	<% } else{%>
+		<a href="/semi/clist?page=<%= p %>"> <%= p %></a>
+	<%}} %>
+	
+	<!-- 현재 페이지 다음 페이지에 대한 처리 -->
+	<% if(ccurrentPage >= cmaxPage){ %>
+		[다음]
+	<%} else { %>
+		<a href="/semi/clist?page=<%=ccurrentPage + 1 %>">[다음]</a>
+	<% } %>
+	</div>
 
-
+	<br>
+	<br>
+	<br>
 
 	<div id="footer" style="clear: both;">
 		<div class="container">
