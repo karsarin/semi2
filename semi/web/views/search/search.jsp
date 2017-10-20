@@ -206,7 +206,7 @@ $(document).ready(function() {
 				</div>
 				<strong><%= n.getCategoryTitle() %></strong>
 				<p><%= n.getCategoryContent() %></p>
-				<div class="meta"><%= n.getCategoryTitle() %></div>
+				<div class="meta"><%= n.getCategoryWriter() %></div>
 			</div>
 			<% } %>
 			

@@ -43,9 +43,9 @@ public class SerachServlet extends HttpServlet {
 		ArrayList<Notice> list = new NoticeService().selectSearch(keyword);
 
 		RequestDispatcher view = null;
-		System.out.println("asd");
+		
 		if (list != null) {
-			System.out.println("asd");
+			
 			view = request.getRequestDispatcher("views/search/search.jsp");
 			request.setAttribute("list", list);
 			view.forward(request, response);
