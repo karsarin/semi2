@@ -66,39 +66,8 @@
 
 		</div>
 		<div></div>
-
-
-
 	</div>
-
-
 	<script src="../../js/loginjs.js"></script>
 
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </html>
