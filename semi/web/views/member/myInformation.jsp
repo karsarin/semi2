@@ -32,6 +32,11 @@
 			<td><input type="password"name="memberpwd2"value=""></td>
 		</tr>
 		<tr>
+		<tr>
+			<th>닉네임</th>
+			<td><input type="text"name="membernik"value="<%=member.getMemberNik()%>"></td>
+		</tr>
+		<tr>
 		<th>주소</th>
 		<td><input type="text"name="memberaddress"value="<%= member.getMemberAddress()%>"></td>
 		</tr>

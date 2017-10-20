@@ -35,12 +35,12 @@ public class LoginServlet extends HttpServlet {
 		// 로그인 컨트롤러
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-		
 		String memberId= request.getParameter("memberid");
 		String memberPwd= request.getParameter("memberpwd");
 		
 		Member member = new MemberService().login(memberId,memberPwd);
 		RequestDispatcher view = null;
+		System.out.println(member);
 		if(member != null){
 			HttpSession session = request.getSession();
 			session.setAttribute("member", member);
