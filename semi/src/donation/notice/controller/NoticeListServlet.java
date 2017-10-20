@@ -34,7 +34,7 @@ public class NoticeListServlet extends HttpServlet {
 		//페이지 처리용
 				int currentPage = 1;
 				//한 페이지에 출력할 페이지 갯수 지정
-				int limit = 5;
+				int limit = 4;
 				
 				//페이지 숫자가 전송이 왔을 경우
 				if(request.getParameter("page") != null)

@@ -12,14 +12,14 @@
 <title>NoticeUpdateView</title>
 </head>
 <body>
+<%@ include file="../../header.jsp"  %>
 
-<hr>
-<br><br>
+
 
 
 <h2 align="center"><%= notice.getNoticeNo() %>번 공지글 수정 페이지</h2>
 <section align="center">
-	<form action="/second/nupdate" method="post" enctype="multipart/form-data">
+	<form action="/semi/nupdate" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="no" value="<%=notice.getNoticeNo()%>">  <!-- 쿼리스트링 안쓰고 form 안에서 input으로 숨겨서 보낼 수 있음 -->
 	<table align="center" width ="600">
 	<tr><th width="150" bgcolor="gray">제목</th>

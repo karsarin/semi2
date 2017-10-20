@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*, donation.notice.model.vo.Notice"%>
+ 
  <%
  	Notice notice = (Notice)request.getAttribute("notice");
- 
  %>   
     
 <!DOCTYPE html>
@@ -84,6 +84,7 @@ border : 1px;
 </style>
 </head>
 <body>
+<%@ include file="../../header.jsp"  %>
 
 	<!-- 반복 -->
 	<div class="main-header">
@@ -165,7 +166,7 @@ border : 1px;
 	<tr>
 		<td width="300"><%= notice.getNoticeTitle() %></td><td>조회:<%=notice.getReadCount() %></td><td><%=notice.getNoticeDate() %></td><td><%=notice.getNoticeWriter() %></td><td>	<%if(notice.getOriginalFileName() != null){	%>
 		
-		<a href="/first/fdown?oname=<%=notice.getOriginalFileName()%>&rname=<%=notice.getRenameFileName()%>">	<%=notice.getOriginalFileName() %></a>
+		<a href="/semi/fdown?oname=<%=notice.getOriginalFileName()%>&rname=<%=notice.getRenameFileName()%>">	<%=notice.getOriginalFileName() %></a>
 	<%}else{ %>
 		첨부파일 없음
 	<%} %></td>
@@ -175,6 +176,16 @@ border : 1px;
 		<td colspan="5"><%=notice.getNoticeContent() %></td>
 	</tr>
 
+
+	<%if(notice.getNoticeWriter().equals(member.getMemberId())){ //include에서 sission값을 가지고있기 때문에 그냥 사용할 수 있다. %>
+	<tr><td colspan="5">
+		<a href="/semi/nupview?no=<%=notice.getNoticeNo()%>">수정페이지로 이동</a> &nbsp; 
+		<a href="/semi/ndel?no=<%=notice.getNoticeNo()%>">삭제하기</a>
+	</td></tr>
+	<%}else{ %>
+	
+	
+	<%} %>
 
 </table>
 
