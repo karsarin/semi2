@@ -52,7 +52,7 @@ public class CategoryListViewServlet extends HttpServlet {
 				// 해당 페이지용 목록 조회
 				ArrayList<Category> clist = cservice.selectList(currentPage, limit);
 				
-				// 총 페이지 수 계산 : 목록이 최소 1개일 때는 한 페이지로 처리함
+			/*	// 총 페이지 수 계산 : 목록이 최소 1개일 때는 한 페이지로 처리함
 				// 페이지 1이 되려면 = 목록 0.1 개 + 0.9 계산되게 함
 				int maxPage = (int)((double)clistCount / limit + 0.9);
 				
@@ -66,16 +66,17 @@ public class CategoryListViewServlet extends HttpServlet {
 				
 				if(maxPage < endPage)
 					endPage = maxPage;
-				
+				*/
 				
 				System.out.println("clistCount : " + clistCount);
+				
 				RequestDispatcher view = null;
 				view = request.getRequestDispatcher("views/category/categoryListView.jsp");
 				request.setAttribute("clistCount", clistCount);
 				
 				view.forward(request, response);
 				
-				if(clist != null)
+				/*if(clist != null)
 				{
 					
 					
@@ -89,7 +90,7 @@ public class CategoryListViewServlet extends HttpServlet {
 					view = request.getRequestDispatcher("views/board/boardError.jsp");
 					request.setAttribute("message", "게시글 페이지별 조회 실패");
 					view.forward(request, response);
-				}
+				}*/
 	}
 
 	/**
