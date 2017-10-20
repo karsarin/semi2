@@ -1,16 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+<%-- page 지시자 태그는 한 페이지에 한 개만 사용이 원칙임
+     예외로 import 속성에 대해서만 따로 작성할 수 있음. --%>
+<%@ page import="donation.question.model.vo.Question, java.util.ArrayList, java.sql.Date" %>
 <%
-	int qnum = Integer.parseInt(request.getParameter("qnum"));
-	int currentPage = Integer.parseInt(request.getParameter("page"));
+	ArrayList<Question> list = (ArrayList<Question>)request.getAttribute("list");
+	int listCount = ((Integer)request.getAttribute("listSearchCount")).intValue();
+	int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
+	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
+	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+	int maxPage = ((Integer)request.getAttribute("maxPage")).intValue();
+	String keyword  = (String)request.getAttribute("keyword");
 	
-%>    
-<!DOCTYPE html >
+	System.out.println("view 페이지 : "+list.toString());		
+%>
+
+
+
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>boardReplyForm</title>
+<title>QuestionListView</title>
+<script type ="text/javascript">
+	function showWriteQuestion(){
+		location.href = "views/question/questionWriteForm.jsp";		
+	}
+	
+</script>
 
 
 <%-- 헤더바 --%>
@@ -110,12 +127,12 @@ table.type10 .even {
 </style>
 
 
+
 </head>
 <body>
-<%@ include file="../../header.jsp" %>
 
 
-
+<%@ include file="../../header.jsp"  %>
 
 	<!-- 반복 -->
 	<div class="main-header">
@@ -190,44 +207,103 @@ table.type10 .even {
 </div>
 
 
-<h2><%= qnum %>번글 댓글달기</h2>
-<br>
-<form action="/semi/qreply" method="post">
-	<input type="hidden" name="page" value="<%=currentPage%>">  <%-- currentPage도 form태그 안에 숨겨서 값 post로 넘기기위해서  --%>
-	<input type="hidden" name="qnum" value="<%=qnum %>">
-	<table align = "center" cellspacing="0" border="1" width=500">
-	<tr><th>제목</th><td><input type="text" name="qtitle"></td></tr>
-	<tr><th>작성자</th><td><input type="text" name="qwriter" readonly value=<%=member.getMemberId() %>></td></tr>
-	<tr><th>내용</th><td><textarea name="qcontent" rows="7" cols="50"  ></textarea></td></tr>
-	<tr><th colspan="2"><input type="submit" value ="댓글등록">
-		<a href="javascript:history.go(-1);">이전 페이지로</a>
-	</th></tr>
-	</table>
-</form>
-<h4 align="center"><a href="/semi/qlist?page=<%=currentPage%>">목록</a></h4>
+
+
+
+<h2 align="left">QA 게시판</h2>
+
+<div align="center">
+	<form action="/semi/qsearch" method="post">
+		<input type="search" autocomlete name="keyword" length="50">&nbsp;
+		<input type="submit" value="제목검색"> 
+	</form>
+</div>
+
 
 <br>
+<table align="center" border="1" cellspacing="0" width="700">
+
+<tbody>
+<tr bgcolor="gray"><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th>
+   <th>첨부파일</th></tr>
+<%
+	for(Question q : list){
+%>
+<tr>
+	<td align="center"><%= q.getQuestionNum() %></td>
+	<td>
+	<%-- 답글일 때는 들여쓰기하면서 앞에 ▶ 표시함 --%>
+		<% if(q.getQuestionLevel() == 1){  //원글의 댓글일 때 %>
+		&nbsp; &nbsp; ▶
+		<% }else if(q.getQuestionLevel() == 2){  //댓글의 댓글일 때 %>
+		&nbsp; &nbsp; &nbsp; &nbsp; ▶▶
+		<% } %>
+	<%-- 로그인한 경우 상세보기 가능하게 처리함 --%>
+		<% if(member != null){ %>
+			<a href="/semi/qdetail?qnum=<%= q.getQuestionNum() %>&page=<%= currentPage %>">
+			<%= q.getQuestionTitle() %>
+			</a>
+		<% }else{ %>
+			<%= q.getQuestionTitle() %>
+		<% } %>
+	</td>
+	<td align="center"><%= q.getQuestionWriter() %></td>
+	<td align="center"><%= q.getQuestionDate() %></td>
+	<td align="center"><%= q.getQuestionReadCount() %></td>
+	<td align="center">
+		<% if(q.getQuestionOriginalFileName() != null){ %>
+			◎
+		<% }else{ %>
+			&nbsp;
+		<% } %>
+	</td>
+</tr>
+<%  } %>
+
+</tbody>
+</table>
+
+</div>
+
+<br>
+<%-- 페이지 번호 처리 --%>
+<div align="center">
+<%-- 이전 페이지 있을 경우에 대한 처리 --%>
+<% if(currentPage <= 1){ %>
+	[이전] &nbsp;
+<% }else{ %>
+	<a href="/semi/qsearch?page=<%= currentPage - 1 %>&keyword=<%=keyword%>">[이전]</a>
+<% } %>
+<%-- 현재 페이지 숫자 보여주기 --%>
+<% for(int p = startPage; p <= endPage; p++){ 
+		if(p == currentPage){
+%>
+	<b><font size="4" color="red">[<%= p %>]</font></b>
+<%     }else{ %>
+	<a href="/semi/qsearch?page=<%= p %>&keyword=<%=keyword%>"><%= p %></a>
+<% }} %>
+<%-- 현재 페이지 다음 페이지에 대한 처리 --%>
+<% if(currentPage >= maxPage){ %>
+	[다음]
+<% }else{ %>
+	<a href="/semi/qsearch?page=<%= currentPage + 1 %>&keyword=<%=keyword%>">[다음]</a>
+<% } %>
+
+
+
+
+
+<% if(member!= null){ %>
+	<div>
+		<button onclick="showWriteQuestion()" >글쓰기</button>
+	</div>
+	<%} %>
+	
+	
+<br><br><br>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

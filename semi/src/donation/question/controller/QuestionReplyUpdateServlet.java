@@ -48,7 +48,7 @@ public class QuestionReplyUpdateServlet extends HttpServlet {
 			response.sendRedirect("/semi/qlist?page=" + currentPage);
 		}else{
 			
-			request.setAttribute("message", "댓글 수정 실패!");
+			request.setAttribute("message", "QA댓글 수정 실패!");
 			request.getRequestDispatcher("views/question/questionError.jsp").forward(request, response);
 		}
 		

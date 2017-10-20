@@ -4,6 +4,8 @@ import static donation.common.JDBCTemplate.*;
 import java.sql.*;
 import java.util.*;
 import donation.question.model.vo.Question;
+import donation.notice.model.dao.NoticeDao;
+import donation.notice.model.vo.Notice;
 import donation.question.model.dao.QuestionDao;
 
 public class QuestionService {
@@ -26,9 +28,9 @@ public class QuestionService {
 	}
 
 	//원글 등록 처리용
-	public int insertQuestion(Question b) {
+	public int insertQuestion(Question q) {
 		Connection con = getConnection();
-		int result = new QuestionDao().insertQuestion(con, b);
+		int result = new QuestionDao().insertQuestion(con, q);
 		if(result > 0)
 			commit(con);
 		else
@@ -38,9 +40,9 @@ public class QuestionService {
 	}
 
 	//조회수 1 증가 처리 
-	public void addReadCount(int bnum) {
+	public void addReadCount(int qnum) {
 		Connection con = getConnection();
-		int result = new QuestionDao().addReadCount(con, bnum);
+		int result = new QuestionDao().addReadCount(con, qnum);
 		if(result > 0){
 			commit(con);
 		}else{
@@ -51,17 +53,17 @@ public class QuestionService {
 		return ;
 	}
 
-	public Question selectQuestion(int bnum) {
+	public Question selectQuestion(int qnum) {
 		Connection con = getConnection();
-		Question Question = new QuestionDao().selectQuestion(con, bnum);		
+		Question Question = new QuestionDao().selectQuestion(con, qnum);		
 		close(con);		
 		return Question;
 	}
 
 	//게시글 삭제 기능
-	public int deleteQuestion(int bnum) {
+	public int deleteQuestion(int qnum) {
 		Connection con = getConnection();
-		int result = new QuestionDao().deleteQuestion(con, bnum);
+		int result = new QuestionDao().deleteQuestion(con, qnum);
 		if(result>0){
 			commit(con);
 			
@@ -116,9 +118,9 @@ public class QuestionService {
 		return result;
 	}
 
-	public int updateQuestion(Question b) {
+	public int updateQuestion(Question q) {
 		Connection con = getConnection();
-		int result = new QuestionDao().updateQuestion(con, b);
+		int result = new QuestionDao().updateQuestion(con, q);
 		if(result>0){
 			commit(con);
 			
@@ -137,6 +139,21 @@ public class QuestionService {
 		return list;
 	}
 
+	public ArrayList<Question> selectSearch(String keyword, int currentPage, int limit) {
+		Connection con = getConnection();
+		ArrayList<Question> list = new QuestionDao().selectTitleSearch(con, keyword, currentPage, limit);
+		
+		close(con);
+		
+		return list;
+		
+	}
+	public int getSearchListCount(String keyword) {
+		Connection con = getConnection();
+		int listCount = new QuestionDao().getSearchListCount(con, keyword);
+		close(con);
+		return listCount;
+	}	
 }
 
 

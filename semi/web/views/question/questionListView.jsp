@@ -201,17 +201,23 @@ table.type10 .even {
 </div>
 
 
-<hr style="clear:both">
-<h2 align="center">게시글 목록</h2>
-<h3 align="center">총 게시글 갯수 : <%= listCount %></h3>
-<br>
-<% if(member!= null){ %>
-	<div>
-		<button onclick="showWriteQuestion()" >글쓰기</button>
-	</div>
-	<%} %>
+
+
+
+<h2 align="left">QA 게시판</h2>
+
+<div align="center">
+	<form action="/semi/qsearch" method="post">
+		<input type="search" autocomlete name="keyword" length="50">&nbsp;
+		<input type="submit" value="제목검색"> 
+	</form>
+</div>
+
+
 <br>
 <table align="center" border="1" cellspacing="0" width="700">
+
+<tbody>
 <tr bgcolor="gray"><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th>
    <th>첨부파일</th></tr>
 <%
@@ -247,6 +253,8 @@ table.type10 .even {
 	</td>
 </tr>
 <%  } %>
+
+</tbody>
 </table>
 
 </div>
@@ -277,6 +285,15 @@ table.type10 .even {
 
 
 
+
+
+<% if(member!= null){ %>
+	<div>
+		<button onclick="showWriteQuestion()" >글쓰기</button>
+	</div>
+	<%} %>
+	
+	
 <br><br><br>
 
 </body>
