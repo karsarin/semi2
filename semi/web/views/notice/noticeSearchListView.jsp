@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*, donation.notice.model.vo.Notice"%>
-
 <%
 
-
 	
-ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
-int listCount = ((Integer)request.getAttribute("listCount")).intValue();
+	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+int listCount = ((Integer)request.getAttribute("listSearchCount")).intValue();
 int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 int startPage = ((Integer)request.getAttribute("startPage")).intValue();
 int endPage = ((Integer)request.getAttribute("endPage")).intValue();
 int maxPage = ((Integer)request.getAttribute("maxPage")).intValue();
-	 
+String keyword  = (String)request.getAttribute("keyword");
 	 
 	
 %>
@@ -135,10 +133,7 @@ table.type10 .even {
 </head>
 
 <body>
-
 <%@ include file="../../header.jsp"  %>
-
-
 	<!-- 반복 -->
 	<div class="main-header">
 		<div class="container">
@@ -300,7 +295,7 @@ table.type10 .even {
 <% if(currentPage <= 1){ %>
 	[이전] &nbsp;
 <% }else{ %>
-	<a href="/semi/nlist?page=<%= currentPage - 1 %>">[이전]</a>
+	<a href="/semi/nsearch?page=<%= currentPage - 1 %>&keyword=<%=keyword%>">[이전]</a>
 <% } %>
 <%-- 현재 페이지 숫자 보여주기 --%>
 <% for(int p = startPage; p <= endPage; p++){ 
@@ -308,15 +303,17 @@ table.type10 .even {
 %>
 	<b><font size="4" color="red">[<%= p %>]</font></b>
 <%     }else{ %>
-	<a href="/semi/nlist?page=<%= p %>"><%= p %></a>
+	<a href="/semi/nsearch?page=<%=p%>&keyword=<%=keyword%>"><%=p%></a>
 <% }} %>
 <%-- 현재 페이지 다음 페이지에 대한 처리 --%>
 <% if(currentPage >= maxPage){ %>
 	[다음]
 <% }else{ %>
-	<a href="/semi/nlist?page=<%= currentPage + 1 %>">[다음]</a>
+	<a href="/semi/nsearch?page=<%= currentPage + 1 %>&keyword=<%=keyword%>">[다음]</a>
 <% } %>
 </div>
+	
+	
 	
 	
 	

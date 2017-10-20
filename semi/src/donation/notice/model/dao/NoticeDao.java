@@ -294,8 +294,8 @@ public class NoticeDao {
 		return result;
 	}
 
-	public ArrayList<Notice> selectTitleSearch(Connection con, String keyword) {
-		ArrayList<Notice> list = null;
+	public ArrayList<Notice> selectTitleSearch(Connection con, String keyword, int currentPage, int limit) {
+		/*ArrayList<Notice> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -333,7 +333,98 @@ public class NoticeDao {
 			close(pstmt);
 		}		
 		
-		return list;	
+		return list;	*/
+		
+		
+		ArrayList<Notice> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		//currentPage 에 해당되는 목록만 조회
+		String query ="select * from ("
+				+ "select rownum rnum, NOTICE_NO, NOTICE_TITLE, "
+				+ "NOTICE_WRITER, NOTICE_CONTENT, NOTICE_DATE, "
+				+ "ORIGINAL_FILENAME, RENAME_FILENAME, READ_COUNT "
+				+ "from (select * from notice where notice_title like ? order by NOTICE_NO desc "
+				+ " )) "
+				+ "where rnum >= ? and rnum <= ?";
+		System.out.println("currentPage :" + currentPage);
+		int startRow = (currentPage -1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "%" + keyword + "%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset != null){
+				list = new ArrayList<Notice>();
+				
+				while(rset.next()){
+					Notice notice = new Notice();
+					
+					notice = new Notice();
+					notice.setNoticeNo(rset.getInt("NOTICE_NO"));
+					notice.setNoticeTitle(rset.getString("NOTICE_TITLE"));
+					notice.setNoticeWriter(rset.getString("NOTICE_WRITER"));
+					notice.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+					notice.setNoticeDate(rset.getDate("NOTICE_DATE"));
+					notice.setOriginalFileName(rset.getString("ORIGINAL_FILENAME"));
+					notice.setRenameFileName(rset.getString("RENAME_FILENAME"));
+					notice.setReadCount(rset.getInt("READ_COUNT"));
+					
+					list.add(notice);
+					
+					System.out.println(list.toString());
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
+	public int getSearchListCount(Connection con, String keyword) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select count(*) from notice where notice_title like ?";
+		//여기서 like 뒤에 % 쓰면안됨 여기는 ?만 쓰고 setString할 때 문자열 값으로 추가시켜줘야됨
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "%" + keyword + "%");
+		
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+				result = rset.getInt(1);
+			
+		} 
+		
+		
+		catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}		
+
+		
+		System.out.println(result);
+		return result;
+
+		
+		
+		
 	}	
 }
 
