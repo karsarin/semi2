@@ -1,11 +1,15 @@
 package donation.member.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import donation.member.model.service.MemberService;
+import donation.member.model.vo.Member;
 
 /**
  * Servlet implementation class MemberUpdateServlet
@@ -26,8 +30,27 @@ public class MemberUpdateServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// »∏ø¯¡§∫∏ºˆ¡§ ƒ¡∆Æ∑—∑Ø
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// ÌöåÏõêÏ†ïÎ≥¥ Î≥ÄÍ≤Ω
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		
+		String memberId = request.getParameter("memberid");
+		String memberName = request.getParameter("membername");
+		String memberPwd1 = request.getParameter("memberpwd1");
+		String memberPwd2 = request.getParameter("memberpwd2");
+		String memberAddress = request.getParameter("memberaddress");
+		String memberEmail = request.getParameter("memberemail");
+		String memberPhone = request.getParameter("memberphone");
+		String[] talents = request.getParameterValues("talent");
+		StringBuilder t = new StringBuilder();
+		for(int i=0;i<talents.length;i++){
+			if(i<talents.length-1)
+				t.append(talents[i] + ",");
+			else
+				t.append(talents[i]);
+			String talent = t.toString();
+		}
+		Member member = new Member(memberId,memberPwd1,memberName,null,);
 	}
 
 	/**
