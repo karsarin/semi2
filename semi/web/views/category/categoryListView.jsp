@@ -27,11 +27,11 @@
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800'
 	rel='stylesheet' type='text/css'>
 
-<link rel="stylesheet" href="../../css/bootstrap.min.css">
-<link rel="stylesheet" href="../../css/font-awesome.css">
-<link rel="stylesheet" href="../../css/animate.css">
-<link rel="stylesheet" href="../../css/templatemo_misc.css">
-<link rel="stylesheet" href="../../css/templatemo_style.css">
+<link rel="stylesheet" href="/semi/css/bootstrap.min.css">
+<link rel="stylesheet" href="/semi/css/font-awesome.css">
+<link rel="stylesheet" href="/semi/css/animate.css">
+<link rel="stylesheet" href="/semi/css/templatemo_misc.css">
+<link rel="stylesheet" href="/semi/css/templatemo_style.css">
 
 <script src="../../js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 <script src="../../js/jquery-3.2.1.min.js"></script>
@@ -86,11 +86,11 @@ ul.sub li:hover {
 
 
 <!-- 그림 적용 -->
-<link rel='stylesheet' href='../../image_js/style.css'
+<link rel='stylesheet' href='/semi/image_js/style.css'
 	media='screen' />
 <script
 	src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="../../image_js/blocksit.min.js"></script>
+<script src="/semi/image_js/blocksit.min.js"></script>
 <script>
 $(document).ready(function() {
 	//vendor script
@@ -220,7 +220,7 @@ $(document).ready(function() {
 			<li class="group">
 				<div class="title">카테고리</div>
 				<ul class="sub">
-					<li><a href="#">IT 재능</a></li>
+					<li><a href="#">IT</a></li>
 					<li><a href="#">집안일</a></li>
 					<li><a href="#">마케팅</a></li>
 					<li><a href="#">홍보</a></li>
@@ -240,11 +240,11 @@ $(document).ready(function() {
 	<!-- 반복 끝 -->
 
 	<!--  그림 -->
-	<div >
+<form action="/clist" method="post">
+	<div>
 		<hgroup>
-			<h1 style="font-size:20pt">[검색 결과]</h1>
-
-		</hgroup>
+			<h1 style="font-size:20pt">카테고리 게시판</h1>
+			<h3>총 <%= clistCount %>개의 재능이 등록돼 있습니다.</h3>
 		<br>
 		<div id="container">
 			<div class="grid">
@@ -385,7 +385,7 @@ $(document).ready(function() {
 			<!---->
 		</div>
 	</div>
-
+</form>
 	<!-- 그림 끝 -->
 
 
