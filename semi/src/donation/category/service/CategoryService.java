@@ -17,8 +17,11 @@ public class CategoryService {
 	}
 	
 	public ArrayList<Category> selectList(int currentPage, int limit) {
-		// TODO Auto-generated method stub
-		return null;
+		Connection con = getConnection();
+		ArrayList<Category> category = new CategoryDao().selectList(con, currentPage, limit);
+		close(con);
+		
+		return category;
 	}
 
 }

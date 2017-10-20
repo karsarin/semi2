@@ -35,14 +35,14 @@ public class CategoryListViewServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		// 페이지 처리용 
-				int currentPage = 1;
+				int ccurrentPage = 1;
 				
 				// 한 페이지에 출력할 목록 개수 지정
-				int limit = 16;
+				int climit = 10;
 				
 				// 페이지 숫자가 전송이 왔을 경우 
 				if(request.getParameter("page") != null)
-					currentPage = Integer.parseInt(request.getParameter("page"));
+					ccurrentPage = Integer.parseInt(request.getParameter("page"));
 					
 				CategoryService cservice = new CategoryService();
 				
@@ -50,47 +50,42 @@ public class CategoryListViewServlet extends HttpServlet {
 				int clistCount = cservice.getListCount();
 				//System.out.println("listCount : " + listCount);
 				// 해당 페이지용 목록 조회
-				ArrayList<Category> clist = cservice.selectList(currentPage, limit);
+				ArrayList<Category> clist = cservice.selectList(ccurrentPage, climit);
 				
-			/*	// 총 페이지 수 계산 : 목록이 최소 1개일 때는 한 페이지로 처리함
+				// 총 페이지 수 계산 : 목록이 최소 1개일 때는 한 페이지로 처리함
 				// 페이지 1이 되려면 = 목록 0.1 개 + 0.9 계산되게 함
-				int maxPage = (int)((double)clistCount / limit + 0.9);
+				int cmaxPage = (int)((double)clistCount / climit + 0.9);
 				
 				// 현재 페이지가 13이면 화면에 보여줄 시작 페이지는 11로 지정
 				// (1, 11, 21, 31, ........)
-				int startPage = (((int)((double)currentPage / limit + 0.9)) - 1) * limit + 1;
+				int cstartPage = (((int)((double)ccurrentPage / climit + 0.9)) - 1) * climit + 1;
 				
 				// 만약, 목록 아래에 보여질 페이지 개수가 10개이면 
 				// 현재 페이지가 13이면 끝 페이지수는 20페이지가 되어야 함
-				int endPage = startPage + limit - 1;
+				int cendPage = cstartPage + climit - 1;
 				
-				if(maxPage < endPage)
-					endPage = maxPage;
-				*/
+				if(cmaxPage < cendPage)
+					cendPage = cmaxPage;
 				
-				System.out.println("clistCount : " + clistCount);
+				RequestDispatcher view = null;					
 				
-				RequestDispatcher view = null;
-				view = request.getRequestDispatcher("views/category/categoryListView.jsp");
-				request.setAttribute("clistCount", clistCount);
-				
-				view.forward(request, response);
-				
-				/*if(clist != null)
+				if(clist != null)
 				{
 					
-					
-					request.setAttribute("list", clist);
-					request.setAttribute("currentPage", currentPage);
-					request.setAttribute("maxPage", maxPage);
-					request.setAttribute("startPage", startPage);
-					request.setAttribute("endPage", endPage);
+					view = request.getRequestDispatcher("views/category/categoryListView.jsp");
+					request.setAttribute("clist", clist);
+					request.setAttribute("ccurrentPage", ccurrentPage);
+					request.setAttribute("cmaxPage", cmaxPage);
+					request.setAttribute("cstartPage", cstartPage);
+					request.setAttribute("cendPage", cendPage);
+					request.setAttribute("clistCount", clistCount);
+					view.forward(request, response);
 					
 				}else{
-					view = request.getRequestDispatcher("views/board/boardError.jsp");
-					request.setAttribute("message", "게시글 페이지별 조회 실패");
+					view = request.getRequestDispatcher("views/category/categoryError.jsp");
+					request.setAttribute("message", "카테고리 조회 실패");
 					view.forward(request, response);
-				}*/
+				}
 	}
 
 	/**
