@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    <%@ page import="donation.member.model.vo.Member" %>
+    <% Member member = (Member)session.getAttribute("member"); %>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<meta charset="UTF-8">
+<title>header</title>
 <style type="text/css">
 div#loginbar{
 	float:right;
@@ -16,10 +18,12 @@ div#loginbar{
 </head>
 <body>
 <div id=loginbar>
-<a>로그인</a>
-<a>회원가입</a>
-<a></a>
-
+<%-- <% if(member ==null){ %> --%>
+	<a href="/semi/views/member/Login.jsp">로그인</a>
+	<a href="/semi/views/member/Insert.jsp">회원가입</a>
+<%-- <% }else{ %>
+	<a href="#"><%=member.getMemberNik() %></a>님 환영합니다
+<% } %> --%>
 </div>
 </body>
 </html>
