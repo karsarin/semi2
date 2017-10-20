@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert member</title>
+
 </head>
 <body>
 	<h2 align="center">회원가입</h2>
