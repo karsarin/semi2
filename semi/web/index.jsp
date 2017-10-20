@@ -63,6 +63,10 @@
                                         <li><a href="javascript:goBoardPage()">공지사항</a></li>
                                         <li><a href="#">게시판</a></li>                                       
                                         <li><a href="#">마이페이지</a></li>
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/master
+=======
+>>>>>>> refs/heads/master
                                         
                                         
 										                            

@@ -1,12 +1,13 @@
 package donation.member.model.dao;
 
-import java.beans.Statement;
+import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 import static donation.common.JDBCTemplate.*;
 import donation.member.model.vo.Member;
+import static donation.common.JDBCTemplate.close;
 
 public class MemberDao {
 
@@ -47,6 +48,7 @@ public class MemberDao {
 		}
 		return member;
 	}
+	
 
 	public int memberInsert(Connection con, Member member) {
 		int result = 0;
@@ -55,18 +57,27 @@ public class MemberDao {
 		
 		return result;
 	}
+
 	public int insertCheck(Connection con,Member member){
 		Statement stmt = null;
+		
 		String query = "select * from member";
 		int result = 0;
 		try {
+			stmt = con.createStatement();
+			
 			} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
+			
 			
 		}
 		
 		
 		return result;
 	}
+
+
+	
+
 }
