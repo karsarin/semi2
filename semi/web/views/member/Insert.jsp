@@ -7,6 +7,8 @@
 <title>Insert member</title>
 </head>
 <body>
+	
+	<a><h1>메인로고</h1></a>
 	<h2 align="center">회원가입</h2>
 	<br><br>
 	<form action="/semi/minsert" method="post">
@@ -93,7 +95,7 @@
 			<tr>
 				<td width="500px" colspan="2" align="center">
 					<input type="submit" value="회원가입">
-					<input type="button" value="취소">
+					<input type="reset" value="취소">
 				</td>
 			</tr>
 		</table>

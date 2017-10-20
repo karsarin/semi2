@@ -5,7 +5,7 @@
  <head>
         <meta charset="utf-8">
         <title>Flex - Responsive HTML Template</title>
-    	<meta name="description" content="">
+       <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
         <!--  헤더바 -->
@@ -17,13 +17,13 @@
         <link rel="stylesheet" href="css/animate.css">
         <link rel="stylesheet" href="css/templatemo_misc.css">
         <link rel="stylesheet" href="css/templatemo_style.css">
-		<script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+      <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
          
         <!--  헤더바 끝 -->
         <link href="graph/csslinegraph/csslinegraph.css" rel="stylesheet" type="text/css" media="screen" />
         
         <script type="text/javascript">
-        function goBoardPage() { location.href="/semi/nlist"; }
+        function goBoardPage() { location.href="views/board/boardView.jsp"; }
         function goChatPage() { location.href="views/chatting/chat.html"; }
         function goCategoryPage(){location.href="/semi/clist"}
         function goLoginPage() { location.href="views/member/Login.jsp"; }
@@ -39,10 +39,10 @@
 
 
 <!-- 헤더 바  -->
-	
-	<br>
-	<br>
-	<hr>
+   
+   <br>
+   <br>
+   <hr>
                 <div class="main-header">
                     <div class="container">
                         <div id="menu-wrapper">
@@ -53,26 +53,20 @@
                                 <div class="col-md-10 col-sm-10 main-menu text-right">
                                     <div class="toggle-menu visible-sm visible-xs"><i class="fa fa-bars"></i></div>
                                     <ul class="menu-first">
-										<li>
-										<form action="/semi/tsearch" method="post">
-										<input type="search" name = "keyword" autocomplete>
-										<input type="submit" value="제목검색" >
-										</form>
-										</li>
+                              <li>
+                              <form action="/semi/tsearch" method="post">
+                              <input type="search" name = "keyword" autocomplete>
+                              <input type="submit" value="제목검색" >
+                              </form>
+                              </li>
                                         <li class="active"><a href="index.jsp">Home</a></li>
                                         <li><a href="javascript:goCategoryPage()">카테고리</a></li>
-<<<<<<< HEAD
-                                        <li><a href="javascript:goBoardPage()">게시판</a></li>
-                                        <li><a href="#">게시판</a></li>                                       
-                                        <li><a href="#">마이페이지</a></li>
-=======
                                         <li><a href="javascript:goBoardPage()">공지사항</a></li>
                                         <li><a href="javascript:goLoginPage()">로그인</a></li>                                       
                                         
->>>>>>> refs/remotes/origin/subin
                         
                                         
-										                            
+                                                          
                                     </ul>                                    
                                 </div> <!-- /.main-menu -->
                             </div> <!-- /.row -->
@@ -313,8 +307,8 @@
                 <div class="row">
                     <div class="col-md-8 col-sm-6">
                         <p>Aliquam faucibus in dolor sed vestibulum. Sed adipiscing malesuada luctus. Morbi tincidunt, tellus scelerisque scelerisque scelerisque, sapien dui pretium augue, at consectetur sapien tellus vitae nunc. Ut vitae metus quis nulla cursus adipiscing pretium vel dolor. Fusce lacinia accumsan arcu, quis porttitor nisi tincidunt ut. Nunc malesuada nunc eget nunc sollicitudin posuere. Maecenas vitae tortor quis odio hendrerit sagittis.<br><br>
-						Etiam tincidunt, magna eu elementum tristique, sapien nisl venenatis lacus, nec sagittis lectus dui eget lorem. Donec in tempus mi. Aenean egestas interdum dolor, et mollis lectus consequat. Mauris ullamcorper, felis sit amet gravida malesuada, nisi sem rhoncus massa, non tempor est erat sit amet diam.<!-- spacing for mobile viewing --><br><br>
-						</p>
+                  Etiam tincidunt, magna eu elementum tristique, sapien nisl venenatis lacus, nec sagittis lectus dui eget lorem. Donec in tempus mi. Aenean egestas interdum dolor, et mollis lectus consequat. Mauris ullamcorper, felis sit amet gravida malesuada, nisi sem rhoncus massa, non tempor est erat sit amet diam.<!-- spacing for mobile viewing --><br><br>
+                  </p>
                     </div> <!-- /.col-md-8 -->
                     <div class="col-md-4 col-sm-6">
                         <ul class="progess-bars">
@@ -499,93 +493,93 @@
   <div style="float:left; margin-right:120px;">
 <h3>기부 현황</h3>
 <p>(in year)</p>
-	
-	<dl class="csslinegraph">
-		
-		<dt>Day 1</dt>
-		<dd class="first"><span class="pi0 i1"><em>3</em></span></dd>
-		
-	  <dt>Day 2</dt>
-		<dd><span class="pi1 i10"><em>36</em></span></dd>		
-		
-	  <dt>Day 3</dt>
-		<dd><span class="pd11 d d4"><em>23</em></span></dd>	
-		
-	  <dt>Day 4</dt>
-		<dd><span class="pi7 i10"><em>56</em></span></dd>	
-		
-	  <dt>Day 5</dt>
-		<dd><span class="pd17 d d0"><em>55</em></span></dd>								
-		
-	  <dt>Day 6</dt>
-		<dd><span class="pd17 d d7"><em>32</em></span></dd>			
-		
-	  <dt>Day 7</dt>
-		<dd><span class="pi10 i14"><em>79</em></span></dd>	
-		
-	  <dt>Day 8</dt>
-		<dd><span class="pd24 d d2"><em>74</em></span></dd>	
-		
-	  <dt>Day 9</dt>
-		<dd><span class="pi22 i1"><em>77</em></span></dd>	
-		
-	  <dt>Day 10</dt>
-		<dd><span class="pi23 i2"><em>83</em></span></dd>	
-		
-	  <dt>Day 11</dt>
-		<dd><span class="pd25 d d15"><em>34</em></span></dd>	
-		
-	  <dt>Day 12</dt>
-		<dd><span class="pi10 i2"><em>39</em></span></dd>											
-				
-	</dl>
+   
+   <dl class="csslinegraph">
+      
+      <dt>Day 1</dt>
+      <dd class="first"><span class="pi0 i1"><em>3</em></span></dd>
+      
+     <dt>Day 2</dt>
+      <dd><span class="pi1 i10"><em>36</em></span></dd>      
+      
+     <dt>Day 3</dt>
+      <dd><span class="pd11 d d4"><em>23</em></span></dd>   
+      
+     <dt>Day 4</dt>
+      <dd><span class="pi7 i10"><em>56</em></span></dd>   
+      
+     <dt>Day 5</dt>
+      <dd><span class="pd17 d d0"><em>55</em></span></dd>                        
+      
+     <dt>Day 6</dt>
+      <dd><span class="pd17 d d7"><em>32</em></span></dd>         
+      
+     <dt>Day 7</dt>
+      <dd><span class="pi10 i14"><em>79</em></span></dd>   
+      
+     <dt>Day 8</dt>
+      <dd><span class="pd24 d d2"><em>74</em></span></dd>   
+      
+     <dt>Day 9</dt>
+      <dd><span class="pi22 i1"><em>77</em></span></dd>   
+      
+     <dt>Day 10</dt>
+      <dd><span class="pi23 i2"><em>83</em></span></dd>   
+      
+     <dt>Day 11</dt>
+      <dd><span class="pd25 d d15"><em>34</em></span></dd>   
+      
+     <dt>Day 12</dt>
+      <dd><span class="pi10 i2"><em>39</em></span></dd>                                 
+            
+   </dl>
 </div>
 
 
 <div style="float:left;">
 
     <h2>재능 별 기부 현황</h2>
-	<p>(in percentages)</p>        
+   <p>(in percentages)</p>        
     
-	<dl class="csslinegraph">
-		
-		<dt>Day 1</dt>
-		<dd class="first"><span class="pi12 i5"><em>3</em></span></dd>
-		
-	  <dt>Day 2</dt>
-		<dd><span class="pi17 i10"><em>36</em></span></dd>		
-		
-	  <dt>Day 3</dt>
-		<dd><span class="pd27 d d18"><em>23</em></span></dd>	
-		
-	  <dt>Day 4</dt>
-		<dd><span class="pi9 i15"><em>56</em></span></dd>	
-		
-	  <dt>Day 5</dt>
-		<dd><span class="pi24 i1"><em>55</em></span></dd>								
-		
-	  <dt>Day 6</dt>
-		<dd><span class="pd25 d d13"><em>32</em></span></dd>			
-		
-	  <dt>Day 7</dt>
-		<dd><span class="pi12 i9"><em>79</em></span></dd>	
-		
-	  <dt>Day 8</dt>
-		<dd><span class="pi21 i8"><em>74</em></span></dd>	
-		
-	  <dt>Day 9</dt>
-		<dd><span class="pd29 d d22"><em>77</em></span></dd>	
-		
-	  <dt>Day 10</dt>
-		<dd><span class="pi7 i2"><em>83</em></span></dd>	
-		
-	  <dt>Day 11</dt>
-		<dd><span class="pd9 d d4"><em>34</em></span></dd>	
-		
-	  <dt>Day 12</dt>
-		<dd><span class="pi5 i14"><em>39</em></span></dd>											
-				
-	</dl>
+   <dl class="csslinegraph">
+      
+      <dt>Day 1</dt>
+      <dd class="first"><span class="pi12 i5"><em>3</em></span></dd>
+      
+     <dt>Day 2</dt>
+      <dd><span class="pi17 i10"><em>36</em></span></dd>      
+      
+     <dt>Day 3</dt>
+      <dd><span class="pd27 d d18"><em>23</em></span></dd>   
+      
+     <dt>Day 4</dt>
+      <dd><span class="pi9 i15"><em>56</em></span></dd>   
+      
+     <dt>Day 5</dt>
+      <dd><span class="pi24 i1"><em>55</em></span></dd>                        
+      
+     <dt>Day 6</dt>
+      <dd><span class="pd25 d d13"><em>32</em></span></dd>         
+      
+     <dt>Day 7</dt>
+      <dd><span class="pi12 i9"><em>79</em></span></dd>   
+      
+     <dt>Day 8</dt>
+      <dd><span class="pi21 i8"><em>74</em></span></dd>   
+      
+     <dt>Day 9</dt>
+      <dd><span class="pd29 d d22"><em>77</em></span></dd>   
+      
+     <dt>Day 10</dt>
+      <dd><span class="pi7 i2"><em>83</em></span></dd>   
+      
+     <dt>Day 11</dt>
+      <dd><span class="pd9 d d4"><em>34</em></span></dd>   
+      
+     <dt>Day 12</dt>
+      <dd><span class="pi5 i14"><em>39</em></span></dd>                                 
+            
+   </dl>
 </div>
 
 
@@ -632,4 +626,3 @@
         
        
     </body>
-</html>
