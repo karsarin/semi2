@@ -26,7 +26,7 @@
         function goBoardPage() { location.href="/semi/nlist"; }
         function goChatPage() { location.href="views/chatting/chat.html"; }
         function goCategoryPage(){location.href="/semi/clist"}
-        function goLoginPage() { location.href="views/member/Login.jsp"; }
+       
         </script>
 
 
@@ -39,7 +39,7 @@
 
 
 <!-- 헤더 바  -->
-	
+	<%@ include file = "header.jsp" %>
 	<br>
 	<br>
 	<hr>
@@ -61,15 +61,12 @@
 										</li>
                                         <li class="active"><a href="index.jsp">Home</a></li>
                                         <li><a href="javascript:goCategoryPage()">카테고리</a></li>
-<<<<<<< HEAD
+
                                         <li><a href="javascript:goBoardPage()">게시판</a></li>
-                                        <li><a href="#">게시판</a></li>                                       
-                                        <li><a href="#">마이페이지</a></li>
-=======
-                                        <li><a href="javascript:goBoardPage()">공지사항</a></li>
-                                        <li><a href="javascript:goLoginPage()">로그인</a></li>                                       
                                         
->>>>>>> refs/remotes/origin/subin
+                                                                    
+                                        
+
                         
                                         
 										                            
