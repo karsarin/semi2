@@ -21,6 +21,11 @@ public class MemberService {
 		return result;
 	}
 
+	public int memberInsertCheck(Member member, String memberPwd2) {
+		int result = new MemberDao().memberInsertCheck(member, memberPwd2);
+		return result;
+	}
+
 
 
 }

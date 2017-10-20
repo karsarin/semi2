@@ -35,7 +35,8 @@ public class MemberInsertServlet extends HttpServlet {
 		response.setContentType("text/html charset=utf-8");
 		
 		String memberId=request.getParameter("memberid");
-		String memberPwd = request.getParameter("memberPwd");
+		String memberPwd = request.getParameter("memberpwd");
+		String memberPwd2 = request.getParameter("memberpwd2");
 		String memberName = request.getParameter("membername");
 		String memberNo = request.getParameter("memberno");
 		String memberNik = request.getParameter("membernik");
@@ -51,13 +52,16 @@ public class MemberInsertServlet extends HttpServlet {
 				t.append(talents[i]);
 		}
 		String talent = t.toString();
+		int result = 0;
 		Member member = new Member(memberId,memberPwd,memberName,memberNo,memberNik,memberAddress,memberEmail,memberPhone,null,null,talent,null,null);
-		int result = new MemberService().memberInsert(member);
+		if((result = new MemberService().memberInsertCheck(member,memberPwd2))==0){
+			int result2 = new MemberService().memberInsert(member);
 		
-		if(member!=null){
+			if(member!=null){
 			
-		}else{
+			}else{
 			
+			}
 		}
 	}
 
