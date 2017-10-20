@@ -16,9 +16,9 @@
 	<div class="container">
 		<div id="menu-wrapper">
 			<div class="row">
-				<div class="logo-wrapper col-md-2 col-sm-2">
+				<div class="logo-wrapper col-md-2 col-sm-2" align="center">
 					<h1>
-						<a href="#">han</a>
+						<a href="#"></a>
 					</h1>
 				</div>
 				<div class="col-md-10 col-sm-10 main-menu text-right">
@@ -27,7 +27,7 @@
 					</div>
 					<ul class="menu-first">
 						<li class="active"><a href="/semi/views/manager/managerMain.jsp">Home_관리자</a></li>
-						<li><a href="/semi/views/manager/managerMember.jsp">회원정보</a></li>
+						<li><a href="/semi/mgrmember">회원정보</a></li>
 						<li><a href="#">카테고리</a></li>
 						<li><a href="#">공지사항</a></li>
 						<li><a href="#">게시판</a></li>
@@ -38,53 +38,60 @@
 	</div>
 	<br><br><br><br>
 
+
+			
 	<div class="content-section" id="services">
-		<div class="container">
+		<div class="container" align="center">
 			<div class="row">
-				<div class="heading-section col-md-12 text-center">
+				<div class="heading-section col-sm-12 col-md-12 text-center">
 					<h2 style="text-shadow:1px 1px 2px gray;">재능기부 승인 요청</h2>
 				</div>
 			</div><br>
-			<div id="portfolio" class="container">
+			<div id="portfolio">
 				<button id="pre">◀</button>
 				<div id="column1">
 					<div class="title">
 						<h2>제목 최대 11자 display</h2>
 					</div>
 					<p>상세 설명 최대 65자 display</p>
-					<a href="#" id="readBt1" class="icon icon-plus-sign button">Read More</a>
+					<a href="#" id="readBt1" class="icon icon-plus-sign button">Read
+						More</a>
 				</div>
 				<div id="column2">
 					<div class="title">
 						<h2>감각적인 고퀄리티 로고...</h2>
 					</div>
 					<p>간단한 상세 설명</p>
-					<a href="#" id="readBt2" class="icon icon-plus-sign button">Read More</a>
+					<a href="#" id="readBt2" class="icon icon-plus-sign button">Read
+						More</a>
 				</div>
 				<div id="column3">
 					<div class="title">
 						<h2>전단지, 카달로그, ...</h2>
 					</div>
 					<p>간단한 상세 설명</p>
-					<a href="#" id="readBt3" class="icon icon-plus-sign button">Read More</a>
+					<a href="#" id="readBt3" class="icon icon-plus-sign button">Read
+						More</a>
 				</div>
 				<div id="column4">
 					<div class="title">
 						<h2>자기소개서/이력서 첨삭</h2>
 					</div>
 					<p>간단한 상세 설명</p>
-					<a href="#" id="readBt4" class="icon icon-plus-sign button">Read More</a>
+					<a href="#" id="readBt4" class="icon icon-plus-sign button">Read
+						More</a>
 				</div>
 				<button id="next">▶</button>
-			</div>
+			</div><br><br>
+			<button id="tmore">More</button>
 		</div>
 	</div>
 	
-	<br><br><br><br><br><br><br><br><br>
-	<div class="content-section" id="services">
+	<br><br><br><br><br><br><br><br>
+	<div class="content-section col-md-12" id="services">
 		<div class="container" align="center">
 			<div class="row">
-				<div class="heading-section col-md-12 text-center">
+				<div class="heading-section text-center">
 					<h2 style="text-shadow:1px 1px 2px gray;">Q&A 답변 대기</h2>
 				</div>
 			</div>
