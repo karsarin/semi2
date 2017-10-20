@@ -25,7 +25,7 @@
         <script type="text/javascript">
         function goBoardPage() { location.href="views/board/boardView.jsp"; }
         function goChatPage() { location.href="views/chatting/chat.html"; }
-        function goCategoryPage(){location.href="views/category/categoryListView.jsp"}
+        function goCategoryPage(){location.href="/semi/clist"}
         </script>
 
 
