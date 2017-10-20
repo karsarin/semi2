@@ -134,7 +134,7 @@ public class NoticeUpdateServlet extends HttpServlet {
 		
 		
 		if(new NoticeService().updateNotice(notice) > 0){
-			response.sendRedirect("/first/nlist");
+			response.sendRedirect("/semi/nlist");
 		}else{
 			view= request.getRequestDispatcher("views/notice/noticeError.jsp");
 			request.setAttribute("message", "공지글 수정 처리 실패!");

@@ -133,7 +133,7 @@ table.type10 .even {
 </head>
 
 <body>
-
+<%@ include file="../../header.jsp"  %>
 	<!-- 반복 -->
 	<div class="main-header">
 		<div class="container">

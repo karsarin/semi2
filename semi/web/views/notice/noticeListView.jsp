@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*, donation.notice.model.vo.Notice"%>
+
 <%
 
+
 	
-	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
 int listCount = ((Integer)request.getAttribute("listCount")).intValue();
 int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 int startPage = ((Integer)request.getAttribute("startPage")).intValue();
@@ -133,6 +135,9 @@ table.type10 .even {
 </head>
 
 <body>
+
+<%@ include file="../../header.jsp"  %>
+
 
 	<!-- 반복 -->
 	<div class="main-header">
