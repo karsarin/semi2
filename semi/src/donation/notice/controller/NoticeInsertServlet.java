@@ -152,7 +152,7 @@ public class NoticeInsertServlet extends HttpServlet {
 		
 		//서비스로 전달하고 결과받아서 뷰 선택해서 내보내기 
 		if(new NoticeService().insertNotice(notice) > 0){
-			response.sendRedirect("/first/nlist");
+			response.sendRedirect("/semi/nlist");
 		}else{
 			view = request.getRequestDispatcher("views/notice/noticeError.jsp");
 			request.setAttribute("message", "공지글 등록 실패!");
