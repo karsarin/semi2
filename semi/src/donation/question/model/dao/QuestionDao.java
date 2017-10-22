@@ -1,6 +1,7 @@
 package donation.question.model.dao;
 
 import static donation.common.JDBCTemplate.*;
+
 import donation.question.model.vo.Question;
 import java.sql.*;
 import java.util.*;
@@ -66,22 +67,22 @@ public class QuestionDao {
 				list = new ArrayList<Question>();
 				
 				while(rset.next()){
-					Question b = new Question();
+					Question q = new Question();
 					
-					b.setQuestionNum(rset.getInt("Question_num"));
-					b.setQuestionTitle(rset.getString("Question_title"));
-					b.setQuestionWriter(rset.getString("Question_writer"));
-					b.setQuestionContent(rset.getString("Question_content"));
-					b.setQuestionDate(rset.getDate("Question_date"));
-					b.setQuestionReadCount(rset.getInt("Question_readcount"));
-					b.setQuestionOriginalFileName(rset.getString("Question_original_filename"));
-					b.setQuestionRenameFileName(rset.getString("Question_rename_filename"));
-					b.setQuestionLevel(rset.getInt("Question_level"));
-					b.setQuestionRef(rset.getInt("Question_ref"));
-					b.setQuestionReplyRef(rset.getInt("Question_reply_ref"));
-					b.setQuestionReplySeq(rset.getInt("Question_reply_seq"));
+					q.setQuestionNum(rset.getInt("Question_num"));
+					q.setQuestionTitle(rset.getString("Question_title"));
+					q.setQuestionWriter(rset.getString("Question_writer"));
+					q.setQuestionContent(rset.getString("Question_content"));
+					q.setQuestionDate(rset.getDate("Question_date"));
+					q.setQuestionReadCount(rset.getInt("Question_readcount"));
+					q.setQuestionOriginalFileName(rset.getString("Question_original_filename"));
+					q.setQuestionRenameFileName(rset.getString("Question_rename_filename"));
+					q.setQuestionLevel(rset.getInt("Question_level"));
+					q.setQuestionRef(rset.getInt("Question_ref"));
+					q.setQuestionReplyRef(rset.getInt("Question_reply_ref"));
+					q.setQuestionReplySeq(rset.getInt("Question_reply_seq"));
 					
-					list.add(b);
+					list.add(q);
 				}
 			}
 			
@@ -97,7 +98,7 @@ public class QuestionDao {
 
 	
 	//게시글 등록 처리
-	public int insertQuestion(Connection con, Question b) {
+	public int insertQuestion(Connection con, Question q) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -109,11 +110,11 @@ public class QuestionDao {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, b.getQuestionTitle());
-			pstmt.setString(2, b.getQuestionWriter());
-			pstmt.setString(3, b.getQuestionContent());
-			pstmt.setString(4, b.getQuestionOriginalFileName());
-			pstmt.setString(5, b.getQuestionRenameFileName());
+			pstmt.setString(1, q.getQuestionTitle());
+			pstmt.setString(2, q.getQuestionWriter());
+			pstmt.setString(3, q.getQuestionContent());
+			pstmt.setString(4, q.getQuestionOriginalFileName());
+			pstmt.setString(5, q.getQuestionRenameFileName());
 			
 			result = pstmt.executeUpdate();
 			
@@ -128,14 +129,14 @@ public class QuestionDao {
 
 	
 	//조회수 증가 처리
-	public int addReadCount(Connection con, int bnum) {
+	public int addReadCount(Connection con, int qnum) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = "update Question set Question_readcount = Question_readcount + 1 where Question_num = ?";
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, bnum);
+			pstmt.setInt(1, qnum);
 			
 			result = pstmt.executeUpdate();
 			
@@ -149,8 +150,8 @@ public class QuestionDao {
 	}
 
 
-	public Question selectQuestion(Connection con, int bnum) {
-		Question Question = null;
+	public Question selectQuestion(Connection con, int qnum) {
+		Question q = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -158,25 +159,25 @@ public class QuestionDao {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, bnum);
+			pstmt.setInt(1, qnum);
 			
 			rset = pstmt.executeQuery();
 			
 			
 			if(rset.next()){
-				Question = new Question();
-				Question.setQuestionNum(rset.getInt("Question_num"));
-				Question.setQuestionTitle(rset.getString("Question_title"));
-				Question.setQuestionWriter(rset.getString("Question_writer"));
-				Question.setQuestionContent(rset.getString("Question_content"));
-				Question.setQuestionDate(rset.getDate("Question_date"));
-				Question.setQuestionReadCount(rset.getInt("Question_readcount"));
-				Question.setQuestionOriginalFileName(rset.getString("Question_original_filename"));
-				Question.setQuestionRenameFileName(rset.getString("Question_rename_filename"));
-				Question.setQuestionLevel(rset.getInt("Question_level"));
-				Question.setQuestionRef(rset.getInt("Question_ref"));
-				Question.setQuestionReplyRef(rset.getInt("Question_reply_ref"));
-				Question.setQuestionReplySeq(rset.getInt("Question_reply_seq"));
+				q = new Question();
+				q.setQuestionNum(rset.getInt("Question_num"));
+				q.setQuestionTitle(rset.getString("Question_title"));
+				q.setQuestionWriter(rset.getString("Question_writer"));
+				q.setQuestionContent(rset.getString("Question_content"));
+				q.setQuestionDate(rset.getDate("Question_date"));
+				q.setQuestionReadCount(rset.getInt("Question_readcount"));
+				q.setQuestionOriginalFileName(rset.getString("Question_original_filename"));
+				q.setQuestionRenameFileName(rset.getString("Question_rename_filename"));
+				q.setQuestionLevel(rset.getInt("Question_level"));
+				q.setQuestionRef(rset.getInt("Question_ref"));
+				q.setQuestionReplyRef(rset.getInt("Question_reply_ref"));
+				q.setQuestionReplySeq(rset.getInt("Question_reply_seq"));
 			}
 			
 		} catch (Exception e) {
@@ -186,11 +187,11 @@ public class QuestionDao {
 			close(pstmt);
 		}		
 		
-		return Question;
+		return q;
 	}
 
 
-	public int deleteQuestion(Connection con, int bnum) {
+	public int deleteQuestion(Connection con, int qnum) {
 		int result = 0 ;
 		PreparedStatement pstmt = null;
 		
@@ -198,7 +199,7 @@ public class QuestionDao {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1,  bnum);
+			pstmt.setInt(1,  qnum);
 			result = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
@@ -307,7 +308,7 @@ public class QuestionDao {
 	}
 
 
-	public int updateQuestion(Connection con, Question b) {
+	public int updateQuestion(Connection con, Question q) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
@@ -319,11 +320,11 @@ public class QuestionDao {
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, b.getQuestionTitle());
-			pstmt.setString(2, b.getQuestionContent());
-			pstmt.setString(3, b.getQuestionOriginalFileName());
-			pstmt.setString(4, b.getQuestionRenameFileName());
-			pstmt.setInt(5, b.getQuestionNum());
+			pstmt.setString(1, q.getQuestionTitle());
+			pstmt.setString(2, q.getQuestionContent());
+			pstmt.setString(3, q.getQuestionOriginalFileName());
+			pstmt.setString(4, q.getQuestionRenameFileName());
+			pstmt.setInt(5, q.getQuestionNum());
 			
 			result = pstmt.executeUpdate();
 			
@@ -355,11 +356,11 @@ public class QuestionDao {
 			if (rset != null) {
 				list = new ArrayList<Question>();
 				while (rset.next()) {
-					Question b = new Question();
-					b.setQuestionNum(rset.getInt("Question_num"));
-					b.setQuestionTitle(rset.getString("Question_title"));
+					Question q = new Question();
+					q.setQuestionNum(rset.getInt("Question_num"));
+					q.setQuestionTitle(rset.getString("Question_title"));
 					
-					list.add(b);
+					list.add(q);
 				}
 			}
 
@@ -373,6 +374,151 @@ public class QuestionDao {
 		return list;
 	}
 	
+	
+	
+	///////////////////////
+	
+	public ArrayList<Question> selectTitleSearch(Connection con, String keyword, int currentPage, int limit) {
+		/*ArrayList<Notice> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select * from notice where notice_title like ? order by notice_no desc";
+																//여기서 like 뒤에 % 쓰면안됨 여기는 ?만 쓰고 setString할 때 문자열 값으로 추가시켜줘야됨
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "%" + keyword + "%");
+			rset = pstmt.executeQuery();
+			
+			if(rset != null){
+				list = new ArrayList<Notice>();
+								
+				while(rset.next()){
+					Notice n = new Notice();
+					n.setNoticeNo(rset.getInt("NOTICE_NO"));
+					n.setNoticeTitle(rset.getString("NOTICE_TITLE"));
+					n.setNoticeWriter(rset.getString("NOTICE_WRITER"));
+					n.setNoticeContent(rset.getString("NOTICE_CONTENT"));
+					n.setNoticeDate(rset.getDate("NOTICE_DATE"));
+					n.setOriginalFileName(rset.getString("ORIGINAL_FILENAME"));
+					n.setRenameFileName(rset.getString("RENAME_FILENAME"));
+					n.setReadCount(rset.getInt("READ_COUNT"));
+					
+					
+					list.add(n); //map에는 객체만 와야되는데 n.getNoticeNo()는 int형, 근데  AutoBoxing 됨
+				}
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}		
+		
+		return list;	*/
+		
+		
+	
+		
+		ArrayList<Question> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		//currentPage 에 해당되는 목록만 조회
+		String query ="select * from (select rownum rnum, Question_num, Question_title, Question_writer, Question_content, Question_original_filename, Question_rename_filename, Question_date, Question_level, Question_ref, Question_reply_ref, Question_reply_seq, Question_readcount	 from (select * from Question where question_title like ? order by Question_ref desc, Question_reply_ref desc, Question_level asc, Question_reply_seq asc))	where rnum >= ? and rnum <= ?";
+		
+		
+		
+	
+		
+		System.out.println("currentPage :" + currentPage);
+		int startRow = (currentPage -1) * limit + 1;
+		int endRow = startRow + limit - 1;
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "%" + keyword + "%");
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			
+			rset = pstmt.executeQuery();
+			
+			
+
+		
+			 
+			 
+			if(rset != null){
+				list = new ArrayList<Question>();
+				while(rset.next()){
+					Question q = new Question();
+					
+					q.setQuestionNum(rset.getInt("Question_num"));
+					q.setQuestionTitle(rset.getString("Question_title"));
+					q.setQuestionWriter(rset.getString("Question_writer"));
+					q.setQuestionContent(rset.getString("Question_content"));
+					q.setQuestionDate(rset.getDate("Question_date"));
+					q.setQuestionReadCount(rset.getInt("Question_readcount"));
+					q.setQuestionOriginalFileName(rset.getString("Question_original_filename"));
+					q.setQuestionRenameFileName(rset.getString("Question_rename_filename"));
+					q.setQuestionLevel(rset.getInt("Question_level"));
+					q.setQuestionRef(rset.getInt("Question_ref"));
+					q.setQuestionReplyRef(rset.getInt("Question_reply_ref"));
+					q.setQuestionReplySeq(rset.getInt("Question_reply_seq"));
+					
+					list.add(q);
+
+
+				}
+				 System.out.println(" list : " + list.toString());
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
+	public int getSearchListCount(Connection con, String keyword) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select count(*) from question where question_title like ?";
+		//여기서 like 뒤에 % 쓰면안됨 여기는 ?만 쓰고 setString할 때 문자열 값으로 추가시켜줘야됨
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "%" + keyword + "%");
+		
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+				result = rset.getInt(1);
+			
+		} 
+		
+		
+		catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}		
+
+		
+		System.out.println(result);
+		return result;
+
+		
+		
+		
+	}	  
 }
 
 

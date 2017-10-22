@@ -71,7 +71,7 @@ public class QuestionReplyServlet extends HttpServlet {
 		}
 		else{
 			RequestDispatcher view = request.getRequestDispatcher("views/question/questionError.jsp");
-			request.setAttribute("message", "댓글 달기 실패");
+			request.setAttribute("message", "QA 댓글 달기 실패");
 			view.forward(request, response);
 		}
 	}

@@ -54,7 +54,7 @@ public class QuestionDetailServlet extends HttpServlet {
 			
 		}else{
 			view = request.getRequestDispatcher("views/question/questionError.jsp");
-			request.setAttribute("message", "게시글 상세조회 실패!");
+			request.setAttribute("message", "QA게시글 상세조회 실패!");
 			view.forward(request, response);
 		}
 	

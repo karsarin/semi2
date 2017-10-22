@@ -48,7 +48,7 @@ public class QuestionUpdateViewServlet extends HttpServlet {
 			view.forward(request, response);
 		}else{
 			view = request.getRequestDispatcher("views/question/questionError.jsp");
-			request.setAttribute("message", "수정페이지 출력 요청 실패!");
+			request.setAttribute("message", "QA 수정페이지 출력 요청 실패!");
 			view.forward(request, response);
 		}
 		

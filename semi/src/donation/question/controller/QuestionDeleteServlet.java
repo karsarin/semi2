@@ -39,7 +39,7 @@ public class QuestionDeleteServlet extends HttpServlet {
 			response.sendRedirect("/semi/qlist?page=1");
 		}else{
 			RequestDispatcher view = request.getRequestDispatcher("views/question/questionError.jsp");
-			request.setAttribute("message","게시글 삭제 처리 실패!");
+			request.setAttribute("message","QA게시글 삭제 처리 실패!");
 			view.forward(request, response);
 		}
 				
