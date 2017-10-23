@@ -205,7 +205,6 @@ $(document).ready(function() {
 		<!-- /.container -->
 	</div>
 	<!-- /.main-header -->
-	</div>
 	<!-- /.site-header -->
 
 	
@@ -255,14 +254,15 @@ $(document).ready(function() {
 		<div id="container">
 			<div class="grid">
 				<div class="imgholder">
-					<img
+				<a href="/semi/cdetail">	<img
 						src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img27.jpg" />
+						</a>
 				</div>
 				<strong>Sunset Lake</strong>
 				<p>by user id &nbsp; 50,000원</p>
 				<p>★★★★★ 후기 5건</p>
 				
-				<<!-- div class="meta">by j osborn</div> -->
+				<!-- div class="meta">by j osborn</div> -->
 			</div>
 			
 			
