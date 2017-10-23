@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <html>
  <head>
-        <meta charset="UTF-8">
-        <title>다재다능 재능 기부 사이트</title>
+        <meta charset="utf-8">
+        <title>Flex - Responsive HTML Template</title>
     	<meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         
@@ -25,7 +25,8 @@
         <script type="text/javascript">
         function goBoardPage() { location.href="/semi/nlist"; }
         function goChatPage() { location.href="views/chatting/chat.html"; }
-        function goCategoryPage(){location.href="views/category/categoryListView.jsp"}
+        function goCategoryPage(){location.href="/semi/clist"}
+       
         </script>
 
 
@@ -60,10 +61,13 @@
 										</li>
                                         <li class="active"><a href="index.jsp">Home</a></li>
                                         <li><a href="javascript:goCategoryPage()">카테고리</a></li>
+
                                         <li><a href="javascript:goBoardPage()">게시판</a></li>
-                                        <li><a href="#">게시판</a></li>                                       
-                                        <li><a href="#">마이페이지</a></li>
                                         
+                                                                    
+                                        
+
+                        
                                         
 										                            
                                     </ul>                                    

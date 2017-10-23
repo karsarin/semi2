@@ -36,7 +36,6 @@ public class ManagerMemberViewServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8"); 
 		
 		ArrayList<Member> mlist = new ManagerService().selectAllMember();
-		System.out.println(mlist);
 		RequestDispatcher view = null;
 		if(mlist!=null) {
 			view = request.getRequestDispatcher("views/manager/managerMember.jsp");

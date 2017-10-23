@@ -21,6 +21,18 @@ public class MemberService {
 		return result;
 	}
 
+	public int memberInsertCheck(Member member, String memberPwd2) {
+		int result = new MemberDao().memberInsertCheck(member, memberPwd2);
+		return result;
+	}
+
+	public Member memberInformation(String memberId) {
+		Connection con = getConnection();
+		Member member = new MemberDao().memberInformation(con,memberId);
+		close(con);
+		return member;
+	}
+
 
 
 }

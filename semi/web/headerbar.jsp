@@ -21,6 +21,15 @@
 <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 <%-- 헤더바 끝 --%>
 
+ <script type="text/javascript">
+        function goBoardPage() { location.href="/semi/nlist"; }
+        function goHomePage() { location.href="/semi/index.jsp"; }
+        
+        function goCategoryPage(){location.href="/semi/clist"}
+       
+        </script>
+
+
 
 
 </head>
@@ -47,9 +56,9 @@
 										type="submit" value="제목검색">
 								</form>
 							</li>
-							<li class="active"><a href="../../semi/index.html">Home</a></li>
-							<li><a href="#">카테고리</a></li>
-							<li><a href="#">게시판</a></li>
+							<li class="active"><a href="javascript:goHomePage();">Home</a></li>
+							<li><a href="javascript:goCategoryPage();">카테고리</a></li>
+							<li><a href="javascript:goBoardPage();">게시판</a></li>
 							
 						</ul>
 					</div>
@@ -64,6 +73,18 @@
 	<!-- /.main-header -->
 	</div>
 	<!-- /.site-header -->
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 
 
 

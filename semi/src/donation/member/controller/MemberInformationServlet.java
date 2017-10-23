@@ -1,11 +1,16 @@
 package donation.member.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import donation.member.model.service.MemberService;
+import donation.member.model.vo.Member;
 
 /**
  * Servlet implementation class MemberInformationServlet
@@ -26,8 +31,20 @@ public class MemberInformationServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// È¸¿øÁ¤º¸Á¶È¸ ÄÁÆ®·Ñ·¯
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// íšŒì›ì •ë³´ í™•ì¸
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		Member member = new MemberService().memberInformation(request.getParameter("userid"));
+		RequestDispatcher view = null;
+		if(member!=null){
+			view = request.getRequestDispatcher("views/member/myInformation.jsp");
+			request.setAttribute("member", member);
+			view.forward(request, response);
+		}else{
+			view = request.getRequestDispatcher("views/member/memberError.jsp");
+			request.setAttribute("message", "íšŒì›ì •ë³´ ì‹¤íŒ¨!!");
+			view.forward(request, response);
+		}
 	}
 
 	/**
