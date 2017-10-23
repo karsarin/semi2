@@ -153,16 +153,7 @@ $(document).ready(function() {
 
 	<%@ include file="../../headerbar.jsp" %>
 	
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	
 	
 	<div style="margin-left:30px;width: 230px; height: 500px; float: left;">
 	

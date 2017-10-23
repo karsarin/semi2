@@ -135,54 +135,9 @@ table.type10 .even {
 	<%@ include file="../../header.jsp"%>
 
 
-	<!-- 반복 -->
-	<div class="main-header">
-		<div class="container">
-			<div id="menu-wrapper">
-				<div class="row">
-					<div class="logo-wrapper col-md-2 col-sm-2"></div>
-					<!-- /.logo-wrapper -->
-					<div class="col-md-10 col-sm-10 main-menu text-right">
-						<div class="toggle-menu visible-sm visible-xs">
-							<i class="fa fa-bars"></i>
-						</div>
-						<ul class="menu-first">
-							<li>
-								<form action="/semi/tsearch" method="post">
-									<input type="search" name="keyword" autocomplete> <input
-										type="submit" value="제목검색">
-								</form>
-							</li>
-							<li class="active"><a href="/semi/index.jsp">Home</a></li>
-							<li><a href="#">카테고리</a></li>
-							<li><a href="/semi/nlist">게시판</a></li>
-							<li><a href="#">마이페이지</a></li>
-						</ul>
-					</div>
-					<!-- /.main-menu -->
-				</div>
-				<!-- /.row -->
-			</div>
-			<!-- /#menu-wrapper -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /.main-header -->
-	</div>
-	<!-- /.site-header -->
+	<%@ include file="../../headerbar.jsp" %>
 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	
 
 	<div
 		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
