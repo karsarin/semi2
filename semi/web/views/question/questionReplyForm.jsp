@@ -1,20 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+    
+<%
+	int qnum = Integer.parseInt(request.getParameter("qnum"));
+	int currentPage = Integer.parseInt(request.getParameter("page"));
+	
+%>    
+<!DOCTYPE html >
 <html>
 <head>
 <meta charset="UTF-8">
-<title>boardListView</title>
-<script type="text/javascript">
-	function insertPage()
-	{
-		location.href="views/notice/noticeWriteForm.jsp";
-	}
-</script>
-
-<!-- 카테고리  -->
-
-
+<title>boardReplyForm</title>
 
 
 <%-- 헤더바 --%>
@@ -26,12 +22,8 @@
 <link rel="stylesheet" href="/semi/css/font-awesome.css">
 <link rel="stylesheet" href="/semi/css/animate.css">
 <link rel="stylesheet" href="/semi/css/templatemo_misc.css">
-
-<link rel="stylesheet" href="/semi/css/templatemo_style.css"> 
-
+<link rel="stylesheet" href="/semi/css/templatemo_style.css">
 <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
-
-</script>
 
 <%-- 헤더바 끝 --%>
 
@@ -118,13 +110,13 @@ table.type10 .even {
 </style>
 
 
-
-
-
 </head>
-
 <body>
-<%@ include file="../../header.jsp"  %>
+<%@ include file="../../header.jsp" %>
+
+
+
+
 	<!-- 반복 -->
 	<div class="main-header">
 		<div class="container">
@@ -183,9 +175,9 @@ table.type10 .even {
 				<div class="title">카테고리</div>
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
-					<li><a href="/semi/views/board/freeBoard/freeBoardListView.jsp">자유 게시판</a></li>
-					<li><a href="/semi/views/board/replyBoard/replyBoardListView.jsp">후기 게시판</a></li>
-					<li><a href="/semi/views/qna/qnaBoardListView.jsp">QnA게시판</a></li>
+					<li><a href="#">자유 게시판</a></li>
+					<li><a href="#">후기 게시판</a></li>
+					<li><a href="/semi/qlist">QnA게시판</a></li>
 
 				</ul>
 			</li>
@@ -198,59 +190,50 @@ table.type10 .even {
 </div>
 
 
-
-<h2>공지글쓰기 페이지</h2>
-<section align="center">
-	<form action="/semi/ninsert" method="post" enctype="multipart/form-data">
-	<table align="center" width ="600">
-	<tr><th width="150" bgcolor="#fff">제목</th>
-	<td align="left"><input type="text" name="title"></td>
-	</tr>
-	<tr><th width="150" bgcolor="#fff">작성자</th>
-	
-	<td  align="left"><input type="text" name="writer" value="<%=member.getMemberId() %>" readonly></td>
-	</tr>
-	<tr><th width="150" bgcolor="#fff">첨부파일</th>
-	<td  align="left"><input type="file" name="file"></td>
-	
-	</tr>
-	<tr><th width="150" bgcolor="#fff">내용</th>
-	<td  align="left"><textarea rows="5" cols="50" name="content"></textarea></td>
-	</tr>
-	<tr><th width="150" bgcolor="#fff" colspan="2">
-	<input type="submit" value="등록하기">&nbsp;
-	<input type="reset" value="취소하기">
+<h2><%= qnum %>번글 댓글달기</h2>
+<br>
+<form action="/semi/qreply" method="post">
+	<input type="hidden" name="page" value="<%=currentPage%>">  <%-- currentPage도 form태그 안에 숨겨서 값 post로 넘기기위해서  --%>
+	<input type="hidden" name="qnum" value="<%=qnum %>">
+	<table align = "center" cellspacing="0" border="1" width=500">
+	<tr><th>제목</th><td><input type="text" name="qtitle"></td></tr>
+	<tr><th>작성자</th><td><input type="text" name="qwriter" readonly value=<%=member.getMemberId() %>></td></tr>
+	<tr><th>내용</th><td><textarea name="qcontent" rows="7" cols="50"  ></textarea></td></tr>
+	<tr><th colspan="2"><input type="submit" value ="댓글등록">
+		<a href="javascript:history.go(-1);">이전 페이지로</a>
 	</th></tr>
 	</table>
-	</form>
-	<br>
-	<a href="/semi/nlist">목록으로 이동</a>
-</section>
+</form>
+<h4 align="center"><a href="/semi/qlist?page=<%=currentPage%>">목록</a></h4>
+
 <br>
-
-
-
-
-	<div id="footer" >
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-xs-12 text-left">
-					<span>Copyright &copy; 2014 Company Name</span>
-				</div>
-				<!-- /.text-center -->
-				<div class="col-md-4 hidden-xs text-right">
-					<a href="#top" id="go-top">Back to top</a>
-				</div>
-				<!-- /.text-center -->
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /#footer -->
-
-
-
 
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
