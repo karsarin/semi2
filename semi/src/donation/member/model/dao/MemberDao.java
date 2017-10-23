@@ -5,6 +5,8 @@ import static donation.common.JDBCTemplate.*;
 import java.sql.*;
 import java.util.ArrayList;
 
+import org.apache.tomcat.util.net.jsse.NioX509KeyManager;
+
 import donation.member.model.vo.Member;
 
 public class MemberDao {
@@ -180,6 +182,87 @@ public class MemberDao {
 		}finally{
 			close(rset);
 			close(pstmt);
+		}
+		return member;
+	}
+
+	public int updateMember(Connection con, Member member, Member memberOrigin) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		System.out.println(member);
+		System.out.println(memberOrigin);
+		String query = "update member set member_pwd=?,member_name=?,member_nik=?,member_address=?,member_email=?,member_phone=?,talent=? where member_id=?";
+		try {
+			pstmt = con.prepareStatement(query);
+			if(member.getMemberPwd()!=null&&member.getMemberPwd()!="")
+				pstmt.setString(1, member.getMemberPwd());
+			else
+				pstmt.setString(1, memberOrigin.getMemberPwd());
+			if(member.getMemberName() != null&&member.getMemberName()!="")
+				pstmt.setString(2, member.getMemberName());
+			else
+				pstmt.setString(2, memberOrigin.getMemberName());
+			if(member.getMemberNik() !=null&&member.getMemberNik()!="")
+				pstmt.setString(3, member.getMemberNik());
+			else
+				pstmt.setString(3, memberOrigin.getMemberNik());
+			if(member.getMemberAddress() !=null&&member.getMemberAddress()!="")
+				pstmt.setString(4, member.getMemberAddress());
+			else
+				pstmt.setString(4, memberOrigin.getMemberAddress());
+			if(member.getMemberEmail() !=null&&member.getMemberEmail()!="")
+				pstmt.setString(5, member.getMemberEmail());
+			else
+				pstmt.setString(5, memberOrigin.getMemberEmail());
+			if(member.getMemberPhone() !=null&&member.getMemberPhone()!="")
+				pstmt.setString(6, member.getMemberPhone());
+			else
+				pstmt.setString(6, memberOrigin.getMemberPhone());
+			pstmt.setString(7, member.getTalent());
+			pstmt.setString(8, member.getMemberId());
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public Member selectMember(Connection con, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet  rset = null;
+		
+		String query = "select * from member where member_id = ?";
+		
+		Member member=null;
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			rset = pstmt.executeQuery();
+			if(rset.next()){
+				member = new Member();
+				member.setMemberId(memberId);
+				member.setMemberPwd(rset.getString("member_pwd"));
+				member.setMemberName(rset.getString("member_name"));
+				member.setMemberNo(rset.getString("member_no"));
+				member.setMemberNik(rset.getString("member_nik"));
+				member.setMemberAddress(rset.getString("member_address"));
+				member.setMemberEmail(rset.getString("member_email"));
+				member.setMemberPhone(rset.getString("member_phone"));
+				member.setMemberDate(rset.getDate("signup_date"));
+				member.setConnection(rset.getString("connection"));
+				member.setTalent(rset.getString("talent"));
+				member.setMgrChat(rset.getString("manager_chatting"));
+				member.setMgrLogin(rset.getString("manager_login"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+			
 		}
 		return member;
 	}

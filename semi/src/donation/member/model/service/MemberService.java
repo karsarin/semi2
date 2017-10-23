@@ -33,6 +33,19 @@ public class MemberService {
 		return member;
 	}
 
+	public int updateMember(Member member,Member memberOrigin) {
+		Connection con = getConnection();
+		int result = new MemberDao().updateMember(con, member, memberOrigin);
+		
+		return result;
+	}
+
+	public Member selectMember(String memberId) {
+		Connection con = getConnection();
+		Member member = new MemberDao().selectMember(con, memberId);
+		return member;
+	}
+
 
 
 }
