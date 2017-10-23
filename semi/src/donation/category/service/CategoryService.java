@@ -24,4 +24,48 @@ public class CategoryService {
 		return category;
 	}
 
+	public void addReadCount(int cnum) {
+		Connection con = getConnection();
+		int result = new CategoryDao().addReadCount(con, cnum);
+		if(result > 0)
+			commit(con);
+		else rollback(con);
+		close(con);
+		
+		return;
+		
+		
+	}
+
+	public int deleteBoard(int cnum) {
+		Connection con = getConnection();
+		int result = new CategoryDao().deleteBoard(con, cnum);
+		
+		if(result > 0)
+			commit(con);
+		else rollback(con);
+		return result;
+	}
+
+	public int insertCategory(Category c) {
+		Connection con = getConnection();
+		int result = new CategoryDao().insertCategory(con, c);
+		
+		if(result > 0)
+			commit(con);
+		else rollback(con);
+		
+		close(con);
+		
+		return result;
+	}
+
+	public Category selectCategory(int cnum) {
+		Connection con = getConnection();
+		
+		Category category = new CategoryDao().selectCategory(con, cnum);
+		close(con);
+		return category;
+	}
+
 }
