@@ -40,6 +40,7 @@
 ul#navi {
 	width: 200px;
 	text-indent: 10px;
+	background-color: lightgray;
 }
 
 ul#navi, ul#navi ul {
@@ -55,7 +56,7 @@ li.group {
 li.group div.title {
 	height: 35px;
 	line-height: 35px;
-	background: lightgray;
+	background: lightblue;
 	cursor: pointer;
 }
 
@@ -76,11 +77,10 @@ ul.sub li a {
 }
 
 ul.sub li:hover {
-	background: gray;
+	background: lightblue;
 }
 </style>
 <!-- 세로목록 끝 -->
-
 
 
 <!-- 테이블 -->
@@ -125,58 +125,9 @@ table.type10 .even {
 
 <body>
 <%@ include file="../../header.jsp"  %>
-	<!-- 반복 -->
-	<div class="main-header">
-		<div class="container">
-			<div id="menu-wrapper">
-				<div class="row">
-					<div class="logo-wrapper col-md-2 col-sm-2">
-						
-					</div>
-					<!-- /.logo-wrapper -->
-					<div class="col-md-10 col-sm-10 main-menu text-right">
-						<div class="toggle-menu visible-sm visible-xs">
-							<i class="fa fa-bars"></i>
-						</div>
-						<ul class="menu-first">
-							<li>
-								<form action="/semi/tsearch" method="post">
-									<input type="search" name="keyword" autocomplete> <input
-										type="submit" value="제목검색">
-								</form>
-							</li>
-							<li class="active"><a href="/semi/index.jsp">Home</a></li>
-							<li><a href="#">카테고리</a></li>
-							<li><a href="/semi/nlist">게시판</a></li>
-							<li><a href="#">마이페이지</a></li>
-						</ul>
-					</div>
-					<!-- /.main-menu -->
-				</div>
-				<!-- /.row -->
-			</div>
-			<!-- /#menu-wrapper -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /.main-header -->
-	</div>
-	<!-- /.site-header -->
+<%@ include file="../../headerbar.jsp"  %>	
 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-
-	<div style="width: 300px; height: 500px; float: left;">
+	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
 		<ul id="navi">
 			<li class="group">
@@ -198,7 +149,7 @@ table.type10 .even {
 </div>
 
 
-
+<div style="float:left;">
 <h2>공지글쓰기 페이지</h2>
 <section align="center">
 	<form action="/semi/ninsert" method="post" enctype="multipart/form-data">
@@ -227,11 +178,14 @@ table.type10 .even {
 	<a href="/semi/nlist">목록으로 이동</a>
 </section>
 <br>
+</div>
+
+	<!--  오른쪽 메뉴바 -->
+	<%@ include file="../../rightList.jsp"%>
 
 
 
-
-	<div id="footer" >
+	<div id="footer" style="clear:both;">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-xs-12 text-left">

@@ -1,4 +1,4 @@
-package donation.member.controller;
+package donation.question.controller;
 
 import java.io.IOException;
 
@@ -9,20 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import donation.member.model.service.MemberService;
-import donation.member.model.vo.Member;
+import donation.question.model.service.QuestionService;
 
 /**
- * Servlet implementation class MemberInformationServlet
+ * Servlet implementation class QuestionDeleteServlet
  */
-@WebServlet("/minfor")
-public class MemberInformationServlet extends HttpServlet {
+@WebServlet("/qdelete")
+public class QuestionDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MemberInformationServlet() {
+    public QuestionDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,20 +30,20 @@ public class MemberInformationServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 회원정보 확인
-		request.setCharacterEncoding("utf-8");
+		// 게시글 삭제 처리용 컨트롤러
 		response.setContentType("text/html; charset=utf-8");
-		Member member = new MemberService().memberInformation(request.getParameter("userid"));
-		RequestDispatcher view = null;
-		if(member!=null){
-			view = request.getRequestDispatcher("views/member/myInformation.jsp");
-			request.setAttribute("member", member);
-			view.forward(request, response);
+		
+		int bnum = Integer.parseInt(request.getParameter("qnum"));
+		
+		if(new QuestionService().deleteQuestion(bnum) >0){
+			response.sendRedirect("/semi/qlist?page=1");
 		}else{
-			view = request.getRequestDispatcher("views/member/memberError.jsp");
-			request.setAttribute("message", "회원정보 실패!!");
+			RequestDispatcher view = request.getRequestDispatcher("views/question/questionError.jsp");
+			request.setAttribute("message","QA게시글 삭제 처리 실패!");
 			view.forward(request, response);
 		}
+				
+		
 	}
 
 	/**

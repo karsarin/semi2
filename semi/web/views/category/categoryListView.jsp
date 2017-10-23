@@ -46,45 +46,46 @@
 <%-- 세로목록 --%>
 <style>
 ul#navi {
-	width: 200px;
-	text-indent: 10px;
+   width: 200px;
+   text-indent: 10px;
+   background-color: lightgray;
 }
 
 ul#navi, ul#navi ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
+   margin: 0;
+   padding: 0;
+   list-style: none;
 }
 
 li.group {
-	margin-bottom: 3px;
+   margin-bottom: 3px;
 }
 
 li.group div.title {
-	height: 35px;
-	line-height: 35px;
-	background: lightgray;
-	cursor: pointer;
+   height: 35px;
+   line-height: 35px;
+   background: lightblue;
+   cursor: pointer;
 }
 
 ul.sub li {
-	margin-bottom: 2px;
-	height: 35px;
-	line-height: 35px;
-	background: #f4f4f4;
-	cursor: pointer;
+   margin-bottom: 2px;
+   height: 35px;
+   line-height: 35px;
+   background: #f4f4f4;
+   cursor: pointer;
 }
 
 ul.sub li a {
-	display: block;
-	width: 100%;
-	height: 100%;
-	text-decoration: none;
-	color: #000;
+   display: block;
+   width: 100%;
+   height: 100%;
+   text-decoration: none;
+   color: #000;
 }
 
 ul.sub li:hover {
-	background: gray;
+   background: lightblue;
 }
 </style>
 <!-- 세로목록 끝 -->
@@ -169,6 +170,7 @@ $(document).ready(function() {
 
 <body>
 
+<<<<<<< HEAD
 	<!-- 반복 -->
 	<div class="main-header">
 		<div class="container">
@@ -206,20 +208,11 @@ $(document).ready(function() {
 	</div>
 	<!-- /.main-header -->
 	<!-- /.site-header -->
+=======
+	<%@ include file="../../headerbar.jsp" %>
+>>>>>>> refs/remotes/origin/subin
 
-	
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-
-	<div style="width: 300px; height: 500px; float: left;">
+	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
 		<ul id="navi">
 			<li class="group">
@@ -245,6 +238,7 @@ $(document).ready(function() {
 	<!-- 반복 끝 -->
 
 	<!--  그림 -->
+<div style="float:left;">
 <form action="/clist" method="post">
 	<div>
 		<hgroup>
@@ -426,6 +420,14 @@ $(document).ready(function() {
 	<br>
 	<br>
 	<br>
+	
+	
+	</div>
+	</div>
+	
+	<%@ include file="../../rightList.jsp" %>
+	
+	
 
 	<div id="footer" style="clear: both;">
 		<div class="container">

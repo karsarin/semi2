@@ -26,6 +26,13 @@ public class MemberService {
 		return result;
 	}
 
+	public Member memberInformation(String memberId) {
+		Connection con = getConnection();
+		Member member = new MemberDao().memberInformation(con,memberId);
+		close(con);
+		return member;
+	}
+
 
 
 }
