@@ -18,12 +18,13 @@ div#loginbar{
 </head>
 <body>
 <div id=loginbar>
-<%-- <% if(member ==null){ %> --%>
+<% if(member ==null){ %>
 	<a href="/semi/views/member/Login.jsp">로그인</a>
 	<a href="/semi/views/member/Insert.jsp">회원가입</a>
-<%-- <% }else{ %>
-	<a href="#"><%=member.getMemberNik() %></a>님 환영합니다
-<% } %> --%>
+<% }else{ %>
+	<a href="minfor?userid=<%=member.getMemberId()%>"><%=member.getMemberNik() %></a>님 환영합니다
+	<a href="#">로그아웃</a>
+<% } %>
 </div>
 </body>
 </html>

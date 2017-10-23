@@ -35,21 +35,32 @@ public class MemberInsertServlet extends HttpServlet {
 		response.setContentType("text/html charset=utf-8");
 		
 		String memberId=request.getParameter("memberid");
-		String memberPwd = request.getParameter("memberPwd");
+		String memberPwd = request.getParameter("memberpwd");
+		String memberPwd2 = request.getParameter("memberpwd2");
 		String memberName = request.getParameter("membername");
 		String memberNo = request.getParameter("memberno");
 		String memberNik = request.getParameter("membernik");
 		String memberAddress = request.getParameter("memberaddress1") +" " + request.getParameter("memberaddress2");
 		String memberEmail = request.getParameter("memberemail");
 		String memberPhone = request.getParameter("memberphone1") + request.getParameter("memberphone2")+request.getParameter("memberphone3");
-		
-		Member member = new Member(memberId,memberPwd,memberName,memberNo,memberNik,memberAddress,memberEmail,memberPhone,null,null);
-		int result = new MemberService().memberInsert(member);
-		
-		if(member!=null){
+		String[] talents = request.getParameterValues("talent");
+		StringBuilder t = new StringBuilder();
+		for(int i = 0; i<talents.length;i++){
+			if(i<talents.length-1)
+				t.append(talents[i] + ",");
+			else
+				t.append(talents[i]);
+		}
+		String talent = t.toString();
+		int result = 0;
+		Member member = new Member(memberId,memberPwd,memberName,memberNo,memberNik,memberAddress,memberEmail,memberPhone,null,null,talent,null,null);
+		if((result = new MemberService().memberInsertCheck(member,memberPwd2))==0){
+			int result2 = new MemberService().memberInsert(member);
+			if(result2 >0){
 			
-		}else{
+			}else{
 			
+			}
 		}
 	}
 
