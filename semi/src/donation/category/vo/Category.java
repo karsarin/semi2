@@ -53,6 +53,14 @@ public class Category {
 		this.approval = approval;
 	}
 
+	public Category(String categoryTitle, String categoryWriter, String categoryContent, String originalImage, String renameFileName)
+	{
+		this.categoryTitle = categoryTitle;
+		this.categoryWriter = categoryWriter;
+		this.categoryContent = categoryContent;
+		this.originalImage = originalImage;
+		this.renameImage = renameImage;
+	}
 	public int getCategoryNo() {
 		return categoryNo;
 	}
