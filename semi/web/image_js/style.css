@@ -91,9 +91,15 @@ a:hover, a:active{
 
 #container{
 	position:relative;
-	width:1100px;
+	width:1200px;
 	margin:0 auto;
 }
+
+.grid{
+	width: 360px;
+	height: 420px;
+}
+
 .block{
 	padding: 15px;
 	background:#fff;
@@ -179,8 +185,8 @@ a:hover, a:active{
 }
 
 .imgholder{
-	width:210px;
-	height:150px;
+	width:355px;
+	height:250px;
 	overflow:hidden;
 	margin:0 auto;
 	display:block;
@@ -192,6 +198,8 @@ a:hover, a:active{
 	border-color:#aaa;
 }
 .imgholder img{
+	width: 355px;
+	height: 250px;
 	transform: scale(1.1, 1.1);
 	-ms-transform: scale(1.1, 1.1);
 	-moz-transform: scale(1.1, 1.1);
