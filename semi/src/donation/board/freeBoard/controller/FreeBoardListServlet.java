@@ -30,6 +30,15 @@ public class FreeBoardListServlet extends HttpServlet {
 		response.setContentType("text/html charset:utf-8");
 		
 		int currentPage = 1;
+	
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
