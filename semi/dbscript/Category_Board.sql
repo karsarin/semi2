@@ -95,3 +95,6 @@ update category_board set original_image = 'images/default_board.png' where cate
 update category_board set original_image = 'images/default_board.png' where category_no=9;
 update category_board set original_image = 'images/default_board.png' where category_no=10;
 commit;
+
+select *
+from category_board;
