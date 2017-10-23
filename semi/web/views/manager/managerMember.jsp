@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="donation.member.model.vo.Member, java.util.*"%>
-<% ArrayList<Member> list = (ArrayList<Member>) request.getAttribute("list"); %>
+<% ArrayList<Member> list = (ArrayList<Member>) request.getAttribute("list"); 
+   Member member[] = new Member[list.size()];
+   for(int i=0; i<list.size(); i++) {
+   		member[i] = list.get(i);
+   }%>
 <!DOCTYPE>
 <html>
 <head>	
@@ -10,10 +14,40 @@
 	<link href="/semi/css/manager/member.css" rel="stylesheet" type="text/css" media="all"/>
 	<link href="/semi/css/manager/mainFonts.css" rel="stylesheet" type="text/css" media="all"/>
     <script src="/semi/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+    <script src="/semi/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
-		function detail() {
-			alert("dd");
-		}
+    	$(function (){
+    	    $(".memberList tr").click(function(){
+    	        $.ajax({
+    				url: "/semi/mgrmemberdetail",
+    				data: {memberId: $(this).children().first().text()},
+    				type: "get",
+    				dataType: "json",
+    				success: function(data){
+    					$("input[name=memberId]").val(data.memberId);
+    					$("input[name=memberNic]").val(decodeURIComponent(data.memberNik));
+    					$("input[name=memberName]").val(decodeURIComponent(data.memberName));
+    					$("input[name=memberPhone]").val(data.memberPhone);
+    					$("input[name=memberEmail]").val(data.memberEmail);
+    					$("input[name=memberAddress]").val(decodeURIComponent(data.memberAddress));
+    					$("input[name=talent]").val(decodeURIComponent(data.talent));
+    					if(data.mgrChat == 'Y') {
+    						$('input:radio[name=mgrChat]:input[value="on"]').attr("checked", true);
+    					} else {
+    						$('input:radio[name=mgrChat]:input[value="off"]').attr("checked", true);
+    					}
+    					if(data.mgrLogin == 'Y') {
+    						$('input:radio[name=mgrlogin]:input[value="on"]').attr("checked", true);
+    					} else {
+    						$('input:radio[name=mgrlogin]:input[value="off"]').attr("checked", true);
+    					}
+    				},
+    				error: function(data){
+    					console.log("에러 발생 : " + data);
+    				}
+    			});
+    	    });
+    	});
 	</script>
 </head>
 <body>
@@ -32,7 +66,7 @@
 					</div>
 					<ul class="menu-first">
 						<li><a href="/semi/views/manager/managerMain.jsp">Home_관리자</a></li>
-						<li class="active"><a href="/semi/views/manager/managerMember.jsp">회원정보</a></li>
+						<li class="active"><a href="/semi/mgrmember">회원정보</a></li>
 						<li><a href="#">카테고리</a></li>
 						<li><a href="#">공지사항</a></li>
 						<li><a href="#">게시판</a></li>
@@ -63,11 +97,11 @@
 					</tr>
 				</thead>
 				<tbody>
-					<% for(Member member : list) { %>
-					<tr onclick="detail();">
-						<td><%=member.getMemberId()%></td>
-						<td><%=member.getMemberName()%></td>
-						<td><%=member.getTalent()%></td>
+					<% for(int i=0; i<member.length; i++) {%>
+					<tr>
+						<td><%=member[i].getMemberId()%></td>
+						<td><%=member[i].getMemberName()%></td>
+						<td><%=member[i].getTalent()%></td>
 					</tr>
 					<% } %>
 				</tbody>
@@ -90,13 +124,13 @@
 						<th>이름</th>
 						<td><input name="memberName" value="" readonly></td>						
 						<th>번호</th>
-						<td><input type="number" name="phone" value="" readonly></td>
+						<td><input type="number" name="memberPhone" value="" readonly></td>
 					</tr>
 					<tr>
 						<th>이메일</th>
-						<td><input type="email" name="email" value="" readonly></td>						
+						<td><input type="email" name="memberEmail" value="" readonly></td>						
 						<th>주소</th>
-						<td><input name="address" value="" readonly></td>
+						<td><input name="memberAddress" value="" readonly></td>
 					</tr>
 					<tr>
 						<th>재능</th>
@@ -114,6 +148,11 @@
 						<td colspan="3">
 							<input type="radio" name="mgrChat" value="on"> ON
 							<input type="radio" name="mgrChat" value="off"> OFF
+						</td>
+					</tr>
+					<tr>
+						<td colspan="4">
+							<button>수정</button>
 						</td>
 					</tr>
 				</table>
