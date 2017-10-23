@@ -25,7 +25,8 @@
         <script type="text/javascript">
         function goBoardPage() { location.href="/semi/nlist"; }
         function goChatPage() { location.href="views/chatting/chat.html"; }
-        function goCategoryPage(){location.href="views/category/categoryListView.jsp"}
+        function goCategoryPage(){location.href="/semi/clist"}
+       
         </script>
 
 
@@ -60,9 +61,12 @@
 										</li>
                                         <li class="active"><a href="index.jsp">Home</a></li>
                                         <li><a href="javascript:goCategoryPage()">카테고리</a></li>
+
                                         <li><a href="javascript:goBoardPage()">게시판</a></li>
-                                        <li><a href="#">게시판</a></li>                                       
-                                        <li><a href="#">마이페이지</a></li>
+                                        
+                                                                    
+                                        
+
                         
                                         
 										                            

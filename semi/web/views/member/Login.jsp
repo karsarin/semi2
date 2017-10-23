@@ -6,27 +6,35 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<style type="text/css">
-div#login{
-	float : none;
-	width : 200px;
-	height : 100px;
-	margin-right : 50px;
-	font-size :10pt;
-}
-
-</style>
+<title>로그인</title>
+ <link rel="stylesheet" href="../../css/loginstyle.css">
 </head>
 <body>
-<div id="login">
-	<form action="../../login" method="post">
-	<label>ID</label>
-	<input type="text" name="memberid" placeholder="아이디"><br>
-	<label>PW</label>
-	<input type="password" name="memberpwd" placeholder="비밀번호"><br>
-	<input type="submit" value="로그인">
-	</from>
+
+<h1 align="center" style="margin-top:50px;font-size:60pt;color:white;"><a href="../../index.jsp" 
+style="color:white;text-decoration:none;">다재다능</a></h1>
+<hr>
+
+  <div class="login-page">
+  <div class="form">
+    
+
+    <form class="login-form" action="../../login" method="post">
+      <input type="text" placeholder="username" name="memberid" placeholder="아이디"/>
+      <input type="password" placeholder="password"  name="memberpwd" placeholder="비밀번호"/>
+      <button value="로그인">login</button>
+      
+    </form>
+  </div>
+</div>
+
+
+  
+    <script  src="../../js/loginjs.js"></script>
+
+
+
+
 
 </div>
 </body>

@@ -153,16 +153,7 @@ $(document).ready(function() {
 
 	<%@ include file="../../headerbar.jsp" %>
 	
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	
 	
 	<div style="margin-left:30px;width: 230px; height: 500px; float: left;">
 	
@@ -206,7 +197,7 @@ $(document).ready(function() {
 				</div>
 				<strong><%= n.getCategoryTitle() %></strong>
 				<p><%= n.getCategoryContent() %></p>
-				<div class="meta"><%= n.getCategoryTitle() %></div>
+				<div class="meta"><%= n.getCategoryWriter() %></div>
 			</div>
 			<% } %>
 			

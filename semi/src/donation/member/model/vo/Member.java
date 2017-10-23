@@ -117,7 +117,7 @@ public class Member {
 	@Override
 	 public String toString(){
 		 return this.getMemberId() + "," + this.getMemberPwd() + "," + this.getMemberName() + ","
-				 + this.getMemberNo() + "," + this.getMemberNik() + this.getMemberAddress() +  "," 
+				 + this.getMemberNo() + "," + this.getMemberNik() +"," + this.getMemberAddress() +  "," 
 				 + this.getMemberEmail() + "," + this.getMemberPhone() + "," + this.getMemberDate() +","
 				 + this.getConnection() + "," + this.talent + "," + this.mgrChat + "," + this.mgrLogin;
 	 }
