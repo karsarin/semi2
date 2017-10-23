@@ -170,7 +170,47 @@ $(document).ready(function() {
 
 <body>
 
+<<<<<<< HEAD
+	<!-- 반복 -->
+	<div class="main-header">
+		<div class="container">
+			<div id="menu-wrapper">
+				<div class="row">
+					<div class="logo-wrapper col-md-2 col-sm-2">
+						
+					</div>
+					<!-- /.logo-wrapper -->
+					<div class="col-md-10 col-sm-10 main-menu text-right">
+						<div class="toggle-menu visible-sm visible-xs">
+							<i class="fa fa-bars"></i>
+						</div>
+						<ul class="menu-first">
+							<li>
+								<form action="/semi/tsearch" method="post">
+									<input type="search" name="keyword" autocomplete> <input
+										type="submit" value="제목검색">
+								</form>
+							</li>
+							<li class="active"><a href="../../index.html">Home</a></li>
+							<li><a href="#">카테고리</a></li>
+							<li><a href="#">공지사항</a></li>
+							<li><a href="#">게시판</a></li>
+							<li><a href="#">마이페이지</a></li>
+						</ul>
+					</div>
+					<!-- /.main-menu -->
+				</div>
+				<!-- /.row -->
+			</div>
+			<!-- /#menu-wrapper -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /.main-header -->
+	<!-- /.site-header -->
+=======
 	<%@ include file="../../headerbar.jsp" %>
+>>>>>>> refs/remotes/origin/subin
 
 	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
@@ -208,14 +248,15 @@ $(document).ready(function() {
 		<div id="container">
 			<div class="grid">
 				<div class="imgholder">
-					<img
+				<a href="/semi/cdetail">	<img
 						src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img27.jpg" />
+						</a>
 				</div>
 				<strong>Sunset Lake</strong>
 				<p>by user id &nbsp; 50,000원</p>
 				<p>★★★★★ 후기 5건</p>
 				
-				<<!-- div class="meta">by j osborn</div> -->
+				<!-- div class="meta">by j osborn</div> -->
 			</div>
 			
 			
