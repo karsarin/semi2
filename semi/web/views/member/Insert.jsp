@@ -25,15 +25,18 @@
 			<form class="login-form" action="/semi/minsert" method="post">
 				<input type="text" placeholder="아이디" name="memberid" />
 				<button onclick="">중복확인</button>
-				<input type="password" placeholder="이름" name="membername" /> <input
-					type="text" placeholder="비밀번호" name="memberpwd1" /> <input
-					type="text" placeholder="비밀번호 확인" name="memberpwd2" /> <input
+				<input type="text" placeholder="이름" name="membername" /> 
+				<input type="text" placeholder="주민번호(-제외)" name="memberno" />
+				<input
+					type="password" placeholder="비밀번호" name="memberpwd1" /> <input
+					type="password" placeholder="비밀번호 확인" name="memberpwd2" /> <input
 					type="text" placeholder="닉네임" name="membernik" />
 				<button onclick="">중복확인</button>
 				<input type="text" placeholder="주소" name="memberaddress1" /> <input
 					type="text" placeholder="상세주소" name="memberaddress2" /> <input
 					type="text" placeholder="이메일" name="memberemail" /> <input
 					type="text" placeholder="전화번호" name="memberphone" />
+					
 				<table>
 					<tr>
 						<td><input type="checkbox" name="talent" value="특기1"

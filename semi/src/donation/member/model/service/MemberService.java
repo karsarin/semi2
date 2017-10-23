@@ -17,6 +17,10 @@ public class MemberService {
 	public int memberInsert(Member member) {
 		Connection con = getConnection();
 		int result =new MemberDao().memberInsert(con,member);
+		if(con != null)
+			commit(con);
+		else
+			rollback(con);
 		close(con);
 		return result;
 	}
@@ -36,14 +40,31 @@ public class MemberService {
 	public int updateMember(Member member,Member memberOrigin) {
 		Connection con = getConnection();
 		int result = new MemberDao().updateMember(con, member, memberOrigin);
-		
+		if(con !=null){
+			commit(con);
+		}else{
+			rollback(con);
+		}
+		close(con);
 		return result;
 	}
 
 	public Member selectMember(String memberId) {
 		Connection con = getConnection();
 		Member member = new MemberDao().selectMember(con, memberId);
+		close(con);
 		return member;
+	}
+
+	public int deleteMember(String memberId) {
+		Connection con = getConnection();
+		int result = new MemberDao().deleteMember(con, memberId);
+		if(con!=null)
+			commit(con);
+		else
+			rollback(con);
+		close(con);
+		return result;
 	}
 
 

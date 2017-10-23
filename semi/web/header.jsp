@@ -23,7 +23,7 @@ div#loginbar{
 	<a href="/semi/views/member/Insert.jsp">회원가입</a>
 <% }else{ %>
 	<a href="minfor?userid=<%=member.getMemberId()%>"><%=member.getMemberNik() %></a>님 환영합니다
-	<a href="#">로그아웃</a>
+	<a href="/semi/logout">로그아웃</a>
 <% } %>
 </div>
 </body>

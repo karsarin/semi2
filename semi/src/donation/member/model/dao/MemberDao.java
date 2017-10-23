@@ -78,13 +78,13 @@ public class MemberDao {
 
 
 
-		if(member.getMemberId().length() >= 8 && member.getMemberId().length() <= 15){
+		if(!(member.getMemberId().length() >= 8 && member.getMemberId().length() <= 15)){
 			 return 1;//아이디 길이 오류
 		}
 		int num = 0;
 		int spal = 0;
 		for(int i=0;i<member.getMemberId().length();i++){
-			if(!(member.getMemberId().toUpperCase().charAt(i)>='A'&&member.getMemberId().toUpperCase().charAt(i)<='Z')|| !(member.getMemberId().charAt(i)>='0'&& member.getMemberId().charAt(i)<='9')){
+			if(!((member.getMemberId().charAt(i) >= 'a'&&member.getMemberId().charAt(i) <= 'z')||(member.getMemberId().charAt(i) >= 'a'&&member.getMemberId().charAt(i) <= 'z')||(member.getMemberId().charAt(i) >= '0'&&member.getMemberId().charAt(i) <= '9'))){
 				return 2;//아이디 영문숫자 오류
 			}else if(!(member.getMemberId().toUpperCase().charAt(i)>='A'&&member.getMemberId().toUpperCase().charAt(i)<='Z')){
 				num +=1;
@@ -95,7 +95,7 @@ public class MemberDao {
 		if(member.getMemberId().length() == num || member.getMemberId().length()==spal){
 			return 3;//아이디 영문숫자조합 오류
 		}
-		if(!(member.getMemberPwd() == memberPwd2)){
+		if(!(member.getMemberPwd().equals(memberPwd2))){
 			return 4;// 비밀먼호 확인 실패
 		}
 		
@@ -146,7 +146,17 @@ public class MemberDao {
 		}
 		for(Member mem : list){
 			if(member.getMemberNik() == mem.getMemberNik()){
-				return 1;//닉네임 중복체크 
+				return 2;//닉네임 중복체크 
+			}
+		}
+		for(Member mem : list){
+			if(member.getMemberNo() == mem.getMemberNo()){
+				return 3;//주민번호 중복체크 
+			}
+		}
+		for(Member mem : list){
+			if(member.getMemberPhone() == mem.getMemberPhone()){
+				return 4;//전화번호 중복체크 
 			}
 		}
 		return result;
@@ -265,5 +275,23 @@ public class MemberDao {
 			
 		}
 		return member;
+	}
+
+	public int deleteMember(Connection con, String memberId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String query = "delete from member where member_id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		return result;
 	}
 }
