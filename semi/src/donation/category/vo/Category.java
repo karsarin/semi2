@@ -5,7 +5,7 @@ import java.util.Date;
 public class Category {
 	private int categoryNo;
 	private String userId;
-	private String categoryGroup;
+	private int categoryGroup;
 	private String categoryTitle;
 	private String categoryWriter;
 	private String categoryContent;
@@ -26,7 +26,7 @@ public class Category {
 
 	public Category(){}
 
-	public Category(int categoryNo, String userId, String categoryGroup, String categoryTitle, String categoryWriter,
+	public Category(int categoryNo, String userId, int categoryGroup, String categoryTitle, String categoryWriter,
 			String categoryContent, Date categoryDate, int categoryReadcount, int categoryDonation, int workDate,
 			int categoryLevel, int categoryRef, int categoryReplyRef, int categoryReplySeq, String phone, String email,
 			String originalImage, String renameImage, String special, String approval) {
@@ -69,7 +69,7 @@ public class Category {
 		return userId;
 	}
 
-	public String getCategoryGroup() {
+	public int getCategoryGroup() {
 		return categoryGroup;
 	}
 
@@ -149,8 +149,8 @@ public class Category {
 		this.userId = userId;
 	}
 
-	public void setCategoryGroup(String categoryGroup) {
-		this.categoryGroup = categoryGroup;
+	public void setCategoryGroup(int i) {
+		this.categoryGroup = i;
 	}
 
 	public void setCategoryTitle(String categoryTitle) {

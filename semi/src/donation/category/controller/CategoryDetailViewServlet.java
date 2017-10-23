@@ -1,11 +1,16 @@
 package donation.category.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import donation.category.service.CategoryService;
+import donation.category.vo.Category;
 
 /**
  * Servlet implementation class CategoryDetailViewServlet
@@ -26,8 +31,32 @@ public class CategoryDetailViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		response.setContentType("text/html; charset=utf-8");
+		
+		int cnum = Integer.parseInt(request.getParameter("cnum"));
+		int ccurrentPage = Integer.parseInt(request.getParameter("page"));
+		
+		CategoryService cservice = new CategoryService();
+		
+		// 조회수 증가 처리
+		cservice.addReadCount(cnum);
+		
+		Category category = cservice.selectCategory(cnum);
+		
+		RequestDispatcher view = null;
+		
+		if(category != null)
+		{
+			view = request.getRequestDispatcher("views/category/categoryDetailView.jsp");
+			request.setAttribute("category", category);
+			request.setAttribute("ccurrentPage", ccurrentPage);
+			view.forward(request, response);	
+			
+		} else {
+			view = request.getRequestDispatcher("views/category/categoryError.jsp");
+			request.setAttribute("message", "게시글 상세 조회 실패");
+			view.forward(request, response);
+		}		
 	}
 
 	/**

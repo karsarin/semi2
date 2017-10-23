@@ -66,7 +66,7 @@ public class CategoryDao {
 					Category c = new Category();
 					c.setCategoryNo(rset.getInt("category_no"));
 					c.setUserId(rset.getString("user_Id"));
-					c.setCategoryGroup(rset.getString("category_group"));
+					c.setCategoryGroup(rset.getInt("category_group"));
 					c.setCategoryTitle(rset.getString("category_title"));
 					c.setCategoryWriter(rset.getString("category_writer"));
 					c.setCategoryContent(rset.getString("category_content"));
@@ -151,7 +151,7 @@ public class CategoryDao {
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, c.getUserId());
-			pstmt.setString(2, c.getCategoryGroup());
+			pstmt.setInt(2, c.getCategoryGroup());
 			pstmt.setString(3, c.getCategoryTitle());
 			pstmt.setString(4, c.getCategoryWriter());
 			pstmt.setString(5, c.getCategoryContent());
@@ -188,17 +188,17 @@ public class CategoryDao {
 			{
 				category = new Category();
 				
-				category.setCategoryNo(rset.getInt("category_no"));
-				category.setCategoryTitle(rset.getString("category_title"));
-				category.setCategoryWriter(rset.getString("category_writer"));
-				category.setCategoryContent(rset.getString("category_content'"));
-				category.setUserId(rset.getString("userId"));
-				category.setCategoryGroup(rset.getString("category_group"));
+				category.setCategoryNo(rset.getInt("CATEGORY_NO"));
+				category.setCategoryTitle(rset.getString("CATEGORY_TITLE"));
+				category.setCategoryWriter(rset.getString("CATEGORY_WRITER"));
+				category.setCategoryContent(rset.getString("category_content"));
+				category.setUserId(rset.getString("USER_ID"));
+				category.setCategoryGroup(rset.getInt("CATEGORY_GROUP"));
 				category.setCategoryDate(rset.getDate("category_date"));
 				category.setCategoryReadcount(rset.getInt("category_readcount"));
 				category.setCategoryDonation(rset.getInt("category_donation"));
 				category.setWorkDate(rset.getInt("work_date"));
-				category.setCategoryLevel(rset.getInt("caregory_level"));
+				category.setCategoryLevel(rset.getInt("category_level"));
 				category.setCategoryRef(rset.getInt("category_ref"));
 				category.setCategoryReplyRef(rset.getInt("category_reply_ref"));
 				category.setCategoryReplySeq(rset.getInt("category_reply_seq"));
