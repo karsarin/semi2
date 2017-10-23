@@ -31,7 +31,7 @@ public class MemberDao {
 				member.setMemberAddress(rset.getString("member_address"));
 				member.setMemberEmail(rset.getString("member_email"));
 				member.setMemberPhone(rset.getString("member_phone"));
-				member.setMemberDate(rset.getDate("member_date"));
+				member.setMemberDate(rset.getDate("signup_date"));
 				member.setConnection(rset.getString("connection"));
 				member.setTalent(rset.getString("talent"));
 				member.setMgrChat(rset.getString("manager_chatting"));
@@ -40,9 +40,9 @@ public class MemberDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
-			
-			close(pstmt);
 			close(rset);
+			close(pstmt);
+			
 		}
 		return member;
 	}
@@ -134,6 +134,7 @@ public class MemberDao {
 			} catch (Exception e) {
 			e.printStackTrace();
 		}finally{
+			close(rset);
 			close(stmt);
 		}
 		for(Member mem : list){
@@ -147,5 +148,39 @@ public class MemberDao {
 			}
 		}
 		return result;
+	}
+
+	public Member memberInformation(Connection con, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Member member = null;
+		String query = "select * from member where member_id = ?";
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			rset = pstmt.executeQuery();
+			if(rset.next()){
+			member = new Member();
+			member.setMemberId(memberId);
+			member.setMemberPwd(rset.getString("member_pwd"));
+			member.setMemberName(rset.getString("member_name"));
+			member.setMemberNo(rset.getString("member_no"));
+			member.setMemberNik(rset.getString("member_nik"));
+			member.setMemberAddress(rset.getString("member_address"));
+			member.setMemberEmail(rset.getString("member_email"));
+			member.setMemberPhone(rset.getString("member_phone"));
+			member.setMemberDate(rset.getDate("signup_date"));
+			member.setConnection(rset.getString("connection"));
+			member.setTalent(rset.getString("talent"));
+			member.setMgrChat(rset.getString("manager_chatting"));
+			member.setMgrLogin(rset.getString("manager_login"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return member;
 	}
 }
