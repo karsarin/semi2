@@ -65,7 +65,8 @@ ul.sub li:hover {
 	<%@ include file = "../../header.jsp" %>
 	<%@ include file = "../../headerbar.jsp" %>
 	<%@ include file = "../../rightList.jsp" %>
-	<div style=" margin-top:500px;margin-left: 30px; width: 230px; height: 500px; float: left;">
+	<h1 align="center"><%=member.getMemberNik() %></h1>
+	<div style=" margin-top:200px;margin-left: 30px; width: 230px; height: 500px; float: left;">
 
 		<ul id="navi">
 			<li class="group">
