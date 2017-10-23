@@ -1,12 +1,14 @@
 package donation.manager.model.dao;
 
+import static donation.common.JDBCTemplate.close;
+
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
 import donation.member.model.vo.Member;
-import static donation.common.JDBCTemplate.*;
 
 public class ManagerDao {
 	public ManagerDao(){}
@@ -39,5 +41,32 @@ public class ManagerDao {
 			close(stmt);
 		}
 		return list;
+	}
+
+	public Member selectAllMember(Connection conn, String memberId) {
+		Member member = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "select * from member where member_id = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			rset = pstmt.executeQuery();
+			if(rset.next()) {
+				member = new Member(
+						rset.getString("member_id"), rset.getString("member_pwd"), rset.getString("member_name"),
+						rset.getString("member_no"), rset.getString("member_nik"), rset.getString("member_address"),
+						rset.getString("member_email"), rset.getString("member_phone"), rset.getDate("signup_date"),
+						rset.getString("connection"), rset.getString("talent"), rset.getString("mgrchat"), rset.getString("mgrlogin")
+				);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return member;
 	}
 }

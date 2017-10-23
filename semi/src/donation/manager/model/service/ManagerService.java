@@ -18,4 +18,11 @@ public class ManagerService {
 		close(conn);
 		return list;
 	}
+
+	public Member selectMember(String memberId) {
+		Connection conn = getConnection();
+		Member member = new ManagerDao().selectAllMember(conn, memberId);
+		close(conn);
+		return member;
+	}
 }
