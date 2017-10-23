@@ -44,7 +44,10 @@ public class LoginServlet extends HttpServlet {
 		if(member != null){
 			HttpSession session = request.getSession();
 			session.setAttribute("member", member);
-			view = request.getRequestDispatcher("index.jsp");
+			if(member.getMemberId().equals("admin")) 
+				view = request.getRequestDispatcher("views/manager/managerMain.jsp");
+			else 
+				view = request.getRequestDispatcher("index.jsp");
 			view.forward(request, response);
 		}else{
 			view = request.getRequestDispatcher("views/member/memberError.jsp");

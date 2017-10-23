@@ -50,8 +50,6 @@ public class ManagerMemberDetail extends HttpServlet {
 		job.put("mgrChat", member.getMgrChat());
 		job.put("mgrLogin", member.getMgrLogin());
 		
-		System.out.println("job : " + job.toJSONString());
-		
 		PrintWriter pw = response.getWriter();
 		pw.print(job.toJSONString());
 		pw.flush();

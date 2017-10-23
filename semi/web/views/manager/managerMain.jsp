@@ -12,33 +12,9 @@
     <script src="/semi/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 </head>
 <body>
-	<br><br>
-	<div class="container">
-		<div id="menu-wrapper">
-			<div class="row">
-				<div class="logo-wrapper col-md-2 col-sm-2" align="center">
-					<h1>
-						<a href="#"></a>
-					</h1>
-				</div>
-				<div class="col-md-10 col-sm-10 main-menu text-right">
-					<div class="toggle-menu visible-sm visible-xs">
-						<i class="fa fa-bars"></i>
-					</div>
-					<ul class="menu-first">
-						<li class="active"><a href="/semi/views/manager/managerMain.jsp">Home_관리자</a></li>
-						<li><a href="/semi/mgrmember">회원정보</a></li>
-						<li><a href="#">카테고리</a></li>
-						<li><a href="#">공지사항</a></li>
-						<li><a href="#">게시판</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-	<br><br><br><br>
-
-
+	<%@ include file="../../header.jsp" %>
+	<%if(member!=null && member.getMemberId().equals("admin")) { %>
+	<%@ include file="managerHeader.jsp" %>
 			
 	<div class="content-section" id="services">
 		<div class="container" align="center">
@@ -181,7 +157,9 @@
 			<button id="qmore">More</button>
 		</div>
 	</div>
-	
+	<% } else {  %>
+	<h2>관리자로 로그인해주세요.</h2>
+	<% } %>
 	<%@ include file="managerFooter.jsp" %>
 </body>
 </html>
