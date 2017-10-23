@@ -71,12 +71,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					<%for(Member m : list) {%>
+					<%for(Member m : list) {
+						if(!m.getMemberId().equals("admin")) { %>
 					<tr>
 						<td><%=m.getMemberId()%></td>
 						<td><%=m.getMemberName()%></td>
 						<td><%=m.getTalent()%></td>
 					</tr>
+						<%}%>
 					<%} if(list.size()<13) { 
 							for(int i=list.size(); i<=13; i++) {%>
 						<tr><td></td><td></td><td></td></tr>

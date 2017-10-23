@@ -13,6 +13,7 @@
 </head>
 <body>
 	<%@ include file="../../header.jsp" %>
+	<%if(member!=null && member.getMemberId().equals("admin")) { %>
 	<%@ include file="managerHeader.jsp" %>
 			
 	<div class="content-section" id="services">
@@ -156,7 +157,9 @@
 			<button id="qmore">More</button>
 		</div>
 	</div>
-	
+	<% } else {  %>
+	<h2>관리자로 로그인해주세요.</h2>
+	<% } %>
 	<%@ include file="managerFooter.jsp" %>
 </body>
 </html>
