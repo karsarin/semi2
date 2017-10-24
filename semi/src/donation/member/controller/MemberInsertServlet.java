@@ -46,19 +46,22 @@ public class MemberInsertServlet extends HttpServlet {
 		String memberPhone = request.getParameter("memberphone");
 		String[] talents = request.getParameterValues("talent");
 		StringBuilder t = new StringBuilder();
-		for(int i = 0; i<talents.length;i++){
-			if(i<talents.length-1)
-				t.append(talents[i] + ",");
-			else
-				t.append(talents[i]);
-		}
-		String talent = t.toString();
+		String talent = null;
 		
+		if(talents!=null){
+			for(int i = 0; i<talents.length;i++){
+				if(i<talents.length-1)
+					t.append(talents[i] + ",");
+				else
+					t.append(talents[i]);
+			}
+			
+			talent = t.toString();
+		}else{
+			talent = "";
+		}
 		Member member = new Member(memberId,memberPwd,memberName,memberNo,memberNik,memberAddress,memberEmail,memberPhone,null,null,talent,null,null);
-		System.out.println(member);
 		int result = new MemberService().memberInsertCheck(member,memberPwd2);
-		System.out.println(member);
-		System.out.println(result);
 		if(result ==0){
 			int result2 = new MemberService().memberInsert(member);
 			if(result2 >0){
@@ -83,6 +86,18 @@ public class MemberInsertServlet extends HttpServlet {
 		}else if(result == 4){
 			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
 			request.setAttribute("message", "비밀번호 확인 실패!");
+			view.forward(request, response);
+		}else if(result == 5){
+			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
+			request.setAttribute("message", "주민번호 중복!");
+			view.forward(request, response);
+		}else if(result == 6){
+			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
+			request.setAttribute("message", "이메일 중복!");
+			view.forward(request, response);
+		}else if(result == 7){
+			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
+			request.setAttribute("message", "전화번호 중복!");
 			view.forward(request, response);
 		}
 	}

@@ -24,7 +24,7 @@
 
 			<form class="login-form" action="/semi/minsert" method="post">
 				<input type="text" placeholder="아이디" name="memberid" />
-				<button onclick="">중복확인</button>
+				<button>중복확인</button>
 				<input type="text" placeholder="이름" name="membername" /> 
 				<input type="text" placeholder="주민번호(-제외)" name="memberno" />
 				<input
@@ -71,6 +71,7 @@
 		<div></div>
 	</div>
 	<script src="../../js/loginjs.js"></script>
-
+	<script type="text/javascript">
+	</script>
 </body>
 </html>

@@ -71,11 +71,11 @@ ul.sub li:hover {
 			<li class="group">
 				<div class="title">마이페이지</div>
 				<ul class="sub">
-					<li><a href="#">내정보보기</a></li>
+					<li><a href="minfor?userid=<%=member.getMemberId()%>">내정보보기</a></li>
 					<li><a href="#">기부현황보기</a></li>
 					<li><a href="#">작성한 글 보기</a></li>
-					<li><a href="/semi/mdelete?memberid=<%= member.getMemberId() %>">회원탈퇴</a></li>
-					<li><a onclick="window.open('/semi/views/member/DeleteCheck.jsp','usage3','resizable=no ,width=300,left=600,top=200, height=150');return false">아니</a></li>
+					<li><a href="mdelete?memberid=<%=member.getMemberId()%>">회원탈퇴</a></li>
+					
 				</ul>
 			</li>
 
@@ -111,22 +111,22 @@ ul.sub li:hover {
 				<input type="email"name="memberemail"value="<%= member.getMemberEmail()%>">
 				<input type="text"name="memberphone"value="<%= member.getMemberPhone()%>">
 				
-				<% String[] talent = member.getTalent().split(","); %>
+				<% String[] talent = null;if(member.getTalent() !=null){talent = member.getTalent().split(",");} %>
 			<table>
 				<tr>
-					<td><input type="checkbox" name="talent" value="재능1"style="width: 50px;"<% for(int i=0;i<talent.length;i++){if(talent[i].equals("재능1")){%>checked<%break;}} %>>재능1</td>
-					<td><input type="checkbox" name="talent" value="재능2"style="width: 50px;"<% for(int i=0;i<talent.length;i++){if(talent[i].equals("재능2")){%>checked<%break;}} %>>재능2</td>
-					<td><input type="checkbox" name="talent" value="재능3"style="width: 50px;"<% for(int i=0;i<talent.length;i++){if(talent[i].equals("재능3")){%>checked<%break;}} %>>재능3</td>
+					<td><input type="checkbox" name="talent" value="재능1"style="width: 50px;"<% if(member.getTalent()!=null){for(int i=0;i<talent.length;i++){if(talent[i].equals("재능1")){%>checked<%break;}}} %>>재능1</td>
+					<td><input type="checkbox" name="talent" value="재능2"style="width: 50px;"<% if(member.getTalent()!=null){for(int i=0;i<talent.length;i++){if(talent[i].equals("재능2")){%>checked<%break;}}} %>>재능2</td>
+					<td><input type="checkbox" name="talent" value="재능3"style="width: 50px;"<% if(member.getTalent()!=null){for(int i=0;i<talent.length;i++){if(talent[i].equals("재능3")){%>checked<%break;}}} %>>재능3</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="talent" value="재능4"style="width: 50px;"<% for(int i=0;i<talent.length;i++){if(talent[i].equals("재능4")){%>checked<%break;}} %>>재능4</td>
-					<td><input type="checkbox" name="talent" value="재능5"style="width: 50px;"<% for(int i=0;i<talent.length;i++){if(talent[i].equals("재능5")){%>checked<%break;}} %>>재능5</td>
-					<td><input type="checkbox" name="talent" value="재능6"style="width: 50px;"<% for(int i=0;i<talent.length;i++){if(talent[i].equals("재능6")){%>checked<%break;}} %>>재능6</td>
+					<td><input type="checkbox" name="talent" value="재능4"style="width: 50px;"<% if(member.getTalent()!=null){for(int i=0;i<talent.length;i++){if(talent[i].equals("재능4")){%>checked<%break;}}} %>>재능4</td>
+					<td><input type="checkbox" name="talent" value="재능5"style="width: 50px;"<% if(member.getTalent()!=null){for(int i=0;i<talent.length;i++){if(talent[i].equals("재능5")){%>checked<%break;}}} %>>재능5</td>
+					<td><input type="checkbox" name="talent" value="재능6"style="width: 50px;"<% if(member.getTalent()!=null){for(int i=0;i<talent.length;i++){if(talent[i].equals("재능6")){%>checked<%break;}}} %>>재능6</td>
 				</tr>
 				<tr>
-					<td><input type="checkbox" name="talent" value="재능7"style="width: 50px;"<% for(int i=0;i<talent.length;i++){if(talent[i].equals("재능7")){%>checked<%break;}} %>>재능7</td>
-					<td><input type="checkbox" name="talent" value="재능8"style="width: 50px;"<% for(int i=0;i<talent.length;i++){if(talent[i].equals("재능8")){%>checked<%break;}} %>>재능8</td>
-					<td><input type="checkbox" name="talent" value="재능9"style="width: 50px;"<% for(int i=0;i<talent.length;i++){if(talent[i].equals("재능9")){%>checked<%break;}} %>>재능9</td>
+					<td><input type="checkbox" name="talent" value="재능7"style="width: 50px;"<% if(member.getTalent()!=null){for(int i=0;i<talent.length;i++){if(talent[i].equals("재능7")){%>checked<%break;}}} %>>재능7</td>
+					<td><input type="checkbox" name="talent" value="재능8"style="width: 50px;"<% if(member.getTalent()!=null){for(int i=0;i<talent.length;i++){if(talent[i].equals("재능8")){%>checked<%break;}}} %>>재능8</td>
+					<td><input type="checkbox" name="talent" value="재능9"style="width: 50px;"<% if(member.getTalent()!=null){for(int i=0;i<talent.length;i++){if(talent[i].equals("재능9")){%>checked<%break;}}} %>>재능9</td>
 				</tr>
 				
 			</table>
