@@ -28,14 +28,18 @@
     					$("input[name=memberAddress]").val(decodeURIComponent(data.memberAddress));
     					$("input[name=talent]").val(decodeURIComponent(data.talent));
     					if(data.mgrChat == 'Y') {
-    						$('input:radio[name=mgrChat]:input[value="on"]').attr("checked", true);
+    						$('input:radio[name=mgrChat]:input[value="N"]').attr("checked", false);
+    						$('input:radio[name=mgrChat]:input[value="Y"]').attr("checked", true);
     					} else {
-    						$('input:radio[name=mgrChat]:input[value="off"]').attr("checked", true);
+    						$('input:radio[name=mgrChat]:input[value="Y"]').attr("checked", false);
+    						$('input:radio[name=mgrChat]:input[value="N"]').attr("checked", true);
     					}
     					if(data.mgrLogin == 'Y') {
-    						$('input:radio[name=mgrlogin]:input[value="on"]').attr("checked", true);
+    						$('input:radio[name=mgrlogin]:input[value="N"]').attr("checked", false);
+    						$('input:radio[name=mgrlogin]:input[value="Y"]').attr("checked", true);
     					} else {
-    						$('input:radio[name=mgrlogin]:input[value="off"]').attr("checked", true);
+    						$('input:radio[name=mgrlogin]:input[value="Y"]').attr("checked", false);
+    						$('input:radio[name=mgrlogin]:input[value="N"]').attr("checked", true);
     					}
     				},
     				error: function(data){
@@ -92,11 +96,11 @@
 			<div class="heading-section text-center">
 				<h2	style="border-bottom: 0px; text-shadow:1px 1px 2px gray;">회원 상세정보</h2>
 			</div>
-			<form class="memberDetail" >
+			<form class="memberDetail" action="/semi/mgrmupdate">
 				<table class="memberDetail">
 					<tr>
 						<th>아이디</th>
-						<td colspan="3"><input name="memberId" value="" readonly class="form-control"	id="input-text"></td>
+						<td colspan="3"><input name="memberId" value="" readonly class="form-control" id="input-text"></td>
 					</tr>
 					<tr>
 						<th>이름</th>
@@ -123,15 +127,15 @@
 					<tr>
 						<th>접속가능</th>
 						<td colspan="3" id="mgrController">
-							<input type="radio" name="mgrlogin" value="on"> ON
-							<input type="radio" name="mgrlogin" value="off"> OFF
+							<input type="radio" name="mgrlogin" value="Y"> ON
+							<input type="radio" name="mgrlogin" value="N"> OFF
 						</td>
 					</tr>
 					<tr>												
 						<th>채팅가능</th>
 						<td colspan="3" id="mgrController">
-							<input type="radio" name="mgrChat" value="on"> ON
-							<input type="radio" name="mgrChat" value="off"> OFF
+							<input type="radio" name="mgrChat" value="Y"> ON
+							<input type="radio" name="mgrChat" value="N"> OFF
 						</td>
 					</tr>
 				</table><br>

@@ -26,10 +26,10 @@ public class ManagerDao {
 				list = new ArrayList<Member>();
 				while(rset.next()) {
 					Member member = new Member(
-						rset.getString("member_id"), rset.getString("member_pwd"), rset.getString("member_name"),
-						rset.getString("member_no"), rset.getString("member_nik"), rset.getString("member_address"),
-						rset.getString("member_email"), rset.getString("member_phone"), rset.getDate("signup_date"),
-						rset.getString("connection"), rset.getString("talent"), rset.getString("mgrchat"), rset.getString("mgrlogin")
+							rset.getString("member_id"), rset.getString("member_pwd"), rset.getString("member_name"),
+							rset.getString("member_no"), rset.getString("member_nik"), rset.getString("member_address"),
+							rset.getString("member_email"), rset.getString("member_phone"), rset.getDate("signup_date"),
+							rset.getString("connection"), rset.getString("talent"), rset.getString("mgrchat"), rset.getString("mgrlogin")
 					);
 					list.add(member);
 				}
@@ -43,7 +43,7 @@ public class ManagerDao {
 		return list;
 	}
 
-	public Member selectAllMember(Connection conn, String memberId) {
+	public Member selectMember(Connection conn, String memberId) {
 		Member member = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -68,5 +68,25 @@ public class ManagerDao {
 			close(pstmt);
 		}
 		return member;
+	}
+
+	public int updateMember(Connection conn, Member member) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = "update member set mgrchat=?, mgrlogin=? "
+					 + "where member_id=?";
+		
+		try {
+			pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, member.getMgrChat());
+			pstmt.setString(2, member.getMgrLogin());
+			pstmt.setString(3, member.getMemberId());
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
 	}
 }
