@@ -1,15 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ page import="donation.question.model.vo.Question, java.sql.Date, java.util.*" %>
-<%
-	Question q = (Question)request.getAttribute("question");
-	int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
-%>    
+    pageEncoding="UTF-8" import="java.util.*,  donation.board.freeBoard.model.vo.FreeBoard"%>
+ 
+ <%
+ FreeBoard fboard = (FreeBoard)request.getAttribute("fboard");
+ %>   
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>QuestionDetailView</title>
+<title>noticeDetailView</title>
+
+
+
 
 <!-- 카테고리  -->
 
@@ -111,7 +114,6 @@ table.type10 td{
 
 
 
-
 </head>
 
 <body>
@@ -142,67 +144,44 @@ table.type10 td{
 
 
 
-
-
-
-
-
-
-
 <table class="type10">
-<tr class="firstTr">
-<td class="firstTd"><%= q.getQuestionTitle() %></td>
-<td><%= q.getQuestionReadCount() %></td>
-<td><%= q.getQuestionDate() %> </td>
-<td><%= q.getQuestionWriter() %></td>
-
-	<td>
-	<% if(q.getQuestionOriginalFileName() == null){ %>
+	<tr class="firstTr">
+		<td class="firstTd"><%= fboard.getfreeBoardTitle() %></td><td>조회:<%=fboard.getReadCount() %></td><td><%=fboard.getfreeBoardDate() %></td><td><%=fboard.getfreeBoardWriter() %></td><td>	<%if(fboard.getOriginalFileName() != null){	%>
+		
+		<a href="/semi/ffdown?oname=<%=fboard.getOriginalFileName()%>&rname=<%=fboard.getRenameFileName()%>">	<%=fboard.getOriginalFileName() %></a>
+	<%}else{ %>
 		첨부파일 없음
-	<% }else{ %>
-	<a href="/semi/qfdown?ofile=<%= q.getQuestionOriginalFileName() %>&rfile=<%= q.getQuestionRenameFileName() %>">
-		<%= q.getQuestionOriginalFileName() %>
-	</a>
-	<% } %>
-	</td>
-</tr>	
+	<%} %></td>
 	
 
-<tr height="100">
+	<tr height="100">
+		<td colspan="5"><%=fboard.getfreeBoardContent() %></td>
+	</tr>
 
-<td colspan="5">
-<%= q.getQuestionContent() %></td>
-</tr>
 
-<tr><td colspan="2" align="center">
-<%  if(member != null){ %>
-	<%--쿼리스트링에는 반드시 공백 사용하면 안됨 다 붙여서 써야됨 꼭 --%>
-	<a href="/semi/views/question/questionReplyForm.jsp?qnum=<%= q.getQuestionNum() %>&page=<%= currentPage %>">[댓글달기]</a>
-<% if(member.getMemberId().equals(q.getQuestionWriter())){ %>
-	<a href="/semi/qupview?qnum=<%= q.getQuestionNum() %>&page=<%= currentPage %>">[수정페이지로 이동]</a>
-	&nbsp;
-	<a href="/semi/qdelete?qnum=<%= q.getQuestionNum() %>">[삭제]</a>
-<%  }} %>
-&nbsp; 
-<a href="/semi/qlist?page=<%= currentPage %>">[목록]</a>
-</td></tr>
+	<%if(fboard.getfreeBoardWriter().equals(member.getMemberId())){ //include에서 sission값을 가지고있기 때문에 그냥 사용할 수 있다. %>
+	<tr><td colspan="5" align="right">
+		<a href="/semi/fupview?no=<%=fboard.getfreeBoardNo()%>">수정페이지로 이동</a> &nbsp; 
+		<a href="/semi/fdel?no=<%=fboard.getfreeBoardNo()%>">삭제하기</a>
+	</td></tr>
+	<%}else{ %>
+	
+	
+	<%} %>
+
 </table>
 
+	
+	
+	
+<div align ="center">
+	<a href="/semi/flist">목록보기로 이동</a>
 
-
-<br>
+</div>
+<br><br>
 <hr>
+
+
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-

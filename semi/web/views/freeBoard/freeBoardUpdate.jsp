@@ -1,29 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+    pageEncoding="UTF-8" import="java.util.*, donation.board.freeBoard.model.vo.FreeBoard"%>
 <%
-	int qnum = Integer.parseInt(request.getParameter("qnum"));
-	int currentPage = Integer.parseInt(request.getParameter("page"));
-	
-%>    
-<!DOCTYPE html >
+	FreeBoard fboard = (FreeBoard)request.getAttribute("fboard");
+
+%>
+<!DOCTYPE html>
+
 <html>
 <head>
 <meta charset="UTF-8">
-<title>boardReplyForm</title>
-
-
-<%-- 헤더바 --%>
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800'
-	rel='stylesheet' type='text/css'>
-
-<link rel="stylesheet" href="/semi/css/bootstrap.min.css">
-<link rel="stylesheet" href="/semi/css/font-awesome.css">
-<link rel="stylesheet" href="/semi/css/animate.css">
-<link rel="stylesheet" href="/semi/css/templatemo_misc.css">
-<link rel="stylesheet" href="/semi/css/templatemo_style.css">
-<script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+<title>NoticeUpdateView</title>
 
 <!-- 카테고리  -->
 
@@ -162,57 +148,47 @@ table.type10 .even {
 
 
 
-<h2><%= qnum %>번글 댓글달기</h2>
-<br>
-<form action="/semi/qreply" method="post">
-	<input type="hidden" name="page" value="<%=currentPage%>">  <%-- currentPage도 form태그 안에 숨겨서 값 post로 넘기기위해서  --%>
-	<input type="hidden" name="qnum" value="<%=qnum %>">
-	<table align = "center" cellspacing="0" border="1" width=500">
-	<tr><th>제목</th><td><input type="text" name="qtitle"></td></tr>
-	<tr><th>작성자</th><td><input type="text" name="qwriter" readonly value=<%=member.getMemberId() %>></td></tr>
-	<tr><th>내용</th><td><textarea name="qcontent" rows="7" cols="50"  ></textarea></td></tr>
-	<tr><th colspan="2"><input type="submit" value ="댓글등록">
-		<a href="javascript:history.go(-1);">이전 페이지로</a>
+
+
+
+<h2 align="center"><%= fboard.getfreeBoardNo() %>번 공지글 수정 페이지</h2>
+<section align="center">
+	<form action="/semi/fupdate" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="no" value="<%=fboard.getfreeBoardNo()%>">  <!-- 쿼리스트링 안쓰고 form 안에서 input으로 숨겨서 보낼 수 있음 -->
+	<table align="center" width ="600">
+	<tr><th width="150" bgcolor="gray">제목</th>
+	<td align="left"><input type="text" name="title" value="<%= fboard.getfreeBoardTitle()%>"></td>
+	</tr>
+	<tr><th width="150" bgcolor="gray">작성자</th>
+	<td  align="left"><input type="text" name="writer" value="<%=fboard.getfreeBoardWriter() %>" readonly></td>
+	</tr>
+	<tr><th width="150" bgcolor="gray">첨부파일</th>
+	<td  align="left">
+	<%if(fboard.getOriginalFileName() != null){ %>
+	<input type="file" name="file" value="<%=fboard.getOriginalFileName()%>">
+	<%}else{ %>
+	<input type="file" name="file" >
+	<%} %>
+	</td>	
+	</tr>
+	<tr><th width="150" bgcolor="gray">내용</th>
+	<td  align="left"><textarea rows="5" cols="50" name="content"><%=fboard.getfreeBoardContent() %></textarea></td>
+	</tr>
+	<tr><th width="150" bgcolor="gray" colspan="2">
+	<input type="submit" value="수정하기">&nbsp;
+	<input type="reset" value="취소하기">
 	</th></tr>
 	</table>
-</form>
+	</form>
+	<br>
+	
+
+	<a href="/semi/flist">목록으로 이동</a>
+</section>
 
 
-
-
-<h4 align="center"><a href="/semi/qlist?page=<%=currentPage%>">목록</a></h4>
-
-<br>
-
-
-
+<br><br>
+<hr>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

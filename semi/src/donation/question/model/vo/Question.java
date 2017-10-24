@@ -2,6 +2,8 @@ package donation.question.model.vo;
 import java.sql.Date;
 
 public class Question implements java.io.Serializable {
+	private static final long serialVersionUID = 10002L;
+	
 	public int questionNum;
 	private String questionTitle;
 	private String questionWriter;

@@ -26,16 +26,11 @@
 <link rel="stylesheet" href="/semi/css/font-awesome.css">
 <link rel="stylesheet" href="/semi/css/animate.css">
 <link rel="stylesheet" href="/semi/css/templatemo_misc.css">
-
-<link rel="stylesheet" href="/semi/css/templatemo_style.css"> 
-
+<link rel="stylesheet" href="/semi/css/templatemo_style.css">
 <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
-
-</script>
 
 <%-- 헤더바 끝 --%>
 
-<%-- 세로목록 --%>
 <style>
 ul#navi {
 	width: 200px;
@@ -83,38 +78,41 @@ ul.sub li:hover {
 <!-- 세로목록 끝 -->
 
 
+
 <!-- 테이블 -->
 <style>
 table.type10 {
-    border-collapse: collapse;
-    text-align: left;
-    line-height: 1.5;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-  
-}
-table.type10 thead th {
-    width: 150px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    color: #fff;
-    background: #e7708d;
-    margin: 20px 10px;
-}
-table.type10 tbody th {
-    width: 150px;
-    padding: 10px;
-}
-table.type10 td {
-    width: 350px;
-    padding: 10px;
-    vertical-align: top;
-}
-table.type10 .even {
-    background: #fdf3f5;
+	border-collapse: collapse;
+	text-align: left;
+	line-height: 1.5;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 }
 
+table.type10 thead th {
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #fff;
+	background: #e7708d;
+	margin: 20px 10px;
+}
+
+table.type10 tbody th {
+	width: 150px;
+	padding: 10px;
+}
+
+table.type10 td {
+	width: 350px;
+	padding: 10px;
+	vertical-align: top;
+}
+
+table.type10 .even {
+	background: #fdf3f5;
+}
 </style>
 
 
@@ -124,29 +122,30 @@ table.type10 .even {
 </head>
 
 <body>
-<%@ include file="../../header.jsp"  %>
-<%@ include file="../../headerbar.jsp"  %>	
 
-	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
+	<%@ include file="../../header.jsp"%>
+	<%@ include file="../../headerbar.jsp" %>
+
+	
+
+	<div
+		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
-					<li><a href="/semi/views/board/freeBoard/freeBoardListView.jsp">자유 게시판</a></li>
-					<li><a href="/semi/views/board/replyBoard/replyBoardListView.jsp">후기 게시판</a></li>
-					<li><a href="/semi/views/qna/qnaBoardListView.jsp">QnA게시판</a></li>
+					<li><a href="/semi/flist">자유 게시판</a></li>
+					<li><a href="/semi/rlist">후기 게시판</a></li>
+					<li><a href="/semi/qlist">QnA게시판</a></li>
 
 				</ul>
 			</li>
 		</ul>
 	</div>
-
 	<!-- 반복 끝 -->
-	
-	
-</div>
+	</div>
 
 
 <div style="float:left;">
@@ -179,9 +178,6 @@ table.type10 .even {
 </section>
 <br>
 </div>
-
-	<!--  오른쪽 메뉴바 -->
-	<%@ include file="../../rightList.jsp"%>
 
 
 

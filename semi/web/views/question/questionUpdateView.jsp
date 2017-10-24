@@ -12,6 +12,11 @@
 <meta charset="UTF-8">
 <title>boardUpdateView</title>
 
+<!-- 카테고리  -->
+
+
+
+
 <%-- 헤더바 --%>
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800'
@@ -26,11 +31,11 @@
 
 <%-- 헤더바 끝 --%>
 
-<%-- 세로목록 --%>
 <style>
 ul#navi {
 	width: 200px;
 	text-indent: 10px;
+	background-color: lightgray;
 }
 
 ul#navi, ul#navi ul {
@@ -46,7 +51,7 @@ li.group {
 li.group div.title {
 	height: 35px;
 	line-height: 35px;
-	background: lightgray;
+	background: lightblue;
 	cursor: pointer;
 }
 
@@ -67,7 +72,7 @@ ul.sub li a {
 }
 
 ul.sub li:hover {
-	background: gray;
+	background: lightblue;
 }
 </style>
 <!-- 세로목록 끝 -->
@@ -77,115 +82,70 @@ ul.sub li:hover {
 <!-- 테이블 -->
 <style>
 table.type10 {
-    border-collapse: collapse;
-    text-align: left;
-    line-height: 1.5;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-  
-}
-table.type10 thead th {
-    width: 150px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    color: #fff;
-    background: #e7708d;
-    margin: 20px 10px;
-}
-table.type10 tbody th {
-    width: 150px;
-    padding: 10px;
-}
-table.type10 td {
-    width: 350px;
-    padding: 10px;
-    vertical-align: top;
-}
-table.type10 .even {
-    background: #fdf3f5;
+	border-collapse: collapse;
+	text-align: left;
+	line-height: 1.5;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 }
 
+table.type10 thead th {
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #fff;
+	background: #e7708d;
+	margin: 20px 10px;
+}
+
+table.type10 tbody th {
+	width: 150px;
+	padding: 10px;
+}
+
+table.type10 td {
+	width: 350px;
+	padding: 10px;
+	vertical-align: top;
+}
+
+table.type10 .even {
+	background: #fdf3f5;
+}
 </style>
 
+
+
+
+
 </head>
+
 <body>
-<%@ include file="../../header.jsp"%>
 
+	<%@ include file="../../header.jsp"%>
+	<%@ include file="../../headerbar.jsp" %>
 
+	
 
-	<!-- 반복 -->
-	<div class="main-header">
-		<div class="container">
-			<div id="menu-wrapper">
-				<div class="row">
-					<div class="logo-wrapper col-md-2 col-sm-2">
-						
-					</div>
-					<!-- /.logo-wrapper -->
-					<div class="col-md-10 col-sm-10 main-menu text-right">
-						<div class="toggle-menu visible-sm visible-xs">
-							<i class="fa fa-bars"></i>
-						</div>
-						<ul class="menu-first">
-							<li>
-								<form action="/semi/tsearch" method="post">
-									<input type="search" name="keyword" autocomplete> <input
-										type="submit" value="제목검색">
-								</form>
-							</li>
-							<li class="active"><a href="/semi/index.jsp">Home</a></li>
-							<li><a href="#">카테고리</a></li>
-							<li><a href="/semi/nlist">게시판</a></li>
-							<li><a href="#">마이페이지</a></li>
-						</ul>
-					</div>
-					<!-- /.main-menu -->
-				</div>
-				<!-- /.row -->
-			</div>
-			<!-- /#menu-wrapper -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /.main-header -->
-	</div>
-	<!-- /.site-header -->
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-
-	<div style="width: 300px; height: 500px; float: left;">
+	<div
+		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
-					<li><a href="#">자유 게시판</a></li>
-					<li><a href="#">후기 게시판</a></li>
+					<li><a href="/semi/flist">자유 게시판</a></li>
+					<li><a href="/semi/rlist">후기 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
 
 				</ul>
 			</li>
 		</ul>
 	</div>
-
 	<!-- 반복 끝 -->
-	
-	
-</div>
-
+	</div>
 
 
 
@@ -240,6 +200,7 @@ table.type10 .even {
 	
 	<br>
 	
+
 	<div align = "center">
 	<a href="/semi/qlist?page=<%=currentPage%>">목록</a>
 	

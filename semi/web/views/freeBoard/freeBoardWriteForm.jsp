@@ -1,29 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
-<%
-	int qnum = Integer.parseInt(request.getParameter("qnum"));
-	int currentPage = Integer.parseInt(request.getParameter("page"));
-	
-%>    
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>boardReplyForm</title>
+<title>boardListView</title>
+<script type="text/javascript">
+	function insertPage()
+	{
+		location.href="/semi/finsert";
+	}
+</script>
 
-
-<%-- 헤더바 --%>
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800'
-	rel='stylesheet' type='text/css'>
-
-<link rel="stylesheet" href="/semi/css/bootstrap.min.css">
-<link rel="stylesheet" href="/semi/css/font-awesome.css">
-<link rel="stylesheet" href="/semi/css/animate.css">
-<link rel="stylesheet" href="/semi/css/templatemo_misc.css">
-<link rel="stylesheet" href="/semi/css/templatemo_style.css">
-<script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 
 <!-- 카테고리  -->
 
@@ -162,57 +150,61 @@ table.type10 .even {
 
 
 
-<h2><%= qnum %>번글 댓글달기</h2>
-<br>
-<form action="/semi/qreply" method="post">
-	<input type="hidden" name="page" value="<%=currentPage%>">  <%-- currentPage도 form태그 안에 숨겨서 값 post로 넘기기위해서  --%>
-	<input type="hidden" name="qnum" value="<%=qnum %>">
-	<table align = "center" cellspacing="0" border="1" width=500">
-	<tr><th>제목</th><td><input type="text" name="qtitle"></td></tr>
-	<tr><th>작성자</th><td><input type="text" name="qwriter" readonly value=<%=member.getMemberId() %>></td></tr>
-	<tr><th>내용</th><td><textarea name="qcontent" rows="7" cols="50"  ></textarea></td></tr>
-	<tr><th colspan="2"><input type="submit" value ="댓글등록">
-		<a href="javascript:history.go(-1);">이전 페이지로</a>
+
+
+<div style="float:left;">
+<h2>자유게시판 글쓰기 페이지</h2>
+<section align="center">
+	<form action="/semi/finsert" method="post" enctype="multipart/form-data">
+	<table align="center" width ="600">
+	<tr><th width="150" bgcolor="#fff">제목</th>
+	<td align="left"><input type="text" name="title"></td>
+	</tr>
+	<tr><th width="150" bgcolor="#fff">작성자</th>
+	
+	<td  align="left"><input type="text" name="writer" value="<%=member.getMemberId() %>" readonly></td>
+	</tr>
+	<tr><th width="150" bgcolor="#fff">첨부파일</th>
+	<td  align="left"><input type="file" name="file"></td>
+	
+	</tr>
+	<tr><th width="150" bgcolor="#fff">내용</th>
+	<td  align="left"><textarea rows="5" cols="50" name="content"></textarea></td>
+	</tr>
+	<tr><th width="150" bgcolor="#fff" colspan="2">
+	<input type="submit" value="등록하기">&nbsp;
+	<input type="reset" value="취소하기">
 	</th></tr>
 	</table>
-</form>
-
-
-
-
-<h4 align="center"><a href="/semi/qlist?page=<%=currentPage%>">목록</a></h4>
-
+	</form>
+	<br>
+	<a href="/semi/flist">목록으로 이동</a>
+</section>
 <br>
+</div>
+
+
+
+	<div id="footer" style="clear:both;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-xs-12 text-left">
+					<span>Copyright &copy; 2014 Company Name</span>
+				</div>
+				<!-- /.text-center -->
+				<div class="col-md-4 hidden-xs text-right">
+					<a href="#top" id="go-top">Back to top</a>
+				</div>
+				<!-- /.text-center -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /#footer -->
 
 
 
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

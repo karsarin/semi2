@@ -86,7 +86,7 @@ table.type10 thead th {
 	font-weight: bold;
 	vertical-align: top;
 	color: #fff;
-	background: lightblue;
+	background: #e7708d;
 	margin: 20px 10px;
 }
 
@@ -119,7 +119,9 @@ table.type10 .even {
 
 	
 
-	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
+	<div
+		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
+
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
@@ -136,20 +138,21 @@ table.type10 .even {
 	<!-- 반복 끝 -->
 	
 
-
-
-	<!--  게시판 -->
-
-		<!--  검색 -->
-		<div align="center">
+<!--  검색 -->
+	<div align="center">
 			<form action="/semi/nsearch" method="post">
 				<input type="search" autocomlete name="keyword" length="50">&nbsp;
 				<input type="submit" value="제목검색">
+
 			</form>
 		</div>
-		
 
-			<table class="type10" width="1000px;">	
+	<!--  게시판 -->
+	<div style="float: left;">
+		<div>
+
+			<table class="type10" width="1000px;">				
+
 				<thead>
 					<tr>
 						<th>번호</th>
@@ -162,19 +165,24 @@ table.type10 .even {
 				</thead>
 
 				<%
+					/* while(entryIter.hasNext()){
+					Map.Entry<Integer, Notice> entry = entryIter.next();
+					Integer key = entry.getKey();
+					Notice notice = entry.getValue(); */
+
 					for (Notice notice : list) {
 				%>
 
 
 				<tbody>
 					<tr height="30">
-						<th><%=notice.getNoticeNo()%></th>
+						<th align="center"><%=notice.getNoticeNo()%></th>
 						<td><a href="/semi/ndetail?no=<%=notice.getNoticeNo()%>">
 								<%=notice.getNoticeTitle()%>
 						</a></td>
-						<td><%=notice.getNoticeWriter()%></td>
-						<td><%=notice.getNoticeDate()%></td>
-						<td>
+						<td align="center"><%=notice.getNoticeWriter()%></td>
+						<td align="center"><%=notice.getNoticeDate()%></td>
+						<td align="center">
 							<%
 								if (notice.getOriginalFileName() != null) {
 							%> O <%
@@ -183,31 +191,34 @@ table.type10 .even {
  	}
  %>
 						</td>
-						<td><%=notice.getReadCount()%></td>
+						<td align="left"><%=notice.getReadCount()%></td>
 					</tr>
 					<%
 						}
 					%>
 				
+				<tbody>
+
+
 				</tbody>
-
-
 			</table>
 
-		
+		</div>
 		<!--  table 끝 -->
 		
 		
 		
 		
 	<% if(member!= null){ %>
-		<div align="left">
+		<div align="right">
 			<button onclick="javascript:insertPage();">글쓰기</button>
 		</div>
 	<%} %>
 		
 		
 
+
+		<br>
 		<%-- 페이지 번호 처리 --%>
 		<div align="center">
 			<%-- 이전 페이지 있을 경우에 대한 처리 --%>
@@ -250,14 +261,33 @@ table.type10 .even {
 				}
 			%>
 			
+			
+			
+
+		
+		
+	</div>
+
+		
+		
 		
 		</div>
 		<br>
 
 
 
-
 	
+
+
+	<!--  오른쪽 메뉴바 -->
+	<%@ include file="../../rightList.jsp"%>
+
+
+
+
+
+
+
 	<div id="footer" style="clear: both;">
 		<div class="container">
 			<div class="row">
@@ -275,9 +305,6 @@ table.type10 .even {
 		<!-- /.container -->
 	</div>
 	<!-- /#footer -->
-
-
-
 
 
 </body>

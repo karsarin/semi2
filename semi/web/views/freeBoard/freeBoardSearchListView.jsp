@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, donation.notice.model.vo.Notice"%>
+	pageEncoding="UTF-8" import="java.util.*, donation.board.freeBoard.model.vo.FreeBoard"%>
 <%
 
 	
-	ArrayList<Notice> list = (ArrayList<Notice>)request.getAttribute("list");
+	ArrayList<FreeBoard> list = (ArrayList<FreeBoard>)request.getAttribute("list");
 int listCount = ((Integer)request.getAttribute("listSearchCount")).intValue();
 int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 int startPage = ((Integer)request.getAttribute("startPage")).intValue();
@@ -21,7 +21,7 @@ String keyword  = (String)request.getAttribute("keyword");
 <script type="text/javascript">
 	function insertPage()
 	{
-		location.href="views/notice/noticeWriteForm.jsp";
+		location.href="views/freeBoard/freeBoardWriteForm.jsp";
 	}
 </script>
 
@@ -160,13 +160,13 @@ table.type10 .even {
 	</div>
 	<!-- 반복 끝 -->
 	</div>
-	
-	
-</div>
+
+
+
 
 
 <div align="center">
-	<form action="/semi/nsearch" method="post">
+	<form action="/semi/fsearch" method="post">
 		<input type="search" autocomlete name="keyword" length="50">&nbsp;
 		<input type="submit" value="제목검색"> 
 	</form>
@@ -214,29 +214,29 @@ table.type10 .even {
 		Integer key = entry.getKey();
 		Notice notice = entry.getValue(); */
 		
-		for(Notice notice : list){			
+		for(FreeBoard fboard : list){			
 %>
 
 
  <tbody>
 	<tr height="30">
-	<th align="center"><%= notice.getNoticeNo()%></th> 
+	<th align="center"><%= fboard.getfreeBoardNo()%></th> 
 	<td>
 
-		<a href="/semi/ndetail?no=<%= notice.getNoticeNo() %>">
-			<%= notice.getNoticeTitle() %>
+		<a href="/semi/fdetail?no=<%= fboard.getfreeBoardNo() %>">
+			<%= fboard.getfreeBoardTitle() %>
 		</a>
 	</td>
-	<td align="center"><%= notice.getNoticeWriter() %></td>
-	<td align="center"><%= notice.getNoticeDate() %></td>
+	<td align="center"><%= fboard.getfreeBoardWriter() %></td>
+	<td align="center"><%= fboard.getfreeBoardDate() %></td>
 	<td align="center">
-	<% if(notice.getOriginalFileName() != null){ %>
+	<% if(fboard.getOriginalFileName() != null){ %>
 		O
 	<% }else{ %>
 		&nbsp:
 	<% } %>
 	</td>
-	<td align="left"><%= notice.getReadCount() %></td>
+	<td align="left"><%= fboard.getReadCount() %></td>
 	</tr>
 <% } %>
  <tbody>
@@ -253,7 +253,7 @@ table.type10 .even {
 <% if(currentPage <= 1){ %>
 	[이전] &nbsp;
 <% }else{ %>
-	<a href="/semi/nsearch?page=<%= currentPage - 1 %>&keyword=<%=keyword%>">[이전]</a>
+	<a href="/semi/fsearch?page=<%= currentPage - 1 %>&keyword=<%=keyword%>">[이전]</a>
 <% } %>
 <%-- 현재 페이지 숫자 보여주기 --%>
 <% for(int p = startPage; p <= endPage; p++){ 
@@ -261,25 +261,26 @@ table.type10 .even {
 %>
 	<b><font size="4" color="red">[<%= p %>]</font></b>
 <%     }else{ %>
-	<a href="/semi/nsearch?page=<%=p%>&keyword=<%=keyword%>"><%=p%></a>
+	<a href="/semi/fsearch?page=<%=p%>&keyword=<%=keyword%>"><%=p%></a>
 <% }} %>
 <%-- 현재 페이지 다음 페이지에 대한 처리 --%>
 <% if(currentPage >= maxPage){ %>
 	[다음]
 <% }else{ %>
-	<a href="/semi/nsearch?page=<%= currentPage + 1 %>&keyword=<%=keyword%>">[다음]</a>
+	<a href="/semi/fsearch?page=<%= currentPage + 1 %>&keyword=<%=keyword%>">[다음]</a>
 <% } %>
 </div>
 	
 	
 	
 	
-	<% if(member!= null){ %>
-		<div align="left">
-			<button onclick="javascript:insertPage();">글쓰기</button>
-		</div>
-	<%} %>
 	
+<div align="left">
+<button onclick="javascript:insertPage();">글쓰기</button>
+
+</div>
+	
+
 
 
 	<div id="footer" >

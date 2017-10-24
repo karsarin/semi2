@@ -9,23 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-
 import donation.board.freeBoard.model.service.FreeBoardService;
-import java.util.*;
 import donation.board.freeBoard.model.vo.FreeBoard;
 
 /**
- * Servlet implementation class FreeBoardListServlet
+ * Servlet implementation class NoticeUpdateViewServlet
  */
-@WebServlet("/flist")
-public class FreeBoardListServlet extends HttpServlet {
+@WebServlet("/fupview")
+public class FreeBoardUpdateViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FreeBoardListServlet() {
+    public FreeBoardUpdateViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,55 +31,26 @@ public class FreeBoardListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
-		int currentPage = 1;
-		int limit = 4;
+		// 공지글 수정페이지 출력 처리용 컨트롤러		
+		//수정할 notice 글을 db에서 다시 불러와서 수정해야 정확함
+		response.setContentType("text/html charset=utf-8");
 		
-		if(request.getParameter("page")!=null )
-		{
-			currentPage = Integer.parseInt(request.getParameter("page"));
-			
-		}
-		
-		FreeBoardService fservice = new FreeBoardService();
-		
-		int listCount = fservice.getListCount();
-		System.out.println("listCount : " + listCount);
+		FreeBoard fboard = new FreeBoardService().selectFreeBoard(Integer.parseInt(request.getParameter("no")));
+		//여기서 DB에 있는 게시글 정보 이미 불러옴
 		
 		
-		ArrayList<FreeBoard> list = fservice.selectList(currentPage, limit);
-		
-		System.out.println(list.toString());
-		
-		int maxPage = (int)((double)listCount / limit + 0.9);
-		int startPage = ((int)((double)currentPage / limit + 0.9) - 1) * limit + 1;
-		
-		int endPage = startPage + limit -1 ;
-		if(maxPage < endPage) {
-			endPage = maxPage;
-		}
 		
 		RequestDispatcher view = null;
-		if(list != null) {
-			view = request.getRequestDispatcher("views/freeBoard/freeBoardListView.jsp");
-			request.setAttribute("list",  list);
-			request.setAttribute("currentPage", currentPage);
-			request.setAttribute("maxPage",  maxPage);
-			request.setAttribute("startPage",  startPage);
-			request.setAttribute("endPage",  endPage);
-			request.setAttribute("listCount", listCount);
-			
-			
+		if(fboard != null){
+			view = request.getRequestDispatcher("views/freeBoard/freeBoardUpdate.jsp");
+			request.setAttribute("fboard", fboard);
 			view.forward(request, response);
-			
-		}else {
+		}else{
+
 			view = request.getRequestDispatcher("views/freeBoard/freeBoardError.jsp");
-			request.setAttribute("message", "자유게시판 페이지 불러오기 실패");
+			request.setAttribute("message", "게시글 수정페이지 출력 처리 실패");
 			view.forward(request, response);
-			
 		}
-		
 		
 	}
 
