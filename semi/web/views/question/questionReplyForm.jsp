@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
     
 <%
-	int qnum = Integer.parseInt(request.getParameter("qnum"));
+	int no = Integer.parseInt(request.getParameter("no"));
 	int currentPage = Integer.parseInt(request.getParameter("page"));
 	
 %>    
@@ -91,41 +91,36 @@ ul.sub li:hover {
 <!-- 세로목록 끝 -->
 
 
-
 <!-- 테이블 -->
 <style>
-table.type10 {
-	border-collapse: collapse;
-	text-align: left;
-	line-height: 1.5;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+table.type10 th{
+background-color : lightblue;
 }
 
-table.type10 thead th {
-	width: 150px;
-	padding: 10px;
-	font-weight: bold;
-	vertical-align: top;
-	color: #fff;
-	background: #e7708d;
-	margin: 20px 10px;
+table.type10{
+	border : 1px solid black;
+	width : 710px;
+}
+table.type10 tr{
+
+	border-bottom : 1px solid;
+	height:30px;
+}
+td.firstTd{
+	width:210px;
+		
 }
 
-table.type10 tbody th {
-	width: 150px;
-	padding: 10px;
+
+table.type10 textarea{
+width:710px;
+height:200px;
+}
+input#input{
+	height:30px;
+	width:500px;
 }
 
-table.type10 td {
-	width: 350px;
-	padding: 10px;
-	vertical-align: top;
-}
-
-table.type10 .even {
-	background: #fdf3f5;
-}
 </style>
 
 
@@ -138,7 +133,7 @@ table.type10 .even {
 
 	<%@ include file="../../header.jsp"%>
 	<%@ include file="../../headerbar.jsp" %>
-
+	<%@ include file="../../rightList.jsp"%>
 	
 
 	<div
@@ -162,20 +157,25 @@ table.type10 .even {
 
 
 
-<h2><%= qnum %>번글 댓글달기</h2>
+<h2><%= no %>번글 댓글달기</h2>
 <br>
+
 <form action="/semi/qreply" method="post">
-	<input type="hidden" name="page" value="<%=currentPage%>">  <%-- currentPage도 form태그 안에 숨겨서 값 post로 넘기기위해서  --%>
-	<input type="hidden" name="qnum" value="<%=qnum %>">
-	<table align = "center" cellspacing="0" border="1" width=500">
-	<tr><th>제목</th><td><input type="text" name="qtitle"></td></tr>
-	<tr><th>작성자</th><td><input type="text" name="qwriter" readonly value=<%=member.getMemberId() %>></td></tr>
-	<tr><th>내용</th><td><textarea name="qcontent" rows="7" cols="50"  ></textarea></td></tr>
-	<tr><th colspan="2"><input type="submit" value ="댓글등록">
-		<a href="javascript:history.go(-1);">이전 페이지로</a>
-	</th></tr>
+		<input type="hidden" name="no" value="<%=no %>">
+		<input type="hidden" name="page" value="<%=currentPage %>">
+	<table class="type10">
+	<thead><th colspan="2">답글 쓰기</th></thead>
+		
+	<tbody>
+	<tr><td class="firstTd">제목</td> <td><input type="text" name="title" id="input" ></td>	</tr>
+	<tr><td class="firstTd">작성자</td> <td><input type="text" name="writer" id="input" value="<%=member.getMemberId()%>" readonly></td></tr>
+	<tr><td colspan="2"><textarea rows="5" cols="50" name="content" class="contentbox"></textarea></td></tr>
+	<tr><td colspan="2" align="right"><input type="submit" value="댓글">&nbsp; <input type="reset" value="취소하기"></td></tr>
+	</tbody>
 	</table>
-</form>
+	</form>
+
+
 
 
 

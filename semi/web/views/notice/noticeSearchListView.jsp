@@ -96,6 +96,7 @@ ul.sub li:hover {
 <!-- 테이블 -->
 <style>
 table.type10 {
+	width : 70%;
 	border-collapse: collapse;
 	text-align: left;
 	line-height: 1.5;
@@ -109,25 +110,22 @@ table.type10 thead th {
 	font-weight: bold;
 	vertical-align: top;
 	color: #fff;
-	background: #e7708d;
+	background: lightblue;
 	margin: 20px 10px;
 }
 
-table.type10 tbody th {
+table.type10 thead th.titleTh{
+	width:60%;
+}
+
+
+table.type10 tbody td {
 	width: 150px;
 	padding: 10px;
 }
 
-table.type10 td {
-	width: 350px;
-	padding: 10px;
-	vertical-align: top;
-}
-
-table.type10 .even {
-	background: #fdf3f5;
-}
 </style>
+
 
 
 
@@ -139,7 +137,7 @@ table.type10 .even {
 
 	<%@ include file="../../header.jsp"%>
 	<%@ include file="../../headerbar.jsp" %>
-
+	<%@ include file="../../rightList.jsp"%>
 	
 
 	<div
@@ -165,87 +163,63 @@ table.type10 .even {
 </div>
 
 
-<div align="center">
-	<form action="/semi/nsearch" method="post">
-		<input type="search" autocomlete name="keyword" length="50">&nbsp;
-		<input type="submit" value="제목검색"> 
-	</form>
-</div>
+
 	
 	
 	<!--  게시판 -->
-	<div>
-	
-	<table class="type10">
-	<!-- 
-    <thead>
-    <tr>
-        <th scope="cols">글번호</th>
-        <th scope="cols">글제목</th>
-        <th scope="cols">조회수</th>
-        <th scope="cols">작성자</th>
-        <th scope="cols">날짜</th>
-       
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>첫번째 글</td>
-        <td>13</td>
-        <td>이홍섭</td>
-        <td>17/07/21</td>
-       
-    </tr>    
-    </tbody>
-     -->   
-    
-      <thead>
-    <tr>
-    <th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>첨부파일</th><th>조회수</th>
-   </tr></thead> 
-   
-   
-   
-   
-<% 
-		/* while(entryIter.hasNext()){
-		Map.Entry<Integer, Notice> entry = entryIter.next();
-		Integer key = entry.getKey();
-		Notice notice = entry.getValue(); */
+
+			<table class="type10">	
+				<thead>			
+					<tr>
+						<th class="noTh">번호</th>
+						<th class="titleTh">제목</th>
+						<th>작성자</th>
+						<th>날짜</th>
+						<th>첨부파일</th>
+						<th>조회수</th>
+					</tr>
+				</thead>
+
+				<%
+					for (Notice notice : list) {
+				%>
+
+
+				<tbody>
+					<tr>
+						<td><%=notice.getNoticeNo()%></td>
+						<td><a href="/semi/ndetail?no=<%=notice.getNoticeNo()%>">
+								<%=notice.getNoticeTitle()%>
+						</a></td>
+						<td><%=notice.getNoticeWriter()%></td>
+						<td><%=notice.getNoticeDate()%></td>
+						<td>
+							<%
+								if (notice.getOriginalFileName() != null) {
+							%> O <%
+								} else {
+							%> X
+							<%
+							 	}
+							 %>
+						</td>
+						<td><%=notice.getReadCount()%></td>
+					</tr>
+					<%
+						}
+					%>
+				
+				</tbody>
+
+
+			</table>
+
 		
-		for(Notice notice : list){			
-%>
-
-
- <tbody>
-	<tr height="30">
-	<th align="center"><%= notice.getNoticeNo()%></th> 
-	<td>
-
-		<a href="/semi/ndetail?no=<%= notice.getNoticeNo() %>">
-			<%= notice.getNoticeTitle() %>
-		</a>
-	</td>
-	<td align="center"><%= notice.getNoticeWriter() %></td>
-	<td align="center"><%= notice.getNoticeDate() %></td>
-	<td align="center">
-	<% if(notice.getOriginalFileName() != null){ %>
-		O
-	<% }else{ %>
-		&nbsp:
-	<% } %>
-	</td>
-	<td align="left"><%= notice.getReadCount() %></td>
-	</tr>
-<% } %>
- <tbody>
-
-</tbody>
-</table>	
-
-</div>
-	<!--  table 끝 -->
+		<!--  table 끝 -->
+		
+		
+		
+		
 
 	<%-- 페이지 번호 처리 --%>
 <div align="center">
@@ -273,12 +247,22 @@ table.type10 .even {
 	
 	
 	
+	<div align="center">
+	<form action="/semi/nsearch" method="post">
+		<input type="search" autocomlete name="keyword" length="50">&nbsp;
+		<input type="submit" value="제목검색"> 
+	</form>
 	
-	<% if(member!= null){ %>
-		<div align="left">
+		<% if(member!= null){ %>
 			<button onclick="javascript:insertPage();">글쓰기</button>
-		</div>
+	
 	<%} %>
+	
+</div>
+
+
+
+
 	
 
 

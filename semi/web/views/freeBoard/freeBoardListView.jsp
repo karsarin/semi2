@@ -93,10 +93,9 @@ ul.sub li:hover {
 <!-- 세로목록 끝 -->
 
 
-
-<!-- 테이블 -->
 <style>
 table.type10 {
+	width : 70%;
 	border-collapse: collapse;
 	text-align: left;
 	line-height: 1.5;
@@ -114,21 +113,18 @@ table.type10 thead th {
 	margin: 20px 10px;
 }
 
-table.type10 tbody th {
+table.type10 thead th.titleTh{
+	width:60%;
+}
+
+
+table.type10 tbody td {
 	width: 150px;
 	padding: 10px;
 }
 
-table.type10 td {
-	width: 350px;
-	padding: 10px;
-	vertical-align: top;
-}
-
-table.type10 .even {
-	background: #fdf3f5;
-}
 </style>
+
 
 
 
@@ -140,7 +136,7 @@ table.type10 .even {
 
 	<%@ include file="../../header.jsp"%>
 	<%@ include file="../../headerbar.jsp" %>
-
+	<%@ include file="../../rightList.jsp"%>
 	
 
 	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
@@ -168,24 +164,12 @@ table.type10 .even {
 
 	<!--  게시판 -->
 
-		
-		
-		<div align="center">
-			<form action="/semi/fsearch" method="post">
-				<input type="search" autocomlete name="keyword" length="50">&nbsp;
-				<input type="submit" value="제목검색">
-
-			</form>
-		</div>
-		
-		
-
 	<table class="type10" width="1000px;">
 				
 				<thead>
 					<tr>
 						<th>번호</th>
-						<th>제목</th>
+						<th  class="titleTh">제목</th>
 						<th>작성자</th>
 						<th>날짜</th>
 						<th>첨부파일</th>
@@ -197,18 +181,14 @@ table.type10 .even {
 
 
 				<%
-					/* while(entryIter.hasNext()){
-					Map.Entry<Integer, Notice> entry = entryIter.next();
-					Integer key = entry.getKey();
-					Notice notice = entry.getValue(); */
 
 					for (FreeBoard fboard : list) {
 				%>
 
 
 				<tbody>
-					<tr height="30">
-						<th><%=fboard.getfreeBoardNo()%></th>
+					<tr>
+						<td><%=fboard.getfreeBoardNo()%></td>
 						<td><a href="/semi/fdetail?no=<%=fboard.getfreeBoardNo()%>">
 								<%=fboard.getfreeBoardTitle()%>
 						</a></td>
@@ -219,7 +199,7 @@ table.type10 .even {
 								if (fboard.getOriginalFileName() != null) {
 							%> O <%
 								} else {
-							%> &nbsp: <%
+							%> X <%
  	}
  %>
 						</td>
@@ -238,11 +218,7 @@ table.type10 .even {
 	
 		<!--  table 끝 -->
 		
-	<% if(member!= null){ %>
-		<div align="left">
-			<button onclick="javascript:insertPage();">글쓰기</button>
-		</div>
-	<%} %>
+
 	
 	
 	
@@ -290,8 +266,23 @@ table.type10 .even {
 			%>
 		</div>
 	
+			
+		<div align="center">
+			<form action="/semi/fsearch" method="post">
+				<input type="search" autocomlete name="keyword" length="50">&nbsp;
+				<input type="submit" value="제목검색">
+			</form>
 	
+		<% if(member!= null){ %>		
+			<button onclick="insertPage();">글쓰기</button>
+		<%} %>		
+			
+	
+	
+		</div>
 
+
+	
 
 	<div id="footer" style="clear: both;">
 		<div class="container">

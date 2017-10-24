@@ -75,39 +75,36 @@ ul.sub li:hover {
 
 <!-- 테이블 -->
 <style>
-table.type10 {
-	border-collapse: collapse;
-	text-align: left;
-	line-height: 1.5;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+table.type10 th{
+background-color : lightblue;
 }
 
-table.type10 thead th {
-	width: 150px;
-	padding: 10px;
-	font-weight: bold;
-	vertical-align: top;
-	color: #fff;
-	background: #e7708d;
-	margin: 20px 10px;
+table.type10{
+	border : 1px solid black;
+	width : 710px;
+}
+table.type10 tr{
+
+	border-bottom : 1px solid;
+	height:30px;
+}
+td.firstTd{
+	width:210px;
+		
 }
 
-table.type10 tbody th {
-	width: 150px;
-	padding: 10px;
+
+table.type10 textarea{
+width:710px;
+height:200px;
+}
+input#input{
+	height:30px;
+	width:500px;
 }
 
-table.type10 td {
-	width: 350px;
-	padding: 10px;
-	vertical-align: top;
-}
-
-table.type10 .even {
-	background: #fdf3f5;
-}
 </style>
+
 
 
 
@@ -119,7 +116,7 @@ table.type10 .even {
 
 	<%@ include file="../../header.jsp"%>
 	<%@ include file="../../headerbar.jsp" %>
-
+	<%@ include file="../../rightList.jsp"%>
 	
 
 	<div
@@ -142,26 +139,47 @@ table.type10 .even {
 	</div>
 
 
-<h1 align="center">Board 서비스 : 글 등록하기</h1>
 
-<br>
-<form action ="/semi/qinsert" method="post" enctype="multipart/form-data">
-	<table align="center" border="1" cellspacing="0" width="700">
-		<tr><th>제목</th><td><input type="text" name="qtitle"></td></tr>
-		<tr><th>작성자</th><td><input type="text" name="qwriter" value="<%=member.getMemberId() %>" readonly></td></tr>
-		<tr><th>첨부파일</th><td><input type="file" name="upfile"></td></tr>
-		<tr><th>내용</th><td><textarea cols="50" rows="7" name="qcontent"></textarea></td></tr>
+	<form action="/semi/qinsert" method="post" enctype="multipart/form-data">
+	<table class="type10">
+	<thead><th colspan="2">QA 글쓰기</th></thead>
 		
-		<tr><td colspan="2" align="center"><input type="submit" value="등록하기"> &nbsp;
-		<a href="/semi/qlist?page=1">목록</a>		
-		</td></tr>
-	
+	<tbody>
+	<tr><td class="firstTd">제목</td> <td><input type="text" name="title" id="input"></td>	</tr>
+	<tr><td class="firstTd">작성자</td> <td><input type="text" name="writer" id="input" value="<%=member.getMemberId() %>" readonly></td></tr>
+	<tr><td class="firstTd">첨부파일</td> <td><input type="file" name="file"></td></tr>
+	<tr><td colspan="2"><textarea rows="5" cols="50" name="content" class="contentbox"></textarea></td></tr>
+	<tr><td colspan="2" align="right"><input type="submit" value="등록하기">&nbsp; <input type="reset" value="취소하기"></td></tr>
+	</tbody>
 	</table>
-</form>
+	</form>
+	
+	
 
-
+	<br>
+	<a href="/semi/qlist">목록으로 이동</a>
+    <br>
 
 
 <br>
+
+	<div id="footer" style="clear:both;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-xs-12 text-left">
+					<span>Copyright &copy; 2014 Company Name</span>
+				</div>
+				<!-- /.text-center -->
+				<div class="col-md-4 hidden-xs text-right">
+					<a href="#top" id="go-top">Back to top</a>
+				</div>
+				<!-- /.text-center -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /#footer -->
+	
 </body>
 </html>

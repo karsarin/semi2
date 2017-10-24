@@ -88,11 +88,9 @@ ul.sub li:hover {
 </style>
 <!-- 세로목록 끝 -->
 
-
-
-<!-- 테이블 -->
 <style>
 table.type10 {
+	width :  70%;
 	border-collapse: collapse;
 	text-align: left;
 	line-height: 1.5;
@@ -110,21 +108,18 @@ table.type10 thead th {
 	margin: 20px 10px;
 }
 
-table.type10 tbody th {
+table.type10 thead th.titleTh{
+	width:60%;
+}
+
+
+table.type10 tbody td {
 	width: 150px;
 	padding: 10px;
 }
 
-table.type10 td {
-	width: 350px;
-	padding: 10px;
-	vertical-align: top;
-}
-
-table.type10 .even {
-	background: #fdf3f5;
-}
 </style>
+
 
 
 
@@ -136,7 +131,7 @@ table.type10 .even {
 
 	<%@ include file="../../header.jsp"%>
 	<%@ include file="../../headerbar.jsp" %>
-
+	<%@ include file="../../rightList.jsp"%>
 	
 
 	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
@@ -159,18 +154,13 @@ table.type10 .even {
 
 
 
-<div align="center">
-	<form action="/semi/qsearch" method="post">
-		<input type="search" autocomlete name="keyword" length="50">&nbsp;
-		<input type="submit" value="제목검색"> 
-	</form>
-</div>
 
 
-<table class="type10" width="1000px;">
+
+<table class="type10">
 
 <thead>
-	<tr><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th><th>첨부파일</th></tr>
+	<tr><th>번호</th><th class="titleTh">제목</th><th>작성자</th><th>날짜</th><th>첨부파일</th><th>조회수</th></tr>
 </thead>
 
 
@@ -180,19 +170,22 @@ table.type10 .even {
 	for(Question q : list){
 %>
 
+<!--  
+└┗┗┖┕
+-->
 
 <tr>
-	<th><%= q.getQuestionNum() %></th>
+	<td><%= q.getQuestionNum() %></td>
 	<td>
 	<%-- 답글일 때는 들여쓰기하면서 앞에 ▶ 표시함 --%>
 		<% if(q.getQuestionLevel() == 1){  //원글의 댓글일 때 %>
-		&nbsp; &nbsp; ▶
+		&nbsp; &nbsp; ┕>
 		<% }else if(q.getQuestionLevel() == 2){  //댓글의 댓글일 때 %>
-		&nbsp; &nbsp; &nbsp; &nbsp; ▶▶
+		&nbsp; &nbsp; &nbsp; &nbsp; ┕>
 		<% } %>
 	<%-- 로그인한 경우 상세보기 가능하게 처리함 --%>
 		<% if(member != null){ %>
-			<a href="/semi/qdetail?qnum=<%= q.getQuestionNum() %>&page=<%= currentPage %>">
+			<a href="/semi/qdetail?no=<%= q.getQuestionNum() %>&page=<%= currentPage %>">
 			<%= q.getQuestionTitle() %>
 			</a>
 		<% }else{ %>
@@ -201,25 +194,22 @@ table.type10 .even {
 	</td>
 	<td ><%= q.getQuestionWriter() %></td>
 	<td ><%= q.getQuestionDate() %></td>
-	<td ><%= q.getQuestionReadCount() %></td>
 	<td >
 		<% if(q.getQuestionOriginalFileName() != null){ %>
-			◎
+			O
 		<% }else{ %>
-			&nbsp;
+			X
 		<% } %>
 	</td>
+	
+	<td ><%= q.getQuestionReadCount() %></td>
 </tr>
 <%  } %>
 
 </tbody>
 </table>
 
-	<% if(member!= null){ %>
-		<div align="left">
-			<button onclick="showWriteQuestion()" >글쓰기</button>
-		</div>
-	<%} %>
+
 	
 
 <%-- 페이지 번호 처리 --%>
@@ -246,9 +236,21 @@ table.type10 .even {
 <% } %>
 
 
-
-
-
+<!-- 검색 -->
+<div align="center">
+	<form action="/semi/qsearch" method="post">
+		<input type="search" autocomlete name="keyword" length="50">&nbsp;
+		<input type="submit" value="제목검색"> 
+	</form>
+	
+	
+	
+<!-- 글쓰기 -->
+	<% if(member!= null){ %>
+			<button onclick="showWriteQuestion()" >글쓰기</button>	
+	<%} %>
+	
+</div>
 
 
 

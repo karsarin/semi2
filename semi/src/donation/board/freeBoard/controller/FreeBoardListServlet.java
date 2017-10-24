@@ -37,7 +37,7 @@ public class FreeBoardListServlet extends HttpServlet {
 
 
 		int currentPage = 1;
-		int limit = 4;
+		int limit = 10;
 		
 		if(request.getParameter("page")!=null )
 		{

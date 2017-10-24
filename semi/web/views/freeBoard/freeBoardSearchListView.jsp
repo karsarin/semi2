@@ -92,10 +92,10 @@ ul.sub li:hover {
 <!-- 세로목록 끝 -->
 
 
-
 <!-- 테이블 -->
 <style>
 table.type10 {
+	width : 70%;
 	border-collapse: collapse;
 	text-align: left;
 	line-height: 1.5;
@@ -109,24 +109,20 @@ table.type10 thead th {
 	font-weight: bold;
 	vertical-align: top;
 	color: #fff;
-	background: #e7708d;
+	background: lightblue;
 	margin: 20px 10px;
 }
 
-table.type10 tbody th {
+table.type10 thead th.titleTh{
+	width:60%;
+}
+
+
+table.type10 tbody td {
 	width: 150px;
 	padding: 10px;
 }
 
-table.type10 td {
-	width: 350px;
-	padding: 10px;
-	vertical-align: top;
-}
-
-table.type10 .even {
-	background: #fdf3f5;
-}
 </style>
 
 
@@ -139,7 +135,7 @@ table.type10 .even {
 
 	<%@ include file="../../header.jsp"%>
 	<%@ include file="../../headerbar.jsp" %>
-
+	<%@ include file="../../rightList.jsp"%>
 	
 
 	<div
@@ -165,87 +161,64 @@ table.type10 .even {
 
 
 
-<div align="center">
-	<form action="/semi/fsearch" method="post">
-		<input type="search" autocomlete name="keyword" length="50">&nbsp;
-		<input type="submit" value="제목검색"> 
-	</form>
-</div>
+
+	
 	
 	
 	<!--  게시판 -->
-	<div>
+
+	<table class="type10" width="1000px;">
+				
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th  class="titleTh">제목</th>
+						<th>작성자</th>
+						<th>날짜</th>
+						<th>첨부파일</th>
+						<th>조회수</th>
+					</tr>
+				</thead>
+
+
+
+
+				<%
+					for (FreeBoard fboard : list) {
+				%>
+
+
+				<tbody>
+					<tr>
+						<td><%=fboard.getfreeBoardNo()%></td>
+						<td><a href="/semi/fdetail?no=<%=fboard.getfreeBoardNo()%>">
+								<%=fboard.getfreeBoardTitle()%>
+						</a></td>
+						<td><%=fboard.getfreeBoardWriter()%></td>
+						<td><%=fboard.getfreeBoardDate()%></td>
+						<td>
+							<%
+								if (fboard.getOriginalFileName() != null) {
+							%> O <%
+								} else {
+							%> X <%
+ 	}
+ %>
+						</td>
+						<td><%=fboard.getReadCount()%></td>
+					</tr>
+					<%
+						}
+					%>
+				
+				<tbody>
+
+
+				</tbody>
+			</table>
+
 	
-	<table class="type10">
-	<!-- 
-    <thead>
-    <tr>
-        <th scope="cols">글번호</th>
-        <th scope="cols">글제목</th>
-        <th scope="cols">조회수</th>
-        <th scope="cols">작성자</th>
-        <th scope="cols">날짜</th>
-       
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>첫번째 글</td>
-        <td>13</td>
-        <td>이홍섭</td>
-        <td>17/07/21</td>
-       
-    </tr>    
-    </tbody>
-     -->   
-    
-      <thead>
-    <tr>
-    <th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>첨부파일</th><th>조회수</th>
-   </tr></thead> 
-   
-   
-   
-   
-<% 
-		/* while(entryIter.hasNext()){
-		Map.Entry<Integer, Notice> entry = entryIter.next();
-		Integer key = entry.getKey();
-		Notice notice = entry.getValue(); */
-		
-		for(FreeBoard fboard : list){			
-%>
-
-
- <tbody>
-	<tr height="30">
-	<th align="center"><%= fboard.getfreeBoardNo()%></th> 
-	<td>
-
-		<a href="/semi/fdetail?no=<%= fboard.getfreeBoardNo() %>">
-			<%= fboard.getfreeBoardTitle() %>
-		</a>
-	</td>
-	<td align="center"><%= fboard.getfreeBoardWriter() %></td>
-	<td align="center"><%= fboard.getfreeBoardDate() %></td>
-	<td align="center">
-	<% if(fboard.getOriginalFileName() != null){ %>
-		O
-	<% }else{ %>
-		&nbsp:
-	<% } %>
-	</td>
-	<td align="left"><%= fboard.getReadCount() %></td>
-	</tr>
-<% } %>
- <tbody>
-
-</tbody>
-</table>	
-
-</div>
-	<!--  table 끝 -->
+		<!--  table 끝 -->
 
 	<%-- 페이지 번호 처리 --%>
 <div align="center">
@@ -272,13 +245,23 @@ table.type10 .even {
 </div>
 	
 	
+	<div align="center">
+	<form action="/semi/fsearch" method="post">
+		<input type="search" autocomlete name="keyword" length="50">&nbsp;
+		<input type="submit" value="제목검색"> 
+	</form>
 	
+		<% if(member!= null){ %>		
+			<button onclick="insertPage();">글쓰기</button>
+		<%} %>		
+			
 	
-	
-<div align="left">
-<button onclick="javascript:insertPage();">글쓰기</button>
-
 </div>
+	
+	
+
+
+
 	
 
 

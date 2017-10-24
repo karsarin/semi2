@@ -42,7 +42,7 @@ public class FreeBoardUpdateViewServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		if(fboard != null){
-			view = request.getRequestDispatcher("views/freeBoard/freeBoardUpdate.jsp");
+			view = request.getRequestDispatcher("views/freeBoard/freeBoardUpdateView.jsp");
 			request.setAttribute("fboard", fboard);
 			view.forward(request, response);
 		}else{

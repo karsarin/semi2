@@ -81,38 +81,34 @@ ul.sub li:hover {
 
 <!-- 테이블 -->
 <style>
-table.type10 {
-	border-collapse: collapse;
-	text-align: left;
-	line-height: 1.5;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+table.type10 th{
+background-color : lightblue;
 }
 
-table.type10 thead th {
-	width: 150px;
-	padding: 10px;
-	font-weight: bold;
-	vertical-align: top;
-	color: #fff;
-	background: #e7708d;
-	margin: 20px 10px;
+table.type10{
+	border : 1px solid black;
+	width : 710px;
+}
+table.type10 tr{
+
+	border-bottom : 1px solid;
+	height:30px;
+}
+td.firstTd{
+	width:210px;
+		
 }
 
-table.type10 tbody th {
-	width: 150px;
-	padding: 10px;
+
+table.type10 textarea{
+width:710px;
+height:200px;
+}
+input#input{
+	height:30px;
+	width:500px;
 }
 
-table.type10 td {
-	width: 350px;
-	padding: 10px;
-	vertical-align: top;
-}
-
-table.type10 .even {
-	background: #fdf3f5;
-}
 </style>
 
 
@@ -125,7 +121,7 @@ table.type10 .even {
 
 	<%@ include file="../../header.jsp"%>
 	<%@ include file="../../headerbar.jsp" %>
-
+	<%@ include file="../../rightList.jsp"%>
 	
 
 	<div
@@ -149,34 +145,26 @@ table.type10 .even {
 
 
 <div style="float:left;">
-<h2>공지글쓰기 페이지</h2>
-<section align="center">
+
 	<form action="/semi/ninsert" method="post" enctype="multipart/form-data">
-	<table align="center" width ="600">
-	<tr><th width="150" bgcolor="#fff">제목</th>
-	<td align="left"><input type="text" name="title"></td>
-	</tr>
-	<tr><th width="150" bgcolor="#fff">작성자</th>
-	
-	<td  align="left"><input type="text" name="writer" value="<%=member.getMemberId() %>" readonly></td>
-	</tr>
-	<tr><th width="150" bgcolor="#fff">첨부파일</th>
-	<td  align="left"><input type="file" name="file"></td>
-	
-	</tr>
-	<tr><th width="150" bgcolor="#fff">내용</th>
-	<td  align="left"><textarea rows="5" cols="50" name="content"></textarea></td>
-	</tr>
-	<tr><th width="150" bgcolor="#fff" colspan="2">
-	<input type="submit" value="등록하기">&nbsp;
-	<input type="reset" value="취소하기">
-	</th></tr>
+	<table class="type10">
+	<thead><th colspan="2">공지글 쓰기</th></thead>
+		
+	<tbody>
+	<tr><td class="firstTd">제목</td> <td><input type="text" name="title" id="input"></td>	</tr>
+	<tr><td class="firstTd">작성자</td> <td><input type="text" name="writer" id="input" value="<%=member.getMemberId() %>" readonly></td></tr>
+	<tr><td class="firstTd">첨부파일</td> <td><input type="file" name="file"></td></tr>
+	<tr><td colspan="2"><textarea rows="5" cols="50" name="content" class="contentbox"></textarea></td></tr>
+	<tr><td colspan="2" align="right"><input type="submit" value="등록하기">&nbsp; <input type="reset" value="취소하기"></td></tr>
+	</tbody>
 	</table>
 	</form>
+	
+	
 	<br>
 	<a href="/semi/nlist">목록으로 이동</a>
-</section>
-<br>
+    <br>
+    
 </div>
 
 
