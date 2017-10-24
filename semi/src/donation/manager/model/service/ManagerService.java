@@ -1,7 +1,6 @@
 package donation.manager.model.service;
 
-import static donation.common.JDBCTemplate.close;
-import static donation.common.JDBCTemplate.getConnection;
+import static donation.common.JDBCTemplate.*;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -21,8 +20,17 @@ public class ManagerService {
 
 	public Member selectMember(String memberId) {
 		Connection conn = getConnection();
-		Member member = new ManagerDao().selectAllMember(conn, memberId);
+		Member member = new ManagerDao().selectMember(conn, memberId);
 		close(conn);
 		return member;
+	}
+
+	public int updateMember(Member member) {
+		Connection conn = getConnection();
+		int result = new ManagerDao().updateMember(conn, member);
+		if(result>0)commit(conn);
+		else rollback(conn);
+		close(conn);
+		return result;
 	}
 }
