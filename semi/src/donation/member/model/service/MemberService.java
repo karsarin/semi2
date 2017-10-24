@@ -26,7 +26,8 @@ public class MemberService {
 	}
 
 	public int memberInsertCheck(Member member, String memberPwd2) {
-		int result = new MemberDao().memberInsertCheck(member, memberPwd2);
+		Connection con = getConnection();
+		int result = new MemberDao().memberInsertCheck(con, member, memberPwd2);
 		return result;
 	}
 
@@ -63,6 +64,19 @@ public class MemberService {
 			commit(con);
 		else
 			rollback(con);
+		close(con);
+		return result;
+	}
+
+	public int memberIdCheck(Member member) {
+		Connection con = getConnection();
+		int result = new MemberDao().memberIdCheck(con, member);
+		close(con);
+		return result;
+	}
+	public int memberNikCheck(Member member) {
+		Connection con = getConnection();
+		int result = new MemberDao().memberNikCheck(con, member);
 		close(con);
 		return result;
 	}

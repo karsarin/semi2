@@ -31,14 +31,24 @@ public class MemberDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 회원삭제 처리용 컨트롤러
+		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
-		if(new MemberService().deleteMember(request.getParameter("memberid"))>0){
-			response.sendRedirect("/semi/logout");
-		}else{
+		/*String memberPwd = request.getParameter("memberpwd");
+		String inputPwd = request.getParameter("inputpwd");*/
+		
+		/*if(memberPwd.equals(inputPwd)){*/
+			if(new MemberService().deleteMember(request.getParameter("memberid"))>0){
+				response.sendRedirect("/semi/logout");
+			}else{
+				RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
+				request.setAttribute("message", "회원탈퇴 실패!");
+				view.forward(request, response);
+			}
+		/*}else{
 			RequestDispatcher view = request.getRequestDispatcher("views/member/memberError.jsp");
-			request.setAttribute("message", "회원탈퇴");
+			request.setAttribute("message", "비밀번호 오류");
 			view.forward(request, response);
-		}
+		}*/
 		
 	}
 

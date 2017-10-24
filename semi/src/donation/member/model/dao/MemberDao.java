@@ -72,7 +72,7 @@ public class MemberDao {
 		}
 		return result;
 	}
-	public int memberInsertCheck(Member member, String memberPwd2){
+	public int memberInsertCheck(Connection con, Member member, String memberPwd2){
 		
 		int result = 0;
 
@@ -98,10 +98,48 @@ public class MemberDao {
 		if(!(member.getMemberPwd().equals(memberPwd2))){
 			return 4;// 비밀먼호 확인 실패
 		}
-		
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<Member> list = null;
+		String query = "select * from member";
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			if(rset !=null){
+				list = new ArrayList<Member>();
+				while(rset.next()){
+					Member m = new Member();
+					m.setMemberNo(rset.getString("member_no"));
+					m.setMemberPhone(rset.getString("member_phone"));
+					list.add(m);
+				}
+				
+				
+			}
+			} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(stmt);
+		}
+		for(Member mem : list){
+			if(member.getMemberNo() == mem.getMemberNo()){
+				return 5;//주민번호 중복체크 
+			}
+		}
+		for(Member mem : list){
+			if(member.getMemberEmail() == mem.getMemberEmail()){
+				return 6;//이메일 중복체크 
+			}
+		}
+		for(Member mem : list){
+			if(member.getMemberPhone() == mem.getMemberPhone()){
+				return 7;//전화번호 중복체크 
+			}
+		}
 		return result;
 	}
-	public int memberEqualsCheck(Connection con,Member member){
+	public int memberIdCheck(Connection con,Member member){
 		Statement stmt = null;
 		ResultSet rset = null;
 		ArrayList<Member> list = null;
@@ -115,19 +153,6 @@ public class MemberDao {
 				while(rset.next()){
 					Member m = new Member();
 					m.setMemberId(rset.getString("member_id"));
-					m.setMemberPwd(rset.getString("member_pwd"));
-					m.setMemberName(rset.getString("member_name"));
-					m.setMemberNo(rset.getString("member_no"));
-					m.setMemberNik(rset.getString("member_nik"));
-					m.setMemberAddress(rset.getString("member_address"));
-					m.setMemberEmail(rset.getString("member_email"));
-					m.setMemberPhone(rset.getString("member_phone"));
-					m.setMemberDate(rset.getDate("member_date"));
-					m.setConnection(rset.getString("connection"));
-					m.setTalent(rset.getString("talent"));
-					m.setMgrChat(rset.getString("manager_chatting"));
-					m.setMgrLogin(rset.getString("manager_login"));
-					
 					list.add(m);
 				}
 				
@@ -144,24 +169,41 @@ public class MemberDao {
 				return 1; //아이디 중복체크
 			}
 		}
+		return result;
+	}
+	public int memberNikCheck(Connection con,Member member){
+		Statement stmt = null;
+		ResultSet rset = null;
+		ArrayList<Member> list = null;
+		String query = "select * from member";
+		int result = 0;
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			if(rset !=null){
+				list = new ArrayList<Member>();
+				while(rset.next()){
+					Member m = new Member();
+					m.setMemberNik(rset.getString("member_nik"));
+					
+					list.add(m);
+				}
+				
+				
+			}
+			} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(stmt);
+		}
 		for(Member mem : list){
 			if(member.getMemberNik() == mem.getMemberNik()){
-				return 2;//닉네임 중복체크 
-			}
-		}
-		for(Member mem : list){
-			if(member.getMemberNo() == mem.getMemberNo()){
-				return 3;//주민번호 중복체크 
-			}
-		}
-		for(Member mem : list){
-			if(member.getMemberPhone() == mem.getMemberPhone()){
-				return 4;//전화번호 중복체크 
+				return 1;//닉네임 중복체크 
 			}
 		}
 		return result;
 	}
-
 	public Member memberInformation(Connection con, String memberId) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -292,6 +334,7 @@ public class MemberDao {
 		}finally{
 			close(pstmt);
 		}
+		System.out.println(result);
 		return result;
 	}
 }
