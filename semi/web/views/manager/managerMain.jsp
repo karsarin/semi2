@@ -64,7 +64,7 @@
 							<%=c.getCategoryContent()%>
 						<%}%>
 					</p>
-					<a href="#" id="readBt" class="icon icon-plus-sign button">Read	More</a>
+					<a href="/semi/cdetail?cnum=<%=c.getCategoryNo()%>&page=<%=ccurrentPage%>" id="readBt" class="icon icon-plus-sign button">Read More</a>
 				</div>
 				<% } %>
 				
@@ -106,8 +106,8 @@
 					<% for(Question q : qlist) { %>
 					<tr>
 						<th scope="row"><%=q.getQuestionNum()%></th>
-						<td><%=q.getQuestionTitle()%></td>
-						<td>
+						<td><a href="/semi/qdetail?no=<%=q.getQuestionNum()%>&page=<%=qcurrentPage%>"><%=q.getQuestionTitle()%></a></td>
+						<td><a href="/semi/qdetail?no=<%=q.getQuestionNum()%>&page=<%=qcurrentPage%>">
 							<%if(q.getQuestionContent().length()>16) {
 								String qcontent = q.getQuestionContent().substring(0, 15)+"..."; 	
 							%>
@@ -115,7 +115,7 @@
 							<%} else {%>
 								<%=q.getQuestionContent()%>
 							<%}%>
-						</td>
+						</a></td>
 						<td><%=q.getQuestionWriter()%></td>
 						<td><%=q.getQuestionDate()%></td>
 					</tr>

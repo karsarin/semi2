@@ -206,3 +206,7 @@ hr {
 .qnatb td:nth-child(3) {
 	background: #f3f6f7;
 }
+
+.qnatb a {
+	color:gray;
+}
