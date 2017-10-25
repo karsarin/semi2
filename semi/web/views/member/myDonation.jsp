@@ -32,6 +32,7 @@
 <%=member.getMemberNik() %>님의 총 기부금액 은<%= myDonation %>원 입니다.
 </div>
 <hr>
+<input type="">
 <table align="center" border="1">
 <tr><th>No</th><th>날짜</th><th>기부금</th>
 <% for(Donate d : list){ %>
