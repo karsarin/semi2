@@ -79,34 +79,37 @@ ul.sub li:hover {
 
 
 
-<!-- 테이블 -->
 <style>
+
+
+table.type10{
+	width : 1200px;
+	border-collapse: collapse;
+	text-align: left;
+	line-height: 1.5;
+	border : 1px solid black;
+}
+
 table.type10 th{
 background-color : lightblue;
 }
 
-table.type10{
-	border : 1px solid black;
-	width : 710px;
-}
 table.type10 tr{
 
 	border-bottom : 1px solid;
 	height:30px;
 }
 td.firstTd{
-	width:210px;
+	width:100px;
 		
 }
-
-
 table.type10 textarea{
-width:710px;
-height:200px;
+width:1200px;
+height:300px;
 }
 input#input{
-	height:30px;
-	width:500px;
+width:1100px
+
 }
 
 </style>
@@ -133,7 +136,6 @@ input#input{
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
-					<li><a href="/semi/rlist">후기 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
 
 				</ul>
@@ -162,8 +164,9 @@ input#input{
 	
 	
 	<br>
+	<div align="right">
 	<a href="/semi/nlist">목록으로 이동</a>
-    <br>
+    </div>
     
 </div>
 

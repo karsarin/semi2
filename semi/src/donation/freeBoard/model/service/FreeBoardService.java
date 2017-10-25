@@ -1,11 +1,11 @@
-package donation.board.freeBoard.model.service;
+package donation.freeBoard.model.service;
 import static donation.common.JDBCTemplate.*;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import donation.board.freeBoard.model.dao.FreeBoardDao;
-import donation.board.freeBoard.model.vo.FreeBoard;
+import donation.freeBoard.model.dao.FreeBoardDao;
+import donation.freeBoard.model.vo.FreeBoard;
 import donation.notice.model.dao.NoticeDao;
 import donation.notice.model.vo.Notice;
 

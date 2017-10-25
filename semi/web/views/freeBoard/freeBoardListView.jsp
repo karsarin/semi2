@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*, donation.board.freeBoard.model.vo.FreeBoard"%>
+    pageEncoding="UTF-8" import="java.util.*, donation.freeBoard.model.vo.FreeBoard"%>
 <%-- page 지시자 태그는 한 페이지에 한 개만 사용이 원칙임
      예외로 import 속성에 대해서만 따로 작성할 수 있음. --%>
 
@@ -23,6 +23,7 @@
 <script type="text/javascript">
 	function insertPage() {
 		location.href = "views/freeBoard/freeBoardWriteForm.jsp";
+		return false;
 	}
 </script>
 
@@ -135,7 +136,14 @@ table.type10 tbody td {
 <body>
 
 	<%@ include file="../../header.jsp"%>
-	<%@ include file="../../headerbar.jsp" %>
+
+	<%if(member.getMemberId().equals("admin")) { %>
+      <%@ include file="../manager/managerHeader.jsp" %>
+   <% } else { %>
+      <%@ include file="../../headerbar.jsp" %>
+   <% } %>
+
+
 	<%@ include file="../../rightList.jsp"%>
 	
 
@@ -147,7 +155,6 @@ table.type10 tbody td {
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
-					<li><a href="/semi/rlist">후기 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
 
 				</ul>
@@ -221,7 +228,17 @@ table.type10 tbody td {
 
 	
 	
-	
+		<div align="center">
+			<form action="/semi/fsearch" method="post">
+				<input type="search" autocomlete name="keyword" length="50">&nbsp;
+				<input type="submit" value="제목검색">
+				
+		<% if(member!= null){ %>		
+			<button onclick="return insertPage();">글쓰기</button>
+		<%} %>	
+		
+			</form>
+		</div>
 	
 		<%-- 페이지 번호 처리 --%>
 		<div align="center">
@@ -267,19 +284,7 @@ table.type10 tbody td {
 		</div>
 	
 			
-		<div align="center">
-			<form action="/semi/fsearch" method="post">
-				<input type="search" autocomlete name="keyword" length="50">&nbsp;
-				<input type="submit" value="제목검색">
-			</form>
-	
-		<% if(member!= null){ %>		
-			<button onclick="insertPage();">글쓰기</button>
-		<%} %>		
-			
-	
-	
-		</div>
+
 
 
 	
