@@ -1,4 +1,4 @@
-package donation.board.freeBoard.controller;
+package donation.freeBoard.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,8 +18,8 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import donation.board.freeBoard.model.service.FreeBoardService;
-import donation.board.freeBoard.model.vo.FreeBoard;
+import donation.freeBoard.model.service.FreeBoardService;
+import donation.freeBoard.model.vo.FreeBoard;
 import donation.notice.model.service.NoticeService;
 import donation.notice.model.vo.Notice;
 

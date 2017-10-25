@@ -15,9 +15,14 @@
 <head>
 <meta charset="UTF-8">
 <title>boardListView</title>
+
+ <link rel="stylesheet" href="css/bootstrap.min.css">
+ 
+ 
 <script type="text/javascript">
 	function insertPage() {
 		location.href = "views/notice/noticeWriteForm.jsp";
+		return false;
 	}
 </script>
 
@@ -70,39 +75,6 @@ ul.sub li:hover {
 
 
 
-<!-- 테이블 -->
-<style>
-table.type10 {
-	width :  70%;
-	border-collapse: collapse;
-	text-align: left;
-	line-height: 1.5;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-}
-
-table.type10 thead th {
-	width: 150px;
-	padding: 10px;
-	font-weight: bold;
-	vertical-align: top;
-	color: #fff;
-	background: lightblue;
-	margin: 20px 10px;
-}
-
-
-table.type10 thead th.titleTh{
-	width:60%;
-}
-
-
-table.type10 tbody td {
-	width: 150px;
-	padding: 10px;
-}
-
-</style>
 
 
 
@@ -124,7 +96,6 @@ table.type10 tbody td {
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
-					<li><a href="/semi/rlist">후기 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
 
 				</ul>
@@ -136,9 +107,15 @@ table.type10 tbody td {
 
 
 
+
+
+
+
+
+
 	<!--  게시판 -->
 
-			<table class="type10">	
+			<table class="table table-hover"">	
 				<thead>			
 					<tr>
 						<th class="noTh">번호</th>
@@ -157,13 +134,13 @@ table.type10 tbody td {
 
 				<tbody>
 					<tr>
-						<td><%=notice.getNoticeNo()%></td>
-						<td><a href="/semi/ndetail?no=<%=notice.getNoticeNo()%>">
+						<td class="active"><%=notice.getNoticeNo()%></td>
+						<td class="success"><a href="/semi/ndetail?no=<%=notice.getNoticeNo()%>">
 								<%=notice.getNoticeTitle()%>
 						</a></td>
-						<td><%=notice.getNoticeWriter()%></td>
-						<td><%=notice.getNoticeDate()%></td>
-						<td>
+						<td class="warning"><%=notice.getNoticeWriter()%></td>
+						<td class="danger"><%=notice.getNoticeDate()%></td>
+						<td class="info">
 							<%
 								if (notice.getOriginalFileName() != null) {
 							%> O <%
@@ -188,8 +165,19 @@ table.type10 tbody td {
 		<!--  table 끝 -->
 		
 		
-		
-		
+		 <!--  검색 -->
+		<div align="right">
+			<form action="/semi/nsearch" method="post">
+				<input type="search" autocomlete name="keyword" length="50">&nbsp;
+				<input type="submit" value="제목검색">
+			<!--  글쓰기 -->
+			<% if(member!= null){ %>		
+			<button onclick="return insertPage();">글쓰기</button>
+			<%} %>
+	
+			</form>
+		</div>
+			
 	
 		
 
@@ -236,20 +224,7 @@ table.type10 tbody td {
 			%>
 		</div>
 				
-		<!--  검색 -->
-		<div align="center">
-			<form action="/semi/nsearch" method="post">
-				<input type="search" autocomlete name="keyword" length="50">&nbsp;
-				<input type="submit" value="제목검색">
-			</form>
-			
-			
-		<!--  글쓰기 -->
-	<% if(member!= null){ %>		
-			<button onclick="javascript:insertPage();">글쓰기</button>
-	<%} %>
-	
-		</div>
+
 		
 		
 

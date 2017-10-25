@@ -33,6 +33,7 @@ COMMENT ON COLUMN MEMBER.talent IS '재능';
 COMMENT ON COLUMN MEMBER.manager_chatting IS '채팅가능여부';
 COMMENT ON COLUMN MEMBER.manager_login IS '접속가능여부';
 
+<<<<<<< HEAD
 INSERT INTO MEMBER VALUES (
   'user11', 'pass11', '유저1', '9001011122334', '유저_1', 
   '서울시 강남구 역삼동', 'user11@iei.org', '01012345678',
@@ -91,3 +92,6 @@ INSERT INTO MEMBER VALUES (
 );
 COMMIT;
 
+=======
+COMMIT;
+>>>>>>> refs/remotes/origin/master

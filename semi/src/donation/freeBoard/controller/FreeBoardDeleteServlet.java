@@ -1,4 +1,4 @@
-package donation.board.freeBoard.controller;
+package donation.freeBoard.controller;
 
 import java.io.IOException;
 
@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import donation.board.freeBoard.model.service.FreeBoardService;
+import donation.freeBoard.model.service.FreeBoardService;
 import donation.notice.model.service.NoticeService;
 
 /**

@@ -1,4 +1,4 @@
-package donation.board.freeBoard.controller;
+package donation.freeBoard.controller;
 
 import java.io.BufferedInputStream;
 import java.io.File;

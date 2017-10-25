@@ -24,7 +24,8 @@
 <title>QuestionListView</title>
 <script type ="text/javascript">
 	function showWriteQuestion(){
-		location.href = "views/question/questionWriteForm.jsp";		
+		location.href = "views/question/questionWriteForm.jsp";	
+		return false;
 	}
 	
 </script>
@@ -152,7 +153,6 @@ table.type10 tbody td {
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
-					<li><a href="/semi/rlist">후기 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
 
 				</ul>
@@ -221,6 +221,18 @@ table.type10 tbody td {
 </tbody>
 </table>
 
+<div align="center">
+	<form action="/semi/qsearch" method="post">
+		<input type="search" autocomlete name="keyword" length="50">&nbsp;
+		<input type="submit" value="제목검색"> 
+		
+		<% if(member!= null){ %>
+		<button onclick="return showWriteQuestion()" >글쓰기</button>
+		<%} %>
+	</form>
+	
+</div>
+
 
 <br>
 <%-- 페이지 번호 처리 --%>
@@ -249,17 +261,7 @@ table.type10 tbody td {
 
 
 
-<div align="center">
-	<form action="/semi/qsearch" method="post">
-		<input type="search" autocomlete name="keyword" length="50">&nbsp;
-		<input type="submit" value="제목검색"> 
-	</form>
-	
-	<% if(member!= null){ %>
-		<button onclick="showWriteQuestion()" >글쓰기</button>
-	<%} %>
-	
-</div>
+
 
 
 

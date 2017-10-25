@@ -87,7 +87,7 @@ table.type10{
 	border : 1px solid #ccc;
 }
 table.type10{
-	width : 1000px;
+	width : 70%;
 }
 table tr.firstTr{
 	height:40px;
@@ -97,7 +97,9 @@ table td.firstTd{
 	width:600px;
 	padding-top : 10px;
 }
-
+tr.content {
+	height:300px;
+}
 
 
 table.type10 tr{
@@ -132,7 +134,6 @@ table.type10 td{
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
-					<li><a href="/semi/rlist">후기 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
 
 				</ul>
@@ -155,7 +156,7 @@ table.type10 td{
 	<%} %></td>
 	
 
-	<tr height="100">
+	<tr class="content">
 		<td colspan="5"><%=notice.getNoticeContent() %></td>
 	</tr>
 
