@@ -169,7 +169,10 @@ $(document).ready(function() {
 </head>
 
 <body>
-
+<%@ include file="../../header.jsp" %>
+<%if(member.getMemberId().equals("admin")) { %>
+	<%@ include file="../manager/managerHeader.jsp" %>
+<% } else { %>
 <<<<<<< HEAD
 	<!-- 반복 -->
 	<div class="main-header">
@@ -210,6 +213,7 @@ $(document).ready(function() {
 	<!-- /.site-header -->
 =======
 	<%@ include file="../../headerbar.jsp" %>
+<% } %>
 >>>>>>> refs/remotes/origin/subin
 
 	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
