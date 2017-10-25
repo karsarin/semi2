@@ -33,8 +33,6 @@ public class CategoryService {
 		close(con);
 		
 		return;
-		
-		
 	}
 
 	public int deleteBoard(int cnum) {
@@ -44,6 +42,8 @@ public class CategoryService {
 		if(result > 0)
 			commit(con);
 		else rollback(con);
+		
+		close(con);
 		return result;
 	}
 
