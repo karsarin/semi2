@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*, donation.board.freeBoard.model.vo.FreeBoard"%>
+	pageEncoding="UTF-8" import="java.util.*, donation.freeBoard.model.vo.FreeBoard"%>
 <%
 
 	
-	ArrayList<FreeBoard> list = (ArrayList<FreeBoard>)request.getAttribute("list");
+ArrayList<FreeBoard> list = (ArrayList<FreeBoard>)request.getAttribute("list");
 int listCount = ((Integer)request.getAttribute("listSearchCount")).intValue();
 int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
 int startPage = ((Integer)request.getAttribute("startPage")).intValue();
@@ -22,6 +22,7 @@ String keyword  = (String)request.getAttribute("keyword");
 	function insertPage()
 	{
 		location.href="views/freeBoard/freeBoardWriteForm.jsp";
+		return false;
 	}
 </script>
 
@@ -147,7 +148,6 @@ table.type10 tbody td {
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
-					<li><a href="/semi/rlist">후기 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
 
 				</ul>
@@ -220,6 +220,17 @@ table.type10 tbody td {
 	
 		<!--  table 끝 -->
 
+<div align="center">
+	<form action="/semi/fsearch" method="post">
+		<input type="search" autocomlete name="keyword" length="50">&nbsp;
+		<input type="submit" value="제목검색"> 
+		
+			<% if(member!= null){ %>		
+			<button onclick="return insertPage();">글쓰기</button>
+		<%} %>		
+		
+	</form>
+	
 	<%-- 페이지 번호 처리 --%>
 <div align="center">
 <%-- 이전 페이지 있을 경우에 대한 처리 --%>
@@ -245,15 +256,9 @@ table.type10 tbody td {
 </div>
 	
 	
-	<div align="center">
-	<form action="/semi/fsearch" method="post">
-		<input type="search" autocomlete name="keyword" length="50">&nbsp;
-		<input type="submit" value="제목검색"> 
-	</form>
 	
-		<% if(member!= null){ %>		
-			<button onclick="insertPage();">글쓰기</button>
-		<%} %>		
+	
+	
 			
 	
 </div>

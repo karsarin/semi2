@@ -22,6 +22,7 @@ String keyword  = (String)request.getAttribute("keyword");
 	function insertPage()
 	{
 		location.href="views/notice/noticeWriteForm.jsp";
+		return false;
 	}
 </script>
 
@@ -136,9 +137,19 @@ table.type10 tbody td {
 <body>
 
 	<%@ include file="../../header.jsp"%>
-	<%@ include file="../../headerbar.jsp" %>
+	
+	<%if(member.getMemberId().equals("admin")) { %>
+      <%@ include file="../manager/managerHeader.jsp" %>
+   <% } else { %>
+      <%@ include file="../../headerbar.jsp" %>
+   <% } %>
+   
+   
 	<%@ include file="../../rightList.jsp"%>
 	
+	
+   
+   
 
 	<div
 		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
@@ -149,7 +160,6 @@ table.type10 tbody td {
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
-					<li><a href="/semi/rlist">후기 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
 
 				</ul>
@@ -217,7 +227,18 @@ table.type10 tbody td {
 		
 		<!--  table 끝 -->
 		
+			<div align="center">
+	<form action="/semi/nsearch" method="post">
+		<input type="search" autocomlete name="keyword" length="50">&nbsp;
+		<input type="submit" value="제목검색"> 
 		
+	<% if(member!= null){ %>
+			<button onclick="return insertPage();">글쓰기</button>
+	
+	<%} %>
+	
+	</form>
+</div>
 		
 		
 
@@ -247,18 +268,7 @@ table.type10 tbody td {
 	
 	
 	
-	<div align="center">
-	<form action="/semi/nsearch" method="post">
-		<input type="search" autocomlete name="keyword" length="50">&nbsp;
-		<input type="submit" value="제목검색"> 
-	</form>
-	
-		<% if(member!= null){ %>
-			<button onclick="javascript:insertPage();">글쓰기</button>
-	
-	<%} %>
-	
-</div>
+
 
 
 

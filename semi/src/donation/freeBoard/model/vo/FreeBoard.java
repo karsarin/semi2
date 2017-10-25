@@ -1,4 +1,4 @@
-package donation.board.freeBoard.model.vo;
+package donation.freeBoard.model.vo;
 
 import java.sql.Date;
 

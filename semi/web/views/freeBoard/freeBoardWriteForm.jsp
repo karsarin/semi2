@@ -80,31 +80,43 @@ ul.sub li:hover {
 
 
 
+
+
+
+
+
 <!-- 테이블 -->
 <style>
+
+
+table.type10{
+	width : 1200px;
+	border-collapse: collapse;
+	text-align: left;
+	line-height: 1.5;
+	border : 1px solid black;
+}
+
 table.type10 th{
 background-color : lightblue;
 }
-table.type10{
-	border : 1px solid black;
-	width : 710px;
-}
+
 table.type10 tr{
 
 	border-bottom : 1px solid;
 	height:30px;
 }
 td.firstTd{
-	width:210px;
+	width:100px;
 		
 }
 table.type10 textarea{
-width:710px;
-height:200px;
+width:1200px;
+height:300px;
 }
 input#input{
-	height:30px;
-	width:500px;
+width:1100px
+
 }
 
 </style>
@@ -132,7 +144,6 @@ input#input{
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
-					<li><a href="/semi/rlist">후기 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
 
 				</ul>
@@ -160,14 +171,16 @@ input#input{
 	<tr><td class="firstTd">제목</td> <td><input type="text" name="title" id="input"></td>	</tr>
 	<tr><td class="firstTd">작성자</td> <td><input type="text" name="writer" id="input" value="<%=member.getMemberId() %>" readonly></td></tr>
 	<tr><td class="firstTd">첨부파일</td> <td><input type="file" name="file"></td></tr>
-	<tr><td colspan="2"><textarea rows="5" cols="50" name="content" class="contentbox"></textarea></td></tr>
+	<tr><td colspan="2"><textarea name="content" class="contentbox"></textarea></td></tr>
 	<tr><td colspan="2" align="right"><input type="submit" value="등록하기">&nbsp; <input type="reset" value="취소하기"></td></tr>
 	</tbody>
 	</table>
 	</form>
 	
 	<br>
+	<div align="right">
 	<a href="/semi/flist">목록으로 이동</a>
+    </div>
     <br>
 <br>
 </div>
