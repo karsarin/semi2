@@ -37,8 +37,7 @@ public class SuggestDetailServlet extends HttpServlet {
 		int no = Integer.parseInt(request.getParameter("no"));
 		
 		SuggestService sugservice = new SuggestService();
-		
-		
+				
 		Suggest suggest = sugservice.selectSuggest(no);
 		
 		RequestDispatcher view = null;
