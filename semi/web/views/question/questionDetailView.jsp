@@ -76,7 +76,6 @@ ul.sub li:hover {
 </style>
 <!-- 세로목록 끝 -->
 
-
 <!-- 테이블 -->
 <style>
 #detailview{
@@ -147,14 +146,13 @@ width:20%;
 
 
 
-<table class="type10">
-<tr class="firstTr">
-<td class="firstTd"><%= q.getQuestionTitle() %></td>
-<td><%= q.getQuestionReadCount() %></td>
-<td><%= q.getQuestionDate() %> </td>
-<td><%= q.getQuestionWriter() %></td>
-
-	<td>
+<table  class="table table-hover" id="detailview">
+<tr>
+<td id="titlie"><label><%= q.getQuestionTitle() %></label></td>
+<td id="readCount"><label><%= q.getQuestionReadCount() %></label></td>
+<td id="date"><label><%= q.getQuestionDate() %> </label></td>
+<td id="writer"><label><%= q.getQuestionWriter() %></label></td>
+<td id="file">
 	<% if(q.getQuestionOriginalFileName() == null){ %>
 		첨부파일 없음
 	<% }else{ %>
@@ -166,10 +164,10 @@ width:20%;
 </tr>	
 	
 
-	<tr class="content">
+<tr id="textBox">
 		<td colspan="5">
 		<%= q.getQuestionContent() %></td>
-	</tr>
+</tr>
 
 <tr><td colspan="5" align="center">
 <%  if(member != null){ %>
@@ -184,6 +182,7 @@ width:20%;
 <a href="/semi/qlist?page=<%= currentPage %>">[목록]</a>
 </td></tr>
 </table>
+
 
 
 
