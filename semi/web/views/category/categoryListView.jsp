@@ -169,8 +169,11 @@ $(document).ready(function() {
 </head>
 
 <body>
-
-
+<%@ include file="../../header.jsp" %>
+<%if(member.getMemberId().equals("admin")) { %>
+	<%@ include file="../manager/managerHeader.jsp" %>
+<% } else { %>
+<<<<<<< HEAD
 	<!-- 반복 -->
 	<div class="main-header">
 		<div class="container">
@@ -208,8 +211,10 @@ $(document).ready(function() {
 	</div>
 	<!-- /.main-header -->
 	<!-- /.site-header -->
-
+=======
 	<%@ include file="../../headerbar.jsp" %>
+<% } %>
+>>>>>>> refs/remotes/origin/subin
 
 	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
@@ -244,26 +249,20 @@ $(document).ready(function() {
 			<h1 style="font-size:20pt">카테고리 게시판</h1>
 			<h3>총 <%= clistCount %>개의 재능이 등록돼 있습니다.</h3>
 		<br>
-		
 		<div id="container">
-		<% for (Category c : category){ %>
 			<div class="grid">
 				<div class="imgholder">
-				<a href="/semi/cdetail?cnum=<%=c.getCategoryNo()%>&page=<%=ccurrentPage%>">	
-				<% if(c.getOriginalImage() != null){ %>
-					<img src="<%= c.getOriginalImage()%>"> 
-					<% } else { %>
-						<img src="images/default_board.png">
-					<%} %>
-				</a>
+				<a href="/semi/cdetail">	<img
+						src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img27.jpg" />
+						</a>
 				</div>
-				<strong><%=c.getCategoryTitle() %></strong>
-				<p>by <%=c.getUserId() %> &nbsp; &nbsp; <%=c.getCategoryDonation() %>원</p>
-				<p>★★★★ 후기 5건</p>
+				<strong>Sunset Lake</strong>
+				<p>by user id &nbsp; 50,000원</p>
+				<p>★★★★★ 후기 5건</p>
 				
 				<!-- div class="meta">by j osborn</div> -->
 			</div>
-			<%} %>
+			
 			
 			<!--  <div class="grid">
 				<div class="imgholder">

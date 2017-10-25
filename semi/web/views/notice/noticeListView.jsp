@@ -283,4 +283,64 @@ table.type10 tbody td {
 
 
 </body>
+</html>			<%
+				if (currentPage >= maxPage) {
+			%>
+			[다음]
+			<%
+				} else {
+			%>
+			<a href="/semi/nlist?page=<%=currentPage + 1%>">[다음]</a>
+			<%
+				}
+			%>
+		</div>
+				
+		<!--  검색 -->
+		<div align="center">
+			<form action="/semi/nsearch" method="post">
+				<input type="search" autocomlete name="keyword" length="50">&nbsp;
+				<input type="submit" value="제목검색">
+			</form>
+			
+			
+		<!--  글쓰기 -->
+	<% if(member!= null){ %>		
+			<button onclick="javascript:insertPage();">글쓰기</button>
+	<%} %>
+	
+		</div>
+		
+		
+
+		
+		
+	
+	
+
+
+	
+	<div id="footer" style="clear: both;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-xs-12 text-left">
+					<span>Copyright &copy; 2014 Company Name</span>
+				</div>
+				<!-- /.text-center -->
+				<div class="col-md-4 hidden-xs text-right">
+					<a href="#top" id="go-top">Back to top</a>
+				</div>
+				<!-- /.text-center -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /#footer -->
+
+
+
+
+
+</body>
 </html>
