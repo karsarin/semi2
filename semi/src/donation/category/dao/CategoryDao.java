@@ -141,19 +141,19 @@ public class CategoryDao {
 
 	public int insertCategory(Connection con, Category c) {
 		int result = 0;
+		
 		PreparedStatement pstmt = null;
 		
-		String query = "insert into category_board values("
-				+ "select max(category_no) + 1 from category_board), ?, ?, ?, ?, ?, sysdate, dafault, ?"
-				+ "?, select max(category_no) + 1 from category_board), default, default, defaul, ?, "
-				+ "?, ?, ?, default, default)";
+		String query = "insert into category_board values((select max(category_no) + 1 from category_board), ?, ?, ?, ?, ?, sysdate, dafault, ?, "
+				+ "?, (select max(category_no) + 1 from category_board), 0, 0, 0, ?, ?, ?, ?, default, default)";
 		
 		try {
 			pstmt = con.prepareStatement(query);
+			
 			pstmt.setString(1, c.getUserId());
 			pstmt.setInt(2, c.getCategoryGroup());
 			pstmt.setString(3, c.getCategoryTitle());
-			pstmt.setString(4, c.getCategoryWriter());
+			pstmt.setString(4, c.getUserId());
 			pstmt.setString(5, c.getCategoryContent());
 			pstmt.setInt(6, c.getCategoryDonation());
 			pstmt.setInt(7, c.getWorkDate());
@@ -161,6 +161,8 @@ public class CategoryDao {
 			pstmt.setString(9, c.getEmail());
 			pstmt.setString(10, c.getOriginalImage());
 			pstmt.setString(11, c.getRenameImage());
+			
+			result = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
 			e.printStackTrace();

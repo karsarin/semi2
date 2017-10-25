@@ -174,6 +174,10 @@ $(document).ready(function() {
 	<%@ include file="../manager/managerHeader.jsp" %>
 <% } else { %>
 <<<<<<< HEAD
+
+=======
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/master
 	<!-- 반복 -->
 	<div class="main-header">
 		<div class="container">
@@ -211,11 +215,17 @@ $(document).ready(function() {
 	</div>
 	<!-- /.main-header -->
 	<!-- /.site-header -->
+<<<<<<< HEAD
+
+	<%@ include file="../../headerbar.jsp" %>
+<%} %>
+=======
 =======
 	<%@ include file="../../headerbar.jsp" %>
 <% } %>
 >>>>>>> refs/remotes/origin/subin
 
+>>>>>>> refs/remotes/origin/master
 	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
 		<ul id="navi">
@@ -234,9 +244,6 @@ $(document).ready(function() {
 			</li>
 
 		</ul>
-
-
-
 	</div>
 
 	<!-- 반복 끝 -->
@@ -256,9 +263,16 @@ $(document).ready(function() {
 						src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img27.jpg" />
 						</a>
 				</div>
+<<<<<<< HEAD
+				<strong><%=c.getCategoryTitle() %></strong>
+				<p>by <%=c.getUserId() %> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<%=c.getCategoryDonation() %>원</p>
+				<p>★★★★ 후기 5건</p>
+=======
 				<strong>Sunset Lake</strong>
 				<p>by user id &nbsp; 50,000원</p>
 				<p>★★★★★ 후기 5건</p>
+>>>>>>> refs/remotes/origin/master
 				
 				<!-- div class="meta">by j osborn</div> -->
 			</div>
