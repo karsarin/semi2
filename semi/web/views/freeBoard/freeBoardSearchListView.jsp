@@ -93,38 +93,38 @@ ul.sub li:hover {
 <!-- 세로목록 끝 -->
 
 
-<!-- 테이블 -->
+<!-- 세로목록 끝 -->
+
 <style>
-table.type10 {
-	width : 70%;
-	border-collapse: collapse;
-	text-align: left;
-	line-height: 1.5;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+
+#table{
+width:69%
+}
+#table #no{
+width:6%
+}
+#table #title{
+width:50%
+}
+#table #writer{
+width:10%
+}
+#table #date{
+width:15%
+}
+#table #file{
+width:12%
+}
+#table #readCount{
+width:7%
+}
+#firstTr{
+background-color:lightblue;
 }
 
-table.type10 thead th {
-	width: 150px;
-	padding: 10px;
-	font-weight: bold;
-	vertical-align: top;
-	color: #fff;
-	background: lightblue;
-	margin: 20px 10px;
-}
-
-table.type10 thead th.titleTh{
-	width:60%;
-}
-
-
-table.type10 tbody td {
-	width: 150px;
-	padding: 10px;
-}
 
 </style>
+
 
 
 
@@ -164,31 +164,24 @@ table.type10 tbody td {
 
 	
 	
-	
+
 	<!--  게시판 -->
 
-	<table class="type10" width="1000px;">
+	<table class="table table-hover" id="table">			
 				
-				<thead>
-					<tr>
-						<th>번호</th>
-						<th  class="titleTh">제목</th>
-						<th>작성자</th>
-						<th>날짜</th>
-						<th>첨부파일</th>
-						<th>조회수</th>
+					<tr id="firstTr">
+						<th id="no">번호</th>
+						<th id="titlie">제목</th>
+						<th id="writer">작성자</th>
+						<th id="date">날짜</th>
+						<th id="file">첨부파일</th>
+						<th id="readCount">조회수</th>
 					</tr>
-				</thead>
-
-
-
+					
 
 				<%
 					for (FreeBoard fboard : list) {
 				%>
-
-
-				<tbody>
 					<tr>
 						<td><%=fboard.getfreeBoardNo()%></td>
 						<td><a href="/semi/fdetail?no=<%=fboard.getfreeBoardNo()%>">
@@ -202,25 +195,20 @@ table.type10 tbody td {
 							%> O <%
 								} else {
 							%> X <%
- 	}
- %>
+ 							}
+							 %>
 						</td>
 						<td><%=fboard.getReadCount()%></td>
 					</tr>
 					<%
 						}
 					%>
-				
-				<tbody>
-
-
-				</tbody>
 			</table>
 
 	
 		<!--  table 끝 -->
 
-<div align="center">
+<div align="right">
 	<form action="/semi/fsearch" method="post">
 		<input type="search" autocomlete name="keyword" length="50">&nbsp;
 		<input type="submit" value="제목검색"> 
@@ -266,12 +254,8 @@ table.type10 tbody td {
 	
 
 
-
 	
-
-
-
-	<div id="footer" >
+	<div id="footer" style="clear: both;">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-xs-12 text-left">
@@ -288,6 +272,7 @@ table.type10 tbody td {
 		<!-- /.container -->
 	</div>
 	<!-- /#footer -->
+
 
 
 </body>

@@ -73,9 +73,9 @@ public class SuggestSendServlet extends HttpServlet {
 		String title = mrequest.getParameter("title");
 		String content = mrequest.getParameter("content");
 		String suggestOriginalFileName = mrequest.getFilesystemName("file");
-		String suggestPreoid = mrequest.getParameter("suggestPreoid");
-		String suggestWriter = mrequest.getParameter("suggestWriter");
-		String suggestReciver = mrequest.getParameter("suggestReciver");
+		String suggestPreoid = mrequest.getParameter("preoid");
+		String suggestWriter = mrequest.getParameter("writer");
+		String suggestReciver = mrequest.getParameter("reciver");
 		
 		//업로드되어 있는 파일을 '년월일시분초.확장자' 형식으로 파일명 바꾸기 처리
 		if(suggestOriginalFileName != null){
@@ -106,7 +106,7 @@ public class SuggestSendServlet extends HttpServlet {
 				fout.close();
 				
 				//폴더에서 원 파일을 삭제함
-				suggestOriginalFileName.delete();
+				suggestOriginalFile.delete();
 			}
 			
 			//업로드된 파일이 있을 경우
@@ -123,7 +123,7 @@ public class SuggestSendServlet extends HttpServlet {
 			response.sendRedirect("/semi/suglist");
 		}else{
 			view = request.getRequestDispatcher("views/suggest/suggestError.jsp");
-			request.setAttribute("message", "suggest 등록 실패!");
+			request.setAttribute("message", "suggest 전송 실패!");
 			view.forward(request, response);
 		}		
 	}

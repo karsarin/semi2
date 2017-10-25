@@ -78,40 +78,26 @@ ul.sub li:hover {
 
 
 
+
+
 <style>
-
-
-table.type10{
-	width : 1200px;
-	border-collapse: collapse;
-	text-align: left;
-	line-height: 1.5;
-	border : 1px solid black;
+#writetable{
+	width:69%;
+}
+#title{
+	width:65px;
 }
 
-table.type10 th{
-background-color : lightblue;
+#textarea textarea{
+height:200px;
 }
 
-table.type10 tr{
-
-	border-bottom : 1px solid;
-	height:30px;
-}
-td.firstTd{
-	width:100px;
-		
-}
-table.type10 textarea{
-width:1200px;
-height:300px;
-}
-input#input{
-width:1100px
-
-}
 
 </style>
+<!-- 세로목록 끝 -->
+
+
+
 
 
 
@@ -147,33 +133,65 @@ width:1100px
 
 
 	<form action="/semi/fupdate" method="post" enctype="multipart/form-data">
-	<input type="hidden" name="no" value="<%=fboard.getfreeBoardNo()%>"> 
-	<table class="type10">
-	<thead><th colspan="2">자유게시글 수정</th></thead>
-		
-	<tbody>
-	<tr><td class="firstTd">제목</td> <td><input type="text" name="title" id="input" value="<%= fboard.getfreeBoardTitle()%>"></td>	</tr>
-	<tr><td class="firstTd">작성자</td> <td><input type="text" name="writer" id="input"  value="<%=fboard.getfreeBoardWriter() %>" readonly></td></tr>
-	<tr><td class="firstTd">첨부파일</td> <td  align="left">
+	<input type="hidden" name="no" value="<%=fboard.getfreeBoardNo()%>"> 		
+	<form action="/semi/fupdate" method="post" enctype="multipart/form-data">
+	<table id="writetable">
+	<th colspan="2">자유게시판 쓰기</th>
+	
+	<tr>
+	<td id="category">분류</td>
+	<td>	
+	<select class="form-control">
+ 	 	<option>자유</option>
+  		<option>후기</option>
+	</select>
+	</td>
+	</tr>
+	
+	<tr><td id="title">제목</td> <td><input type="text" name="title" class="form-control" id="exampleInputEmail1" value="<%= fboard.getfreeBoardTitle()%>"></td>	</tr>
+	<tr><td>작성자</td> <td><input type="text" name="writer" class="form-control" id="exampleInputEmail1" value="<%=fboard.getfreeBoardWriter() %>" readonly></td></tr>
+	<tr><td>첨부파일</td> 
+	<td>
 	<%if(fboard.getOriginalFileName() != null){ %>
 	<input type="file" name="file" value="<%=fboard.getOriginalFileName()%>">
 	<%}else{ %>
 	<input type="file" name="file" >
-	<%} %>
-	</td>	</tr>
-	<tr><td colspan="2"><textarea rows="5" cols="50" name="content" class="contentbox"><%=fboard.getfreeBoardContent() %></textarea></td></tr>
-	<tr><td colspan="2" align="right"><input type="submit" value="등록하기">&nbsp; <input type="reset" value="취소하기"></td></tr>
-	</tbody>
+	<%} %></td>
+	</tr>
+	
+	
+	<tr><td colspan="2" id="textarea"><textarea rows="5" cols="50" name="content"  class="form-control"><%=fboard.getfreeBoardContent() %></textarea></td></tr>
+	<tr><td colspan="2" align="right"><input type="submit" value="등록하기" class="btn btn-default">&nbsp; <input type="reset" value="취소하기" class="btn btn-default"></td></tr>
 	</table>
 	</form>
 
+	</form>
 
+
+	<div align="center">
 	<a href="/semi/flist">목록으로 이동</a>
-</section>
+	</div>
 
 
-<br><br>
-<hr>
+	<div id="footer" style="clear: both;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-xs-12 text-left">
+					<span>Copyright &copy; 2014 Company Name</span>
+				</div>
+				<!-- /.text-center -->
+				<div class="col-md-4 hidden-xs text-right">
+					<a href="#top" id="go-top">Back to top</a>
+				</div>
+				<!-- /.text-center -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /#footer -->
+
+
 
 </body>
 </html>

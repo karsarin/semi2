@@ -94,39 +94,35 @@ ul.sub li:hover {
 
 
 
-<!-- 테이블 -->
+
 <style>
-table.type10 {
-	width : 70%;
-	border-collapse: collapse;
-	text-align: left;
-	line-height: 1.5;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+#table{
+width:69%
 }
-
-table.type10 thead th {
-	width: 150px;
-	padding: 10px;
-	font-weight: bold;
-	vertical-align: top;
-	color: #fff;
-	background: lightblue;
-	margin: 20px 10px;
+#table #no{
+width:6%
 }
-
-table.type10 thead th.titleTh{
-	width:60%;
+#table #title{
+width:50%
 }
-
-
-table.type10 tbody td {
-	width: 150px;
-	padding: 10px;
+#table #writer{
+width:10%
+}
+#table #date{
+width:15%
+}
+#table #file{
+width:12%
+}
+#table #readCount{
+width:7%
+}
+#firstTr{
+background-color:lightblue;
 }
 
 </style>
-
+<!-- 세로목록 끝 -->
 
 
 
@@ -175,27 +171,22 @@ table.type10 tbody td {
 
 
 	
-	
 	<!--  게시판 -->
-
-			<table class="type10">	
-				<thead>			
-					<tr>
-						<th class="noTh">번호</th>
-						<th class="titleTh">제목</th>
-						<th>작성자</th>
-						<th>날짜</th>
-						<th>첨부파일</th>
-						<th>조회수</th>
+			<table class="table table-hover" id="table">		
+					<tr id="firstTr">
+						<th id="no">번호</th>
+						<th id="titlie">제목</th>
+						<th id="writer">작성자</th>
+						<th id="date">날짜</th>
+						<th id="file">첨부파일</th>
+						<th id="readCount">조회수</th>
 					</tr>
-				</thead>
 
 				<%
 					for (Notice notice : list) {
 				%>
 
 
-				<tbody>
 					<tr>
 						<td><%=notice.getNoticeNo()%></td>
 						<td><a href="/semi/ndetail?no=<%=notice.getNoticeNo()%>">
@@ -219,15 +210,14 @@ table.type10 tbody td {
 						}
 					%>
 				
-				</tbody>
-
-
 			</table>
+
+		<!--  table 끝 -->
 
 		
 		<!--  table 끝 -->
 		
-			<div align="center">
+	<div align="right">
 	<form action="/semi/nsearch" method="post">
 		<input type="search" autocomlete name="keyword" length="50">&nbsp;
 		<input type="submit" value="제목검색"> 
@@ -269,14 +259,8 @@ table.type10 tbody td {
 	
 	
 
-
-
-
-
 	
-
-
-	<div id="footer" >
+	<div id="footer" style="clear: both;">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-xs-12 text-left">
@@ -293,6 +277,7 @@ table.type10 tbody td {
 		<!-- /.container -->
 	</div>
 	<!-- /#footer -->
+
 
 
 </body>

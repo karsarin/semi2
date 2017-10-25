@@ -72,7 +72,7 @@ public class NoticeUpdateServlet extends HttpServlet {
 			//어플리케이션의 루트폴더를 알아내라는 뜻 
 			
 			//업로드 될 파일의 폴더명과 루트 폴더 연결 처리
-			String savePath = root + "nuploadfiles";
+			String savePath = root + "uploadfiles/" + "nuploadfiles";
 			// web/uploadfiles 로 만들어짐
 			
 			//request 를 MultipartRequest 객체로 변환함

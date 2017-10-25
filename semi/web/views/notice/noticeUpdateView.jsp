@@ -80,41 +80,20 @@ ul.sub li:hover {
 
 
 <style>
-
-
-table.type10{
-	width : 1200px;
-	border-collapse: collapse;
-	text-align: left;
-	line-height: 1.5;
-	border : 1px solid black;
+#writetable{
+	width:69%;
+}
+#title{
+	width:65px;
 }
 
-table.type10 th{
-background-color : lightblue;
+#textarea textarea{
+height:200px;
 }
 
-table.type10 tr{
-
-	border-bottom : 1px solid;
-	height:30px;
-}
-td.firstTd{
-	width:100px;
-		
-}
-table.type10 textarea{
-width:1200px;
-height:300px;
-}
-input#input{
-width:1100px
-
-}
 
 </style>
-
-
+<!-- 세로목록 끝 -->
 </head>
 
 <body>
@@ -143,34 +122,57 @@ width:1100px
 	</div>
 	
 	
+	
 	<form action="/semi/nupdate" method="post" enctype="multipart/form-data">
+	
 	<input type="hidden" name="no" value="<%=notice.getNoticeNo()%>"> 
-	<table class="type10">
-	<thead><th colspan="2">공지글 수정</th></thead>
-		
-	<tbody>
-	<tr><td class="firstTd">제목</td> <td><input type="text" name="title" id="input" value="<%= notice.getNoticeTitle()%>"></td>	</tr>
-	<tr><td class="firstTd">작성자</td> <td><input type="text" name="writer" id="input" value="<%=notice.getNoticeWriter() %>" readonly></td></tr>
-	<tr><td class="firstTd">첨부파일</td> <td  align="left">
+	<table id="writetable">
+	<th colspan="2">공지글 쓰기</th>		
+	<tr><td id="title">제목</td> <td><input type="text" name="title" class="form-control" id="exampleInputEmail1" value="<%= notice.getNoticeTitle()%>"></td>	</tr>
+	<tr><td>작성자</td> <td><input type="text" name="writer" class="form-control" id="exampleInputEmail1" value="<%=notice.getNoticeWriter() %>" readonly></td></tr>
+	<tr><td>첨부파일</td> 
+	<td>
 	<%if(notice.getOriginalFileName() != null){ %>
 	<input type="file" name="file" value="<%=notice.getOriginalFileName()%>">
 	<%}else{ %>
 	<input type="file" name="file" >
-	<%} %>
-	</td>	</tr>
-	<tr><td colspan="2"><textarea rows="5" cols="50" name="content" class="contentbox"><%=notice.getNoticeContent() %></textarea></td></tr>
-	<tr><td colspan="2" align="right"><input type="submit" value="등록하기">&nbsp; <input type="reset" value="취소하기"></td></tr>
-	</tbody>
+	<%} %></td>
+	</tr>
+	<tr><td colspan="2" id="textarea"><textarea rows="5" cols="50" name="content"  class="form-control"><%=notice.getNoticeContent() %></textarea></td></tr>
+	<tr><td colspan="2" align="right"><input type="submit" value="수정하기" class="btn btn-default">&nbsp; <input type="reset" value="취소하기" class="btn btn-default"></td></tr>
 	</table>
-	</form>
+	</form>	
+	
+	
+	<div align ="center">
+	<a href="/semi/nlist">목록보기로 이동</a>
+	</div>
+
+
+
 
 	
-	<a href="/semi/nlist">목록으로 이동</a>
-</section>
+	<div id="footer" style="clear: both;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-xs-12 text-left">
+					<span>Copyright &copy; 2014 Company Name</span>
+				</div>
+				<!-- /.text-center -->
+				<div class="col-md-4 hidden-xs text-right">
+					<a href="#top" id="go-top">Back to top</a>
+				</div>
+				<!-- /.text-center -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /#footer -->
 
 
-<br><br>
-<hr>
+
+
 
 </body>
 </html>

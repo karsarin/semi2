@@ -82,38 +82,32 @@ ul.sub li:hover {
 
 <!-- 테이블 -->
 <style>
-
-table.type10{
-	border : 1px solid #ccc;
-}
-table.type10{
-	width : 70%;
-}
-table tr.firstTr{
-	height:40px;
-	background-color: lightblue;
-}
-table td.firstTd{
-	width:600px;
-	padding-top : 10px;
-}
-tr.content {
-	height:300px;
+#detailview{
+	width:69%;
 }
 
-
-table.type10 tr{
-	border-bottom : 1px solid #ccc;
-
+#textBox{
+	height:200px;
 }
 
-table.type10 td{
-	border-right : 1px solid #ccc;
+#title{
+
+width:40%;
 }
+#readCount{
+width:8%;
+}
+#date{
+width:15%;
+}
+#writer{
+width:13%;
+}
+#file{
+width:20%;
+}
+
 </style>
-
-
-
 
 
 </head>
@@ -144,30 +138,32 @@ table.type10 td{
 	</div>
 	
 
-
-
-<table class="type10">
-	<tr class="firstTr">
-		<td class="firstTd"><%= notice.getNoticeTitle() %></td><td>조회:<%=notice.getReadCount() %></td><td><%=notice.getNoticeDate() %></td><td><%=notice.getNoticeWriter() %></td><td>	<%if(notice.getOriginalFileName() != null){	%>
 		
-		<a href="/semi/nfdown?oname=<%=notice.getOriginalFileName()%>&rname=<%=notice.getRenameFileName()%>">	<%=notice.getOriginalFileName() %></a>
-	<%}else{ %>
-		첨부파일 없음
-	<%} %></td>
-	
+						
 
-	<tr class="content">
+<table  class="table table-hover" id="detailview">
+	<tr>
+		<td id="titlie"><label><%= notice.getNoticeTitle() %></label></td>
+		<td id="readCount"><label>조회:<%=notice.getReadCount() %></label></td>
+		<td id="date"><label><%=notice.getNoticeDate() %></label></td>
+		<td id="writer"><label><%=notice.getNoticeWriter() %></label></td>
+		<td id="file"><label><%if(notice.getOriginalFileName() != null){	%>		
+		<a href="/semi/nfdown?oname=<%=notice.getOriginalFileName()%>&rname=<%=notice.getRenameFileName()%>">	<%=notice.getOriginalFileName() %></a>
+		<%}else{ %>
+		첨부파일 없음
+		<%} %></label></td>
+	<tr id="textBox">
 		<td colspan="5"><%=notice.getNoticeContent() %></td>
 	</tr>
 
 
 	<%if(notice.getNoticeWriter().equals(member.getMemberId())){ //include에서 sission값을 가지고있기 때문에 그냥 사용할 수 있다. %>
-	<tr align="right"><td colspan="5">
+	<tr><td colspan="5" align="right">
 		<a href="/semi/nupview?no=<%=notice.getNoticeNo()%>">수정페이지로 이동</a> &nbsp; 
 		<a href="/semi/ndel?no=<%=notice.getNoticeNo()%>">삭제하기</a>
 	</td></tr>
 	<%}else{ %>
-	
+	<tr><td></td></tr>
 	<%} %>
 </table>
 
@@ -175,10 +171,30 @@ table.type10 td{
 
 <div align ="center">
 	<a href="/semi/nlist">목록보기로 이동</a>
-
 </div>
-<br><br>
-<hr>
+
+
+
+	
+	<div id="footer" style="clear: both;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-xs-12 text-left">
+					<span>Copyright &copy; 2014 Company Name</span>
+				</div>
+				<!-- /.text-center -->
+				<div class="col-md-4 hidden-xs text-right">
+					<a href="#top" id="go-top">Back to top</a>
+				</div>
+				<!-- /.text-center -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /#footer -->
+
+
 
 
 

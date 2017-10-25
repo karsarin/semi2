@@ -70,6 +70,36 @@ ul.sub li a {
 ul.sub li:hover {
 	background: lightblue;
 }
+
+</style>
+
+
+<style>
+#table{
+width:69%
+}
+#table #no{
+width:6%
+}
+#table #title{
+width:50%
+}
+#table #writer{
+width:10%
+}
+#table #date{
+width:15%
+}
+#table #file{
+width:12%
+}
+#table #readCount{
+width:7%
+}
+#firstTr{
+background-color:lightblue;
+}
+
 </style>
 <!-- 세로목록 끝 -->
 
@@ -86,8 +116,7 @@ ul.sub li:hover {
 
 	<%@ include file="../../header.jsp"%>
 	<%@ include file="../../headerbar.jsp" %>
-	<%@ include file="../../rightList.jsp"%>
-	
+	<%@ include file="../../rightList.jsp" %>
 
 	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 		<ul id="navi">
@@ -106,41 +135,30 @@ ul.sub li:hover {
 	
 
 
-
-
-
-
-
-
-
 	<!--  게시판 -->
-
-			<table class="table table-hover"">	
-				<thead>			
-					<tr>
-						<th class="noTh">번호</th>
-						<th class="titleTh">제목</th>
-						<th>작성자</th>
-						<th>날짜</th>
-						<th>첨부파일</th>
-						<th>조회수</th>
+			<table class="table table-hover" id="table">		
+					<tr id="firstTr">
+						<th id="no">번호</th>
+						<th id="titlie">제목</th>
+						<th id="writer">작성자</th>
+						<th id="date">날짜</th>
+						<th id="file">첨부파일</th>
+						<th id="readCount">조회수</th>
 					</tr>
-				</thead>
 
 				<%
 					for (Notice notice : list) {
 				%>
 
 
-				<tbody>
 					<tr>
-						<td class="active"><%=notice.getNoticeNo()%></td>
-						<td class="success"><a href="/semi/ndetail?no=<%=notice.getNoticeNo()%>">
+						<td><%=notice.getNoticeNo()%></td>
+						<td><a href="/semi/ndetail?no=<%=notice.getNoticeNo()%>">
 								<%=notice.getNoticeTitle()%>
 						</a></td>
-						<td class="warning"><%=notice.getNoticeWriter()%></td>
-						<td class="danger"><%=notice.getNoticeDate()%></td>
-						<td class="info">
+						<td><%=notice.getNoticeWriter()%></td>
+						<td><%=notice.getNoticeDate()%></td>
+						<td>
 							<%
 								if (notice.getOriginalFileName() != null) {
 							%> O <%
@@ -156,12 +174,8 @@ ul.sub li:hover {
 						}
 					%>
 				
-				</tbody>
-
-
 			</table>
 
-		
 		<!--  table 끝 -->
 		
 		
@@ -225,14 +239,6 @@ ul.sub li:hover {
 		</div>
 				
 
-		
-		
-
-		
-		
-	
-	
-
 
 	
 	<div id="footer" style="clear: both;">
@@ -258,64 +264,4 @@ ul.sub li:hover {
 
 
 </body>
-</html>			<%
-				if (currentPage >= maxPage) {
-			%>
-			[다음]
-			<%
-				} else {
-			%>
-			<a href="/semi/nlist?page=<%=currentPage + 1%>">[다음]</a>
-			<%
-				}
-			%>
-		</div>
-				
-		<!--  검색 -->
-		<div align="center">
-			<form action="/semi/nsearch" method="post">
-				<input type="search" autocomlete name="keyword" length="50">&nbsp;
-				<input type="submit" value="제목검색">
-			</form>
-			
-			
-		<!--  글쓰기 -->
-	<% if(member!= null){ %>		
-			<button onclick="javascript:insertPage();">글쓰기</button>
-	<%} %>
-	
-		</div>
-		
-		
-
-		
-		
-	
-	
-
-
-	
-	<div id="footer" style="clear: both;">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-xs-12 text-left">
-					<span>Copyright &copy; 2014 Company Name</span>
-				</div>
-				<!-- /.text-center -->
-				<div class="col-md-4 hidden-xs text-right">
-					<a href="#top" id="go-top">Back to top</a>
-				</div>
-				<!-- /.text-center -->
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /#footer -->
-
-
-
-
-
-</body>
-</html>
+</html>			

@@ -98,38 +98,38 @@ ul.sub li:hover {
 
 
 
-<!-- 테이블 -->
+<!-- 세로목록 끝 -->
+
 <style>
-table.type10 {
-	width : 70%;
-	border-collapse: collapse;
-	text-align: left;
-	line-height: 1.5;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+
+#table{
+width:69%
+}
+#table #no{
+width:6%
+}
+#table #title{
+width:50%
+}
+#table #writer{
+width:10%
+}
+#table #date{
+width:15%
+}
+#table #file{
+width:12%
+}
+#table #readCount{
+width:7%
+}
+#firstTr{
+background-color:lightblue;
 }
 
-table.type10 thead th {
-	width: 150px;
-	padding: 10px;
-	font-weight: bold;
-	vertical-align: top;
-	color: #fff;
-	background: lightblue;
-	margin: 20px 10px;
-}
-
-table.type10 thead th.titleTh{
-	width:60%;
-}
-
-
-table.type10 tbody td {
-	width: 150px;
-	padding: 10px;
-}
 
 </style>
+
 
 
 
@@ -170,15 +170,19 @@ table.type10 tbody td {
 
 <br>
 
-
-<table class="type10">
-
-<thead>
-	<tr><th>번호</th><th class="titleTh">제목</th><th>작성자</th><th>날짜</th><th>첨부파일</th><th>조회수</th></tr>
-</thead>
+<table class="table table-hover" id="table">
 
 
-<tbody>
+		<tr id="firstTr">
+			<th id="no">번호</th>
+			<th id="titlie">제목</th>
+			<th id="writer">작성자</th>
+			<th id="date">날짜</th>
+			<th id="file">첨부파일</th>
+			<th id="readCount">조회수</th>
+		</tr>
+
+
 
 <%
 	for(Question q : list){
@@ -218,10 +222,12 @@ table.type10 tbody td {
 </tr>
 <%  } %>
 
-</tbody>
+
 </table>
 
-<div align="center">
+
+
+<div align="right">
 	<form action="/semi/qsearch" method="post">
 		<input type="search" autocomlete name="keyword" length="50">&nbsp;
 		<input type="submit" value="제목검색"> 
@@ -261,14 +267,31 @@ table.type10 tbody td {
 
 
 
-
-
+	<br>
+	<div align="center">
+	<a href="/semi/qlist">목록으로 이동</a>
+    </div>
 
 
 	
+	<div id="footer" style="clear: both;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-xs-12 text-left">
+					<span>Copyright &copy; 2014 Company Name</span>
+				</div>
+				<!-- /.text-center -->
+				<div class="col-md-4 hidden-xs text-right">
+					<a href="#top" id="go-top">Back to top</a>
+				</div>
+				<!-- /.text-center -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /#footer -->
 
-	
-<br><br><br>
 
 </body>
 </html>
