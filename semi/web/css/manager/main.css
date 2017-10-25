@@ -54,7 +54,7 @@ hr {
 	font-size: 1.1em;
 }
 
-#column1, #column2, #column3, #column4 {
+#columnC {
 	width: 240px;
 	float: left;
 	text-align: center;
@@ -75,12 +75,9 @@ hr {
 	#pre, #next {
 		display:none;
 	}
-	#column1, #column2, #column3 {
+	#columnC {
 		margin-left:25%;
 		margin-bottom:100px;
-	}
-	#column4 {
-		margin-left:25%;
 	}
 	#tmore {
 		display: visible;
@@ -120,13 +117,14 @@ hr {
 	color: #FFF;
 }
 
-#qmore {
+#qpre, #qnext {
 	color: gray;
 	font-weight: bold;
 	background: white;
 	width: 100px;
 	height: 40px;
 	margin: auto;
+	margin-left:20px;
 }
 
 #tmore {
