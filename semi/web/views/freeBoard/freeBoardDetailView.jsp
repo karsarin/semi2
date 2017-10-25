@@ -80,37 +80,31 @@ ul.sub li:hover {
 <!-- 세로목록 끝 -->
 
 
-
 <!-- 테이블 -->
 <style>
-
-table.type10{
-	border : 1px solid #ccc;
-}
-table.type10{
-	width : 70%;
-}
-table tr.firstTr{
-	height:40px;
-	background-color: lightblue;
-}
-table td.firstTd{
-	width:600px;
-	padding-top : 10px;
+#detailview{
+	width:60%;
 }
 
-
-
-table.type10 tr{
-	border-bottom : 1px solid #ccc;
-
+#textBox{
+	height:200px;
 }
 
-table.type10 td{
-	border-right : 1px solid #ccc;
+#title{
+
+width:40%;
 }
-tr.content {
-	height:300px;
+#readCount{
+width:8%;
+}
+#date{
+width:15%;
+}
+#writer{
+width:13%;
+}
+#file{
+width:20%;
 }
 
 </style>
@@ -147,17 +141,19 @@ tr.content {
 
 
 
-<table class="type10">
-	<tr class="firstTr">
-		<td class="firstTd"><%= fboard.getfreeBoardTitle() %></td><td>조회:<%=fboard.getReadCount() %></td><td><%=fboard.getfreeBoardDate() %></td><td><%=fboard.getfreeBoardWriter() %></td><td>	<%if(fboard.getOriginalFileName() != null){	%>
-		
-		<a href="/semi/ffdown?oname=<%=fboard.getOriginalFileName()%>&rname=<%=fboard.getRenameFileName()%>">	<%=fboard.getOriginalFileName() %></a>
-	<%}else{ %>
-		첨부파일 없음
-	<%} %></td>
-	
 
-	<tr class="content">
+<table  class="table table-hover" id="detailview">
+	<tr>
+		<td id="titlie"><label><%= fboard.getfreeBoardTitle() %></label></td>
+		<td id="readCount"><label>조회:<%=fboard.getReadCount() %></label></td>
+		<td id="date"><label><%=fboard.getfreeBoardDate() %></label></td>
+		<td id="writer"><label><%=fboard.getfreeBoardWriter() %></label></td>
+		<td id="file"><label><%if(fboard.getOriginalFileName() != null){	%>		
+		<a href="/semi/nfdown?oname=<%=fboard.getOriginalFileName()%>&rname=<%=fboard.getRenameFileName()%>"> <%=fboard.getOriginalFileName() %></a>
+		<%}else{ %>
+		첨부파일 없음
+		<%} %></label></td>
+	<tr id="textBox">
 		<td colspan="5"><%=fboard.getfreeBoardContent() %></td>
 	</tr>
 
@@ -169,10 +165,11 @@ tr.content {
 	</td></tr>
 	<%}else{ %>
 	
-	
 	<%} %>
-
 </table>
+
+
+
 
 	
 	
