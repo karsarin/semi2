@@ -1,4 +1,4 @@
-package donation.notice.controller;
+package donation.board.freeBoard.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -18,20 +18,20 @@ import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
-import donation.notice.model.service.NoticeService;
-import donation.notice.model.vo.Notice;
+import donation.board.freeBoard.model.service.FreeBoardService;
+import donation.board.freeBoard.model.vo.FreeBoard;
 
 /**
- * Servlet implementation class NoticeInsertServlet
+ * Servlet implementation class NoticeUpdateServlet
  */
-@WebServlet("/ninsert")
-public class NoticeInsertServlet extends HttpServlet {
+@WebServlet("/fupdate")
+public class FreeBoardUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeInsertServlet() {
+    public FreeBoardUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,40 +40,23 @@ public class NoticeInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//공지글 등록 처리용 컨트롤러
+		// 공지글 수정 처리용 컨트롤러
 		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html charset=utf-8");
-	
+		response.setContentType("text/html; charset=utf-8");
 		
-		// view에서 전송온 방식이 encoding으로   multipart/form-data 이렇게 압축해서 보냈기때문에
-		//request.getParameter("title"); 이런 아래 형식으로 값을 받아올 수 없다.			
-		/*String title = request.getParameter("title");
-		String writer = request.getParameter("writer");
-		String content = request.getParameter("content");
-		
-		
-		Notice notice = new Notice();
-		notice.setNoticeTitle(title);
-		notice.setNoticeWriter(writer);
-		notice.setNoticeContent(content);
-		
-		if(new NoticeService().insertNotice(notice)  > 0  ){
-			response.sendRedirect("/first/nlist");
-		}else{
-			RequestDispatcher errorPage = request.getRequestDispatcher("views/notice/noticeError.jsp");
-			request.setAttribute("message", "새 공지글 등록 실패!");
-			errorPage.forward(request, response);
-		}
-		*/
+	/*	Notice notice = new Notice();
+		notice.setNoticeNo(Integer.parseInt(request.getParameter("no")));
+		notice.setNoticeTitle(request.getParameter("title"));
+		notice.setNoticeContent(request.getParameter("content"));*/
 		
 		
 		//enctype 이 mulitpart 방식으로 전송되었는지 확인하는 작업이 필요함
-	
+		
 		RequestDispatcher view = null;
-		Notice notice = null;
+		FreeBoard fboard = null;
 		if(!ServletFileUpload.isMultipartContent(request) ){ // request를 가지고 요청된 view의 form 압축방식이  multipart 방식인지 확인함
 															//ServletFileUpload 이건 cos.jar(파일 입출력 라이브러리)가 제공함 
-			view = request.getRequestDispatcher("views/notice/noticeError.jsp");
+			view = request.getRequestDispatcher("views/freeBoard/freeBoardError.jsp");
 			request.setAttribute("message", "form 의 enctype 속성 누락됨!");
 			view.forward(request, response);
 		}
@@ -89,7 +72,7 @@ public class NoticeInsertServlet extends HttpServlet {
 			//어플리케이션의 루트폴더를 알아내라는 뜻 
 			
 			//업로드 될 파일의 폴더명과 루트 폴더 연결 처리
-			String savePath = root + "nuploadfiles";
+			String savePath = root + "fuploadfiles";
 			// web/uploadfiles 로 만들어짐
 			
 			//request 를 MultipartRequest 객체로 변환함
@@ -99,8 +82,7 @@ public class NoticeInsertServlet extends HttpServlet {
 			
 			//new DefaultFileRenamePolicy()는 파일을 덮어쓰기하는게 아니라 이름 변경해서  이름(1).txt, 이름(2)tx. 이렇게 구분해서 파일 업로드하는 클래스  
 					
-			
-			
+			int no = Integer.parseInt(mrequest.getParameter("no"));			
 			//이제 request가 mrequst로 바꼈기 때문에 mrequest에서 getParameter() 해야한다.
 			String title = mrequest.getParameter("title");
 			String writer = mrequest.getParameter("writer");
@@ -135,30 +117,30 @@ public class NoticeInsertServlet extends HttpServlet {
 					fin.close();
 					fout.close();
 					
-					
-				
 					//폴더에서 원 파일을 삭제함
 					originalFile.delete();
+			
 				}
 				//업로드 된 파일이 있을 경우
-				 notice = new Notice(0, title, writer, content, null, originalFileName, renameFileName, 0); //불러온 값으로 notice객체 초기화
+				 fboard = new FreeBoard(no, title, writer, content, null, originalFileName, renameFileName, 0); //불러온 값으로 notice객체 초기화
 				
-
+				
 			}
 			else{
 				// 업로드 된 파일이 없을 경우(첨부파일이 없을 경우)
-				 notice = new Notice(0, title, writer, content, null, null, null, 0); //불러온 값으로 notice객체 초기화
+				fboard = new FreeBoard(no, title, writer, content, null, null, null, 0); //불러온 값으로 notice객체 초기화
 			}		
 		
-		//서비스로 전달하고 결과받아서 뷰 선택해서 내보내기 
-		if(new NoticeService().insertNotice(notice) > 0){
-			response.sendRedirect("/semi/nlist");
+		
+		
+		if(new FreeBoardService().updateFreeBoard(fboard) > 0){
+			response.sendRedirect("/semi/flist");
 		}else{
-			view = request.getRequestDispatcher("views/notice/noticeError.jsp");
-			request.setAttribute("message", "공지글 등록 실패!");
+			view= request.getRequestDispatcher("views/freeBoard/freeBoardError.jsp");
+			request.setAttribute("message", "공지글 수정 처리 실패!");
 			view.forward(request, response);
 		}
-			
+		
 	}
 
 	/**

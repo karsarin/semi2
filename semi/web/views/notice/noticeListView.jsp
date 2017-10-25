@@ -21,25 +21,7 @@
 	}
 </script>
 
-<!-- 카테고리  -->
-
-
-
-
-<%-- 헤더바 --%>
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800'
-	rel='stylesheet' type='text/css'>
-
-<link rel="stylesheet" href="/semi/css/bootstrap.min.css">
-<link rel="stylesheet" href="/semi/css/font-awesome.css">
-<link rel="stylesheet" href="/semi/css/animate.css">
-<link rel="stylesheet" href="/semi/css/templatemo_misc.css">
-<link rel="stylesheet" href="/semi/css/templatemo_style.css">
-<script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
-
-<%-- 헤더바 끝 --%>
-
+        
 <style>
 ul#navi {
 	width: 200px;
@@ -91,6 +73,7 @@ ul.sub li:hover {
 <!-- 테이블 -->
 <style>
 table.type10 {
+	width :  70%;
 	border-collapse: collapse;
 	text-align: left;
 	line-height: 1.5;
@@ -104,24 +87,21 @@ table.type10 thead th {
 	font-weight: bold;
 	vertical-align: top;
 	color: #fff;
-	background: #e7708d;
+	background: lightblue;
 	margin: 20px 10px;
 }
 
-table.type10 tbody th {
+
+table.type10 thead th.titleTh{
+	width:60%;
+}
+
+
+table.type10 tbody td {
 	width: 150px;
 	padding: 10px;
 }
 
-table.type10 td {
-	width: 350px;
-	padding: 10px;
-	vertical-align: top;
-}
-
-table.type10 .even {
-	background: #fdf3f5;
-}
 </style>
 
 
@@ -133,70 +113,36 @@ table.type10 .even {
 <body>
 
 	<%@ include file="../../header.jsp"%>
-
-
 	<%@ include file="../../headerbar.jsp" %>
-
+	<%@ include file="../../rightList.jsp"%>
 	
 
-	<div
-		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
-
+	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
-					<li><a href="#">자유 게시판</a></li>
-					<li><a href="#">후기 게시판</a></li>
+					<li><a href="/semi/flist">자유 게시판</a></li>
+					<li><a href="/semi/rlist">후기 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
 
 				</ul>
 			</li>
 		</ul>
 	</div>
-
 	<!-- 반복 끝 -->
-
-
-	</div>
-
-
+	
 
 
 
 	<!--  게시판 -->
-	<div style="float: left;">
-		<div>
 
-			<table class="type10" width="1000px;">
-				<!-- 
-    <thead>
-    <tr>
-        <th scope="cols">글번호</th>
-        <th scope="cols">글제목</th>
-        <th scope="cols">조회수</th>
-        <th scope="cols">작성자</th>
-        <th scope="cols">날짜</th>
-       
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>첫번째 글</td>
-        <td>13</td>
-        <td>이홍섭</td>
-        <td>17/07/21</td>
-       
-    </tr>    
-    </tbody>
-     -->
-
-				<thead>
+			<table class="type10">	
+				<thead>			
 					<tr>
-						<th>번호</th>
-						<th>제목</th>
+						<th class="noTh">번호</th>
+						<th class="titleTh">제목</th>
 						<th>작성자</th>
 						<th>날짜</th>
 						<th>첨부파일</th>
@@ -204,51 +150,49 @@ table.type10 .even {
 					</tr>
 				</thead>
 
-
-
-
 				<%
-					/* while(entryIter.hasNext()){
-					Map.Entry<Integer, Notice> entry = entryIter.next();
-					Integer key = entry.getKey();
-					Notice notice = entry.getValue(); */
-
 					for (Notice notice : list) {
 				%>
 
 
 				<tbody>
-					<tr height="30">
-						<th align="center"><%=notice.getNoticeNo()%></th>
+					<tr>
+						<td><%=notice.getNoticeNo()%></td>
 						<td><a href="/semi/ndetail?no=<%=notice.getNoticeNo()%>">
 								<%=notice.getNoticeTitle()%>
 						</a></td>
-						<td align="center"><%=notice.getNoticeWriter()%></td>
-						<td align="center"><%=notice.getNoticeDate()%></td>
-						<td align="center">
+						<td><%=notice.getNoticeWriter()%></td>
+						<td><%=notice.getNoticeDate()%></td>
+						<td>
 							<%
 								if (notice.getOriginalFileName() != null) {
 							%> O <%
 								} else {
-							%> &nbsp: <%
- 	}
- %>
+							%> X
+							<%
+							 	}
+							 %>
 						</td>
-						<td align="left"><%=notice.getReadCount()%></td>
+						<td><%=notice.getReadCount()%></td>
 					</tr>
 					<%
 						}
 					%>
 				
-				<tbody>
-
-
 				</tbody>
+
+
 			</table>
 
-		</div>
+		
 		<!--  table 끝 -->
-		<br>
+		
+		
+		
+		
+	
+		
+
 		<%-- 페이지 번호 처리 --%>
 		<div align="center">
 			<%-- 이전 페이지 있을 경우에 대한 처리 --%>
@@ -291,34 +235,31 @@ table.type10 .even {
 				}
 			%>
 		</div>
-		<br>
-
+				
+		<!--  검색 -->
 		<div align="center">
 			<form action="/semi/nsearch" method="post">
 				<input type="search" autocomlete name="keyword" length="50">&nbsp;
 				<input type="submit" value="제목검색">
-
 			</form>
-		</div>
-
-
-		<div align="right">
+			
+			
+		<!--  글쓰기 -->
+	<% if(member!= null){ %>		
 			<button onclick="javascript:insertPage();">글쓰기</button>
-
+	<%} %>
+	
 		</div>
-	</div>
+		
+		
+
+		
+		
+	
+	
 
 
-
-	<!--  오른쪽 메뉴바 -->
-	<%@ include file="../../rightList.jsp"%>
-
-
-
-
-
-
-
+	
 	<div id="footer" style="clear: both;">
 		<div class="container">
 			<div class="row">
@@ -336,6 +277,9 @@ table.type10 .even {
 		<!-- /.container -->
 	</div>
 	<!-- /#footer -->
+
+
+
 
 
 </body>

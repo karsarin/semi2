@@ -1,4 +1,4 @@
-package donation.notice.controller;
+package donation.board.freeBoard.controller;
 
 import java.io.IOException;
 
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import donation.notice.model.service.NoticeService;
-import donation.notice.model.vo.Notice;
+import donation.board.freeBoard.model.service.FreeBoardService;
+import donation.board.freeBoard.model.vo.FreeBoard;
 
 /**
  * Servlet implementation class NoticeUpdateViewServlet
  */
-@WebServlet("/nupview")
-public class NoticeUpdateViewServlet extends HttpServlet {
+@WebServlet("/fupview")
+public class FreeBoardUpdateViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeUpdateViewServlet() {
+    public FreeBoardUpdateViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,20 +35,20 @@ public class NoticeUpdateViewServlet extends HttpServlet {
 		//수정할 notice 글을 db에서 다시 불러와서 수정해야 정확함
 		response.setContentType("text/html charset=utf-8");
 		
-		Notice notice = new NoticeService().selectNotice(Integer.parseInt(request.getParameter("no")));
+		FreeBoard fboard = new FreeBoardService().selectFreeBoard(Integer.parseInt(request.getParameter("no")));
 		//여기서 DB에 있는 게시글 정보 이미 불러옴
 		
 		
 		
 		RequestDispatcher view = null;
-		if(notice != null){
-			view = request.getRequestDispatcher("views/notice/noticeUpdateView.jsp");
-			request.setAttribute("notice", notice);
+		if(fboard != null){
+			view = request.getRequestDispatcher("views/freeBoard/freeBoardUpdateView.jsp");
+			request.setAttribute("fboard", fboard);
 			view.forward(request, response);
 		}else{
 
-			view = request.getRequestDispatcher("views/notice/noticeError.jsp");
-			request.setAttribute("message", "공지글 수정페이지 출력 처리 실패");
+			view = request.getRequestDispatcher("views/freeBoard/freeBoardError.jsp");
+			request.setAttribute("message", "게시글 수정페이지 출력 처리 실패");
 			view.forward(request, response);
 		}
 		

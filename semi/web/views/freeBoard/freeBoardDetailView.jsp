@@ -1,10 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*,  donation.board.freeBoard.model.vo.FreeBoard"%>
+ 
+ <%
+ FreeBoard fboard = (FreeBoard)request.getAttribute("fboard");
+ %>   
+    
 <!DOCTYPE html>
 <html>
 <head>
-<meta  charset="UTF-8">
-<title>boardWriteForm</title>
+<meta charset="UTF-8">
+<title>noticeDetailView</title>
+
+
+
 
 <!-- 카테고리  -->
 
@@ -75,37 +83,33 @@ ul.sub li:hover {
 
 <!-- 테이블 -->
 <style>
-table.type10 th{
-background-color : lightblue;
-}
 
 table.type10{
-	border : 1px solid black;
-	width : 710px;
+	border : 1px solid #ccc;
 }
+table.type10{
+	width : 1000px;
+}
+table tr.firstTr{
+	height:40px;
+	background-color: lightblue;
+}
+table td.firstTd{
+	width:600px;
+	padding-top : 10px;
+}
+
+
+
 table.type10 tr{
+	border-bottom : 1px solid #ccc;
 
-	border-bottom : 1px solid;
-	height:30px;
-}
-td.firstTd{
-	width:210px;
-		
 }
 
-
-table.type10 textarea{
-width:710px;
-height:200px;
+table.type10 td{
+	border-right : 1px solid #ccc;
 }
-input#input{
-	height:30px;
-	width:500px;
-}
-
 </style>
-
-
 
 
 
@@ -140,46 +144,44 @@ input#input{
 
 
 
-	<form action="/semi/qinsert" method="post" enctype="multipart/form-data">
-	<table class="type10">
-	<thead><th colspan="2">QA 글쓰기</th></thead>
+<table class="type10">
+	<tr class="firstTr">
+		<td class="firstTd"><%= fboard.getfreeBoardTitle() %></td><td>조회:<%=fboard.getReadCount() %></td><td><%=fboard.getfreeBoardDate() %></td><td><%=fboard.getfreeBoardWriter() %></td><td>	<%if(fboard.getOriginalFileName() != null){	%>
 		
-	<tbody>
-	<tr><td class="firstTd">제목</td> <td><input type="text" name="title" id="input"></td>	</tr>
-	<tr><td class="firstTd">작성자</td> <td><input type="text" name="writer" id="input" value="<%=member.getMemberId() %>" readonly></td></tr>
-	<tr><td class="firstTd">첨부파일</td> <td><input type="file" name="file"></td></tr>
-	<tr><td colspan="2"><textarea rows="5" cols="50" name="content" class="contentbox"></textarea></td></tr>
-	<tr><td colspan="2" align="right"><input type="submit" value="등록하기">&nbsp; <input type="reset" value="취소하기"></td></tr>
-	</tbody>
-	</table>
-	</form>
-	
+		<a href="/semi/ffdown?oname=<%=fboard.getOriginalFileName()%>&rname=<%=fboard.getRenameFileName()%>">	<%=fboard.getOriginalFileName() %></a>
+	<%}else{ %>
+		첨부파일 없음
+	<%} %></td>
 	
 
-	<br>
-	<a href="/semi/qlist">목록으로 이동</a>
-    <br>
+	<tr height="100">
+		<td colspan="5"><%=fboard.getfreeBoardContent() %></td>
+	</tr>
 
 
-<br>
-
-	<div id="footer" style="clear:both;">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-xs-12 text-left">
-					<span>Copyright &copy; 2014 Company Name</span>
-				</div>
-				<!-- /.text-center -->
-				<div class="col-md-4 hidden-xs text-right">
-					<a href="#top" id="go-top">Back to top</a>
-				</div>
-				<!-- /.text-center -->
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /#footer -->
+	<%if(fboard.getfreeBoardWriter().equals(member.getMemberId())){ //include에서 sission값을 가지고있기 때문에 그냥 사용할 수 있다. %>
+	<tr><td colspan="5" align="right">
+		<a href="/semi/fupview?no=<%=fboard.getfreeBoardNo()%>">수정페이지로 이동</a> &nbsp; 
+		<a href="/semi/fdel?no=<%=fboard.getfreeBoardNo()%>">삭제하기</a>
+	</td></tr>
+	<%}else{ %>
 	
+	
+	<%} %>
+
+</table>
+
+	
+	
+	
+<div align ="center">
+	<a href="/semi/flist">목록보기로 이동</a>
+
+</div>
+<br><br>
+<hr>
+
+
+
 </body>
 </html>

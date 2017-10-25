@@ -1,4 +1,4 @@
-package donation.question.controller;
+package donation.board.freeBoard.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -10,20 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import donation.question.model.service.QuestionService;
-import donation.question.model.vo.Question;
+import donation.board.freeBoard.model.service.FreeBoardService;
+import donation.board.freeBoard.model.vo.FreeBoard;
+import donation.notice.model.service.NoticeService;
+import donation.notice.model.vo.Notice;
 
 /**
  * Servlet implementation class NoticeSearchServlet
  */
-@WebServlet("/qsearch")
-public class QuestionSearchServlet extends HttpServlet {
+@WebServlet("/fsearch")
+public class FreeBoardSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QuestionSearchServlet() {
+    public FreeBoardSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,32 +34,7 @@ public class QuestionSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	/*	//공지글 목록 제목 검색 처리용 컨트롤러
-		request.setCharacterEncoding("utf-8");
-		response.setContentType("text/html; charset=utf-8");
-		
-		String keyword = request.getParameter("keyword");
-		
-		ArrayList<Notice> list = new NoticeService().selectSearch(keyword);
-				
 
-		System.out.println(list.toString());
-		
-		RequestDispatcher  view = null;
-		if(list != null){
-			view = request.getRequestDispatcher("views/notice/noticeListView.jsp");
-			request.setAttribute("list", list);
-			view.forward(request, response);
-			
-		}else{
-			view = request.getRequestDispatcher("views/notice/noticeError.jsp");
-			request.setAttribute("message", "공지글 제목 검색 실패!");
-			view.forward(request, response);
-		}
-	*/
-		
-		
-		/////////////////////
 		//페이지 처리용
 		request.setCharacterEncoding("utf-8");
 
@@ -76,18 +53,18 @@ public class QuestionSearchServlet extends HttpServlet {
 		String keyword = request.getParameter("keyword");
 		
 		
-		QuestionService qservice = new QuestionService();
+		FreeBoardService fservice = new FreeBoardService();
 		
 	
 		//전체 목록 갯수 조회함
 		//int listCount = nservice.getListCount();
-		int listSearchCount = qservice.getSearchListCount(keyword);
+		int listSearchCount = fservice.getSearchListCount(keyword);
 		
 		System.out.println("currentPage : " + currentPage);
 		
 	
 		
-		ArrayList<Question> list = new QuestionService().selectSearch(keyword, currentPage, limit);
+		ArrayList<FreeBoard> list = new FreeBoardService().selectSearch(keyword, currentPage, limit);
 		//총 페이지 수 계산 : 목록이 최소 1개일 때는 한 페이지로 처리함
 		//페이지 1이 되려면 = 목록 0.1 개 + 0.9 계산되게 함
 		int maxPage = (int)((double)listSearchCount / limit + 0.9);
@@ -102,7 +79,7 @@ public class QuestionSearchServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		if(list != null){
-			view = request.getRequestDispatcher("views/question/questionSearchListView.jsp");
+			view = request.getRequestDispatcher("views/freeBoard/freeBoardSearchListView.jsp");
 			
 			request.setAttribute("list", list);
 			request.setAttribute("currentPage", currentPage);
@@ -116,8 +93,8 @@ public class QuestionSearchServlet extends HttpServlet {
 			
 			view.forward(request, response);
 	}else{
-		view = request.getRequestDispatcher("views/question/questionError.jsp");
-		request.setAttribute("message", "게시글 페이지별 조회 실패!");
+		view = request.getRequestDispatcher("views/freeBoard/freeBoardError.jsp");
+		request.setAttribute("message", "자유게시글 페이지별 조회 실패!");
 		view.forward(request, response);
 	}
 	}

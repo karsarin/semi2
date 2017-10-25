@@ -34,16 +34,16 @@ public class QuestionDetailServlet extends HttpServlet {
 		// 게시글 상세보기 처리용 컨트롤러
 		response.setContentType("text/html; charset=utf-8");
 		
-		int qnum = Integer.parseInt(request.getParameter("qnum"));
+		int no = Integer.parseInt(request.getParameter("no"));
 		int currentPage = Integer.parseInt(request.getParameter("page"));
 		
 		QuestionService bservice = new QuestionService();
 		
 		//해당 게시글에 대한 조회수 1 증가 처리
-		bservice.addReadCount(qnum);
+		bservice.addReadCount(no);
 		
 		//해당 게시글 정보 리턴받음
-		Question question = bservice.selectQuestion(qnum);
+		Question question = bservice.selectQuestion(no);
 		
 		RequestDispatcher view = null;
 		if(question != null){

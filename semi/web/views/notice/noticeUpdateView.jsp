@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.*, donation.notice.model.vo.Notice"%>
+<%
+	Notice notice = (Notice)request.getAttribute("notice");
+
+%>
 <!DOCTYPE html>
+
 <html>
 <head>
-<meta  charset="UTF-8">
-<title>boardWriteForm</title>
+<meta charset="UTF-8">
+<title>NoticeUpdateView</title>
 
 <!-- 카테고리  -->
 
@@ -73,12 +78,12 @@ ul.sub li:hover {
 
 
 
+
 <!-- 테이블 -->
 <style>
 table.type10 th{
 background-color : lightblue;
 }
-
 table.type10{
 	border : 1px solid black;
 	width : 710px;
@@ -92,8 +97,6 @@ td.firstTd{
 	width:210px;
 		
 }
-
-
 table.type10 textarea{
 width:710px;
 height:200px;
@@ -104,9 +107,6 @@ input#input{
 }
 
 </style>
-
-
-
 
 
 
@@ -137,49 +137,36 @@ input#input{
 	</div>
 	<!-- 반복 끝 -->
 	</div>
-
-
-
-	<form action="/semi/qinsert" method="post" enctype="multipart/form-data">
+	
+	
+	<form action="/semi/nupdate" method="post" enctype="multipart/form-data">
+	<input type="hidden" name="no" value="<%=notice.getNoticeNo()%>"> 
 	<table class="type10">
-	<thead><th colspan="2">QA 글쓰기</th></thead>
+	<thead><th colspan="2">공지글 수정</th></thead>
 		
 	<tbody>
-	<tr><td class="firstTd">제목</td> <td><input type="text" name="title" id="input"></td>	</tr>
-	<tr><td class="firstTd">작성자</td> <td><input type="text" name="writer" id="input" value="<%=member.getMemberId() %>" readonly></td></tr>
-	<tr><td class="firstTd">첨부파일</td> <td><input type="file" name="file"></td></tr>
-	<tr><td colspan="2"><textarea rows="5" cols="50" name="content" class="contentbox"></textarea></td></tr>
+	<tr><td class="firstTd">제목</td> <td><input type="text" name="title" id="input" value="<%= notice.getNoticeTitle()%>"></td>	</tr>
+	<tr><td class="firstTd">작성자</td> <td><input type="text" name="writer" id="input" value="<%=notice.getNoticeWriter() %>" readonly></td></tr>
+	<tr><td class="firstTd">첨부파일</td> <td  align="left">
+	<%if(notice.getOriginalFileName() != null){ %>
+	<input type="file" name="file" value="<%=notice.getOriginalFileName()%>">
+	<%}else{ %>
+	<input type="file" name="file" >
+	<%} %>
+	</td>	</tr>
+	<tr><td colspan="2"><textarea rows="5" cols="50" name="content" class="contentbox"><%=notice.getNoticeContent() %></textarea></td></tr>
 	<tr><td colspan="2" align="right"><input type="submit" value="등록하기">&nbsp; <input type="reset" value="취소하기"></td></tr>
 	</tbody>
 	</table>
 	</form>
+
 	
-	
-
-	<br>
-	<a href="/semi/qlist">목록으로 이동</a>
-    <br>
+	<a href="/semi/nlist">목록으로 이동</a>
+</section>
 
 
-<br>
+<br><br>
+<hr>
 
-	<div id="footer" style="clear:both;">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-xs-12 text-left">
-					<span>Copyright &copy; 2014 Company Name</span>
-				</div>
-				<!-- /.text-center -->
-				<div class="col-md-4 hidden-xs text-right">
-					<a href="#top" id="go-top">Back to top</a>
-				</div>
-				<!-- /.text-center -->
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /#footer -->
-	
 </body>
 </html>

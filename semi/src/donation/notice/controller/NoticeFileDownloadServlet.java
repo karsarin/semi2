@@ -15,14 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class FileDownloadServlet
  */
-@WebServlet("/fdown")
-public class FileDownloadServlet extends HttpServlet {
+@WebServlet("/nfdown")
+public class NoticeFileDownloadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FileDownloadServlet() {
+    public NoticeFileDownloadServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,7 +35,7 @@ public class FileDownloadServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		
 		//프로젝트 내의 저장된 파일의 폴더 경로정보 알아냄
-		String savePath = request.getSession().getServletContext().getRealPath("/uploadfiles");
+		String savePath = request.getSession().getServletContext().getRealPath("/nuploadfiles");
 			// getServletContext() 세션을 가지고 있는 이 프로젝트를 의미함
 			
 		String originalFileName = request.getParameter("oname");

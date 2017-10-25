@@ -1,27 +1,23 @@
-package donation.question.controller;
+package donation.board.replyBoard.controller;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import donation.question.model.service.QuestionService;
-
 /**
- * Servlet implementation class QuestionDeleteServlet
+ * Servlet implementation class ReplyBoardListServlet
  */
-@WebServlet("/qdelete")
-public class QuestionDeleteServlet extends HttpServlet {
+@WebServlet("/rlist")
+public class ReplyBoardListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public QuestionDeleteServlet() {
+    public ReplyBoardListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,20 +26,8 @@ public class QuestionDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 게시글 삭제 처리용 컨트롤러
-		response.setContentType("text/html; charset=utf-8");
-		
-		int no = Integer.parseInt(request.getParameter("no"));
-		
-		if(new QuestionService().deleteQuestion(no) >0){
-			response.sendRedirect("/semi/qlist?page=1");
-		}else{
-			RequestDispatcher view = request.getRequestDispatcher("views/question/questionError.jsp");
-			request.setAttribute("message","QA게시글 삭제 처리 실패!");
-			view.forward(request, response);
-		}
-				
-		
+		// TODO Auto-generated method stub
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
 	/**

@@ -3,8 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta  charset="UTF-8">
-<title>boardWriteForm</title>
+<meta charset="UTF-8">
+<title>boardListView</title>
+<script type="text/javascript">
+	function insertPage()
+	{
+		location.href="/semi/finsert";
+	}
+</script>
+
 
 <!-- 카테고리  -->
 
@@ -78,7 +85,6 @@ ul.sub li:hover {
 table.type10 th{
 background-color : lightblue;
 }
-
 table.type10{
 	border : 1px solid black;
 	width : 710px;
@@ -92,8 +98,6 @@ td.firstTd{
 	width:210px;
 		
 }
-
-
 table.type10 textarea{
 width:710px;
 height:200px;
@@ -140,9 +144,17 @@ input#input{
 
 
 
-	<form action="/semi/qinsert" method="post" enctype="multipart/form-data">
+	
+	
+
+
+<div style="float:left;">
+
+
+
+	<form action="/semi/finsert" method="post" enctype="multipart/form-data">
 	<table class="type10">
-	<thead><th colspan="2">QA 글쓰기</th></thead>
+	<thead><th colspan="2">자유게시판 글쓰기</th></thead>
 		
 	<tbody>
 	<tr><td class="firstTd">제목</td> <td><input type="text" name="title" id="input"></td>	</tr>
@@ -154,14 +166,13 @@ input#input{
 	</table>
 	</form>
 	
-	
-
 	<br>
-	<a href="/semi/qlist">목록으로 이동</a>
+	<a href="/semi/flist">목록으로 이동</a>
     <br>
-
-
 <br>
+</div>
+
+
 
 	<div id="footer" style="clear:both;">
 		<div class="container">
@@ -180,6 +191,9 @@ input#input{
 		<!-- /.container -->
 	</div>
 	<!-- /#footer -->
-	
+
+
+
+
 </body>
 </html>

@@ -1,27 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%-- page 지시자 태그는 한 페이지에 한 개만 사용이 원칙임
-     예외로 import 속성에 대해서만 따로 작성할 수 있음. --%>
-<%@ page import="donation.question.model.vo.Question, java.util.ArrayList, java.sql.Date" %>
+	pageEncoding="UTF-8" import="java.util.*, donation.board.freeBoard.model.vo.FreeBoard"%>
 <%
-	ArrayList<Question> list = (ArrayList<Question>)request.getAttribute("list");
-	int listCount = ((Integer)request.getAttribute("listCount")).intValue();
-	int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
-	int startPage = ((Integer)request.getAttribute("startPage")).intValue();
-	int endPage = ((Integer)request.getAttribute("endPage")).intValue();
-	int maxPage = ((Integer)request.getAttribute("maxPage")).intValue();
+
+	
+	ArrayList<FreeBoard> list = (ArrayList<FreeBoard>)request.getAttribute("list");
+int listCount = ((Integer)request.getAttribute("listSearchCount")).intValue();
+int currentPage = ((Integer)request.getAttribute("currentPage")).intValue();
+int startPage = ((Integer)request.getAttribute("startPage")).intValue();
+int endPage = ((Integer)request.getAttribute("endPage")).intValue();
+int maxPage = ((Integer)request.getAttribute("maxPage")).intValue();
+String keyword  = (String)request.getAttribute("keyword");
+	 
+	
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>QuestionListView</title>
-<script type ="text/javascript">
-	function showWriteQuestion(){
-		location.href = "views/question/questionWriteForm.jsp";		
+<title>boardListView</title>
+<script type="text/javascript">
+	function insertPage()
+	{
+		location.href="views/freeBoard/freeBoardWriteForm.jsp";
 	}
-	
 </script>
+
 
 <!-- 카테고리  -->
 
@@ -88,9 +91,11 @@ ul.sub li:hover {
 </style>
 <!-- 세로목록 끝 -->
 
+
+<!-- 테이블 -->
 <style>
 table.type10 {
-	width :  70%;
+	width : 70%;
 	border-collapse: collapse;
 	text-align: left;
 	line-height: 1.5;
@@ -124,7 +129,6 @@ table.type10 tbody td {
 
 
 
-
 </head>
 
 <body>
@@ -134,7 +138,8 @@ table.type10 tbody td {
 	<%@ include file="../../rightList.jsp"%>
 	
 
-	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
+	<div
+		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
 		<ul id="navi">
 			<li class="group">
@@ -150,75 +155,78 @@ table.type10 tbody td {
 		</ul>
 	</div>
 	<!-- 반복 끝 -->
-	
+	</div>
 
 
 
 
-
-
-<table class="type10">
-
-<thead>
-	<tr><th>번호</th><th class="titleTh">제목</th><th>작성자</th><th>날짜</th><th>첨부파일</th><th>조회수</th></tr>
-</thead>
-
-
-<tbody>
-
-<%
-	for(Question q : list){
-%>
-
-<!--  
-└┗┗┖┕
--->
-
-<tr>
-	<td><%= q.getQuestionNum() %></td>
-	<td>
-	<%-- 답글일 때는 들여쓰기하면서 앞에 ▶ 표시함 --%>
-		<% if(q.getQuestionLevel() == 1){  //원글의 댓글일 때 %>
-		&nbsp; &nbsp; ┕>
-		<% }else if(q.getQuestionLevel() == 2){  //댓글의 댓글일 때 %>
-		&nbsp; &nbsp; &nbsp; &nbsp; ┕>
-		<% } %>
-	<%-- 로그인한 경우 상세보기 가능하게 처리함 --%>
-		<% if(member != null){ %>
-			<a href="/semi/qdetail?no=<%= q.getQuestionNum() %>&page=<%= currentPage %>">
-			<%= q.getQuestionTitle() %>
-			</a>
-		<% }else{ %>
-			<%= q.getQuestionTitle() %>
-		<% } %>
-	</td>
-	<td ><%= q.getQuestionWriter() %></td>
-	<td ><%= q.getQuestionDate() %></td>
-	<td >
-		<% if(q.getQuestionOriginalFileName() != null){ %>
-			O
-		<% }else{ %>
-			X
-		<% } %>
-	</td>
-	
-	<td ><%= q.getQuestionReadCount() %></td>
-</tr>
-<%  } %>
-
-</tbody>
-</table>
 
 
 	
+	
+	
+	<!--  게시판 -->
 
-<%-- 페이지 번호 처리 --%>
+	<table class="type10" width="1000px;">
+				
+				<thead>
+					<tr>
+						<th>번호</th>
+						<th  class="titleTh">제목</th>
+						<th>작성자</th>
+						<th>날짜</th>
+						<th>첨부파일</th>
+						<th>조회수</th>
+					</tr>
+				</thead>
+
+
+
+
+				<%
+					for (FreeBoard fboard : list) {
+				%>
+
+
+				<tbody>
+					<tr>
+						<td><%=fboard.getfreeBoardNo()%></td>
+						<td><a href="/semi/fdetail?no=<%=fboard.getfreeBoardNo()%>">
+								<%=fboard.getfreeBoardTitle()%>
+						</a></td>
+						<td><%=fboard.getfreeBoardWriter()%></td>
+						<td><%=fboard.getfreeBoardDate()%></td>
+						<td>
+							<%
+								if (fboard.getOriginalFileName() != null) {
+							%> O <%
+								} else {
+							%> X <%
+ 	}
+ %>
+						</td>
+						<td><%=fboard.getReadCount()%></td>
+					</tr>
+					<%
+						}
+					%>
+				
+				<tbody>
+
+
+				</tbody>
+			</table>
+
+	
+		<!--  table 끝 -->
+
+	<%-- 페이지 번호 처리 --%>
 <div align="center">
 <%-- 이전 페이지 있을 경우에 대한 처리 --%>
 <% if(currentPage <= 1){ %>
 	[이전] &nbsp;
 <% }else{ %>
-	<a href="/semi/qlist?page=<%= currentPage - 1 %>">[이전]</a>
+	<a href="/semi/fsearch?page=<%= currentPage - 1 %>&keyword=<%=keyword%>">[이전]</a>
 <% } %>
 <%-- 현재 페이지 숫자 보여주기 --%>
 <% for(int p = startPage; p <= endPage; p++){ 
@@ -226,37 +234,39 @@ table.type10 tbody td {
 %>
 	<b><font size="4" color="red">[<%= p %>]</font></b>
 <%     }else{ %>
-	<a href="/semi/qlist?page=<%= p %>"><%= p %></a>
+	<a href="/semi/fsearch?page=<%=p%>&keyword=<%=keyword%>"><%=p%></a>
 <% }} %>
 <%-- 현재 페이지 다음 페이지에 대한 처리 --%>
 <% if(currentPage >= maxPage){ %>
 	[다음]
 <% }else{ %>
-	<a href="/semi/qlist?page=<%= currentPage + 1 %>">[다음]</a>
+	<a href="/semi/fsearch?page=<%= currentPage + 1 %>&keyword=<%=keyword%>">[다음]</a>
 <% } %>
-
-
-<!-- 검색 -->
-<div align="center">
-	<form action="/semi/qsearch" method="post">
+</div>
+	
+	
+	<div align="center">
+	<form action="/semi/fsearch" method="post">
 		<input type="search" autocomlete name="keyword" length="50">&nbsp;
 		<input type="submit" value="제목검색"> 
 	</form>
 	
-	
-	
-<!-- 글쓰기 -->
-	<% if(member!= null){ %>
-			<button onclick="showWriteQuestion()" >글쓰기</button>	
-	<%} %>
+		<% if(member!= null){ %>		
+			<button onclick="insertPage();">글쓰기</button>
+		<%} %>		
+			
 	
 </div>
+	
+	
 
 
 
+	
 
 
-<div id="footer" style="clear: both;">
+
+	<div id="footer" >
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-xs-12 text-left">
@@ -277,12 +287,3 @@ table.type10 tbody td {
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-

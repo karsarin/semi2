@@ -1,4 +1,4 @@
-package donation.notice.controller;
+package donation.board.freeBoard.controller;
 
 import java.io.IOException;
 
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import donation.board.freeBoard.model.service.FreeBoardService;
 import donation.notice.model.service.NoticeService;
-import donation.notice.model.vo.Notice;
 
 /**
- * Servlet implementation class NoticeUpdateViewServlet
+ * Servlet implementation class NoticeDeleteServlet
  */
-@WebServlet("/nupview")
-public class NoticeUpdateViewServlet extends HttpServlet {
+@WebServlet("/fdel")
+public class FreeBoardDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public NoticeUpdateViewServlet() {
+    public FreeBoardDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,27 +31,20 @@ public class NoticeUpdateViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 공지글 수정페이지 출력 처리용 컨트롤러		
-		//수정할 notice 글을 db에서 다시 불러와서 수정해야 정확함
+		//공지글 삭제 처리용 컨트롤러
 		response.setContentType("text/html charset=utf-8");
 		
-		Notice notice = new NoticeService().selectNotice(Integer.parseInt(request.getParameter("no")));
-		//여기서 DB에 있는 게시글 정보 이미 불러옴
-		
-		
-		
-		RequestDispatcher view = null;
-		if(notice != null){
-			view = request.getRequestDispatcher("views/notice/noticeUpdateView.jsp");
-			request.setAttribute("notice", notice);
-			view.forward(request, response);
+		if( new FreeBoardService().deleteFreeBoard(Integer.parseInt(request.getParameter("no"))) > 0){
+			//삭제하면 목록으로 바로 보내기
+			response.sendRedirect("/semi/flist");
 		}else{
-
-			view = request.getRequestDispatcher("views/notice/noticeError.jsp");
-			request.setAttribute("message", "공지글 수정페이지 출력 처리 실패");
-			view.forward(request, response);
+			RequestDispatcher errorPage = null;
+			errorPage = request.getRequestDispatcher("views/freeBoard/freeBoardEorr");
+			request.setAttribute("message", "게시글삭제 실패!");
+			errorPage.forward(request, response);
 		}
 		
+
 	}
 
 	/**
