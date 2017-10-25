@@ -11,6 +11,7 @@
 div#loginbar{
 	float:right;
 	margin-right:50px;
+	margin-top:5px;
 	font-size:10pt;
 }
 
@@ -20,10 +21,10 @@ div#loginbar{
 <div id=loginbar>
 <% if(member ==null){ %>
 	<a href="/semi/views/member/Login.jsp">로그인</a>
-	<a href="/semi/views/member/Insert.jsp">회원가입</a>
+	<a href="/semi/views/member/Insert.jsp" style="margin-left:10px;">회원가입</a>
 <% }else{ %>
-	<a href="minfor?userid=<%=member.getMemberId()%>"><%=member.getMemberNik() %></a>님 환영합니다
-	<a href="#">로그아웃</a>
+	<a href="minfor?userid=<%=member.getMemberId()%>"><%=member.getMemberNik() %></a>님 환영합니다.
+	<a href="/semi/logout" style="margin-left:10px;">로그아웃</a>
 <% } %>
 </div>
 </body>

@@ -5,7 +5,7 @@ import java.util.Date;
 public class Category {
 	private int categoryNo;
 	private String userId;
-	private String categoryGroup;
+	private int categoryGroup;
 	private String categoryTitle;
 	private String categoryWriter;
 	private String categoryContent;
@@ -23,13 +23,15 @@ public class Category {
 	private String renameImage;
 	private String special;
 	private String approval;
-
+	private int purchaseCount;
+	private int verdict;
+	
 	public Category(){}
-
-	public Category(int categoryNo, String userId, String categoryGroup, String categoryTitle, String categoryWriter,
+// 디비 수정된거에 맞게 vo 수정
+	public Category(int categoryNo, String userId, int categoryGroup, String categoryTitle, String categoryWriter,
 			String categoryContent, Date categoryDate, int categoryReadcount, int categoryDonation, int workDate,
 			int categoryLevel, int categoryRef, int categoryReplyRef, int categoryReplySeq, String phone, String email,
-			String originalImage, String renameImage, String special, String approval) {
+			String originalImage, String renameImage, String special, String approval, int purchaseCount, int verdict) {
 		super();
 		this.categoryNo = categoryNo;
 		this.userId = userId;
@@ -51,16 +53,27 @@ public class Category {
 		this.renameImage = renameImage;
 		this.special = special;
 		this.approval = approval;
+		this.verdict = verdict;
+		this.purchaseCount = purchaseCount;
 	}
 
-	public Category(String categoryTitle, String categoryWriter, String categoryContent, String originalImage, String renameFileName)
+	public Category(String userId, String categoryTitle, int categoryGroup, String categoryWriter, String categoryContent, int categoryDonation, 
+			int workDate, String email, String phone, String originalImage, String renameImage)
 	{
+		this.userId = userId;
 		this.categoryTitle = categoryTitle;
+		this.categoryGroup = categoryGroup;
 		this.categoryWriter = categoryWriter;
 		this.categoryContent = categoryContent;
+		this.categoryDonation = categoryDonation;
+		this.workDate = workDate;
+		this.email = email;
+		this.phone = phone;
 		this.originalImage = originalImage;
 		this.renameImage = renameImage;
 	}
+	
+	
 	public int getCategoryNo() {
 		return categoryNo;
 	}
@@ -69,10 +82,9 @@ public class Category {
 		return userId;
 	}
 
-	public String getCategoryGroup() {
+	public int getCategoryGroup() {
 		return categoryGroup;
 	}
-
 	public String getCategoryTitle() {
 		return categoryTitle;
 	}
@@ -149,8 +161,8 @@ public class Category {
 		this.userId = userId;
 	}
 
-	public void setCategoryGroup(String categoryGroup) {
-		this.categoryGroup = categoryGroup;
+	public void setCategoryGroup(int i) {
+		this.categoryGroup = i;
 	}
 
 	public void setCategoryTitle(String categoryTitle) {
@@ -219,6 +231,22 @@ public class Category {
 
 	public void setApproval(String approval) {
 		this.approval = approval;
+	}
+	
+	public int getPurchaseCount() {
+		return purchaseCount;
+	}
+	
+	public int getVerdict() {
+		return verdict;
+	}
+	
+	public void setPurchaseCount(int purchaseCount) {
+		this.purchaseCount = purchaseCount;
+	}
+	
+	public void setVerdict(int verdict) {
+		this.verdict = verdict;
 	}
 	
 	

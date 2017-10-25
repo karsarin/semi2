@@ -35,12 +35,12 @@ public class QuestionReplyUpdateServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		
-		int qnum = Integer.parseInt(request.getParameter("qnum"));
-		String qtitle = request.getParameter("qtitle");
-		String qcontent = request.getParameter("qcontent");
+		int no = Integer.parseInt(request.getParameter("no"));
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
 		int currentPage = Integer.parseInt(request.getParameter("page"));
 		
-		Question reply = new Question(qnum, qtitle, qcontent);
+		Question reply = new Question(no, title, content);
 		
 		int result = new QuestionService().updateReply(reply);
 		

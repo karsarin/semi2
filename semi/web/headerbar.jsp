@@ -26,6 +26,7 @@
         function goHomePage() { location.href="/semi/index.jsp"; }
         
         function goCategoryPage(){location.href="/semi/clist"}
+       	function insertCategory(){location.href="views/category/categoryInsertView.jsp"}
        
         </script>
 
@@ -59,6 +60,7 @@
 							<li class="active"><a href="javascript:goHomePage();">Home</a></li>
 							<li><a href="javascript:goCategoryPage();">카테고리</a></li>
 							<li><a href="javascript:goBoardPage();">게시판</a></li>
+							<li><a href="javascript:insertCategory();">재능 등록</a></li>
 							
 						</ul>
 					</div>
@@ -85,12 +87,5 @@
 	<br>
 	<br>
 	<br>
-
-
-
-
-
-
-
 </body>
 </html>

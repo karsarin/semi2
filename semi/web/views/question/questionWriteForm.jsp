@@ -6,6 +6,11 @@
 <meta  charset="UTF-8">
 <title>boardWriteForm</title>
 
+<!-- 카테고리  -->
+
+
+
+
 <%-- 헤더바 --%>
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800'
@@ -20,11 +25,11 @@
 
 <%-- 헤더바 끝 --%>
 
-<%-- 세로목록 --%>
 <style>
 ul#navi {
 	width: 200px;
 	text-indent: 10px;
+	background-color: lightgray;
 }
 
 ul#navi, ul#navi ul {
@@ -40,7 +45,7 @@ li.group {
 li.group div.title {
 	height: 35px;
 	line-height: 35px;
-	background: lightgray;
+	background: lightblue;
 	cursor: pointer;
 }
 
@@ -61,146 +66,105 @@ ul.sub li a {
 }
 
 ul.sub li:hover {
-	background: gray;
+	background: lightblue;
 }
 </style>
 <!-- 세로목록 끝 -->
 
 
-
-<!-- 테이블 -->
 <style>
-table.type10 {
-    border-collapse: collapse;
-    text-align: left;
-    line-height: 1.5;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-  
+#writetable{
+	width:800px;
 }
-table.type10 thead th {
-    width: 150px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    color: #fff;
-    background: #e7708d;
-    margin: 20px 10px;
+#title{
+	width:65px;
 }
-table.type10 tbody th {
-    width: 150px;
-    padding: 10px;
+
+#textarea textarea{
+height:200px;
 }
-table.type10 td {
-    width: 350px;
-    padding: 10px;
-    vertical-align: top;
-}
-table.type10 .even {
-    background: #fdf3f5;
-}
+
 
 </style>
+<!-- 세로목록 끝 -->
+
+
+
+
+
 
 </head>
+
 <body>
-<%@ include file="../../header.jsp" %>  <%-- 절대경로 사용 불가 --%>
 
+	<%@ include file="../../header.jsp"%>
+	<%@ include file="../../headerbar.jsp" %>
+	<%@ include file="../../rightList.jsp"%>
+	
 
-
-
-
-
-
-	<!-- 반복 -->
-	<div class="main-header">
-		<div class="container">
-			<div id="menu-wrapper">
-				<div class="row">
-					<div class="logo-wrapper col-md-2 col-sm-2">
-						
-					</div>
-					<!-- /.logo-wrapper -->
-					<div class="col-md-10 col-sm-10 main-menu text-right">
-						<div class="toggle-menu visible-sm visible-xs">
-							<i class="fa fa-bars"></i>
-						</div>
-						<ul class="menu-first">
-							<li>
-								<form action="/semi/tsearch" method="post">
-									<input type="search" name="keyword" autocomplete> <input
-										type="submit" value="제목검색">
-								</form>
-							</li>
-							<li class="active"><a href="/semi/index.jsp">Home</a></li>
-							<li><a href="#">카테고리</a></li>
-							<li><a href="/semi/nlist">게시판</a></li>
-							<li><a href="#">마이페이지</a></li>
-						</ul>
-					</div>
-					<!-- /.main-menu -->
-				</div>
-				<!-- /.row -->
-			</div>
-			<!-- /#menu-wrapper -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /.main-header -->
-	</div>
-	<!-- /.site-header -->
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-
-	<div style="width: 300px; height: 500px; float: left;">
+	<div
+		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
-					<li><a href="#">자유 게시판</a></li>
-					<li><a href="#">후기 게시판</a></li>
+					<li><a href="/semi/flist">자유 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
 
 				</ul>
 			</li>
 		</ul>
 	</div>
-
 	<!-- 반복 끝 -->
-	
-	
-</div>
+	</div>
 
 
-<h1 align="center">Board 서비스 : 글 등록하기</h1>
 
-<br>
-<form action ="/semi/qinsert" method="post" enctype="multipart/form-data">
-	<table align="center" border="1" cellspacing="0" width="700">
-		<tr><th>제목</th><td><input type="text" name="qtitle"></td></tr>
-		<tr><th>작성자</th><td><input type="text" name="qwriter" value="<%=member.getMemberId() %>" readonly></td></tr>
-		<tr><th>첨부파일</th><td><input type="file" name="upfile"></td></tr>
-		<tr><th>내용</th><td><textarea cols="50" rows="7" name="qcontent"></textarea></td></tr>
-		
-		<tr><td colspan="2" align="center"><input type="submit" value="등록하기"> &nbsp;
-		<a href="/semi/qlist?page=1">목록</a>		
-		</td></tr>
 	
+	
+	<form action="/semi/qinsert" method="post" enctype="multipart/form-data">
+	<table id="writetable">
+	<th colspan="2">QA 글쓰기</th>
+	
+
+	
+	<tr><td id="title">제목</td> <td><input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="제목을 입력하세요"></td>	</tr>
+	<tr><td>작성자</td> <td><input type="text" name="writer" class="form-control" id="exampleInputEmail1" value="<%=member.getMemberId() %>" readonly></td></tr>
+	<tr><td>첨부파일</td> <td><input type="file" name="file" id="exampleInputFile"></td></tr>
+	<tr><td colspan="2" id="textarea"><textarea rows="5" cols="50" name="content"  class="form-control" placeholder="내용을 입력하세요"></textarea></td></tr>
+	<tr><td colspan="2" align="right"><input type="submit" value="등록하기" class="btn btn-default">&nbsp; <input type="reset" value="취소하기" class="btn btn-default"></td></tr>
 	</table>
-</form>
+	</form>
+	
+	
+
+	<br>
+	<div align="right">
+	<a href="/semi/qlist">목록으로 이동</a>
+    </div>
+
+
 <br>
+
+	<div id="footer" style="clear:both;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-xs-12 text-left">
+					<span>Copyright &copy; 2014 Company Name</span>
+				</div>
+				<!-- /.text-center -->
+				<div class="col-md-4 hidden-xs text-right">
+					<a href="#top" id="go-top">Back to top</a>
+				</div>
+				<!-- /.text-center -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /#footer -->
+	
 </body>
 </html>

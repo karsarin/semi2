@@ -1,5 +1,121 @@
 package donation.donate.model.dao;
 
+import java.sql.*;
+import java.util.ArrayList;
+
+import static donation.common.JDBCTemplate.*;
+import donation.donate.model.vo.Donate;
+
 public class DonateDao {
+
+	public int donateSelectRank(Connection con, String memberId) {
+		PreparedStatement pstmt=null;
+		ResultSet rset = null;
+		int result = 0;
+		String query = "select * from "
+				+ "(select rownum, member_id from"
+				+ "(select member_id, sum(donation) from donate group by member_id order by sum(donation) desc))"
+				+ "where member_id=?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			rset=pstmt.executeQuery();
+			if(rset.next())
+				result = rset.getInt(1);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rset);
+		}
+		return result;
+	}
+
+	public int myDonationTotal(Connection con, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Donate donate = null;
+		int donation = -1;
+		String query = "select sum(donation) from donate where member_id=?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			rset = pstmt.executeQuery();
+			if(rset.next()){
+				donation = rset.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+			close(rset);
+		}
+		return donation;
+	}
+
+	public int getListCount(Connection con, String memberId) {
+		// 내 기부횟수 총 갯수 조회
+		int result = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select count(*) from donate where member_id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			rset = pstmt.executeQuery();
+			if(rset.next())
+				result = rset.getInt(1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public ArrayList<Donate> selectList(Connection con, int currentPage, int limit, String memberId) {
+		ArrayList<Donate> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String query = "select * from ("
+				+ "select rownum rnum,donation_no,donation,donation_date from("
+				+ "select * from donate order by 4) where member_id = ?)where rnum>=? and rnum<=?";
+
+		int startRow = (currentPage -1) * limit + 1;
+		int endRow = startRow + limit -1;
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, memberId);
+			pstmt.setInt(2, startRow);
+			pstmt.setInt(3, endRow);
+			rset = pstmt.executeQuery();
+			
+			if(rset != null){
+				list = new ArrayList<Donate>();
+				
+				while(rset.next()){
+					Donate donate = new Donate();
+					donate.setDonationNo(rset.getInt(1));
+					donate.setMemberId(memberId);
+					donate.setDonation(rset.getInt("donation"));
+					donate.setDonationDate(rset.getDate("donation_date"));
+					
+					list.add(donate);
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
 
 }

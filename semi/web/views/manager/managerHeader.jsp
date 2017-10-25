@@ -20,9 +20,9 @@
 	<div class="container">
 		<div id="menu-wrapper">
 			<div class="row">
-				<div class="logo-wrapper col-md-2 col-sm-2">
+				<div class="logo-wrapper col-md-2 col-sm-2" align="center">
 					<h1>
-						<a href="#">han</a>
+						<a href="#"></a>
 					</h1>
 				</div>
 				<div class="col-md-10 col-sm-10 main-menu text-right">
@@ -30,11 +30,10 @@
 						<i class="fa fa-bars"></i>
 					</div>
 					<ul class="menu-first">
-						<li class="active"><a href="#">Home_관리자</a></li>
-						<li><a href="/semi/views/manager/managerMember.jsp">회원정보</a></li>
-						<li><a href="#">카테고리</a></li>
-						<li><a href="#">공지사항</a></li>
-						<li><a href="#">게시판</a></li>
+						<li class="active"><a href="/semi/mgrmain">Home_관리자</a></li>
+						<li><a href="/semi/mgrmember">회원정보</a></li>
+						<li><a href="/semi/clist">카테고리</a></li>
+						<li><a href="/semi/nlist">게시판</a></li>
 					</ul>
 				</div>
 			</div>

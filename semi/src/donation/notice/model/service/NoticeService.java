@@ -5,6 +5,7 @@ import java.util.*;
 
 import java.sql.*;
 
+import donation.board.freeBoard.model.vo.FreeBoard;
 import donation.notice.model.dao.NoticeDao;
 import donation.notice.model.vo.Notice;
 
@@ -118,7 +119,9 @@ public class NoticeService {
 		int listCount = new NoticeDao().getSearchListCount(con, keyword);
 		close(con);
 		return listCount;
-	}	
+	}
+
+
 }
 
 

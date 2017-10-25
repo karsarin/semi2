@@ -66,9 +66,9 @@ public class QuestionOriginUpdateServlet extends HttpServlet {
 		MultipartRequest mrequest = new MultipartRequest(request, savePath,
 				maxSize, "UTF-8", new DefaultFileRenamePolicy());
 		
-		String qtitle = mrequest.getParameter("qtitle");
-		String qcontent = mrequest.getParameter("qcontent");
-		int qnum = Integer.parseInt(mrequest.getParameter("qnum"));
+		String title = mrequest.getParameter("title");
+		String content = mrequest.getParameter("content");
+		int no = Integer.parseInt(mrequest.getParameter("no"));
 		int currentPage = Integer.parseInt(mrequest.getParameter("page"));
 		String oFileName = mrequest.getParameter("ofile");
 		String rFileName = mrequest.getParameter("rfile");
@@ -107,9 +107,9 @@ public class QuestionOriginUpdateServlet extends HttpServlet {
 				originalFile.delete();
 				new File(savePath + "/" + rFileName).delete();
 			}
-			b = new Question(qnum ,qtitle, qcontent, originalFileName, renameFileName);
+			b = new Question(no ,title, content, originalFileName, renameFileName);
 		}else  //첨부 파일이 없거나, 첨부 파일이 변경되지 않았다면
-			b = new Question(qnum, qtitle, qcontent, oFileName, rFileName);
+			b = new Question(no, title, content, oFileName, rFileName);
 				
 		//처리결과에 따라 뷰 지정함
 		if(new QuestionService().updateQuestion(b) > 0){

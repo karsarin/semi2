@@ -44,11 +44,15 @@ public class LoginServlet extends HttpServlet {
 		if(member != null){
 			HttpSession session = request.getSession();
 			session.setAttribute("member", member);
-			view = request.getRequestDispatcher("index.jsp");
+			if(member.getMemberId().equals("admin")) 
+				view = request.getRequestDispatcher("mgrmain");
+			else 
+				view = request.getRequestDispatcher("index.jsp");
 			view.forward(request, response);
 		}else{
 			view = request.getRequestDispatcher("views/member/memberError.jsp");
 			request.setAttribute("message", "로그인실패! 아이디 또는 암호를 확인하세요");
+			view.forward(request, response);
 		}
 	}
 

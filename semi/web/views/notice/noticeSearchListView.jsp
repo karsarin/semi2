@@ -22,8 +22,10 @@ String keyword  = (String)request.getAttribute("keyword");
 	function insertPage()
 	{
 		location.href="views/notice/noticeWriteForm.jsp";
+		return false;
 	}
 </script>
+
 
 <!-- 카테고리  -->
 
@@ -44,11 +46,11 @@ String keyword  = (String)request.getAttribute("keyword");
 
 <%-- 헤더바 끝 --%>
 
-<%-- 세로목록 --%>
 <style>
 ul#navi {
 	width: 200px;
 	text-indent: 10px;
+	background-color: lightgray;
 }
 
 ul#navi, ul#navi ul {
@@ -64,7 +66,7 @@ li.group {
 li.group div.title {
 	height: 35px;
 	line-height: 35px;
-	background: lightgray;
+	background: lightblue;
 	cursor: pointer;
 }
 
@@ -85,46 +87,42 @@ ul.sub li a {
 }
 
 ul.sub li:hover {
-	background: gray;
+	background: lightblue;
 }
 </style>
 <!-- 세로목록 끝 -->
 
 
 
-<!-- 테이블 -->
+
 <style>
-table.type10 {
-    border-collapse: collapse;
-    text-align: left;
-    line-height: 1.5;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-  
+#table{
+width:60%
 }
-table.type10 thead th {
-    width: 150px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    color: #fff;
-    background: #e7708d;
-    margin: 20px 10px;
+#table #no{
+width:6%
 }
-table.type10 tbody th {
-    width: 150px;
-    padding: 10px;
+#table #title{
+width:50%
 }
-table.type10 td {
-    width: 350px;
-    padding: 10px;
-    vertical-align: top;
+#table #writer{
+width:10%
 }
-table.type10 .even {
-    background: #fdf3f5;
+#table #date{
+width:15%
+}
+#table #file{
+width:12%
+}
+#table #readCount{
+width:7%
+}
+#firstTr{
+background-color:lightblue;
 }
 
 </style>
+<!-- 세로목록 끝 -->
 
 
 
@@ -133,161 +131,106 @@ table.type10 .even {
 </head>
 
 <body>
-<%@ include file="../../header.jsp"  %>
-	<!-- 반복 -->
-	<div class="main-header">
-		<div class="container">
-			<div id="menu-wrapper">
-				<div class="row">
-					<div class="logo-wrapper col-md-2 col-sm-2">
-						
-					</div>
-					<!-- /.logo-wrapper -->
-					<div class="col-md-10 col-sm-10 main-menu text-right">
-						<div class="toggle-menu visible-sm visible-xs">
-							<i class="fa fa-bars"></i>
-						</div>
-						<ul class="menu-first">
-							<li>
-								<form action="/semi/tsearch" method="post">
-									<input type="search" name="keyword" autocomplete> <input
-										type="submit" value="제목검색">
-								</form>
-							</li>
-							<li class="active"><a href="/semi/index.jsp">Home</a></li>
-							<li><a href="#">카테고리</a></li>
-							<li><a href="/semi/nlist">게시판</a></li>
-							<li><a href="#">마이페이지</a></li>
-						</ul>
-					</div>
-					<!-- /.main-menu -->
-				</div>
-				<!-- /.row -->
-			</div>
-			<!-- /#menu-wrapper -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /.main-header -->
-	</div>
-	<!-- /.site-header -->
 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+	<%@ include file="../../header.jsp"%>
+	
+	<%if(member.getMemberId().equals("admin")) { %>
+      <%@ include file="../manager/managerHeader.jsp" %>
+   <% } else { %>
+      <%@ include file="../../headerbar.jsp" %>
+   <% } %>
+   
+   
+	<%@ include file="../../rightList.jsp"%>
+	
+	
+   
+   
 
-	<div style="width: 300px; height: 500px; float: left;">
+	<div
+		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
-					<li><a href="/semi/views/board/freeBoard/freeBoardListView.jsp">자유 게시판</a></li>
-					<li><a href="/semi/views/board/replyBoard/replyBoardListView.jsp">후기 게시판</a></li>
-					<li><a href="/semi/views/qna/qnaBoardListView.jsp">QnA게시판</a></li>
+					<li><a href="/semi/flist">자유 게시판</a></li>
+					<li><a href="/semi/qlist">QnA게시판</a></li>
 
 				</ul>
 			</li>
 		</ul>
 	</div>
-
 	<!-- 반복 끝 -->
+	</div>
 	
 	
 </div>
 
 
-<div align="center">
+
+	
+	<!--  게시판 -->
+			<table class="table table-hover" id="table">		
+					<tr id="firstTr">
+						<th id="no">번호</th>
+						<th id="titlie">제목</th>
+						<th id="writer">작성자</th>
+						<th id="date">날짜</th>
+						<th id="file">첨부파일</th>
+						<th id="readCount">조회수</th>
+					</tr>
+
+				<%
+					for (Notice notice : list) {
+				%>
+
+
+					<tr>
+						<td><%=notice.getNoticeNo()%></td>
+						<td><a href="/semi/ndetail?no=<%=notice.getNoticeNo()%>">
+								<%=notice.getNoticeTitle()%>
+						</a></td>
+						<td><%=notice.getNoticeWriter()%></td>
+						<td><%=notice.getNoticeDate()%></td>
+						<td>
+							<%
+								if (notice.getOriginalFileName() != null) {
+							%> O <%
+								} else {
+							%> X
+							<%
+							 	}
+							 %>
+						</td>
+						<td><%=notice.getReadCount()%></td>
+					</tr>
+					<%
+						}
+					%>
+				
+			</table>
+
+		<!--  table 끝 -->
+
+		
+		<!--  table 끝 -->
+		
+			<div align="center">
 	<form action="/semi/nsearch" method="post">
 		<input type="search" autocomlete name="keyword" length="50">&nbsp;
 		<input type="submit" value="제목검색"> 
+		
+	<% if(member!= null){ %>
+			<button onclick="return insertPage();">글쓰기</button>
+	
+	<%} %>
+	
 	</form>
 </div>
-	
-	
-	<!--  게시판 -->
-	<div>
-	
-	<table class="type10">
-	<!-- 
-    <thead>
-    <tr>
-        <th scope="cols">글번호</th>
-        <th scope="cols">글제목</th>
-        <th scope="cols">조회수</th>
-        <th scope="cols">작성자</th>
-        <th scope="cols">날짜</th>
-       
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <th scope="row">1</th>
-        <td>첫번째 글</td>
-        <td>13</td>
-        <td>이홍섭</td>
-        <td>17/07/21</td>
-       
-    </tr>    
-    </tbody>
-     -->   
-    
-      <thead>
-    <tr>
-    <th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>첨부파일</th><th>조회수</th>
-   </tr></thead> 
-   
-   
-   
-   
-<% 
-		/* while(entryIter.hasNext()){
-		Map.Entry<Integer, Notice> entry = entryIter.next();
-		Integer key = entry.getKey();
-		Notice notice = entry.getValue(); */
 		
-		for(Notice notice : list){			
-%>
-
-
- <tbody>
-	<tr height="30">
-	<th align="center"><%= notice.getNoticeNo()%></th> 
-	<td>
-
-		<a href="/semi/ndetail?no=<%= notice.getNoticeNo() %>">
-			<%= notice.getNoticeTitle() %>
-		</a>
-	</td>
-	<td align="center"><%= notice.getNoticeWriter() %></td>
-	<td align="center"><%= notice.getNoticeDate() %></td>
-	<td align="center">
-	<% if(notice.getOriginalFileName() != null){ %>
-		O
-	<% }else{ %>
-		&nbsp:
-	<% } %>
-	</td>
-	<td align="left"><%= notice.getReadCount() %></td>
-	</tr>
-<% } %>
- <tbody>
-
-</tbody>
-</table>	
-
-</div>
-	<!--  table 끝 -->
+		
 
 	<%-- 페이지 번호 처리 --%>
 <div align="center">
@@ -315,14 +258,12 @@ table.type10 .even {
 	
 	
 	
-	
-	
-<div align="right">
-<button onclick="javascript:insertPage();">글쓰기</button>
 
-</div>
-	
 
+
+
+
+	
 
 
 	<div id="footer" >

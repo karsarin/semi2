@@ -17,11 +17,16 @@
 <meta charset="UTF-8">
 <title>QuestionListView</title>
 <script type ="text/javascript">
-	function showWriteQuestion(){
+	function insertPage(){
 		location.href = "views/question/questionWriteForm.jsp";		
+		return false;
 	}
 	
 </script>
+
+<!-- 카테고리  -->
+
+
 
 
 <%-- 헤더바 --%>
@@ -38,11 +43,11 @@
 
 <%-- 헤더바 끝 --%>
 
-<%-- 세로목록 --%>
 <style>
 ul#navi {
 	width: 200px;
 	text-indent: 10px;
+	background-color: lightgray;
 }
 
 ul#navi, ul#navi ul {
@@ -58,7 +63,7 @@ li.group {
 li.group div.title {
 	height: 35px;
 	line-height: 35px;
-	background: lightgray;
+	background: lightblue;
 	cursor: pointer;
 }
 
@@ -79,187 +84,155 @@ ul.sub li a {
 }
 
 ul.sub li:hover {
-	background: gray;
+	background: lightblue;
 }
 </style>
+
+
+
 <!-- 세로목록 끝 -->
 
-
-
-<!-- 테이블 -->
 <style>
-table.type10 {
-    border-collapse: collapse;
-    text-align: left;
-    line-height: 1.5;
-    border-top: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-  
+
+#table{
+width:60%
 }
-table.type10 thead th {
-    width: 150px;
-    padding: 10px;
-    font-weight: bold;
-    vertical-align: top;
-    color: #fff;
-    background: #e7708d;
-    margin: 20px 10px;
+#table #no{
+width:6%
 }
-table.type10 tbody th {
-    width: 150px;
-    padding: 10px;
+#table #title{
+width:50%
 }
-table.type10 td {
-    width: 350px;
-    padding: 10px;
-    vertical-align: top;
+#table #writer{
+width:10%
 }
-table.type10 .even {
-    background: #fdf3f5;
+#table #date{
+width:15%
 }
+#table #file{
+width:12%
+}
+#table #readCount{
+width:7%
+}
+#firstTr{
+background-color:lightblue;
+}
+
 
 </style>
+
+
 
 
 
 </head>
+
 <body>
 
+	<%@ include file="../../header.jsp"%>
 
-<%@ include file="../../header.jsp"  %>
+	<%if(member.getMemberId().equals("admin")) { %>
+      <%@ include file="../manager/managerHeader.jsp" %>
+   <% } else { %>
+      <%@ include file="../../headerbar.jsp" %>
+   <% } %>
+   
+   
+	<%@ include file="../../rightList.jsp"%>
+	
 
-	<!-- 반복 -->
-	<div class="main-header">
-		<div class="container">
-			<div id="menu-wrapper">
-				<div class="row">
-					<div class="logo-wrapper col-md-2 col-sm-2">
-						
-					</div>
-					<!-- /.logo-wrapper -->
-					<div class="col-md-10 col-sm-10 main-menu text-right">
-						<div class="toggle-menu visible-sm visible-xs">
-							<i class="fa fa-bars"></i>
-						</div>
-						<ul class="menu-first">
-							<li>
-								<form action="/semi/tsearch" method="post">
-									<input type="search" name="keyword" autocomplete> <input
-										type="submit" value="제목검색">
-								</form>
-							</li>
-							<li class="active"><a href="/semi/index.jsp">Home</a></li>
-							<li><a href="#">카테고리</a></li>
-							<li><a href="/semi/nlist">게시판</a></li>
-							<li><a href="#">마이페이지</a></li>
-						</ul>
-					</div>
-					<!-- /.main-menu -->
-				</div>
-				<!-- /.row -->
-			</div>
-			<!-- /#menu-wrapper -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /.main-header -->
-	</div>
-	<!-- /.site-header -->
-
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-
-	<div style="width: 300px; height: 500px; float: left;">
+	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
-					<li><a href="#">자유 게시판</a></li>
-					<li><a href="#">후기 게시판</a></li>
+					<li><a href="/semi/flist">자유 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
 
 				</ul>
 			</li>
 		</ul>
 	</div>
-
 	<!-- 반복 끝 -->
 	
-	
-</div>
 
 
 
 
-
-<h2 align="left">QA 게시판</h2>
-
-<div align="center">
-	<form action="/semi/qsearch" method="post">
-		<input type="search" autocomlete name="keyword" length="50">&nbsp;
-		<input type="submit" value="제목검색"> 
-	</form>
-</div>
+<table class="table table-hover" id="table">
 
 
-<br>
-<table align="center" border="1" cellspacing="0" width="700">
+		<tr id="firstTr">
+			<th id="no">번호</th>
+			<th id="titlie">제목</th>
+			<th id="writer">작성자</th>
+			<th id="date">날짜</th>
+			<th id="file">첨부파일</th>
+			<th id="readCount">조회수</th>
+		</tr>
 
-<tbody>
-<tr bgcolor="gray"><th>번호</th><th>제목</th><th>작성자</th><th>날짜</th><th>조회수</th>
-   <th>첨부파일</th></tr>
+
+
 <%
 	for(Question q : list){
 %>
+
+
+
 <tr>
-	<td align="center"><%= q.getQuestionNum() %></td>
+	<td><%= q.getQuestionNum() %></td>
 	<td>
 	<%-- 답글일 때는 들여쓰기하면서 앞에 ▶ 표시함 --%>
 		<% if(q.getQuestionLevel() == 1){  //원글의 댓글일 때 %>
-		&nbsp; &nbsp; ▶
+		&nbsp; &nbsp; ┕>
 		<% }else if(q.getQuestionLevel() == 2){  //댓글의 댓글일 때 %>
-		&nbsp; &nbsp; &nbsp; &nbsp; ▶▶
+		&nbsp; &nbsp; &nbsp; &nbsp; ┕>
 		<% } %>
 	<%-- 로그인한 경우 상세보기 가능하게 처리함 --%>
 		<% if(member != null){ %>
-			<a href="/semi/qdetail?qnum=<%= q.getQuestionNum() %>&page=<%= currentPage %>">
+			<a href="/semi/qdetail?no=<%= q.getQuestionNum() %>&page=<%= currentPage %>">
 			<%= q.getQuestionTitle() %>
 			</a>
 		<% }else{ %>
 			<%= q.getQuestionTitle() %>
 		<% } %>
 	</td>
-	<td align="center"><%= q.getQuestionWriter() %></td>
-	<td align="center"><%= q.getQuestionDate() %></td>
-	<td align="center"><%= q.getQuestionReadCount() %></td>
-	<td align="center">
+	<td ><%= q.getQuestionWriter() %></td>
+	<td ><%= q.getQuestionDate() %></td>
+	<td >
 		<% if(q.getQuestionOriginalFileName() != null){ %>
-			◎
+			O
 		<% }else{ %>
-			&nbsp;
+			X
 		<% } %>
 	</td>
+	
+	<td ><%= q.getQuestionReadCount() %></td>
 </tr>
 <%  } %>
 
-</tbody>
+
 </table>
 
+
+	
+	<!-- 검색 -->
+<div align="center">
+	<form action="/semi/qsearch" method="post">
+		<input type="search" autocomlete name="keyword" length="50">&nbsp;
+		<input type="submit" value="제목검색"> 
+		
+		<!-- 글쓰기 -->
+	<% if(member!= null){ %>
+			<button onclick="return insertPage()" >글쓰기</button>	
+	<%} %>
+	</form>
 </div>
 
-<br>
+
 <%-- 페이지 번호 처리 --%>
 <div align="center">
 <%-- 이전 페이지 있을 경우에 대한 처리 --%>
@@ -287,14 +260,27 @@ table.type10 .even {
 
 
 
-<% if(member!= null){ %>
-	<div>
-		<button onclick="showWriteQuestion()" >글쓰기</button>
+
+
+
+<div id="footer" style="clear: both;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-xs-12 text-left">
+					<span>Copyright &copy; 2014 Company Name</span>
+				</div>
+				<!-- /.text-center -->
+				<div class="col-md-4 hidden-xs text-right">
+					<a href="#top" id="go-top">Back to top</a>
+				</div>
+				<!-- /.text-center -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
 	</div>
-	<%} %>
-	
-	
-<br><br><br>
+	<!-- /#footer -->
+
 
 </body>
 </html>
