@@ -42,7 +42,7 @@ public class NoticeUpdateViewServlet extends HttpServlet {
 		
 		RequestDispatcher view = null;
 		if(notice != null){
-			view = request.getRequestDispatcher("views/notice/noticeUpdate.jsp");
+			view = request.getRequestDispatcher("views/notice/noticeUpdateView.jsp");
 			request.setAttribute("notice", notice);
 			view.forward(request, response);
 		}else{

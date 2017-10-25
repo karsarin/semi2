@@ -37,22 +37,22 @@ public class QuestionReplyServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		int currentPage = Integer.parseInt(request.getParameter("page"));
-		int qnum = Integer.parseInt(request.getParameter("qnum"));
-		String qtitle = request.getParameter("qtitle");
-		String qwriter = request.getParameter("qwriter");
-		String qcontent = request.getParameter("qcontent");
+		int no = Integer.parseInt(request.getParameter("no"));
+		String title = request.getParameter("title");
+		String writer = request.getParameter("writer");
+		String content = request.getParameter("content");
 		
 		
 		QuestionService bservice = new QuestionService();
 		
 		//원글 조회
-		Question originQuestion = bservice.selectQuestion(qnum);
+		Question originQuestion = bservice.selectQuestion(no);
 		
 		//댓글 객체 생성, 값 기록
 		Question replyQuestion = new Question();
-		replyQuestion.setQuestionContent(qcontent);
-		replyQuestion.setQuestionTitle(qtitle);
-		replyQuestion.setQuestionWriter(qwriter);
+		replyQuestion.setQuestionContent(content);
+		replyQuestion.setQuestionTitle(title);
+		replyQuestion.setQuestionWriter(writer);
 		replyQuestion.setQuestionLevel(originQuestion.getQuestionLevel() + 1); //원본 글의 다음 level이 되어야 원본글의 댓글 번호임
 		replyQuestion.setQuestionRef(originQuestion.getQuestionRef()); //참조번호는 어떤글의 댓글인지 알려주니까 원글번호 그대로 적으면됌
 		if(replyQuestion.getQuestionLevel() == 2 ) { //댓글의 댓글이면

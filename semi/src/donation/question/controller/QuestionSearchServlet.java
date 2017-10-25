@@ -66,7 +66,7 @@ public class QuestionSearchServlet extends HttpServlet {
 		
 		int currentPage = 1;
 		//한 페이지에 출력할 페이지 갯수 지정
-		int limit = 4;
+		int limit = 10;
 		
 		//페이지 숫자가 전송이 왔을 경우
 		if(request.getParameter("page") != null)

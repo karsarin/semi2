@@ -66,9 +66,9 @@ public class QuestionInsertServlet extends HttpServlet {
 		MultipartRequest mrequest = new MultipartRequest(request, savePath,
 				maxSize, "UTF-8", new DefaultFileRenamePolicy());
 		
-		String qtitle = mrequest.getParameter("qtitle");
-		String qwriter = mrequest.getParameter("qwriter");
-		String qcontent = mrequest.getParameter("qcontent");
+		String title = mrequest.getParameter("title");
+		String writer = mrequest.getParameter("writer");
+		String content = mrequest.getParameter("content");
 		
 		String originalFileName = mrequest.getFilesystemName("upfile");
 		
@@ -105,9 +105,9 @@ public class QuestionInsertServlet extends HttpServlet {
 				fout.close();
 				originalFile.delete();
 			}
-			b = new Question(qtitle, qwriter, qcontent, originalFileName, renameFileName);
+			b = new Question(title, writer, content, originalFileName, renameFileName);
 		}else  //첨부 파일이 없을 때
-			b = new Question(qtitle, qwriter, qcontent, null, null);
+			b = new Question(title, writer, content, null, null);
 		
 		//처리결과에 따라 뷰 지정함
 		if(new QuestionService().insertQuestion(b) > 0){

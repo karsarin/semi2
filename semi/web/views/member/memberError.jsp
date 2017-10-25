@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <% String errorMessage = (String)request.getAttribute("message"); %> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,6 @@
 <title>ERROR</title>
 </head>
 <body>
-<h2>error</h2>
+<h2>error: <%= errorMessage %></h2>
 </body>
 </html>

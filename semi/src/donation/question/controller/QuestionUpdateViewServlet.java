@@ -35,10 +35,10 @@ public class QuestionUpdateViewServlet extends HttpServlet {
 		// 게시글 수정페이지 출력 처리용 컨트롤러
 		response.setContentType("text/html; charset=utf-8");
 		
-		int qnum = Integer.parseInt(request.getParameter("qnum"));
+		int no = Integer.parseInt(request.getParameter("no"));
 		int currentPage = Integer.parseInt(request.getParameter("page"));
 		
-		Question question = new QuestionService().selectQuestion(qnum);
+		Question question = new QuestionService().selectQuestion(no);
 		
 		RequestDispatcher view = null;
 		if(question != null){

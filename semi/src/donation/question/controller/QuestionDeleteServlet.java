@@ -33,9 +33,9 @@ public class QuestionDeleteServlet extends HttpServlet {
 		// 게시글 삭제 처리용 컨트롤러
 		response.setContentType("text/html; charset=utf-8");
 		
-		int bnum = Integer.parseInt(request.getParameter("qnum"));
+		int no = Integer.parseInt(request.getParameter("no"));
 		
-		if(new QuestionService().deleteQuestion(bnum) >0){
+		if(new QuestionService().deleteQuestion(no) >0){
 			response.sendRedirect("/semi/qlist?page=1");
 		}else{
 			RequestDispatcher view = request.getRequestDispatcher("views/question/questionError.jsp");
