@@ -85,41 +85,21 @@ ul.sub li:hover {
 
 
 
-<!-- 테이블 -->
 <style>
-
-
-table.type10{
-	width : 1200px;
-	border-collapse: collapse;
-	text-align: left;
-	line-height: 1.5;
-	border : 1px solid black;
+#writetable{
+	width:800px;
+}
+#title{
+	width:65px;
 }
 
-table.type10 th{
-background-color : lightblue;
+#textarea textarea{
+height:200px;
 }
 
-table.type10 tr{
-
-	border-bottom : 1px solid;
-	height:30px;
-}
-td.firstTd{
-	width:100px;
-		
-}
-table.type10 textarea{
-width:1200px;
-height:300px;
-}
-input#input{
-width:1100px
-
-}
 
 </style>
+<!-- 세로목록 끝 -->
 
 
 
@@ -162,20 +142,45 @@ width:1100px
 <div style="float:left;">
 
 
-
-	<form action="/semi/finsert" method="post" enctype="multipart/form-data">
-	<table class="type10">
-	<thead><th colspan="2">자유게시판 글쓰기</th></thead>
-		
-	<tbody>
-	<tr><td class="firstTd">제목</td> <td><input type="text" name="title" id="input"></td>	</tr>
-	<tr><td class="firstTd">작성자</td> <td><input type="text" name="writer" id="input" value="<%=member.getMemberId() %>" readonly></td></tr>
-	<tr><td class="firstTd">첨부파일</td> <td><input type="file" name="file"></td></tr>
-	<tr><td colspan="2"><textarea name="content" class="contentbox"></textarea></td></tr>
-	<tr><td colspan="2" align="right"><input type="submit" value="등록하기">&nbsp; <input type="reset" value="취소하기"></td></tr>
-	</tbody>
+	
+		<form action="/semi/finsert" method="post" enctype="multipart/form-data">
+	<table id="writetable">
+	<th colspan="2">자유게시판 쓰기</th>
+	
+	<tr>
+	<td id="category">분류</td>
+	<td>	
+	<select class="form-control">
+ 	 	<option>자유</option>
+  		<option>후기</option>
+	</select>
+	</td>
+	</tr>
+	
+	<tr><td id="title">제목</td> <td><input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="제목을 입력하세요"></td>	</tr>
+	<tr><td>작성자</td> <td><input type="text" name="writer" class="form-control" id="exampleInputEmail1" value="<%=member.getMemberId() %>" readonly></td></tr>
+	<tr><td>첨부파일</td> <td><input type="file" name="file" id="exampleInputFile"></td></tr>
+	<tr><td colspan="2" id="textarea"><textarea rows="5" cols="50" name="content"  class="form-control" placeholder="내용을 입력하세요"></textarea></td></tr>
+	<tr><td colspan="2" align="right"><input type="submit" value="등록하기" class="btn btn-default">&nbsp; <input type="reset" value="취소하기" class="btn btn-default"></td></tr>
 	</table>
 	</form>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	<br>
 	<div align="right">

@@ -87,40 +87,40 @@ ul.sub li:hover {
 	background: lightblue;
 }
 </style>
+
+
+
 <!-- 세로목록 끝 -->
 
 <style>
-table.type10 {
-	width :  70%;
-	border-collapse: collapse;
-	text-align: left;
-	line-height: 1.5;
-	border-top: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+
+#table{
+width:60%
+}
+#table #no{
+width:6%
+}
+#table #title{
+width:50%
+}
+#table #writer{
+width:10%
+}
+#table #date{
+width:15%
+}
+#table #file{
+width:12%
+}
+#table #readCount{
+width:7%
+}
+#firstTr{
+background-color:lightblue;
 }
 
-table.type10 thead th {
-	width: 150px;
-	padding: 10px;
-	font-weight: bold;
-	vertical-align: top;
-	color: #fff;
-	background: lightblue;
-	margin: 20px 10px;
-}
-
-table.type10 thead th.titleTh{
-	width:60%;
-}
-
-
-table.type10 tbody td {
-	width: 150px;
-	padding: 10px;
-}
 
 </style>
-
 
 
 
@@ -162,24 +162,25 @@ table.type10 tbody td {
 
 
 
+<table class="table table-hover" id="table">
 
 
-<table class="type10">
+		<tr id="firstTr">
+			<th id="no">번호</th>
+			<th id="titlie">제목</th>
+			<th id="writer">작성자</th>
+			<th id="date">날짜</th>
+			<th id="file">첨부파일</th>
+			<th id="readCount">조회수</th>
+		</tr>
 
-<thead>
-	<tr><th>번호</th><th class="titleTh">제목</th><th>작성자</th><th>날짜</th><th>첨부파일</th><th>조회수</th></tr>
-</thead>
 
-
-<tbody>
 
 <%
 	for(Question q : list){
 %>
 
-<!--  
-└┗┗┖┕
--->
+
 
 <tr>
 	<td><%= q.getQuestionNum() %></td>
@@ -213,7 +214,7 @@ table.type10 tbody td {
 </tr>
 <%  } %>
 
-</tbody>
+
 </table>
 
 

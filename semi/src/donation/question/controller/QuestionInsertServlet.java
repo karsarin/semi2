@@ -58,7 +58,7 @@ public class QuestionInsertServlet extends HttpServlet {
 		//해당 컨테이너에서 구동중인 웹 애플리케이션의 루트 경로 알아냄
 		String root = request.getSession().getServletContext().getRealPath("/");
 		//업로드되는 파일이 저장될 폴더명과 루트 경로 연결 처리
-		String savePath = root + "quploadfiles";
+		String savePath = root  + "uploadfiles/" + "quploadfiles";
 		//web/buploadfiles 로 지정됨
 		
 		//request 를 MultipartRequest 객체로 변환함
@@ -74,7 +74,7 @@ public class QuestionInsertServlet extends HttpServlet {
 		
 		
 		
-		Question b = null;
+		Question q = null;
 		if(originalFileName != null){
 			//업로드된 파일이 있을 경우, 파일명을 "년월일시분초.확장자"로 변경함
 			SimpleDateFormat sdf = 
@@ -105,12 +105,12 @@ public class QuestionInsertServlet extends HttpServlet {
 				fout.close();
 				originalFile.delete();
 			}
-			b = new Question(title, writer, content, originalFileName, renameFileName);
+			q = new Question(title, writer, content, originalFileName, renameFileName);
 		}else  //첨부 파일이 없을 때
-			b = new Question(title, writer, content, null, null);
+			q = new Question(title, writer, content, null, null);
 		
 		//처리결과에 따라 뷰 지정함
-		if(new QuestionService().insertQuestion(b) > 0){
+		if(new QuestionService().insertQuestion(q) > 0){
 			response.sendRedirect("/semi/qlist?page=1");
 		}else{
 			view = request.getRequestDispatcher("views/question/questionError.jsp");

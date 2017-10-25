@@ -77,39 +77,35 @@ ul.sub li:hover {
 <!-- 세로목록 끝 -->
 
 
-
 <!-- 테이블 -->
 <style>
-
-table.type10{
-	border : 1px solid #ccc;
-}
-table.type10{
-	width : 70%;
-}
-table tr.firstTr{
-	height:40px;
-	background-color: lightblue;
-}
-table td.firstTd{
-	width:600px;
-	padding-top : 10px;
+#detailview{
+	width:60%;
 }
 
-
-
-table.type10 tr{
-	border-bottom : 1px solid #ccc;
-
+#textBox{
+	height:200px;
 }
 
-table.type10 td{
-	border-right : 1px solid #ccc;
+#title{
+
+width:40%;
 }
-tr.content {
-	height:300px;
+#readCount{
+width:8%;
 }
+#date{
+width:15%;
+}
+#writer{
+width:13%;
+}
+#file{
+width:20%;
+}
+
 </style>
+
 
 
 

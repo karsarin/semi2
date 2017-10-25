@@ -37,7 +37,7 @@ public class QuestionFileDownServlet extends HttpServlet {
 		String renameFileName = request.getParameter("rfile");
 		
 		//프로젝트 내에 파일이 저장된 폴더의 경로 정보 얻어옴
-		String savePath = request.getSession().getServletContext().getRealPath("/quploadfiles");
+		String savePath = request.getSession().getServletContext().getRealPath("/uploadfiles/quploadfiles");
 		
 		//클라이언트로 내보낼 출력 스트림 생성
 		ServletOutputStream downOut = response.getOutputStream();
