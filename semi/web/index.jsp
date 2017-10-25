@@ -26,7 +26,7 @@
         function goBoardPage() { location.href="/semi/nlist"; }
         function goChatPage() { location.href="views/chatting/chat.html"; }
         function goCategoryPage(){location.href="/semi/clist"}
-        function insertCategory() {location.href="/semi/cinsert"}
+        function insertCategory() {location.href="/semi/views/category/categoryInsertView.jsp"}
         
        
         </script>
