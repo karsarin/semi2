@@ -26,6 +26,8 @@
         function goBoardPage() { location.href="/semi/nlist"; }
         function goChatPage() { location.href="views/chatting/chat.html"; }
         function goCategoryPage(){location.href="/semi/clist"}
+        function insertCategory() {location.href="/semi/cinsert"}
+        
        
         </script>
 
@@ -79,13 +81,8 @@
                                         <li><a href="javascript:goCategoryPage()">카테고리</a></li>
 
                                         <li><a href="javascript:goBoardPage()">게시판</a></li>
-                                        
-                                                                    
-                                        
-
-                        
-                                        
-										                            
+                                        <li><a href="javascript:insertCategory()">재능 등록</a></li>
+                      
                                     </ul>                                    
                                 </div> <!-- /.main-menu -->
                             </div> <!-- /.row -->
