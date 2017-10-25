@@ -87,7 +87,7 @@ ul.sub li:hover {
 
 <style>
 #writetable{
-	width:800px;
+	width:69%;
 }
 #title{
 	width:65px;
@@ -139,11 +139,9 @@ height:200px;
 	
 
 
-<div style="float:left;">
-
 
 	
-		<form action="/semi/finsert" method="post" enctype="multipart/form-data">
+	<form action="/semi/finsert" method="post" enctype="multipart/form-data">
 	<table id="writetable">
 	<th colspan="2">자유게시판 쓰기</th>
 	
@@ -167,29 +165,13 @@ height:200px;
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	<br>
-	<div align="right">
+	<div align="center">
 	<a href="/semi/flist">목록으로 이동</a>
     </div>
-    <br>
-<br>
-</div>
 
+
+	
 
 
 	<div id="footer" style="clear:both;">

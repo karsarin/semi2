@@ -79,7 +79,7 @@ ul.sub li:hover {
 <!-- 테이블 -->
 <style>
 #detailview{
-	width:60%;
+	width:69%;
 }
 
 #textBox{
@@ -169,7 +169,7 @@ width:20%;
 		<%= q.getQuestionContent() %></td>
 </tr>
 
-<tr><td colspan="5" align="center">
+<tr><td colspan="5" align="right">
 <%  if(member != null){ %>
 	<%--쿼리스트링에는 반드시 공백 사용하면 안됨 다 붙여서 써야됨 꼭 --%>
 	<a href="/semi/views/question/questionReplyForm.jsp?no=<%= q.getQuestionNum() %>&page=<%= currentPage %>">[댓글달기]</a>
@@ -178,16 +178,39 @@ width:20%;
 	&nbsp;
 	<a href="/semi/qdelete?no=<%= q.getQuestionNum() %>">[삭제]</a>
 <%  }} %>
-&nbsp; 
-<a href="/semi/qlist?page=<%= currentPage %>">[목록]</a>
 </td></tr>
 </table>
 
 
 
+	<br>
+	<div align="center">
+	<a href="/semi/qlist?page=<%=currentPage %>">목록으로 이동</a>
+    </div>
 
-<br>
-<hr>
+
+
+	
+	<div id="footer" style="clear: both;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-xs-12 text-left">
+					<span>Copyright &copy; 2014 Company Name</span>
+				</div>
+				<!-- /.text-center -->
+				<div class="col-md-4 hidden-xs text-right">
+					<a href="#top" id="go-top">Back to top</a>
+				</div>
+				<!-- /.text-center -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /#footer -->
+
+
+
 
 </body>
 </html>

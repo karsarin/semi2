@@ -70,7 +70,7 @@ public class QuestionInsertServlet extends HttpServlet {
 		String writer = mrequest.getParameter("writer");
 		String content = mrequest.getParameter("content");
 		
-		String originalFileName = mrequest.getFilesystemName("upfile");
+		String originalFileName = mrequest.getFilesystemName("file");
 		
 		
 		

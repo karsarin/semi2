@@ -97,7 +97,7 @@ ul.sub li:hover {
 <style>
 
 #table{
-width:60%
+width:69%
 }
 #table #no{
 width:6%
@@ -213,7 +213,7 @@ background-color:lightblue;
 
 	
 	
-		<div align="center">
+		<div align="right">
 			<form action="/semi/fsearch" method="post">
 				<input type="search" autocomlete name="keyword" length="50">&nbsp;
 				<input type="submit" value="제목검색">
@@ -270,10 +270,7 @@ background-color:lightblue;
 	
 			
 
-
-
 	
-
 	<div id="footer" style="clear: both;">
 		<div class="container">
 			<div class="row">
@@ -291,6 +288,7 @@ background-color:lightblue;
 		<!-- /.container -->
 	</div>
 	<!-- /#footer -->
+
 
 </body>
 </html>

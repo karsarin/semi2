@@ -83,7 +83,7 @@ ul.sub li:hover {
 <!-- 테이블 -->
 <style>
 #detailview{
-	width:60%;
+	width:69%;
 }
 
 #textBox{
@@ -163,7 +163,7 @@ width:20%;
 		<a href="/semi/ndel?no=<%=notice.getNoticeNo()%>">삭제하기</a>
 	</td></tr>
 	<%}else{ %>
-	
+	<tr><td></td></tr>
 	<%} %>
 </table>
 
@@ -171,10 +171,30 @@ width:20%;
 
 <div align ="center">
 	<a href="/semi/nlist">목록보기로 이동</a>
-
 </div>
-<br><br>
-<hr>
+
+
+
+	
+	<div id="footer" style="clear: both;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-xs-12 text-left">
+					<span>Copyright &copy; 2014 Company Name</span>
+				</div>
+				<!-- /.text-center -->
+				<div class="col-md-4 hidden-xs text-right">
+					<a href="#top" id="go-top">Back to top</a>
+				</div>
+				<!-- /.text-center -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /#footer -->
+
+
 
 
 
