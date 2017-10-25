@@ -213,7 +213,7 @@ $(document).ready(function() {
 	<!-- /.site-header -->
 
 	<%@ include file="../../headerbar.jsp" %>
-
+<%} %>
 	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
 		<ul id="navi">
@@ -232,9 +232,6 @@ $(document).ready(function() {
 			</li>
 
 		</ul>
-
-
-
 	</div>
 
 	<!-- 반복 끝 -->
