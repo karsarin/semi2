@@ -258,7 +258,8 @@ $(document).ready(function() {
 				</a>
 				</div>
 				<strong><%=c.getCategoryTitle() %></strong>
-				<p>by <%=c.getUserId() %> &nbsp; &nbsp; <%=c.getCategoryDonation() %>원</p>
+				<p>by <%=c.getUserId() %> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+				<%=c.getCategoryDonation() %>원</p>
 				<p>★★★★ 후기 5건</p>
 				
 				<!-- div class="meta">by j osborn</div> -->
