@@ -1,4 +1,3 @@
-
 DROP TABLE CATEGORY_BOARD CASCADE CONSTRAINTS;
 
 -- 카테고리 게시글 테이블
@@ -21,12 +20,19 @@ CREATE TABLE CATEGORY_BOARD(
     EMAIL VARCHAR2(30),
     ORIGINAL_IMAGE VARCHAR2(100),
     RENAME_IMAGE VARCHAR2(1000),
+    VERDICT NUMBER DEFAULT 0,
+    PURCHASE_COUNT NUMBER DEFAULT 0,
     SPECIAL CHAR(1) DEFAULT 'N',
     APPROVAL CHAR(1) DEFAULT 'N'
 );
+
 ALTER TABLE CATEGORY_BOARD
 ADD CONSTRAINT FK_CATEGORYGROUP FOREIGN KEY (CATEGORY_GROUP)
 REFERENCES CATEGORY_GROUP(GROUP_NO);
+
+ALTER TABLE CATEGORY_BOARD
+ADD CONSTRAINT FK_USERID FOREIGN KEY (USER_ID)
+REFERENCES MEMBER(USER_ID);
 
 
 COMMENT ON COLUMN CATEGORY_BOARD.CATEGORY_NO IS '카테고리게시글번호';
@@ -45,31 +51,33 @@ COMMENT ON COLUMN CATEGORY_BOARD.CATEGORY_READCOUNT IS '조회수';
 
 INSERT INTO CATEGORY_BOARD VALUES(1, 'user11', 1, 'IT 재능', 'user11', 
     'IT 재능 기부함', DEFAULT, DEFAULT, 10000, 1, 1, 0, 0, 0, 01012345678, 'user11@naver.com',
-    NULL, NULL, DEFAULT, DEFAULT);    
+    NULL, NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);    
 INSERT INTO CATEGORY_BOARD VALUES(2, 'user22', 2, '번역 재능', 'user22', 
     '번역 재능 기부함', DEFAULT, DEFAULT, 500000, 3, 1, 0, 0, 0, 01023456789, 'user22@daum.com',
-    NULL, NULL, DEFAULT, DEFAULT);    
+    NULL, NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);    
 INSERT INTO CATEGORY_BOARD VALUES(3, 'user33', 3, '건강 재능', 'user33', 
     '건강 재능 기부함', DEFAULT, DEFAULT, 7000, 2, 1, 0, 0, 0, 01034567890, 'user33@naver.com',
-    NULL, NULL, DEFAULT, DEFAULT);
+    NULL, NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
 INSERT INTO CATEGORY_BOARD VALUES(4, 'user44', 4, '디자인 재능', 'user44', 
     '디자인 재능 기부함', DEFAULT, DEFAULT, 40000, 4, 1, 0, 0, 0, 01045678901, 'user44@hotmail.com',
-    NULL, NULL, DEFAULT, DEFAULT);
+    NULL, NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
 INSERT INTO CATEGORY_BOARD VALUES(5, 'user55', 5, '마케팅 재능', 'user55', 
     '마케팅 재능 기부함', DEFAULT, DEFAULT, 20000, 6, 1, 0, 0, 0, 01056789012, 'user55@naver.com',
-    NULL, NULL, DEFAULT, DEFAULT);
+    NULL, NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
 INSERT INTO CATEGORY_BOARD VALUES(6, 'user66', 6, '음악 재능', 'user66', 
     '음악 재능 기부함', DEFAULT, DEFAULT, 610000, 6, 1, 0, 0, 0, 01067890123, 'user66@naver.com',
-    NULL, NULL, DEFAULT, DEFAULT);
+    NULL, NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
 INSERT INTO CATEGORY_BOARD VALUES(7, 'user77', 7, '노하우/상담 재능', 'user77', 
     '노하우/상담 재능 기부함', DEFAULT, DEFAULT, 70000, 1, 1, 0, 0, 0, 01089012345, 'user77@naver.com',
-    NULL, NULL, DEFAULT, DEFAULT);
+    NULL, NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
 INSERT INTO CATEGORY_BOARD VALUES(8, 'user88', 8, '번역 재능', 'user88', 
     '번역 재능 기부함', DEFAULT, DEFAULT, 80000, 8, 1, 0, 0, 0, 01078901234, 'user88@naver.com',
-    NULL, NULL, DEFAULT, DEFAULT);
+    NULL, NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
 
-    
+
 -- 카테고리 분류 테이블
+DROP TABLE CATEGORY_GROUP CASCADE CONSTRAINTS;
+
 CREATE TABLE CATEGORY_GROUP(
     GROUP_NO NUMBER NOT NULL CONSTRAINT PK_NO PRIMARY KEY,
     GROUP_NAME VARCHAR2(50)
@@ -94,7 +102,5 @@ update category_board set original_image = 'images/default_board.png' where cate
 update category_board set original_image = 'images/default_board.png' where category_no=8;
 update category_board set original_image = 'images/default_board.png' where category_no=9;
 update category_board set original_image = 'images/default_board.png' where category_no=10;
-commit;
 
-select *
-from category_board;
+commit;
