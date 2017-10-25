@@ -337,4 +337,25 @@ public class MemberDao {
 		System.out.println(result);
 		return result;
 	}
+
+	public int selectMemberNum(Connection con) {
+		Statement stmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		
+		String query = "select count(*) from member";
+		try {
+			stmt = con.createStatement();
+			rset = stmt.executeQuery(query);
+			if(rset.next()){
+				result = rset.getInt(1);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(stmt);
+		}
+		return result;
+	}
 }

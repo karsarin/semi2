@@ -1,11 +1,17 @@
 package donation.donate.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import donation.donate.model.service.DonateService;
+import donation.donate.model.vo.Donate;
+import donation.member.model.service.MemberService;
 
 /**
  * Servlet implementation class DonationSelectServlet
@@ -26,8 +32,34 @@ public class DonationSelectServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ��¥�� ��γ��� ��ȸ ��Ʈ�ѷ�
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		// 기부랭킹/기부내역조회 컨트롤러
+		request.setCharacterEncoding("utf-8");
+		response.setContentType("text/html; charset=utf-8");
+		String memberId = request.getParameter("memberid");
+		
+		int result = new DonateService().donateSelectRank(memberId);
+		int memberTotal = new MemberService().selectMemberNum();
+		int myDonation = new DonateService().myDonationTotal(memberId); 
+		RequestDispatcher view = null;
+		if(result >0&&memberTotal>0&&myDonation>=0){
+			view = request.getRequestDispatcher("views/member/myDonation.jsp");
+			request.setAttribute("result", result);
+			request.setAttribute("memberTotal", memberTotal);
+			request.setAttribute("myDonation", myDonation);
+			view.forward(request, response);
+		}else if(result ==0){
+			view = request.getRequestDispatcher("views/member/memberError.jsp");
+			request.setAttribute("message", "랭킹조회 실패!");
+			view.forward(request, response);
+		}else if(memberTotal==0){
+			view = request.getRequestDispatcher("views/member/memberError.jsp");
+			request.setAttribute("message", "전체맴버수조회 실패!");
+			view.forward(request, response);
+		}else if(myDonation==-1){
+			view = request.getRequestDispatcher("views/member/memberError.jsp");
+			request.setAttribute("message", "내 전체 기부금 조회 실패!");
+			view.forward(request, response);
+		}
 	}
 
 	/**

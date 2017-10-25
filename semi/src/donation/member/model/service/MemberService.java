@@ -81,6 +81,13 @@ public class MemberService {
 		return result;
 	}
 
+	public int selectMemberNum() {
+		Connection con = getConnection();
+		int result = new MemberDao().selectMemberNum(con);
+		close(con);
+		return result;
+	}
+
 
 
 }
