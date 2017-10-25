@@ -3,6 +3,7 @@
     
 <%@ page import="donation.member.model.vo.Member" %>
 <% Member member = (Member)request.getAttribute("member"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,12 +11,20 @@
 <title>Insert title here</title>
 </head>
 <body>
+
 	<h2 align="center"><%= member.getMemberNik() %>님 회원정보</h2>
-	<form action = mupdate" method="post">
+	<form action = "mupdate" method="post">
+		<input type="hidden" name = "memberoriginname"value="<%= member.getMemberName()%>">
+		<input type="hidden" name = "memberoriginpwd"value="<%= member.getMemberPwd()%>">
+		<input type="hidden" name = "memberoriginnik"value="<%= member.getMemberNik()%>">
+		<input type="hidden" name = "memberoriginaddress"value="<%= member.getMemberAddress()%>">
+		<input type="hidden" name = "memberoriginemail"value="<%= member.getMemberEmail()%>">
+		<input type="hidden" name = "memberoriginphone"value="<%= member.getMemberPhone()%>">
+		<input type="hidden" name = "memberid"value="<%= member.getMemberId()%>">
 		<table align="center" width="600" height="350">
 		<tr>
 			<th width = "150px">아이디</th>
-			<td width = "450px"><label name = "memberid"><%=member.getMemberId() %></label> 
+			<td width = "450px"><label><%=member.getMemberId() %></label> 
 			</td>
 		</tr>
 		<tr>

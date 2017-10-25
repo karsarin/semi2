@@ -169,7 +169,10 @@ $(document).ready(function() {
 </head>
 
 <body>
-
+<%@ include file="../../header.jsp" %>
+<%if(member.getMemberId().equals("admin")) { %>
+	<%@ include file="../manager/managerHeader.jsp" %>
+<% } else { %>
 
 	<!-- 반복 -->
 	<div class="main-header">
@@ -244,7 +247,6 @@ $(document).ready(function() {
 			<h1 style="font-size:20pt">카테고리 게시판</h1>
 			<h3>총 <%= clistCount %>개의 재능이 등록돼 있습니다.</h3>
 		<br>
-		
 		<div id="container">
 		<% for (Category c : category){ %>
 			<div class="grid">

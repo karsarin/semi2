@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>login fail</title>
+<title>ERROR</title>
 </head>
 <body>
 <h2>error</h2>
