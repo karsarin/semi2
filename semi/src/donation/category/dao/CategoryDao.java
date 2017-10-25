@@ -144,8 +144,7 @@ public class CategoryDao {
 		
 		PreparedStatement pstmt = null;
 		
-		String query = "insert into category_board values((select max(category_no) + 1 from category_board), ?, ?, ?, ?, ?, sysdate, dafault, ?, "
-				+ "?, (select max(category_no) + 1 from category_board), 0, 0, 0, ?, ?, ?, ?, default, default)";
+		String query = "insert into category_board values((select max(category_no) + 1 from category_board), ?, ?, ?, ?, ?, sysdate, dafault, ?, ?, (select max(category_no) + 1 from category_board), 0, 0, 0, ?, ?, ?, ?, default, default)";
 		
 		try {
 			pstmt = con.prepareStatement(query);
