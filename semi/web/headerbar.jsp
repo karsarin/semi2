@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="donation.member.model.vo.Member"%>
+    <%  
+    	Member member = (Member)session.getAttribute("member");
+    %>
 <!DOCTYPE html >
 <html>
 <head>
@@ -25,9 +28,9 @@
         function goBoardPage() { location.href="/semi/nlist"; }
         function goHomePage() { location.href="/semi/index.jsp"; }
         
-        function goCategoryPage(){location.href="/semi/clist"}
-       	function insertCategory(){location.href="views/category/categoryInsertView.jsp"}
-       
+        function goCategoryPage(){location.href="/semi/clist";}
+       	function insertCategory(){location.href="views/category/categoryInsertView.jsp";}
+       	function needLogin(){ alert("로그인이 필요합니다."); }
         </script>
 
 
@@ -60,7 +63,16 @@
 							<li class="active"><a href="javascript:goHomePage();">Home</a></li>
 							<li><a href="javascript:goCategoryPage();">카테고리</a></li>
 							<li><a href="javascript:goBoardPage();">게시판</a></li>
-							<li><a href="javascript:insertCategory();">재능 등록</a></li>
+							<li>
+							<% if(member != null){ %>
+								<a href="javascript:insertCategory();">재능 등록</a>
+							<% } else { %>
+								<a href="javascript:needLogin();">재능 등록</a>
+								
+							<% } %>
+							</li>
+							
+							
 							
 						</ul>
 					</div>
