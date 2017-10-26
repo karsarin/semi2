@@ -175,14 +175,11 @@ width:20%;
 	</tr>
 
 
-	<%if(fboard.getfreeBoardWriter().equals(member.getMemberId())){ //include에서 sission값을 가지고있기 때문에 그냥 사용할 수 있다. %>
 	<tr><td colspan="5" align="right">
 		<a href="/semi/fupview?no=<%=fboard.getfreeBoardNo()%>">수정페이지로 이동</a> &nbsp; 
 		<a href="/semi/fdel?no=<%=fboard.getfreeBoardNo()%>">삭제하기</a>
 	</td></tr>
-	<%}else{ %>
 	
-	<%} %>
 	</table>
 	<!-- 게시글 -->
 
