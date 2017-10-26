@@ -120,16 +120,16 @@ public class FreeBoardService {
 		return listCount;
 	}
 
-	public int insertReplyBoard(CommentBoard rboard) {
+	public int insertReplyBoard(CommentBoard cboard) {
 		Connection con = getConnection();
-		int result = new FreeBoardDao().insertReplyBoard(con, rboard);
+		int result = new FreeBoardDao().insertReplyBoard(con, cboard);
 		close(con);
 		return result;
 	}
 
-	public ArrayList<CommentBoard> selectReplyBoardList() {
+	public ArrayList<CommentBoard> selectReplyBoardList(int boardNum) {
 		Connection con = getConnection();
-		ArrayList<CommentBoard> list = new FreeBoardDao().selectReplyList(con);
+		ArrayList<CommentBoard> list = new FreeBoardDao().selectReplyList(con, boardNum);
 		
 		close(con);
 		

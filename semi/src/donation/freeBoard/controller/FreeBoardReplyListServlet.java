@@ -3,31 +3,31 @@ package donation.freeBoard.controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
-import java.sql.Date;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import donation.freeBoard.model.service.FreeBoardService;
 import donation.freeBoard.model.vo.CommentBoard;
-import donation.freeBoard.model.vo.FreeBoard;
 
 /**
- * Servlet implementation class FreeBoardReplyInsertServlet
+ * Servlet implementation class FreeBoardReplyListServlet
  */
-@WebServlet("/reInsert")
-public class FreeBoardReplyInsertServlet extends HttpServlet {
+@WebServlet("/reList")
+public class FreeBoardReplyListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FreeBoardReplyInsertServlet() {
+    public FreeBoardReplyListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,25 +36,16 @@ public class FreeBoardReplyInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("application/json; charset=utf-8");  //JSON 객체로 내보낼때는 text/html 아님
 		
-		String content = request.getParameter("content");	
-		String writer = request.getParameter("writer");	
+		
 		int boardNum = Integer.parseInt(request.getParameter("boardNum"));
-
-		CommentBoard cboard = new CommentBoard(boardNum, writer, content );
 		
+		System.out.println(boardNum);
+		FreeBoardService fservice = new FreeBoardService();		
 		
-		FreeBoardService fservice = new FreeBoardService();
-		int result = fservice.insertReplyBoard(cboard);
-		
-		System.out.println("result : " + result);
-		
-		
-		ArrayList<CommentBoard> list = fservice.selectReplyBoardList(boardNum);
-		
+		ArrayList<CommentBoard> list = fservice.selectReplyBoardList(boardNum);	
 		
 		System.out.println(list);
 		

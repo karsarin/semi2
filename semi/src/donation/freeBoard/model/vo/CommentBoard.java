@@ -7,6 +7,7 @@ public class CommentBoard {
 	private int boardNum;
 	private String writer;
 	private Date date;
+	private String date2;
 	private String content;
 	
 	public CommentBoard() {}
@@ -56,8 +57,14 @@ public class CommentBoard {
 	public void setContent(String content) {
 		this.content = content;
 	}
-	
 
+	public String getDateString() {
+		return this.date2;
+	}
+	
+	public void setDateString(String date2) {
+		this.date2 = date2;
+	}
 
 
 }

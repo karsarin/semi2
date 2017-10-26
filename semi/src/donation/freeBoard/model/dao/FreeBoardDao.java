@@ -311,18 +311,18 @@ public class FreeBoardDao {
 		
 	}
 
-	public int insertReplyBoard(Connection con, CommentBoard rboard) {
+	public int insertReplyBoard(Connection con, CommentBoard cboard) {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String query ="insert into BOARD_COMMENT values ((select max(COMMENT_NUM) + 1 from BOARD_COMMENT), ?, ?, default, ?)";
+		String query ="insert into BOARD_COMMENT values ((select max(COMMENT_NUM) + 1 from BOARD_COMMENT), ?, ?, sysdate, ?)";
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, rboard.getBoardNum());
-			pstmt.setString(2, rboard.getWriter());
-			pstmt.setString(3, rboard.getContent());
+			pstmt.setInt(1, cboard.getBoardNum());
+			pstmt.setString(2, cboard.getWriter());
+			pstmt.setString(3, cboard.getContent());
 			
 			
 			result = pstmt.executeUpdate();
@@ -335,16 +335,16 @@ public class FreeBoardDao {
 		return result;
 	}
 
-	public ArrayList<CommentBoard> selectReplyList(Connection con) {
+	public ArrayList<CommentBoard> selectReplyList(Connection con, int boardNum) {
 		ArrayList<CommentBoard> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from BOARD_COMMENT	order by comment_num desc";			
+		String query = "select COMMENT_BOARD_NUM, COMMENT_NUM, COMMENT_ID, to_char(COMMENT_DATE), COMMENT_CONTENT  from BOARD_COMMENT where COMMENT_BOARD_NUM = ? order by COMMENT_NUM asc";			
 		
 		try {
 			pstmt = con.prepareStatement(query);
-			
+			pstmt.setInt(1, boardNum );
 			rset = pstmt.executeQuery();
 			
 			if(rset != null) {
@@ -352,11 +352,12 @@ public class FreeBoardDao {
 				list = new ArrayList<CommentBoard>();
 				while(rset.next()) {
 					CommentBoard rboard = new CommentBoard();
-					rboard.setBoardNum(rset.getInt("COMMENT_BOARD_NUM"));
-					rboard.setCommentNum(rset.getInt("COMMENT_NUM"));
-					rboard.setWriter(rset.getString("COMMENT_ID"));
-					rboard.setDate(rset.getDate("COMMENT_DATE"));
-					rboard.setContent(rset.getString("COMMENT_CONTENT"));
+					rboard.setBoardNum(rset.getInt(1));
+					rboard.setCommentNum(rset.getInt(2));
+					rboard.setWriter(rset.getString(3));
+					rboard.setDateString(rset.getString(4));
+					rboard.setContent(rset.getString(5));
+					
 				
 					
 					
