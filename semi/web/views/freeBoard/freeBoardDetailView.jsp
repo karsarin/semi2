@@ -10,8 +10,15 @@
 <head>
 <meta charset="UTF-8">
 <title>noticeDetailView</title>
+<style type="text/css">
+	#reply{
+		width: 300px;
+		height: 50px;
+		border: 1px solid black;
+	}
+</style>
 
-
+<script type="text/javascript" src="/semi/js/jquery-3.2.1.min.js"></script>
 
 
 <!-- 카테고리  -->
@@ -83,7 +90,7 @@ ul.sub li:hover {
 <!-- 테이블 -->
 <style>
 #detailview{
-	width:69%;
+	
 }
 
 #textBox{
@@ -107,6 +114,16 @@ width:13%;
 width:20%;
 }
 
+
+
+
+
+<!-- 댓글 -->
+#replyview{
+	width:69%;
+}
+
+
 </style>
 
 
@@ -118,12 +135,12 @@ width:20%;
 
 	<%@ include file="../../header.jsp"%>
 	<%@ include file="../../headerbar.jsp" %>
-	<%@ include file="../../rightList.jsp"%>
-	
 
-	<div
-		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
+
+<div class="row">
+  <div class="col-md-2">
+  	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
@@ -131,19 +148,19 @@ width:20%;
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
-
 				</ul>
 			</li>
 		</ul>
 	</div>
-	<!-- 반복 끝 -->
-	</div>
+</div>
+  
+  <div class="col-md-8">
 
-
-
-
-<table  class="table table-hover" id="detailview">
+	<!-- 게시글 -->
+	<table  class="table table-hover" id="detailview">
 	<tr>
+		<input type="hidden" id="writer" value="<%=fboard.getfreeBoardWriter() %>">
+		<input type="hidden" id="boardNum" value="<%=fboard.getfreeBoardNo() %>">
 		<td id="titlie"><label><%= fboard.getfreeBoardTitle() %></label></td>
 		<td id="readCount"><label>조회:<%=fboard.getReadCount() %></label></td>
 		<td id="date"><label><%=fboard.getfreeBoardDate() %></label></td>
@@ -166,20 +183,75 @@ width:20%;
 	<%}else{ %>
 	
 	<%} %>
-</table>
+	</table>
+	<!-- 게시글 -->
+
+
+
+
+	<!-- 댓글 표시될 공간 -->
+	<div>
+		<p id="reply"></p>	
+	</div>
+
+	<!-- 댓글 입력-->
+		<input type="text" class="form-control"  name="replyinput">
+		<input type="button" onclick="insertReply()" value="등록">
+			<script type="text/javascript">
+			
+			function insertReply(){
+			$.ajax({
+			url: "/semi/reInsert",
+			data: {content : $("input[name=replyinput]").val() , writer : $("#writer").val(), boardNum : $("#boardNum").val()},
+			type: "post",
+			dataType: "json", //리턴되는 결과의 자료형 명시함
+			success: function(data){
+				//console.log(data);
+					
+				var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환
+				//console.log(jsonStr);
+				var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈
+				
+				var values = $("#reply").html();	
+				
+				
+				for(var i in json.list){
+					//한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
+					values += json.list[i].commentNum + ", " + json.list[i].boardNum + ", " + 
+							decodeURIComponent(json.list[i].writer) + ", " + json.list[i].date + ", " + decodeURIComponent(json.list[i].content) + "<br>";
+				
+				}	
+
+				$("#reply").html("후");		
+			
+			},
+			error: function(data){
+				console.log("에러 발생 : " + data);
+			}
+		});
+	}
+	</script>
+			
+			
+	
+	</div>
+	
+	
+	
+  <div class="col-md-2">
+  	<%@ include file="../../rightList.jsp"%>
+	</div>
+  </div>
 
 
 
 
 	
+	<div align ="center">
+		<a href="/semi/flist">목록보기로 이동</a>
+    </div>
+
 	
-	
-<div align ="center">
-	<a href="/semi/flist">목록보기로 이동</a>
-</div>
-
-
-
 	
 	<div id="footer" style="clear: both;">
 		<div class="container">
