@@ -131,7 +131,6 @@ background-color:lightblue;
 <body>
 
 	<%@ include file="../../header.jsp"%>
-<<<<<<< HEAD
 
 	<%if(member.getMemberId().equals("admin")) { %>
       <%@ include file="../manager/managerHeader.jsp" %>
@@ -140,13 +139,6 @@ background-color:lightblue;
    <% } %>
    
    
-=======
-	<%if(member!=null && member.getMemberId().equals("admin")) { %>
-		<%@ include file="../manager/managerHeader.jsp" %>
-	<% } else { %>
-		<%@ include file="../../headerbar.jsp" %>
-	<% } %>
->>>>>>> refs/remotes/origin/yunJisun
 	<%@ include file="../../rightList.jsp"%>
 	
 

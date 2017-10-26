@@ -3,7 +3,6 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import donation.freeBoard.model.vo.CommentBoard;
 import donation.freeBoard.model.vo.FreeBoard;
 import donation.notice.model.vo.Notice;
 
@@ -309,70 +308,6 @@ public class FreeBoardDao {
 		
 		
 		
-	}
-
-	public int insertReplyBoard(Connection con, CommentBoard rboard) {
-
-		int result = 0;
-		PreparedStatement pstmt = null;
-		
-		String query ="insert into BOARD_COMMENT values ((select max(COMMENT_NUM) + 1 from BOARD_COMMENT), ?, ?, default, ?)";
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, rboard.getBoardNum());
-			pstmt.setString(2, rboard.getWriter());
-			pstmt.setString(3, rboard.getContent());
-			
-			
-			result = pstmt.executeUpdate();
-			
-		} catch (Exception e) {
-			// TODO: handle exception
-		}finally{
-			close(pstmt);
-		}			
-		return result;
-	}
-
-	public ArrayList<CommentBoard> selectReplyList(Connection con) {
-		ArrayList<CommentBoard> list = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String query = "select * from BOARD_COMMENT	order by comment_num desc";			
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			
-			rset = pstmt.executeQuery();
-			
-			if(rset != null) {
-				
-				list = new ArrayList<CommentBoard>();
-				while(rset.next()) {
-					CommentBoard rboard = new CommentBoard();
-					rboard.setBoardNum(rset.getInt("COMMENT_BOARD_NUM"));
-					rboard.setCommentNum(rset.getInt("COMMENT_NUM"));
-					rboard.setWriter(rset.getString("COMMENT_ID"));
-					rboard.setDate(rset.getDate("COMMENT_DATE"));
-					rboard.setContent(rset.getString("COMMENT_CONTENT"));
-				
-					
-					
-					list.add(rboard);
-				}
-				
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally {
-
-			close(rset);
-			close(pstmt);
-		}
-		
-		return list;
 	}
 	
 

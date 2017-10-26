@@ -144,7 +144,7 @@ public class CategoryDao {
 		
 		PreparedStatement pstmt = null;
 		
-		String query = "insert into category_board values((select max(category_no) + 1 from category_board), ?, ?, ?, ?, ?, sysdate, dafault, ?, ?, (select max(category_no) + 1 from category_board), 0, 0, 0, ?, ?, ?, ?, default, default)";
+		String query = "insert into category_board values((select max(category_no) + 1 from category_board), ?, ?, ?, ?, ?, sysdate, 0, ?, ?, (select max(category_no) + 1 from category_board), 0, 0, 0, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, 0, default, default)";
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -160,6 +160,14 @@ public class CategoryDao {
 			pstmt.setString(9, c.getEmail());
 			pstmt.setString(10, c.getOriginalImage());
 			pstmt.setString(11, c.getRenameImage());
+			pstmt.setString(12, c.getAddImage1());
+			pstmt.setString(13, c.getAddRenameImage1());
+			pstmt.setString(14, c.getAddImage2());
+			pstmt.setString(15, c.getAddRenameImage2());
+			pstmt.setString(16, c.getAddImage3());
+			pstmt.setString(17, c.getAddRenameImage3());
+			pstmt.setString(18, c.getAddImage4());
+			pstmt.setString(19, c.getAddRenameImage4());
 			
 			result = pstmt.executeUpdate();
 			

@@ -47,12 +47,4 @@ public class SuggestService {
 		return result;
 	}
 
-//	수신자 아이디 존재 여부 확인
-	public Boolean idconfirmSuggest(String suggestReciver) {
-		Connection con = getConnection();
-		Boolean suggest = new SuggestDao().idconfirmSuggest(con, suggestReciver);
-		close(con);
-		return suggest;
-	}
-
 }

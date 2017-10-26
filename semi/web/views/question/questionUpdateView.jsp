@@ -103,11 +103,7 @@ height:200px;
 <body>
 
 	<%@ include file="../../header.jsp"%>
-	<%if(member!=null && member.getMemberId().equals("admin")) { %>
-		<%@ include file="../manager/managerHeader.jsp" %>
-	<% } else { %>
-		<%@ include file="../../headerbar.jsp" %>
-	<% } %>
+	<%@ include file="../../headerbar.jsp" %>
 	<%@ include file="../../rightList.jsp"%>
 	
 

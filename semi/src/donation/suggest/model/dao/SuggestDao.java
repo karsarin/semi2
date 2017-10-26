@@ -8,7 +8,6 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import donation.member.model.vo.Member;
 import donation.suggest.model.vo.Suggest;
 
 public class SuggestDao {
@@ -115,36 +114,6 @@ public class SuggestDao {
 	public int sendSuggest(Connection con, Suggest suggest) {
 		// TODO Auto-generated method stub
 		return 0;
-	}
-
-	
-	public Boolean idconfirmSuggest(Connection con, String suggestReciver) {
-//		수신자 아이디 확인
-//		Member member = null;
-		Boolean result = false;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		
-		String query = "select * from member where member_id = ?";
-		
-		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setString(1, suggestReciver);
-			
-			rset = pstmt.executeQuery();
-			
-			if(rset != null){
-				result=true;
-			}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			close(rset);
-			close(pstmt);
-		}
-		
-		return result;
 	}
 
 }

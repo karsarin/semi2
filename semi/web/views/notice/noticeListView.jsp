@@ -20,7 +20,7 @@
  
  
 <script type="text/javascript">
-	function insertPage() {w
+	function insertPage() {
 		location.href = "views/notice/noticeWriteForm.jsp";
 		return false;
 	}
@@ -76,6 +76,7 @@ ul.sub li:hover {
 
 <style>
 #table{
+width:69%
 }
 #table #no{
 width:6%
@@ -114,24 +115,10 @@ background-color:lightblue;
 <body>
 
 	<%@ include file="../../header.jsp"%>
-<<<<<<< HEAD
 	<%@ include file="../../headerbar.jsp" %>
-=======
-	<%if(member!=null && member.getMemberId().equals("admin")) { %>
-		<%@ include file="../manager/managerHeader.jsp" %>
-	<% } else { %>
-		<%@ include file="../../headerbar.jsp" %>
-	<% } %>
-	<%@ include file="../../rightList.jsp"%>
-	
->>>>>>> refs/remotes/origin/yunJisun
+	<%@ include file="../../rightList.jsp" %>
 
-
-	
-	
-<div class="row">
-  <div class="col-md-2">
-  	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">
+	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
@@ -139,13 +126,14 @@ background-color:lightblue;
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
+
 				</ul>
 			</li>
 		</ul>
 	</div>
-</div>
-  
-  <div class="col-md-8">
+	<!-- 반복 끝 -->
+	
+
 
 	<!--  게시판 -->
 			<table class="table table-hover" id="table">		
@@ -165,13 +153,9 @@ background-color:lightblue;
 
 					<tr>
 						<td><%=notice.getNoticeNo()%></td>
-						<td>
-						<%if(member!=null) { %>
-							<a href="/semi/ndetail?no=<%=notice.getNoticeNo()%>"><%=notice.getNoticeTitle()%></a>
-						<% } else {%>
-							<%=notice.getNoticeTitle()%>
-						<% } %>
-						</td>
+						<td><a href="/semi/ndetail?no=<%=notice.getNoticeNo()%>">
+								<%=notice.getNoticeTitle()%>
+						</a></td>
 						<td><%=notice.getNoticeWriter()%></td>
 						<td><%=notice.getNoticeDate()%></td>
 						<td>
@@ -253,29 +237,9 @@ background-color:lightblue;
 				}
 			%>
 		</div>
-<<<<<<< HEAD
-		
-		
+				
 
-  </div>
-	
-	
-  <div class="col-md-2">
-  	<%@ include file="../../rightList.jsp"%>
-	</div>
-  </div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	<div id="footer" style="clear: both;">
 		<div class="container">
@@ -301,54 +265,3 @@ background-color:lightblue;
 
 </body>
 </html>			
-=======
-				
-		<!--  검색 -->
-		<div align="center">
-			<form action="/semi/nsearch" method="post">
-				<input type="search" autocomlete name="keyword" length="50">&nbsp;
-				<input type="submit" value="제목검색">
-			</form>
-			
-			
-		<!--  글쓰기 -->
-	<% if(member!= null && member.getMemberId().equals("admin")){ %>		
-			<button onclick="javascript:insertPage();">글쓰기</button>
-	<%} %>
-	
-		</div>
-		
-		
-
-		
-		
-	
-	
-
-
-	
-	<div id="footer" style="clear: both;">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-xs-12 text-left">
-					<span>Copyright &copy; 2014 Company Name</span>
-				</div>
-				<!-- /.text-center -->
-				<div class="col-md-4 hidden-xs text-right">
-					<a href="#top" id="go-top">Back to top</a>
-				</div>
-				<!-- /.text-center -->
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /#footer -->
-
-
-
-
-
-</body>
-</html>
->>>>>>> refs/remotes/origin/yunJisun

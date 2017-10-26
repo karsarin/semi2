@@ -106,7 +106,7 @@ public class QuestionDao {
 				+ "(select max(Question_num) + 1 from Question), "
 				+ "?, ?, ?, ?, ?, sysdate, default, 0, "
 				+ "(select max(Question_num) + 1 from Question), NULL, "
-				+ "default, default)";
+				+ "default)";
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -155,7 +155,7 @@ public class QuestionDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select * from question where question_num = ?";
+		String query = "select * from Question where Question_num = ?";
 		
 		try {
 			pstmt = con.prepareStatement(query);
@@ -166,18 +166,18 @@ public class QuestionDao {
 			
 			if(rset.next()){
 				q = new Question();
-				q.setQuestionNum(rset.getInt("question_num"));
-				q.setQuestionTitle(rset.getString("question_title"));
-				q.setQuestionWriter(rset.getString("question_writer"));
-				q.setQuestionContent(rset.getString("question_content"));
-				q.setQuestionDate(rset.getDate("question_date"));
-				q.setQuestionReadCount(rset.getInt("question_readcount"));
-				q.setQuestionOriginalFileName(rset.getString("question_original_filename"));
-				q.setQuestionRenameFileName(rset.getString("question_rename_filename"));
-				q.setQuestionLevel(rset.getInt("question_level"));
-				q.setQuestionRef(rset.getInt("question_ref"));
-				q.setQuestionReplyRef(rset.getInt("question_reply_ref"));
-				q.setQuestionReplySeq(rset.getInt("question_reply_seq"));
+				q.setQuestionNum(rset.getInt("Question_num"));
+				q.setQuestionTitle(rset.getString("Question_title"));
+				q.setQuestionWriter(rset.getString("Question_writer"));
+				q.setQuestionContent(rset.getString("Question_content"));
+				q.setQuestionDate(rset.getDate("Question_date"));
+				q.setQuestionReadCount(rset.getInt("Question_readcount"));
+				q.setQuestionOriginalFileName(rset.getString("Question_original_filename"));
+				q.setQuestionRenameFileName(rset.getString("Question_rename_filename"));
+				q.setQuestionLevel(rset.getInt("Question_level"));
+				q.setQuestionRef(rset.getInt("Question_ref"));
+				q.setQuestionReplyRef(rset.getInt("Question_reply_ref"));
+				q.setQuestionReplySeq(rset.getInt("Question_reply_seq"));
 			}
 			
 		} catch (Exception e) {
@@ -218,9 +218,7 @@ public class QuestionDao {
 		int result = 0 ;
 		PreparedStatement pstmt = null;
 				
-		String query = "update Question "
-					 + "set Question_reply_seq = Question_reply_seq + 1 "
-					 + "where Question_ref = ? and Question_level = ? and Question_reply_ref = ?";
+		String query = "update Question set Question_reply_seq = Question_reply_seq + 1 where Question_ref = ? and Question_level = ? and Question_reply_ref = ?";
 		
 		try {
 		pstmt = con.prepareStatement(query);
@@ -249,18 +247,20 @@ public class QuestionDao {
 		String query = null;
 		
 		//원글의 댓글일 때
-		if(replyQuestion.getQuestionLevel()==1){
+		if(replyQuestion.getQuestionLevel() == 1){
 			query = "insert into Question values ("
-					+ "(select max(question_num)+1 from question), "
+					+ "(select max(Question_num) + 1 from Question), "
 					+ "?, ?, ?, null, null, sysdate, default, ?, ?, "
-					+ "(select max(question_num)+1 from question), 1, 'Y')";
+					+ "(select max(Question_num) + 1 from Question), "
+					+ "1)";
 		}
 		
 		//댓글의 댓글일 때
-		else if(replyQuestion.getQuestionLevel()==2){
-			query = "insert into question values ("
-					+ "(select max(question_num) + 1 from question), "
-					+ "?, ?, ?, null, null, sysdate, default, ?, ?, ?, 1, 'Y')";
+		if(replyQuestion.getQuestionLevel() == 2){
+			query = "insert into Question values ("
+					+ "(select max(Question_num) + 1 from Question), "
+					+ "?, ?, ?, null, null, sysdate, default, ?, ?, ?, "
+					+ "1)";
 		}
 		
 		try {
@@ -269,7 +269,8 @@ public class QuestionDao {
 			pstmt.setString(2, replyQuestion.getQuestionWriter());
 			pstmt.setString(3, replyQuestion.getQuestionContent());
 			pstmt.setInt(4, replyQuestion.getQuestionLevel());
-			pstmt.setInt(5, replyQuestion.getQuestionRef());			
+			pstmt.setInt(5, replyQuestion.getQuestionRef());
+			
 			if(replyQuestion.getQuestionLevel() == 2)
 				pstmt.setInt(6, replyQuestion.getQuestionReplyRef());
 			
@@ -517,25 +518,6 @@ public class QuestionDao {
 		
 		
 		
-	}
-
-
-	public int updateOriginQAnswer(Connection con, Question originQuestion) {
-		int result = 0;
-		PreparedStatement pstmt = null;		
-		String query = "update Question set answer='Y'"
-					 + "where Question_num=?";		
-		try {
-			pstmt = con.prepareStatement(query);
-			pstmt.setInt(1, originQuestion.getQuestionNum());			
-			result = pstmt.executeUpdate();
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}finally{
-			close(pstmt);
-		}		
-		return result;
 	}	  
 }
 

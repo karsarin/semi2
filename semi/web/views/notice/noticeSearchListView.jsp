@@ -97,6 +97,7 @@ ul.sub li:hover {
 
 <style>
 #table{
+width:69%
 }
 #table #no{
 width:6%
@@ -132,7 +133,6 @@ background-color:lightblue;
 <body>
 
 	<%@ include file="../../header.jsp"%>
-<<<<<<< HEAD
 	
 	<%if(member.getMemberId().equals("admin")) { %>
       <%@ include file="../manager/managerHeader.jsp" %>
@@ -140,22 +140,16 @@ background-color:lightblue;
       <%@ include file="../../headerbar.jsp" %>
    <% } %>
    
-  
-
-
-=======
-	<%if(member!=null && member.getMemberId().equals("admin")) { %>
-		<%@ include file="../manager/managerHeader.jsp" %>
-	<% } else { %>
-		<%@ include file="../../headerbar.jsp" %>
-	<% } %>
+   
 	<%@ include file="../../rightList.jsp"%>
->>>>>>> refs/remotes/origin/yunJisun
 	
+	
+   
+   
 
-<div class="row">
-  <div class="col-md-2">
-  	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">
+	<div
+		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
+
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
@@ -163,15 +157,19 @@ background-color:lightblue;
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
+
 				</ul>
 			</li>
 		</ul>
 	</div>
-</div>
-  
-  <div class="col-md-8">
-
+	<!-- 반복 끝 -->
+	</div>
 	
+	
+</div>
+
+
+
 	
 	<!--  게시판 -->
 			<table class="table table-hover" id="table">		
@@ -214,7 +212,10 @@ background-color:lightblue;
 				
 			</table>
 
-	
+		<!--  table 끝 -->
+
+		
+		<!--  table 끝 -->
 		
 	<div align="right">
 	<form action="/semi/nsearch" method="post">
@@ -256,17 +257,8 @@ background-color:lightblue;
 </div>
 	
 	
+	
 
-  </div>
-	
-	
-  <div class="col-md-2">
-  	<%@ include file="../../rightList.jsp"%>
-	</div>
-  </div>
-  
-  
-  
 	
 	<div id="footer" style="clear: both;">
 		<div class="container">

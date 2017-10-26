@@ -5,19 +5,17 @@ import java.sql.Date;
 public class Donate {
 	private int donationNo;
 	private String memberId;
-	private int categoryDonation;
 	private int donation;
 	private Date donationDate;
 	
 	public Donate() {
 		super();
 	}
-	
-	public Donate(int donationNo, String memberId, int categoryDonation, int donation, Date donationDate) {
+
+	public Donate(int donationNo, String memberId, int donation, Date donationDate) {
 		super();
 		this.donationNo = donationNo;
 		this.memberId = memberId;
-		this.categoryDonation = categoryDonation;
 		this.donation = donation;
 		this.donationDate = donationDate;
 	}
@@ -38,14 +36,6 @@ public class Donate {
 		this.memberId = memberId;
 	}
 
-	public int getCategoryDonation() {
-		return categoryDonation;
-	}
-
-	public void setCategoryDonation(int categoryDonation) {
-		this.categoryDonation = categoryDonation;
-	}
-
 	public int getDonation() {
 		return donation;
 	}
@@ -61,7 +51,6 @@ public class Donate {
 	public void setDonationDate(Date donationDate) {
 		this.donationDate = donationDate;
 	}
-
 	@Override
 	public String toString(){
 		return this.donationNo + "," + this.memberId + "," + this.donation + "," + this.donationDate;

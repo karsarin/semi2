@@ -153,15 +153,6 @@ public class QuestionService {
 		int listCount = new QuestionDao().getSearchListCount(con, keyword);
 		close(con);
 		return listCount;
-	}
-
-	public int updateOriginQAnswer(Question originQuestion) {
-		Connection con = getConnection();
-		int result = new QuestionDao().updateOriginQAnswer(con, originQuestion);
-		if(result>0) commit(con);
-		else rollback(con);			
-		close(con);
-		return result;
 	}	
 }
 
