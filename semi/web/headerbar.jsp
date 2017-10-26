@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="donation.member.model.vo.Member"%>
-    <%  
-    	Member member = (Member)session.getAttribute("member");
-    %>
+	pageEncoding="UTF-8" import="donation.member.model.vo.Member"%>
+
+
 <!DOCTYPE html >
 <html>
 <head>
@@ -20,11 +19,17 @@
 <link rel="stylesheet" href="css/animate.css">
 <link rel="stylesheet" href="css/templatemo_misc.css">
 <link rel="stylesheet" href="css/templatemo_style.css">
+<script src="js/vendor/jquery-1.11.0.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/main.js"></script>
+
 
 <script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
 <%-- 헤더바 끝 --%>
 
- <script type="text/javascript">
+<script type="text/javascript">
         function goBoardPage() { location.href="/semi/nlist"; }
         function goHomePage() { location.href="/semi/index.jsp"; }
         
@@ -40,14 +45,12 @@
 <body>
 
 
-<!-- 반복 -->
+	<!-- 반복 -->
 	<div class="main-header">
 		<div class="container">
 			<div id="menu-wrapper">
 				<div class="row">
-					<div class="logo-wrapper col-md-2 col-sm-2">
-						
-					</div>
+					<div class="logo-wrapper col-md-2 col-sm-2"></div>
 					<!-- /.logo-wrapper -->
 					<div class="col-md-10 col-sm-10 main-menu text-right">
 						<div class="toggle-menu visible-sm visible-xs">
@@ -60,20 +63,30 @@
 										type="submit" value="제목검색">
 								</form>
 							</li>
-							<li class="active"><a href="javascript:goHomePage();">Home</a></li>
-							<li><a href="javascript:goCategoryPage();">카테고리</a></li>
-							<li><a href="javascript:goBoardPage();">게시판</a></li>
+							<li class="active"><a href="javascript:goHomePage()">Home</a></li>
+							<li><a href="javascript:goCategoryPage()">카테고리</a></li>
+							<li><a href="javascript:goBoardPage()">게시판</a></li>
 							<li>
-							<% if(member != null){ %>
-								<a href="javascript:insertCategory();">재능 등록</a>
+								<%--  <% if(member != null){ %>
+							
 							<% } else { %>
+=======
+							<%-- <% if(member != null){ %> --%> <a
+								href="javascript:insertCategory()">재능 등록</a> <%-- <% } else { %>
+>>>>>>> refs/heads/master
 								<a href="javascript:needLogin();">재능 등록</a>
 								
-							<% } %>
+<<<<<<< HEAD
+							<% } %> 
+							
+								<a href="javascript:insertCategory();">재능 등록</a> --%>
+
+
+
 							</li>
-							
-							
-							
+
+
+
 						</ul>
 					</div>
 					<!-- /.main-menu -->
@@ -99,5 +112,14 @@
 	<br>
 	<br>
 	<br>
+
+	<script src="js/vendor/jquery-1.11.0.min.js"></script>
+	<script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/plugins.js"></script>
+	<script src="js/main.js"></script>
+	
+
+
 </body>
 </html>
