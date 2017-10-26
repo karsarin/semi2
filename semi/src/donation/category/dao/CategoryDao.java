@@ -44,7 +44,7 @@ public class CategoryDao {
 		ResultSet rset = null;
 		
 		
-		String query = "select * from (select * from category_board order by category_ref desc, category_reply_ref desc, category_level asc, category_reply_seq asc) "
+		String query = "select * from category_board "
 				+ "where rownum >= ? and rownum <= ?";
 		
 		int startRow = (currentPage - 1) * limit + 1;
@@ -56,11 +56,13 @@ public class CategoryDao {
 			pstmt.setInt(2, endRow);
 			
 			rset = pstmt.executeQuery();
+			System.out.println("startRow : " + startRow);
+			System.out.println("endRow : " + endRow);
+			System.out.println("rset : "+rset);
 			
 			if(rset != null)
-			{
+			{				
 				category = new ArrayList<Category>();
-				
 				while(rset.next())
 				{
 					Category c = new Category();
@@ -82,6 +84,7 @@ public class CategoryDao {
 					c.setEmail(rset.getString("email"));
 					c.setOriginalImage(rset.getString("original_image"));
 					c.setRenameImage(rset.getString("rename_image"));
+			
 					c.setSpecial(rset.getString("special"));
 					c.setApproval(rset.getString("approval"));
 					
@@ -215,6 +218,14 @@ public class CategoryDao {
 				category.setEmail(rset.getString("email"));
 				category.setOriginalImage(rset.getString("original_image"));
 				category.setRenameImage(rset.getString("rename_image"));
+				category.setAddImage1(rset.getString("add_Image1"));
+				category.setAddRenameImage1(rset.getString("add_rename_image1"));
+				category.setAddImage2(rset.getString("add_image2"));
+				category.setAddRenameImage2(rset.getString("add_rename_image2"));
+				category.setAddImage3(rset.getString("add_image3"));
+				category.setAddRenameImage3(rset.getString("add_rename_image3"));
+				category.setAddImage4(rset.getString("add_image4"));
+				category.setAddRenameImage4(rset.getString("add_rename_image4"));
 				category.setSpecial(rset.getString("special"));
 				category.setApproval(rset.getString("approval"));
 			}

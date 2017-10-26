@@ -129,7 +129,10 @@ public class CategoryInsertServlet extends HttpServlet {
 		System.out.println("email : " + email);
 		System.out.println("phone : " + phone);
 		System.out.println("originalFileName :" + originalFileName);
-		
+		System.out.println("addimage1 : " + addImage1);
+		System.out.println("addimage2 : " + addImage2);
+		System.out.println("addimage3 : " + addImage3);
+		System.out.println("addimage4 : " + addImage4);
 		
 		if(originalFileName != null)
 		{
@@ -172,7 +175,7 @@ public class CategoryInsertServlet extends HttpServlet {
 		if(addImage1 != null){
 			// 업로드 된 파일이 있을 경우, 파일명을 "년월일시분초.확장자"로 변경함.
 						SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMddHHmmss");
-						addRenameImage1 = sdf1.format(new java.sql.Date(System.currentTimeMillis())) + "."
+						addRenameImage1 = sdf1.format(new java.sql.Date(System.currentTimeMillis())) + "1."
 								+ addImage1.substring(addImage1.lastIndexOf(".")+1);
 						
 						// 업로드되어 있는 원래 파일의 이름을 새 이름으로 바꾸기
@@ -198,14 +201,17 @@ public class CategoryInsertServlet extends HttpServlet {
 							fin.close();
 							fout.close();
 							addFile1.delete();
-							c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, addImage1, addRenameImage1, null, null, null, null, null, null);
+							
 						}
-		} 
-						
+						c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, addImage1, addRenameImage1, null, null, null, null, null, null);
+					} else {
+						c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, null, null, null, null, null, null, null, null);
+					}  
+		
 			if(addImage2 != null){
 			// 업로드 된 파일이 있을 경우, 파일명을 "년월일시분초.확장자"로 변경함.
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmmss");
-			addRenameImage2 = sdf2.format(new java.sql.Date(System.currentTimeMillis())) + "."
+			addRenameImage2 = sdf2.format(new java.sql.Date(System.currentTimeMillis())) + "2."
 					+ addImage2.substring(addImage2.lastIndexOf(".")+1);
 			
 			// 업로드되어 있는 원래 파일의 이름을 새 이름으로 바꾸기
@@ -231,14 +237,18 @@ public class CategoryInsertServlet extends HttpServlet {
 				fin.close();
 				fout.close();
 				addImage.delete();
-				c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, addImage1, addRenameImage1, addImage2, addRenameImage2, null, null, null, null);
+				
 			}
+			c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, addImage1, addRenameImage1, addImage2, addRenameImage2, null, null, null, null);
+		} else {
+			c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, addImage1, addRenameImage1, null, null, null, null, null, null);
+			
 		}
 			
 			if(addImage3 != null){
 				// 업로드 된 파일이 있을 경우, 파일명을 "년월일시분초.확장자"로 변경함.
 				SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmmss");
-				addRenameImage3 = sdf2.format(new java.sql.Date(System.currentTimeMillis())) + "."
+				addRenameImage3 = sdf2.format(new java.sql.Date(System.currentTimeMillis())) + "3."
 						+ addImage3.substring(addImage3.lastIndexOf(".")+1);
 				
 				// 업로드되어 있는 원래 파일의 이름을 새 이름으로 바꾸기
@@ -264,14 +274,17 @@ public class CategoryInsertServlet extends HttpServlet {
 					fin.close();
 					fout.close();
 					addImage.delete();
-					c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, addImage1, addRenameImage1, addImage2, addRenameImage2, addImage3, addRenameImage3, null, null);
+					
 				}
+				c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, addImage1, addRenameImage1, addImage2, addRenameImage2, addImage3, addRenameImage3, null, null);
+			} else {
+				c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, addImage1, addRenameImage1, addImage2, addRenameImage2, null, null, null, null);
 			}
 		
 			if(addImage4 != null){
 				// 업로드 된 파일이 있을 경우, 파일명을 "년월일시분초.확장자"로 변경함.
 				SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmmss");
-				addRenameImage4 = sdf2.format(new java.sql.Date(System.currentTimeMillis())) + "."
+				addRenameImage4 = sdf2.format(new java.sql.Date(System.currentTimeMillis())) + "4."
 						+ addImage4.substring(addImage4.lastIndexOf(".")+1);
 				
 				// 업로드되어 있는 원래 파일의 이름을 새 이름으로 바꾸기
@@ -296,8 +309,11 @@ public class CategoryInsertServlet extends HttpServlet {
 					fin.close();
 					fout.close();
 					addImage.delete();
-					c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, addImage1, addRenameImage1, addImage2, addRenameImage2, addImage3, addRenameImage3, addImage4, addRenameImage4);
+					
 				}
+				c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, addImage1, addRenameImage1, addImage2, addRenameImage2, addImage3, addRenameImage3, addImage4, addRenameImage4);
+			} else {
+				c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, addImage1, addRenameImage1, addImage2, addRenameImage2, addImage3, addRenameImage3, null, null);
 			}
 						
 			

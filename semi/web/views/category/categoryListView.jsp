@@ -208,7 +208,7 @@ $(document).ready(function() {
 		<div class="row" style="float:left; width:300px; height:400px;">
 		  <div class="col-md-4" style="border: 1px solid black ;width:300px;">
 		  	<div class="imgholder">			
-				<a href="/semi/cdetail?cnum=<%=c.getCategoryNo() %>&page=<%= ccurrentPage%>">
+				<a href="/semi/cdetail?cnum=<%=c.getCategoryNo() %>&cpage=<%= ccurrentPage%>">
 				<img src="cuploadfiles/<%=c.getRenameImage() %>" /> </a>
 				</div>
 
@@ -231,7 +231,7 @@ $(document).ready(function() {
 	<% if(ccurrentPage <= 1){ %>
 		[이전] &nbsp;
 	<%} else {%>
-		<a href="/semi/clist?page=<%= ccurrentPage - 1 %>">[이전]</a>
+		<a href="/semi/clist?cpage=<%= ccurrentPage - 1%>">[이전]</a>
 	<%} %>
 	<!-- 현재 페이지 숫자 보여주기 -->
 	<% for(int p = cstartPage; p <= cendPage; p++){
@@ -239,14 +239,14 @@ $(document).ready(function() {
 	%>
 	<b><font size="4" color="red">[<%= p %>]</font></b>
 	<% } else{%>
-		<a href="/semi/clist?page=<%= p %>"> <%= p %></a>
+		<a href="/semi/clist?cpage=<%= p %>"> <%= p %></a>
 	<%}} %>
 	
 	<!-- 현재 페이지 다음 페이지에 대한 처리 -->
 	<% if(ccurrentPage >= cmaxPage){ %>
 		[다음]
 	<%} else { %>
-		<a href="/semi/clist?page=<%=ccurrentPage + 1 %>">[다음]</a>
+		<a href="/semi/clist?cpage=<%=ccurrentPage + 1 %>">[다음]</a>
 	<% } %>
 	</div>
 

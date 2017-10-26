@@ -69,6 +69,7 @@
   <tr><th><strong>메인 이미지 등록</strong></th><td> <input type="file" name="upfile" required> &nbsp; 나의 재능을 잘 대표할 수 있는 이미지로 설정합니다.</td></tr>
   <tr><th><strong>재능상세내용</strong></th> <td><textarea cols="50" row="50" name="ccontent"></textarea></td> </tr>
   <tr><th><strong>재능상세이미지</strong></th>  <td>
+ 
 			<input type="file" name="cimage1"> <br>
 			<input type="file" name="cimage2"> <br>
 			<input type="file" name="cimage3"> <br>
