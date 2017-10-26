@@ -28,20 +28,6 @@
 
 
 
-<%-- 헤더바 --%>
-<link
-	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800'
-	rel='stylesheet' type='text/css'>
-
-<link rel="stylesheet" href="/semi/css/bootstrap.min.css">
-<link rel="stylesheet" href="/semi/css/font-awesome.css">
-<link rel="stylesheet" href="/semi/css/animate.css">
-<link rel="stylesheet" href="/semi/css/templatemo_misc.css">
-<link rel="stylesheet" href="/semi/css/templatemo_style.css">
-
-<script src="../../js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
-<script src="../../js/jquery-3.2.1.min.js"></script>
-<%-- 헤더바 끝 --%>
 
 <%-- 세로목록 --%>
 <style>
@@ -161,61 +147,20 @@ $(document).ready(function() {
 
 <!-- 그림 끝 -->
 
-
-
-
-
-
 </head>
 
 <body>
+
 <%@ include file="../../header.jsp" %>
 
 <%if(member!=null&&member.getMemberId().equals("admin")) { %>
 	<%@ include file="../manager/managerHeader.jsp" %>
 <% } else { %>
 
-	<!-- 반복 -->
-	<div class="main-header">
-		<div class="container">
-			<div id="menu-wrapper">
-				<div class="row">
-					<div class="logo-wrapper col-md-2 col-sm-2">
-						
-					</div>
-					<!-- /.logo-wrapper -->
-					<div class="col-md-10 col-sm-10 main-menu text-right">
-						<div class="toggle-menu visible-sm visible-xs">
-							<i class="fa fa-bars"></i>
-						</div>
-						<ul class="menu-first">
-							<li>
-								<form action="/semi/tsearch" method="post">
-									<input type="search" name="keyword" autocomplete> <input
-										type="submit" value="제목검색">
-								</form>
-							</li>
-							<li class="active"><a href="../../index.html">Home</a></li>
-							<li><a href="#">카테고리</a></li>
-							<li><a href="#">공지사항</a></li>
-							<li><a href="#">게시판</a></li>
-							<li><a href="#">마이페이지</a></li>
-						</ul>
-					</div>
-					<!-- /.main-menu -->
-				</div>
-				<!-- /.row -->
-			</div>
-			<!-- /#menu-wrapper -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /.main-header -->
-	<!-- /.site-header -->
-	<%@ include file="../../headerbar.jsp" %>
-<%} %> 
 	
-
+	
+<%} %> 
+<%@ include file="../../headerbar.jsp" %>
 
 	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
@@ -232,41 +177,51 @@ $(document).ready(function() {
 					<li><a href="#">기타</a></li>
 				</ul>
 			</li>
-
 		</ul>
 	</div>
 
 	<!-- 반복 끝 -->
 
 	<!--  그림 -->
-<div style="float:left;">
+<div style="float:left; width:1000px;">
 <form action="/clist" method="post">
 	<div>
 		<hgroup>
-			<h1 style="font-size:20pt">카테고리 게시판</h1>
-			<h3>총 <%= clistCount %>개의 재능이 등록돼 있습니다.</h3>
+		<div class="row" style="width: 1000px">
+  		<div class="col-md-4"><h1 style="font-size:20pt">카테고리 게시판</h1>
+			<h3>총 <%= clistCount %>개의 재능이 등록돼 있습니다.</h3></div>
+ 		 <div class="col-md-4"></div>
+  		<div class="col-md-4">
+  		<button type="button" class="btn btn-primary">조회순</button>
+
+			<button type="button" class="btn btn-success">구매순</button>
+
+			<button type="button" class="btn btn-info">평가순</button>
+		</div>
+		</div>
 			</hgroup>
-		<br>
+		<br><br>
+		
+		<div class="container" >
 		<% for(Category c : category){ %>
-		<!-- <div id="container">
-			<div class="grid"> -->
-			<div class="container-fluid">
-				<div class="row">
-				<div class="imgholder">
-				
-				<a href="/semi/cdetail">	<img
-						src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img27.jpg" />
-						</a>
+		
+		<div class="row" style="float:left; width:300px; height:400px;">
+		  <div class="col-md-4" style="border: 1px solid black ;width:300px;">
+		  	<div class="imgholder">			
+				<a href="/semi/cdetail?cnum=<%=c.getCategoryNo() %>&page=<%= ccurrentPage%>">
+				<img src="cuploadfiles/<%=c.getRenameImage() %>" /> </a>
 				</div>
 
 				<strong><%=c.getCategoryTitle() %></strong>
-				<p>by <%=c.getUserId() %> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-				<%=c.getCategoryDonation() %>원</p>
-				<p>★★★★ 후기 5건</p>
+				<p >by <%=c.getUserId() %> <br>
+				<%=c.getCategoryDonation() %>원 <br>★★★★ 후기 5건</p>
 			</div>
+  
+			</div>
+		
 			<%} %>
-		</div>
-	</div>
+			</div>
+	
 </form>
 	<!-- 그림 끝 -->
 

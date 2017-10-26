@@ -21,6 +21,14 @@ public class Category {
 	private String email;
 	private String originalImage;
 	private String renameImage;
+	private String addImage1;
+	private String addRenameImage1;
+	private String addImage2;
+	private String addRenameImage2;
+	private String addImage3;
+	private String addRenameImage3;
+	private String addImage4;
+	private String addRenameImage4;
 	private String special;
 	private String approval;
 	private int purchaseCount;
@@ -31,7 +39,9 @@ public class Category {
 	public Category(int categoryNo, String userId, int categoryGroup, String categoryTitle, String categoryWriter,
 			String categoryContent, Date categoryDate, int categoryReadcount, int categoryDonation, int workDate,
 			int categoryLevel, int categoryRef, int categoryReplyRef, int categoryReplySeq, String phone, String email,
-			String originalImage, String renameImage, String special, String approval, int purchaseCount, int verdict) {
+			String originalImage, String renameImage, String addImage1, String addRenameImage1, String addImage2, String addRenameImage2, 
+			String addImage3, String addRenameImage3, String addImage4, String addRenameImage4,
+			String special, String approval, int purchaseCount, int verdict) {
 		super();
 		this.categoryNo = categoryNo;
 		this.userId = userId;
@@ -51,6 +61,16 @@ public class Category {
 		this.email = email;
 		this.originalImage = originalImage;
 		this.renameImage = renameImage;
+		
+		this.addImage1 = addImage1;
+		this.addRenameImage1 = addRenameImage1;
+		this.addImage2 = addImage2;
+		this.addRenameImage2 = addRenameImage2;
+		this.addImage3 = addImage3;
+		this.addRenameImage3 = addRenameImage3;
+		this.addImage4 = addImage4;
+		this.addRenameImage4 = addRenameImage4;
+		
 		this.special = special;
 		this.approval = approval;
 		this.verdict = verdict;
@@ -58,7 +78,8 @@ public class Category {
 	}
 
 	public Category(String userId, String categoryTitle, int categoryGroup, String categoryWriter, String categoryContent, int categoryDonation, 
-			int workDate, String email, String phone, String originalImage, String renameImage)
+			int workDate, String email, String phone, String addImage1, String addRenameImage1, String addImage2, String addRenameImage2, 
+			String addImage3, String addRenameImage3, String addImage4, String addRenameImage4, String originalImage, String renameImage)
 	{
 		this.userId = userId;
 		this.categoryTitle = categoryTitle;
@@ -69,6 +90,16 @@ public class Category {
 		this.workDate = workDate;
 		this.email = email;
 		this.phone = phone;
+		
+		this.addImage1 = addImage1;
+		this.addRenameImage1 = addRenameImage1;
+		this.addImage2 = addImage2;
+		this.addRenameImage2 = addRenameImage2;
+		this.addImage3 = addImage3;
+		this.addRenameImage3 = addRenameImage3;
+		this.addImage4 = addImage4;
+		this.addRenameImage4 = addRenameImage4;
+		
 		this.originalImage = originalImage;
 		this.renameImage = renameImage;
 	}
@@ -248,6 +279,53 @@ public class Category {
 	public void setVerdict(int verdict) {
 		this.verdict = verdict;
 	}
-	
+	public String getAddImage1() {
+		return addImage1;
+	}
+	public String getAddRenameImage1() {
+		return addRenameImage1;
+	}
+	public String getAddImage2() {
+		return addImage2;
+	}
+	public String getAddRenameImage2() {
+		return addRenameImage2;
+	}
+	public String getAddImage3() {
+		return addImage3;
+	}
+	public String getAddRenameImage3() {
+		return addRenameImage3;
+	}
+	public String getAddImage4() {
+		return addImage4;
+	}
+	public String getAddRenameImage4() {
+		return addRenameImage4;
+	}
+	public void setAddImage1(String addImage1) {
+		this.addImage1 = addImage1;
+	}
+	public void setAddRenameImage1(String addRenameImage1) {
+		this.addRenameImage1 = addRenameImage1;
+	}
+	public void setAddImage2(String addImage2) {
+		this.addImage2 = addImage2;
+	}
+	public void setAddRenameImage2(String addRenameImage2) {
+		this.addRenameImage2 = addRenameImage2;
+	}
+	public void setAddImage3(String addImage3) {
+		this.addImage3 = addImage3;
+	}
+	public void setAddRenameImage3(String addRenameImage3) {
+		this.addRenameImage3 = addRenameImage3;
+	}
+	public void setAddImage4(String addImage4) {
+		this.addImage4 = addImage4;
+	}
+	public void setAddRenameImage4(String addRenameImage4) {
+		this.addRenameImage4 = addRenameImage4;
+	}	
 	
 }

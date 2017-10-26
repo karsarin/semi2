@@ -91,13 +91,15 @@ a:hover, a:active{
 
 #container{
 	position:relative;
-	width:1200px;
+	display: block;
+	width:1200px; 
 	margin:0 auto;
 }
 
 .grid{
-	width: 360px;
-	height: 420px;
+	display: block;
+	width: 280px;
+	border: 1px solid gray;
 }
 
 .block{
@@ -185,8 +187,8 @@ a:hover, a:active{
 }
 
 .imgholder{
-	width:355px;
-	height:250px;
+	width:230px;
+	height:230px;
 	overflow:hidden;
 	margin:0 auto;
 	display:block;
@@ -194,12 +196,14 @@ a:hover, a:active{
 	border:5px solid;
 	border-color:#ccc;
 }
+
 .imgholder:hover{
 	border-color:#aaa;
 }
 .imgholder img{
-	width: 355px;
-	height: 250px;
+	width: 280px;
+	height: 230px;
+	display: block;
 	transform: scale(1.1, 1.1);
 	-ms-transform: scale(1.1, 1.1);
 	-moz-transform: scale(1.1, 1.1);

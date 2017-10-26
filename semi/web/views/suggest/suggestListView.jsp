@@ -53,7 +53,7 @@
 			<%= suggest.getSuggestTitle() %>
 		</a>
 	<%-- <% }else{ %> --%>
-		<%= suggest.getSuggestTitle() %>
+		<%-- <%= suggest.getSuggestTitle() %> --%>
 	<%-- <% } %> --%>
 	</td>
 	<td align="center"><%= suggest.getSuggestWriter() %></td>

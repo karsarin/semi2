@@ -57,9 +57,9 @@ public class ManagerService {
 		return qlistCount;
 	}
 
-	public ArrayList<Question> selectQnAList(int qcurrentPage, int qlimit) {
+	public ArrayList<Question> selectQnAList() {
 		Connection conn = getConnection();
-		ArrayList<Question> qlist = new ManagerDao().selectQnAList(conn, qcurrentPage, qlimit);
+		ArrayList<Question> qlist = new ManagerDao().selectQnAList(conn);
 		close(conn);
 		return qlist;
 	}

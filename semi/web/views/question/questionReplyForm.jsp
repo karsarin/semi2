@@ -13,6 +13,16 @@
 <title>boardReplyForm</title>
 
 
+<script src="/semi/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('.main-menu ul #minfo').removeClass('active');
+		$('.main-menu ul #home').removeClass('active');
+		$('.main-menu ul #category').removeClass('active');
+		$('.main-menu ul #board').addClass('active');
+	});
+</script>
+
 <%-- 헤더바 --%>
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800'

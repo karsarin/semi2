@@ -18,7 +18,10 @@
 
 
 <%-- 헤더바 --%>
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
+<link
+	href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800'
+	rel='stylesheet' type='text/css'>
+
 <link rel="stylesheet" href="/semi/css/bootstrap.min.css">
 <link rel="stylesheet" href="/semi/css/font-awesome.css">
 <link rel="stylesheet" href="/semi/css/animate.css">
@@ -79,9 +82,8 @@ ul.sub li:hover {
 
 <style>
 #writetable{
-
+	width:69%;
 }
-
 #title{
 	width:80px
 }
@@ -103,12 +105,12 @@ ul.sub li:hover {
 
 	<%@ include file="../../header.jsp"%>
 	<%@ include file="../../headerbar.jsp" %>
+	<%@ include file="../../rightList.jsp"%>
+	
 
+	<div
+		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
-
-<div class="row">
-  <div class="col-md-2">
-  	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
@@ -116,21 +118,24 @@ ul.sub li:hover {
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
+
 				</ul>
 			</li>
 		</ul>
 	</div>
-</div>
-  
-  <div class="col-md-8">
+	<!-- 반복 끝 -->
+	</div>
+
+
 
 	<form action="/semi/ninsert" method="post" enctype="multipart/form-data">
-	<table>
-	<tr><th colspan="2">공지글 쓰기</th></tr>		
-	<tr><td>제목</td> <td><input type="text" name="title" class="form-control" id="exampleInputEmail1"></td>	</tr>
-	<tr><td>작성자</td> <td><input type="text" name="writer" class="form-control"  id="exampleInputEmail1" value="<%=member.getMemberId() %>" readonly ></td></tr>
-	<tr><td>첨부파일</td> <td><input type="file" name="file"></td></tr>
-	<tr><td colspan="2"><textarea name="content" class="form-control" id="exampleInputEmail1"></textarea></td></tr>
+	<table id="writetable">
+	<th colspan="2">공지글 쓰기</th>
+		
+	<tr><td id="title">제목</td> <td><input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="제목을 입력하세요"></td>	</tr>
+	<tr><td>작성자</td> <td><input type="text" name="writer" class="form-control" id="exampleInputEmail1" value="<%=member.getMemberId() %>" readonly></td></tr>
+	<tr><td>첨부파일</td> <td><input type="file" name="file" id="exampleInputFile"></td></tr>
+	<tr><td colspan="2" id="textarea"><textarea name="content"  class="form-control" placeholder="내용을 입력하세요"></textarea></td></tr>
 	
 	<tr><td colspan="2" align="right"><input type="submit" value="등록하기" class="btn btn-default">&nbsp; <input type="reset" value="취소하기" class="btn btn-default"></td></tr>
 	</table>
@@ -138,21 +143,11 @@ ul.sub li:hover {
 	
 	<br>
 	<div align="center">
-	<a href="/semi/nlist">목록으로 이동</a>     
+	<a href="/semi/nlist">목록으로 이동</a>
+     
 	</div>
-	
-</div>
-	
-	
-  <div class="col-md-2">
-  	<%@ include file="../../rightList.jsp"%>
-  </div>
-  
-  
-  
-  
-  
-  
+
+
 
 	<div id="footer" style="clear:both;">
 		<div class="container">

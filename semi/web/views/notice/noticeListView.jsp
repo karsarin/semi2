@@ -16,9 +16,22 @@
 <meta charset="UTF-8">
 <title>boardListView</title>
 
+<<<<<<< HEAD
  <link rel="stylesheet" href="css/bootstrap.min.css">
  
  
+=======
+<script src="/semi/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('.main-menu ul #minfo').removeClass('active');
+		$('.main-menu ul #home').removeClass('active');
+		$('.main-menu ul #category').removeClass('active');
+		$('.main-menu ul #board').addClass('active');
+	});
+</script>
+
+>>>>>>> refs/remotes/origin/yunJisun
 <script type="text/javascript">
 	function insertPage() {
 		location.href = "views/notice/noticeWriteForm.jsp";
@@ -76,6 +89,7 @@ ul.sub li:hover {
 
 <style>
 #table{
+width:69%
 }
 #table #no{
 width:6%
@@ -115,13 +129,9 @@ background-color:lightblue;
 
 	<%@ include file="../../header.jsp"%>
 	<%@ include file="../../headerbar.jsp" %>
+	<%@ include file="../../rightList.jsp" %>
 
-
-	
-	
-<div class="row">
-  <div class="col-md-2">
-  	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">
+	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
@@ -129,13 +139,14 @@ background-color:lightblue;
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
+
 				</ul>
 			</li>
 		</ul>
 	</div>
-</div>
-  
-  <div class="col-md-8">
+	<!-- 반복 끝 -->
+	
+
 
 	<!--  게시판 -->
 			<table class="table table-hover" id="table">		
@@ -239,28 +250,9 @@ background-color:lightblue;
 				}
 			%>
 		</div>
-		
-		
+				
 
-  </div>
-	
-	
-  <div class="col-md-2">
-  	<%@ include file="../../rightList.jsp"%>
-	</div>
-  </div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	<div id="footer" style="clear: both;">
 		<div class="container">

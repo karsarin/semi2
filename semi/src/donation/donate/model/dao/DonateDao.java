@@ -84,8 +84,9 @@ public class DonateDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String query = "select * from ("
-				+ "select rownum rnum,donation_no,donation,donation_date from("
-				+ "select * from donate order by 4) where member_id = ?)where rnum>=? and rnum<=?";
+				+ "select rownum rnum,donation_no,category_title,donation,donation_date from("
+				+ "select * from donate join category_board using(category_no) order by 4)"
+				+ " where member_id = ?)where rnum>=? and rnum<=?";
 
 		int startRow = (currentPage -1) * limit + 1;
 		int endRow = startRow + limit -1;
@@ -102,7 +103,7 @@ public class DonateDao {
 				while(rset.next()){
 					Donate donate = new Donate();
 					donate.setDonationNo(rset.getInt(1));
-					donate.setMemberId(memberId);
+					donate.setMemberId(rset.getString("category_title"));
 					donate.setDonation(rset.getInt("donation"));
 					donate.setDonationDate(rset.getDate("donation_date"));
 					

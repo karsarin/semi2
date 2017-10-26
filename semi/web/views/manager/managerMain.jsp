@@ -8,9 +8,6 @@
 	int cmaxPage = ((Integer)request.getAttribute("cmaxPage")).intValue();	
 	
 	ArrayList<Question> qlist = (ArrayList<Question>)request.getAttribute("qlist");
-	int qlistCount = ((Integer)request.getAttribute("qlistCount")).intValue();
-	int qcurrentPage = ((Integer)request.getAttribute("qcurrentPage")).intValue();
-	int qmaxPage = ((Integer)request.getAttribute("qmaxPage")).intValue();
 %>
 <!DOCTYPE>
 <html>
@@ -22,6 +19,40 @@
 	<link href="/semi/css/manager/main.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="/semi/css/manager/mainFonts.css" rel="stylesheet" type="text/css" media="all" />
     <script src="/semi/js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
+    <script src="/semi/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript">
+    	$(function(){
+    		$('.main-menu ul #minfo').removeClass('active');
+    		$('.main-menu ul #category').removeClass('active');
+    		$('.main-menu ul #board').removeClass('active');
+    		$('.main-menu ul #home').addClass('active');	
+    		
+    		var qmaxPage = <%=qlist.size()%>;
+    		var qcurrentView = <%=9%>;
+    		$('.qnatb tbody tr').each(function(index){
+    			if(index > qcurrentView) {
+    				 $(this).hide('fast');
+    			}
+    		});
+    		
+    		$('#qmore').click(function(){
+    			if(!(qcurrentView>qmaxPage)) {
+    				$('.qnatb tbody tr').each(function(index){
+    					if(qmaxPage-qcurrentView > 10) {
+    						if(index > qcurrentView && index <= qcurrentView+10) {
+    							$(this).show('3000');
+    						}
+    					} else {
+    						if(index > qcurrentView) {
+    							$(this).show('3000');
+    						}
+    					}
+    				});
+    				qcurrentView+=10;
+    			}
+    		});
+    	});
+    </script>
 </head>
 <body>
 	<%@ include file="../../header.jsp" %>
@@ -89,7 +120,7 @@
 			<div class="row">
 				<div class="heading-section text-center">
 					<h2 style="text-shadow:1px 1px 2px gray;">Q&A 답변 대기</h2>
-					<p><%=qlistCount%>개</p>
+					<p><%=qlist.size()%>개</p>
 				</div>
 			</div>
 			<table class="qnatb">
@@ -106,8 +137,8 @@
 					<% for(Question q : qlist) { %>
 					<tr>
 						<th scope="row"><%=q.getQuestionNum()%></th>
-						<td><a href="/semi/qdetail?no=<%=q.getQuestionNum()%>&page=<%=qcurrentPage%>"><%=q.getQuestionTitle()%></a></td>
-						<td><a href="/semi/qdetail?no=<%=q.getQuestionNum()%>&page=<%=qcurrentPage%>">
+						<td><a href="/semi/qdetail?no=<%=q.getQuestionNum()%>&page=1"><%=q.getQuestionTitle()%></a></td>
+						<td><a href="/semi/qdetail?no=<%=q.getQuestionNum()%>&page=1">
 							<%if(q.getQuestionContent().length()>16) {
 								String qcontent = q.getQuestionContent().substring(0, 15)+"..."; 	
 							%>
@@ -122,16 +153,7 @@
 					<% } %>
 				</tbody>
 			</table><br><br>
-			<% if(qcurrentPage<=1) { %>
-				<button id="qpre">PREVIOUS</button>
-			<% } else { %>					
-				<button id="qpre" onclick="location.href='/semi/mgrmain?qpage=<%=qcurrentPage-1%>'">PREVIOUS</button>
-			<% } %>
-			<% if(qcurrentPage>=qmaxPage) { %>
-				<button id="qnext">NEXT</button>
-			<% } else { %>
-				<button id="qnext" onclick="location.href='/semi/mgrmain?qpage=<%=qcurrentPage+1%>'">NEXT</button>
-			<% } %>
+			<button id="qmore">more</button>
 		</div>
 	</div>
 	<% } else {  %>
