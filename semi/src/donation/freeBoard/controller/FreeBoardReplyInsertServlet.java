@@ -77,7 +77,7 @@ public class FreeBoardReplyInsertServlet extends HttpServlet {
 			
 			jarr.add(j);
 		}		
-		
+		//
 		job.put("list", jarr);
 		System.out.println("comment job : " + job.toJSONString());
 		PrintWriter pw = response.getWriter();
