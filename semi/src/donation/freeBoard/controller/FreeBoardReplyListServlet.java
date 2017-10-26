@@ -46,7 +46,7 @@ public class FreeBoardReplyListServlet extends HttpServlet {
 		FreeBoardService fservice = new FreeBoardService();		
 		
 		ArrayList<CommentBoard> list = fservice.selectReplyBoardList(boardNum);	
-		
+		 
 		System.out.println(list);
 		
 		///내보내는건 json 객체 하나만 내보낼 수 있음
