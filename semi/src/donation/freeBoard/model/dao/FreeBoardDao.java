@@ -3,6 +3,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import donation.freeBoard.model.vo.CommentBoard;
 import donation.freeBoard.model.vo.FreeBoard;
 import donation.notice.model.vo.Notice;
 
@@ -309,7 +310,71 @@ public class FreeBoardDao {
 		
 		
 	}
-	
+
+	public int insertReplyBoard(Connection con, CommentBoard cboard) {
+
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String query ="insert into BOARD_COMMENT values ((select max(COMMENT_NUM) + 1 from BOARD_COMMENT), ?, ?, sysdate, ?)";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, cboard.getBoardNum());
+			pstmt.setString(2, cboard.getWriter());
+			pstmt.setString(3, cboard.getContent());
+			
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally{
+			close(pstmt);
+		}			
+		return result;
+	}
+
+	public ArrayList<CommentBoard> selectReplyList(Connection con, int boardNum) {
+		ArrayList<CommentBoard> list = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = "select COMMENT_BOARD_NUM, COMMENT_NUM, COMMENT_ID, to_char(COMMENT_DATE), COMMENT_CONTENT  from BOARD_COMMENT where COMMENT_BOARD_NUM = ? order by COMMENT_NUM asc";			
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setInt(1, boardNum );
+			rset = pstmt.executeQuery();
+			
+			if(rset != null) {
+				
+				list = new ArrayList<CommentBoard>();
+				while(rset.next()) {
+					CommentBoard rboard = new CommentBoard();
+					rboard.setBoardNum(rset.getInt(1));
+					rboard.setCommentNum(rset.getInt(2));
+					rboard.setWriter(rset.getString(3));
+					rboard.setDateString(rset.getString(4));
+					rboard.setContent(rset.getString(5));
+					
+				
+					
+					
+					list.add(rboard);
+				}
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+	}
 
 	
 	

@@ -12,14 +12,64 @@
 <title>noticeDetailView</title>
 <style type="text/css">
 	#reply{
-		width: 300px;
-		height: 50px;
-		border: 1px solid black;
+		
+	}
+	
+	#replyDiv{
+	width:900px;
+	height:50px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
 	}
 </style>
 
 <script type="text/javascript" src="/semi/js/jquery-3.2.1.min.js"></script>
 
+
+<script type="text/javascript">
+	window.onload = function(){
+		
+		$.ajax({url: "/semi/reList",
+			data: {boardNum :  $("#boardNum").val()},
+			  type: "get", 
+			  success: function(data){
+					//console.log(data);
+					
+					var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환
+					//console.log(jsonStr);
+					var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈
+					
+					var values = $("#reply").html();	
+					
+					
+					for(var i in json.list){
+						//한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
+						//values += json.list[i].commentNum + ", " + json.list[i].boardNum + ", " + 
+						//		decodeURIComponent(json.list[i].writer) + ", " +decodeURIComponent( json.list[i].date )+ ", " + decodeURIComponent(json.list[i].content) + "<br>";
+						
+								//$("#reply").html(values);	
+				//	values +=  " 글쓴이 : "  + decodeURIComponent(json.list[i].writer) + "<br>" +   "내용 : " + decodeURIComponent(json.list[i].content) ;
+					$("#reply").append(							
+							"<div id=\"replyDiv\">" + "<label id=\"commentWriter\">"+  " 글쓴이 : " + "</label>" + decodeURIComponent(json.list[i].writer) + "<br>"  +"<label id=\"commentContent\">"+ "내용 : " + "</label>" + decodeURIComponent(json.list[i].content) + "</div>" + "<br>");
+					
+					values = "";
+					} 	
+					
+
+				},
+			  error : function(data){  //실패했을 때 구동되는 함수
+				  consolse.log("에러발생 : " + data);
+			  }
+			
+		});	
+		
+		
+		
+	}
+	
+</script>
+	
+	
 
 <!-- 카테고리  -->
 
@@ -120,9 +170,17 @@ width:20%;
 
 <!-- 댓글 -->
 #replyview{
-	width:69%;
+	width:1000px;
 }
-
+#commentWriter{
+	color: black;
+	font-weight: bold;
+	
+}
+#commentContent{
+	color: black;
+	font-weight: bold;
+}
 
 </style>
 
@@ -160,6 +218,7 @@ width:20%;
 	<table  class="table table-hover" id="detailview">
 	<tr>
 		<input type="hidden" id="writer" value="<%=fboard.getfreeBoardWriter() %>">
+		<input type="hidden" id="commentWriter" value="<%=member.getMemberId() %>">
 		<input type="hidden" id="boardNum" value="<%=fboard.getfreeBoardNo() %>">
 		<td id="titlie"><label><%= fboard.getfreeBoardTitle() %></label></td>
 		<td id="readCount"><label>조회:<%=fboard.getReadCount() %></label></td>
@@ -184,60 +243,75 @@ width:20%;
 	<!-- 게시글 -->
 
 
+	
+	
+	
+			
+	
+	
 
-
-	<!-- 댓글 표시될 공간 -->
-	<div>
-		<p id="reply"></p>	
-	</div>
 
 	<!-- 댓글 입력-->
+		<table>
+		<tr><td colspan="2">댓글</td></tr>
+		<tr><td width="900px">
 		<input type="text" class="form-control"  name="replyinput">
+		</td>
+		<td>
 		<input type="button" onclick="insertReply()" value="등록">
+		</td>
+		<tr>
+		</table>
 			<script type="text/javascript">
 			
 			function insertReply(){
 			$.ajax({
 			url: "/semi/reInsert",
-			data: {content : $("input[name=replyinput]").val() , writer : $("#writer").val(), boardNum : $("#boardNum").val()},
+			data: {content : $("input[name=replyinput]").val() , writer : $("#commentWriter").val(), boardNum : $("#boardNum").val()},
 			type: "post",
 			dataType: "json", //리턴되는 결과의 자료형 명시함
 			success: function(data){
 				//console.log(data);
-					
+				
 				var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환
 				//console.log(jsonStr);
 				var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈
 				
-				var values = $("#reply").html();	
+				//var values = $("#reply").html();	
 				
 				
-				for(var i in json.list){
+			/* 	for(var i in json.list){
 					//한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
 					values += json.list[i].commentNum + ", " + json.list[i].boardNum + ", " + 
-							decodeURIComponent(json.list[i].writer) + ", " + json.list[i].date + ", " + decodeURIComponent(json.list[i].content) + "<br>";
-				
-				}	
-
-				$("#reply").html("후");		
-			
+							decodeURIComponent(json.list[i].writer) + ", " +decodeURIComponent( json.list[i].date )+ ", " + decodeURIComponent(json.list[i].content) + "<br>";
+					$("#reply").html(values);	
+				} 	
+ */
+				$("#reply").append(							
+						"<div id=\"replyDiv\">" +  "<label id=\"commentWriter\">"+ " 글쓴이 : " + "</label>"+ $("#commentWriter").val() + "<br>"	
+						+ "<label id=\"commentContent\">" + "내용 : " + "</label>"+  	$("input[name=replyinput]").val() 
+						+ "</div>" + "<br>");
+ 				
 			},
-			error: function(data){
+			error: function(data){			
 				console.log("에러 발생 : " + data);
 			}
 		});
 	}
 	</script>
 			
-			
+	<!-- 댓글 표시될 공간 -->
+	<div id="reply">
 	
 	</div>
-	
-	
+			
+
+			
+</div>
 	
   <div class="col-md-2">
   	<%@ include file="../../rightList.jsp"%>
-	</div>
+	
   </div>
 
 

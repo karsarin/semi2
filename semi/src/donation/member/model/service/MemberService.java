@@ -9,7 +9,11 @@ public class MemberService {
 
 	public Member login(String memberId, String memberPwd) {
 		Connection con = getConnection();
+		
 		Member member = new MemberDao().selectMember(con,memberId,memberPwd);
+		if(member!=null){
+			int login = new MemberDao().login(con,memberId);
+		}
 		close(con);
 		return member;
 	}
@@ -86,6 +90,12 @@ public class MemberService {
 		int result = new MemberDao().selectMemberNum(con);
 		close(con);
 		return result;
+	}
+
+	public void logout(String memberId) {
+		Connection con = getConnection();
+		new MemberDao().logout(con,memberId);
+		
 	}
 
 

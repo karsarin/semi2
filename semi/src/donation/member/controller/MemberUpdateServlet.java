@@ -61,12 +61,14 @@ public class MemberUpdateServlet extends HttpServlet {
 		String[] talents = request.getParameterValues("talent");
 		String memberTalent = null;
 		StringBuilder talent = new StringBuilder();
-		for(int i=0;i<talents.length;i++){
-			if(i<talents.length-1)
-				talent.append(talents[i] + ",");
-			else
-				talent.append(talents[i]);
-			memberTalent = talent.toString();
+		if(talents!=null){
+			for(int i=0;i<talents.length;i++){
+				if(i<talents.length-1)
+					talent.append(talents[i] + ",");
+				else
+					talent.append(talents[i]);
+				memberTalent = talent.toString();
+			}
 		}
 		Member member = new Member(memberId,memberPwd1,memberName,null,memberNik,memberAddress,memberEmail,memberPhone,null,null,memberTalent,null,null);
 		int result = new MemberService().updateMember(member,memberOrigin);

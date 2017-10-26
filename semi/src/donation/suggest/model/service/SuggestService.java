@@ -11,9 +11,9 @@ import donation.suggest.model.vo.Suggest;
 
 public class SuggestService {
 
-	public ArrayList<Suggest> selectList() {
+	public ArrayList<Suggest> selectList(String suggestReciver) {
 		Connection con = getConnection();
-		ArrayList<Suggest> list = new SuggestDao().selectList(con);
+		ArrayList<Suggest> list = new SuggestDao().selectList(con, suggestReciver);
 		close(con);
 		return list;
 	}
@@ -47,4 +47,15 @@ public class SuggestService {
 		return result;
 	}
 
+<<<<<<< HEAD
+=======
+	//수신자 아이디 존재 여부 확인
+	public Boolean idconfirmSuggest(String suggestReciver) {
+		Connection con = getConnection();
+		Boolean suggest = new SuggestDao().idconfirmSuggest(con, suggestReciver);
+		close(con);
+		return suggest;
+	}
+
+>>>>>>> refs/remotes/origin/yeojin
 }

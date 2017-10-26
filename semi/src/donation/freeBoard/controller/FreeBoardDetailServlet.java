@@ -1,6 +1,7 @@
 package donation.freeBoard.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import donation.freeBoard.model.service.FreeBoardService;
+import donation.freeBoard.model.vo.CommentBoard;
 import donation.freeBoard.model.vo.FreeBoard;
 import donation.notice.model.service.NoticeService;
 import donation.notice.model.vo.Notice;
@@ -43,6 +45,8 @@ public class FreeBoardDetailServlet extends HttpServlet {
 				//조회수 1 증가 처리(DB에 count값을 update해야함)
 				fservice.addReadCount(no); //public void - 리턴안시키고 그냥 값만 변경함
 				FreeBoard fboard = fservice.selectFreeBoard(no);
+				
+				
 				
 				RequestDispatcher view = null;
 				if(fboard != null){

@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="../../css/templatemo_misc.css">
     <link rel="stylesheet" href="../../css/templatemo_style.css">
 	<script src="js/vendor/modernizr-2.6.1-respond-1.1.0.min.js"></script>
-	<link href="graph/csslinegraph/csslinegraph.css" rel="stylesheet" type="text/css" media="screen" />
-	</style>
+	
 	
 
 </head>
@@ -26,18 +25,22 @@
 		
 		<div class="row">
   <div class="col-md-2">
-<%-- <%@ include file="../../leftList.jsp" %> --%>
+ <%@ include file="../../leftList.jsp" %> 
  </div>
  
-  <div class="col-md-8">
+ 
+ 
+
+ 
+  <div style="width:1000px;">
   <div style="align: center;">
 	<font size="5">&nbsp; &nbsp; &nbsp;재능 등록</font>
 </div>
 
-<div class="container">
+<div style="float:left; width:650px;" >
  <form action="/semi/cinsert" method="post" enctype="multipart/form-data">
 
-<table class="table table-striped" width="40%">
+<table class="table table-striped" width="400px">
 <input type="hidden" name="cwriter" value="<%=member.getMemberId()%>">
 <colgroup>
 	<col width="160">
@@ -79,25 +82,25 @@
 	</tbody>
 </table>
  </div>
-</form>
-</div>
-</div>
-  <div class="col-md-2">
-<%--   <%@ include file="../../rightList.jsp" %> --%>
-  </div>
 
+
+
+</div>
+</div>
+  
+  
+   <%@ include file="../../rightList.jsp" %> 
+ 
 		
 		
 		
 		
+	
+	
+		<%@ include file="../../footerbar.jsp" %>
 		
 		
-		
-		
-		
-		
-		
-		
+	
 		
 		
 		

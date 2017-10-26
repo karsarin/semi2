@@ -358,4 +358,43 @@ public class MemberDao {
 		}
 		return result;
 	}
+
+	public int login(Connection con, String memberId) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String query="update member set connection = ? where member_id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "Y");
+			pstmt.setString(2, memberId);
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public void logout(Connection con, String memberId) {
+		PreparedStatement pstmt = null;
+		
+		String query="update member set connection = ? where member_id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, "N");
+			pstmt.setString(2, memberId);
+			pstmt.executeQuery();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		
+	}
 }
