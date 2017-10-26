@@ -32,23 +32,173 @@
         </script>
 
 <!--  그래프 -->
-<script>
-  zingchart.render({
-    id: 'myChart',
-    data: {
-      type: 'line',
-      series: [{
-        values: [54,23,34,23,43],
-      }, {
-        values: [10,15,16,20,40]
-      }]
-    }
-  });
-</script>
-<script src="https://cdn.zingchart.com/zingchart.min.js"></script>
- <script src="path/to/zingchart.min.js"></script>
+<style>
+#chartdiv {
+  width: 500px;
+  height: 500px;
+}	
+</style>
 
-        
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/serial.js"></script>
+<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+<!-- Chart code -->
+<script>
+var chart = AmCharts.makeChart( "chartdiv", {
+  "type": "serial",
+  "addClassNames": true,
+  "theme": "light",
+  "autoMargins": false,
+  "marginLeft": 30,
+  "marginRight": 8,
+  "marginTop": 10,
+  "marginBottom": 26,
+  "balloon": {
+    "adjustBorderColor": false,
+    "horizontalPadding": 10,
+    "verticalPadding": 8,
+    "color": "#ffffff"
+  },
+
+  "dataProvider": [ {
+    "year": 2012,
+    "income": 2.35,
+    "expenses": 2.11
+  }, {
+    "year": 2013,
+    "income": 2.62,
+    "expenses": 2.55
+  }, {
+    "year": 2014,
+    "income": 3.01,
+    "expenses": 3.29
+  }, {
+    "year": 2015,
+    "income": 2.95,
+    "expenses": 3.41
+  }, {
+    "year": 2016,
+    "income": 3.06,
+    "expenses": 2.82,
+    "dashLengthLine": 5
+  }, {
+    "year": 2017,
+    "income": 3.41,
+    "expenses": 3.29,
+    "dashLengthColumn": 5,
+    "alpha": 0.2,
+    "additional": "(projection)"
+  } ],
+  "valueAxes": [ {
+    "axisAlpha": 0,
+    "position": "left"
+  } ],
+  "startDuration": 1,
+  "graphs": [ {
+    "alphaField": "alpha",
+    "balloonText": "<span style='font-size:12px;'>[[title]] in [[category]]:<br><span style='font-size:20px;'>[[value]]</span> [[additional]]</span>",
+    "fillAlphas": 1,
+    "title": "Donate",
+    "type": "column",
+    "valueField": "income",
+    "dashLengthField": "dashLengthColumn"
+  }, {
+    "id": "graph2",
+    "balloonText": "<span style='font-size:12px;'>[[title]] in [[category]]:<br><span style='font-size:20px;'>[[value]]</span> [[additional]]</span>",
+    "bullet": "round",
+    "lineThickness": 3,
+    "bulletSize": 7,
+    "bulletBorderAlpha": 1,
+    "bulletColor": "#FFFFFF",
+    "useLineColorForBulletBorder": true,
+    "bulletBorderThickness": 3,
+    "fillAlphas": 0,
+    "lineAlpha": 1,
+    "title": "Prediction",
+    "valueField": "expenses",
+    "dashLengthField": "dashLengthLine"
+  } ],
+  "categoryField": "year",
+  "categoryAxis": {
+    "gridPosition": "start",
+    "axisAlpha": 0,
+    "tickLength": 0
+  },
+  "export": {
+    "enabled": true
+  }
+} );
+</script>
+
+
+<!--  2번째 그래프 -->
+<style>
+#chartdiv2 {
+  width: 500px;
+  margin-left:100px;
+  height: 500px;
+}
+</style>
+<!-- Resources -->
+<script src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+<script src="https://www.amcharts.com/lib/3/pie.js"></script>
+<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+
+
+
+<!-- Chart code -->
+<script>
+var chart = AmCharts.makeChart( "chartdiv2", {
+  "type": "pie",
+  "theme": "light",
+  "dataProvider": [ {
+    "country": "IT",
+    "litres": 501.9
+  }, {
+    "country": "디자인",
+    "litres": 301.9
+  }, {
+    "country": "마케팅",
+    "litres": 201.1
+  }, {
+    "country": "음악",
+    "litres": 165.8
+  }, {
+    "country": "노하우",
+    "litres": 139.9
+  }, {
+    "country": "건강",
+    "litres": 128.3
+  }, {
+    "country": "번역",
+    "litres": 60
+  }, {
+    "country": "기타",
+    "litres": 50
+  } ],
+  "valueField": "litres",
+  "titleField": "country",
+   "balloon":{
+   "fixedPosition":true
+  },
+  "export": {
+    "enabled": true
+  }
+} );
+</script>
+
+
+
+
+
+
+  <!--  그래프 끝 -->
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -501,62 +651,29 @@
 
 
 <!-- 기부 현황 -->
-<div class="container">
-  <div class="row">
-  
-  <div style="float:left; margin-right:120px;">
-<h3>기부 현황</h3>
-<p>(in year)</p>
-	
-	<dl class="csslinegraph">
-		
-		<dt>Day 1</dt>
-		<dd class="first"><span class="pi0 i1"><em>58</em></span></dd>
-		
-	  <dt>Day 2</dt>
-		<dd><span class="pi1 i10"><em>36</em></span></dd>		
-		
-	  <dt>Day 3</dt>
-		<dd><span class="pd11 d d4"><em>23</em></span></dd>	
-		
-	  <dt>Day 4</dt>
-		<dd><span class="pi7 i10"><em>56</em></span></dd>	
-		
-	  <dt>Day 5</dt>
-		<dd><span class="pd17 d d0"><em>55</em></span></dd>								
-		
-	  <dt>Day 6</dt>
-		<dd><span class="pd17 d d7"><em>32</em></span></dd>			
-		
-	  <dt>Day 7</dt>
-		<dd><span class="pi10 i14"><em>79</em></span></dd>	
-		
-	  <dt>Day 8</dt>
-		<dd><span class="pd24 d d2"><em>74</em></span></dd>	
-		
-	  <dt>Day 9</dt>
-		<dd><span class="pi22 i1"><em>77</em></span></dd>	
-		
-	  <dt>Day 10</dt>
-		<dd><span class="pi23 i2"><em>83</em></span></dd>	
-		
-	  <dt>Day 11</dt>
-		<dd><span class="pd25 d d15"><em>34</em></span></dd>	
-		
-	  <dt>Day 12</dt>
-		<dd><span class="pi10 i2"><em>39</em></span></dd>											
-				
-	</dl>
-</div>
 
+<div class="container">
 
 <div style="float:left;">
+<h2>기부현황(년도별)</h2>  
+<p>단위 : 억</p>
 
- <div id="myChart"></div>
+ <div id="chartdiv"></div>
+</div>
+
+<div style="float:left;">
+<h2>기부현황(카테고리별)</h2>  
+<p>단위 : %</p>
+
+ <div id="chartdiv2"></div>
 </div>
 
 
-</div></div>
+</div>
+
+
+
+
         
 
  <!-- 기부 현황  -->
@@ -580,7 +697,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-xs-12 text-left">
-                        <span>Copyright &copy; 2014 Company Name</span>
+                        <span>Copyright &copy; 2017 다재다능</span>
                   </div> <!-- /.text-center -->
                     <div class="col-md-4 hidden-xs text-right">
                         <a href="#top" id="go-top">Back to top</a>
