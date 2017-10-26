@@ -113,7 +113,11 @@ table.type10 tbody td {
 <body>
 
 	<%@ include file="../../header.jsp"%>
-	<%@ include file="../../headerbar.jsp" %>
+	<%if(member!=null && member.getMemberId().equals("admin")) { %>
+		<%@ include file="../manager/managerHeader.jsp" %>
+	<% } else { %>
+		<%@ include file="../../headerbar.jsp" %>
+	<% } %>
 	<%@ include file="../../rightList.jsp"%>
 	
 
@@ -245,7 +249,7 @@ table.type10 tbody td {
 			
 			
 		<!--  글쓰기 -->
-	<% if(member!= null){ %>		
+	<% if(member!= null && member.getMemberId().equals("admin")){ %>		
 			<button onclick="javascript:insertPage();">글쓰기</button>
 	<%} %>
 	

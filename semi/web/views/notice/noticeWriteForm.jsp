@@ -120,7 +120,7 @@ input#input{
 <body>
 
 	<%@ include file="../../header.jsp"%>
-	<%@ include file="../../headerbar.jsp" %>
+	<%@ include file="../manager/managerHeader.jsp" %>
 	<%@ include file="../../rightList.jsp"%>
 	
 

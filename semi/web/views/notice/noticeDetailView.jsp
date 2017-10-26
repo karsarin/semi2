@@ -119,7 +119,11 @@ table.type10 td{
 <body>
 
 	<%@ include file="../../header.jsp"%>
-	<%@ include file="../../headerbar.jsp" %>
+	<%if(member!=null && member.getMemberId().equals("admin")) { %>
+		<%@ include file="../manager/managerHeader.jsp" %>
+	<% } else { %>
+		<%@ include file="../../headerbar.jsp" %>
+	<% } %>
 	<%@ include file="../../rightList.jsp"%>
 	
 
@@ -160,7 +164,7 @@ table.type10 td{
 	</tr>
 
 
-	<%if(notice.getNoticeWriter().equals(member.getMemberId())){ //include에서 sission값을 가지고있기 때문에 그냥 사용할 수 있다. %>
+	<%if(member.getMemberId().equals("admin")){ //include에서 sission값을 가지고있기 때문에 그냥 사용할 수 있다. %>
 	<tr align="right"><td colspan="5">
 		<a href="/semi/nupview?no=<%=notice.getNoticeNo()%>">수정페이지로 이동</a> &nbsp; 
 		<a href="/semi/ndel?no=<%=notice.getNoticeNo()%>">삭제하기</a>

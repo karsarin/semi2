@@ -115,9 +115,8 @@ input#input{
 <body>
 
 	<%@ include file="../../header.jsp"%>
-	<%@ include file="../../headerbar.jsp" %>
+	<%@ include file="../manager/managerHeader.jsp" %>
 	<%@ include file="../../rightList.jsp"%>
-	
 
 	<div
 		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
