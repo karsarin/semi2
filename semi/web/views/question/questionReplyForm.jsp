@@ -103,7 +103,6 @@ ul.sub li:hover {
 
 <style>
 #writetable{
-	width:69%;
 }
 #title{
 	width:80px;
@@ -125,12 +124,10 @@ height:200px;
 
 	<%@ include file="../../header.jsp"%>
 	<%@ include file="../../headerbar.jsp" %>
-	<%@ include file="../../rightList.jsp"%>
 	
-
-	<div
-		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
-
+<div class="row">
+  <div class="col-md-2">
+  	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
@@ -138,17 +135,15 @@ height:200px;
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
-
 				</ul>
 			</li>
 		</ul>
 	</div>
-	<!-- 반복 끝 -->
-	</div>
+</div>
+  
+  <div class="col-md-8">
 
-
-<br>
-
+	
 <form action="/semi/qreply" method="post">
 	<input type="hidden" name="no" value="<%=no %>">
 	<input type="hidden" name="page" value="<%=currentPage %>">
@@ -165,19 +160,20 @@ height:200px;
 
 
 
-	
-	
-
-
-
 	<div align="right">
 	<a href="/semi/qlist?page=<%=currentPage%>">목록으로 이동</a>
     </div>
 
+	
 
-
-
-
+  </div>
+	
+	
+  <div class="col-md-2">
+  	<%@ include file="../../rightList.jsp"%>
+	</div>
+  </div>
+  
 	
 	<div id="footer" style="clear: both;">
 		<div class="container">

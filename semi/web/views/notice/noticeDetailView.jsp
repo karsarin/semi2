@@ -92,7 +92,6 @@ ul.sub li:hover {
 <!-- 테이블 -->
 <style>
 #detailview{
-	width:69%;
 }
 
 #textBox{
@@ -125,12 +124,10 @@ width:20%;
 
 	<%@ include file="../../header.jsp"%>
 	<%@ include file="../../headerbar.jsp" %>
-	<%@ include file="../../rightList.jsp"%>
-	
 
-	<div
-		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
-
+<div class="row">
+  <div class="col-md-2">
+  	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
@@ -138,17 +135,16 @@ width:20%;
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
-
 				</ul>
 			</li>
 		</ul>
 	</div>
-	<!-- 반복 끝 -->
-	</div>
-	
+</div>
+  
+  <div class="col-md-8">
 
-		
-						
+	
+	
 
 <table  class="table table-hover" id="detailview">
 	<tr>
@@ -165,37 +161,48 @@ width:20%;
 		<td colspan="5"><%=notice.getNoticeContent() %></td>
 	</tr>
 
-
-<<<<<<< HEAD
 	<%if(notice.getNoticeWriter().equals(member.getMemberId())){ //include에서 sission값을 가지고있기 때문에 그냥 사용할 수 있다. %>
 	<tr><td colspan="5" align="right">
 		<a href="/semi/nupview?no=<%=notice.getNoticeNo()%>">수정페이지로 이동</a> &nbsp; 
 		<a href="/semi/ndel?no=<%=notice.getNoticeNo()%>">삭제하기</a>
-=======
+
 	<%if(member.getMemberId().equals("admin")){ //include에서 sission값을 가지고있기 때문에 그냥 사용할 수 있다. %>
 	<tr align="right"><td colspan="5">
 		<a href="/semi/nupview?no=<%=notice.getNoticeNo()%>" style="margin-right:10px">수정</a> 
 		<a href="/semi/ndel?no=<%=notice.getNoticeNo()%>" style="margin-right:10px">삭제</a>
->>>>>>> refs/remotes/origin/yunJisun
+
 	</td></tr>
-<<<<<<< HEAD
+
 	<%}else{ %>
 	<tr><td></td></tr>
 	<%} %>
-=======
+
 	<%}%>
->>>>>>> refs/remotes/origin/yunJisun
 </table>
 
 <div align ="center">
-<<<<<<< HEAD
+
 	<a href="/semi/nlist">목록보기로 이동</a>
-=======
+
 	<a href="/semi/nlist">목록보기</a>
 
->>>>>>> refs/remotes/origin/yunJisun
-</div>
 
+</div>
+	
+	
+	
+	
+
+  </div>
+	
+	
+  <div class="col-md-2">
+  	<%@ include file="../../rightList.jsp"%>
+	</div>
+  </div>
+
+		
+						
 
 
 	
