@@ -12,9 +12,14 @@
 <title>noticeDetailView</title>
 <style type="text/css">
 	#reply{
-		width: 600px;
-		 height:600px;
-		border: 1px solid black;
+		
+	}
+	
+	#replyDiv{
+	width:900px;
+	height:50px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
 	}
 </style>
 
@@ -39,10 +44,17 @@
 					
 					for(var i in json.list){
 						//한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
-						values += json.list[i].commentNum + ", " + json.list[i].boardNum + ", " + 
-								decodeURIComponent(json.list[i].writer) + ", " +decodeURIComponent( json.list[i].date )+ ", " + decodeURIComponent(json.list[i].content) + "<br>";
-						$("#reply").html(values);	
+						//values += json.list[i].commentNum + ", " + json.list[i].boardNum + ", " + 
+						//		decodeURIComponent(json.list[i].writer) + ", " +decodeURIComponent( json.list[i].date )+ ", " + decodeURIComponent(json.list[i].content) + "<br>";
+						
+								//$("#reply").html(values);	
+				//	values +=  " 글쓴이 : "  + decodeURIComponent(json.list[i].writer) + "<br>" +   "내용 : " + decodeURIComponent(json.list[i].content) ;
+					$("#reply").append(							
+							"<div id=\"replyDiv\">" + "<label id=\"commentWriter\">"+  " 글쓴이 : " + "</label>" + decodeURIComponent(json.list[i].writer) + "<br>"  +"<label id=\"commentContent\">"+ "내용 : " + "</label>" + decodeURIComponent(json.list[i].content) + "</div>" + "<br>");
+					
+					values = "";
 					} 	
+					
 
 				},
 			  error : function(data){  //실패했을 때 구동되는 함수
@@ -158,9 +170,17 @@ width:20%;
 
 <!-- 댓글 -->
 #replyview{
-	width:69%;
+	width:1000px;
 }
-
+#commentWriter{
+	color: black;
+	font-weight: bold;
+	
+}
+#commentContent{
+	color: black;
+	font-weight: bold;
+}
 
 </style>
 
@@ -224,12 +244,24 @@ width:20%;
 
 
 	
-
+	
+	
+			
+	
+	
 
 
 	<!-- 댓글 입력-->
+		<table>
+		<tr><td colspan="2">댓글</td></tr>
+		<tr><td width="900px">
 		<input type="text" class="form-control"  name="replyinput">
+		</td>
+		<td>
 		<input type="button" onclick="insertReply()" value="등록">
+		</td>
+		<tr>
+		</table>
 			<script type="text/javascript">
 			
 			function insertReply(){
@@ -255,14 +287,10 @@ width:20%;
 					$("#reply").html(values);	
 				} 	
  */
-				$("#reply").append(	
-						
-						"<p>" + 
-						$("#boardNum").val() + ", " + $("#commentWriter").val()  + ", " +  $("input[name=replyinput]").val() 
-						+ "</p>");
-			
- 				
- 				
+				$("#reply").append(							
+						"<div id=\"replyDiv\">" +  "<label id=\"commentWriter\">"+ " 글쓴이 : " + "</label>"+ $("#commentWriter").val() + "<br>"	
+						+ "<label id=\"commentContent\">" + "내용 : " + "</label>"+  	$("input[name=replyinput]").val() 
+						+ "</div>" + "<br>");
  				
 			},
 			error: function(data){			
@@ -272,25 +300,18 @@ width:20%;
 	}
 	</script>
 			
-			
-			
-
-			
-	
 	<!-- 댓글 표시될 공간 -->
 	<div id="reply">
+	
+	</div>
 			
-	</div>
 
-	
-	
-	</div>
-	
-	
+			
+</div>
 	
   <div class="col-md-2">
   	<%@ include file="../../rightList.jsp"%>
-	</div>
+	
   </div>
 
 

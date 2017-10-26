@@ -3,6 +3,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import donation.freeBoard.model.vo.CommentBoard;
 import donation.freeBoard.model.vo.FreeBoard;
 import donation.notice.model.vo.Notice;
 
@@ -309,7 +310,6 @@ public class FreeBoardDao {
 		
 		
 	}
-<<<<<<< HEAD
 
 	public int insertReplyBoard(Connection con, CommentBoard cboard) {
 
@@ -375,9 +375,6 @@ public class FreeBoardDao {
 		
 		return list;
 	}
-=======
->>>>>>> branch 'master' of https://github.com/karsarin/semi.git
-	
 
 	
 	

@@ -53,6 +53,7 @@ public class FreeBoardReplyInsertServlet extends HttpServlet {
 		System.out.println("result : " + result);
 		
 		
+
 		ArrayList<CommentBoard> list = fservice.selectReplyBoardList(boardNum);
 		
 		
@@ -86,6 +87,9 @@ public class FreeBoardReplyInsertServlet extends HttpServlet {
 		pw.print(job.toJSONString());
 		pw.flush();
 		pw.close();
+		
+		
+		
 		
 		System.out.println("파일 전송 완료");
 	}

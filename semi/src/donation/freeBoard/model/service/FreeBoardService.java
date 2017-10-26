@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import donation.freeBoard.model.dao.FreeBoardDao;
+import donation.freeBoard.model.vo.CommentBoard;
 import donation.freeBoard.model.vo.FreeBoard;
 import donation.notice.model.dao.NoticeDao;
 import donation.notice.model.vo.Notice;
@@ -119,7 +120,6 @@ public class FreeBoardService {
 		return listCount;
 	}
 
-<<<<<<< HEAD
 	public int insertReplyBoard(CommentBoard cboard) {
 		Connection con = getConnection();
 		int result = new FreeBoardDao().insertReplyBoard(con, cboard);
@@ -136,9 +136,6 @@ public class FreeBoardService {
 		return list;
 	}
 
-=======
->>>>>>> branch 'master' of https://github.com/karsarin/semi.git
-	
 
 	
 }
