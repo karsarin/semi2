@@ -182,7 +182,7 @@ $(document).ready(function() {
 	<!-- 반복 끝 -->
 
 	<!--  그림 -->
-	<div style="float:left;">
+	<div style="float:left; width:500px;">
 		<hgroup>
 			<h1 style="font-size:20pt">[검색 결과]</h1>
 
@@ -209,33 +209,7 @@ $(document).ready(function() {
 	
 	
 <!--  오른쪽 메뉴바 -->
-<div  style="float:right;border:1px solid black; width:200px;height:800px;
-	margin-right:10px; tex-align:center; ">
-	<ul align="center">
-		<li style="background-color:#648CFF;color:white; text-align:center; ">새로운 재능<br> 기부문화 다재다능</li>
-		<li style=" text-align:center;">
-		<a href="#" onclick="window.open('../../semi/views/usage/usage.html','usage','resizable=no ,width=650,left=500,top=100, height=650');return false">
-		<image src="../../semi/images/verticalList1.PNG" align="center"width="198px" height="150px"></image></a>
-		이용방법</li>
-		<a href="#" onclick="window.open('../../semi/views/usage/usage2.html','usage1','resizable=no ,width=650,left=500,top=100, height=400');return false">
-		<image src="../../semi/images/verticalList2.png" align="center"width="198px" height="150px"></image></a>
-		이용방법2<br>
-		동영상편
-		</li>
-		<a href="#" onclick="window.open('../../semi/views/usage/usage3.html','usage2','resizable=no ,width=450,left=500,top=100, height=450');return false">
-		<image src="../../semi/images/verticalList3.png" align="center"width="198px" height="150px"></image></a>
-		필수사항</li>
-		<a href="#" onclick="window.open('../../semi/views/usage/usage4.html','usage3','resizable=no ,width=500,left=500,top=100, height=400');return false">
-		<image src="../../semi/images/verticalList4.png" align="center"width="198px" height="150px"></image></a>
-		이벤트</li>
-		
-	
-	
-	</ul>
-	
-	
-	</div>
-	
+<%@ include file="../../rightList.jsp" %>
 
 
 
@@ -245,7 +219,7 @@ $(document).ready(function() {
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-xs-12 text-left">
-					<span>Copyright &copy; 2014 Company Name</span>
+					<span>Copyright &copy; 2017 다재다능</span>
 				</div>
 				<!-- /.text-center -->
 				<div class="col-md-4 hidden-xs text-right">
