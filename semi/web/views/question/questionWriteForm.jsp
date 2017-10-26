@@ -78,11 +78,9 @@ ul.sub li a {
 ul.sub li:hover {
 	background: lightblue;
 }
-</style>
 <!-- 세로목록 끝 -->
 
 
-<style>
 #writetable{
 }
 #title{
@@ -91,6 +89,7 @@ ul.sub li:hover {
 
 #textarea textarea{
 height:200px;
+width:66vw;
 }
 
 
@@ -107,7 +106,13 @@ height:200px;
 <body>
 
 	<%@ include file="../../header.jsp"%>
-	<%@ include file="../../headerbar.jsp" %>
+	<%if(member.getMemberId().equals("admin")) { %>
+      <%@ include file="../manager/managerHeader.jsp" %>
+   <% } else { %>
+      <%@ include file="../../headerbar.jsp" %>
+   <% } %>
+   
+   
 	<div class="row">
   <div class="col-md-2">
   	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">

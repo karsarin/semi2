@@ -75,16 +75,17 @@ ul.sub li:hover {
 
 <!-- 세로목록 끝 -->
 
-table{
-	width: 60vw;
-}
 
 #title {
-	width: 80px
+	width: 80px;
+	margin-left:100px;
 }
 #textarea textarea {
 	height: 200px;
+	width:66vw;
 }
+
+
 </style>
 <!-- 세로목록 끝 -->
 
@@ -96,7 +97,13 @@ table{
 <body>
 
 	<%@ include file="../../header.jsp"%>
-	<%@ include file="../../headerbar.jsp"%>
+	<%if(member.getMemberId().equals("admin")) { %>
+      <%@ include file="../manager/managerHeader.jsp" %>
+   <% } else { %>
+      <%@ include file="../../headerbar.jsp" %>
+   <% } %>
+   
+   
 	<div class="row">
 		<div class="col-md-2">
 			<div
@@ -119,23 +126,24 @@ table{
 
 			<form action="/semi/ninsert" method="post"
 				enctype="multipart/form-data">
-				<table id="writetable">
-					<th colspan="2">공지글 쓰기</th>
+				<div id="write-area">
+				<table>
+					<tr><th colspan="2">공지글 쓰기</th><tr>
 
 					<tr>
-						<td id="title">제목</td>
+						<td align="center">제목</td>
 						<td><input type="text" name="title" class="form-control"
 							id="exampleInputEmail1" placeholder="제목을 입력하세요"></td>
 					</tr>
 					<tr>
-						<td>작성자</td>
+						<td align="center">작성자</td>
 						<td><input type="text" name="writer" class="form-control"
 							id="exampleInputEmail1" value="<%=member.getMemberId()%>"
 							readonly></td>
 					</tr>
 					<tr>
-						<td>첨부파일</td>
-						<td><input type="file" name="file" id="exampleInputFile"></td>
+						<td align="center">첨부파일</td>
+						<td><input type="file" name="file" id="exampleInputFile" ></td>
 					</tr>
 					<tr>
 						<td colspan="2" id="textarea"><textarea name="content"
@@ -148,6 +156,7 @@ table{
 							type="reset" value="취소하기" class="btn btn-default"></td>
 					</tr>
 				</table>
+				</div>
 			</form>
 
 			<br>
