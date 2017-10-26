@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import donation.freeBoard.model.dao.FreeBoardDao;
+import donation.freeBoard.model.vo.CommentBoard;
 import donation.freeBoard.model.vo.FreeBoard;
 import donation.notice.model.dao.NoticeDao;
 import donation.notice.model.vo.Notice;
@@ -117,6 +118,22 @@ public class FreeBoardService {
 		int listCount = new FreeBoardDao().getSearchListCount(con, keyword);
 		close(con);
 		return listCount;
+	}
+
+	public int insertReplyBoard(CommentBoard rboard) {
+		Connection con = getConnection();
+		int result = new FreeBoardDao().insertReplyBoard(con, rboard);
+		close(con);
+		return result;
+	}
+
+	public ArrayList<CommentBoard> selectReplyBoardList() {
+		Connection con = getConnection();
+		ArrayList<CommentBoard> list = new FreeBoardDao().selectReplyList(con);
+		
+		close(con);
+		
+		return list;
 	}
 
 	

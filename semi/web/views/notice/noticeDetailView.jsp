@@ -83,7 +83,6 @@ ul.sub li:hover {
 <!-- 테이블 -->
 <style>
 #detailview{
-	width:69%;
 }
 
 #textBox{
@@ -116,12 +115,15 @@ width:20%;
 
 	<%@ include file="../../header.jsp"%>
 	<%@ include file="../../headerbar.jsp" %>
-	<%@ include file="../../rightList.jsp"%>
-	
 
-	<div
-		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
+
+
+
+
+<div class="row">
+  <div class="col-md-2">
+  	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
@@ -129,19 +131,17 @@ width:20%;
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
-
 				</ul>
 			</li>
 		</ul>
 	</div>
-	<!-- 반복 끝 -->
-	</div>
-	
-
+</div>
+  
+  <div class="col-md-8">
 		
 						
 
-<table  class="table table-hover" id="detailview">
+	<table  class="table table-hover" id="detailview">
 	<tr>
 		<td id="titlie"><label><%= notice.getNoticeTitle() %></label></td>
 		<td id="readCount"><label>조회:<%=notice.getReadCount() %></label></td>
@@ -172,6 +172,24 @@ width:20%;
 <div align ="center">
 	<a href="/semi/nlist">목록보기로 이동</a>
 </div>
+
+	
+
+  </div>
+	
+	
+  <div class="col-md-2">
+  	<%@ include file="../../rightList.jsp"%>
+	</div>
+  </div>
+
+
+
+
+
+
+
+
 
 
 
