@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ page import="donation.member.model.vo.Member" %>
-    <% Member member = (Member)session.getAttribute("member"); %>
+<%@ page import="donation.member.model.vo.Member" %>
+<% Member member = (Member)session.getAttribute("member"); %>
 <!DOCTYPE html>
 <html>
 <head>

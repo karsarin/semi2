@@ -96,7 +96,7 @@ public class ManagerDao {
 		int clistCount = 0;
 		Statement stmt = null;
 		ResultSet rset = null;
-		String query = "select count(*) from category_board";
+		String query = "select count(*) from category_board where approval='N'";
 		try {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);
@@ -157,7 +157,7 @@ public class ManagerDao {
 		int qlistCount = 0;
 		Statement stmt = null;
 		ResultSet rset = null;
-		String query = "select count(*) from question";
+		String query = "select count(*) from question where answer='N'";
 		try {
 			stmt = conn.createStatement();
 			rset = stmt.executeQuery(query);
@@ -173,23 +173,15 @@ public class ManagerDao {
 		return qlistCount;
 	}
 
-	public ArrayList<Question> selectQnAList(Connection conn, int qcurrentPage, int qlimit) {
+	public ArrayList<Question> selectQnAList(Connection conn) {
 		ArrayList<Question> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String query = "select * from ("
-					 + "select rownum rnum, QUESTION_NUM, QUESTION_TITLE, QUESTION_WRITER, QUESTION_CONTENT, QUESTION_ORIGINAL_FILENAME,"
-					 + "QUESTION_RENAME_FILENAME, QUESTION_DATE, QUESTION_READCOUNT, QUESTION_LEVEL, QUESTION_REF, "
-					 + "QUESTION_REPLY_REF, QUESTION_REPLY_SEQ, ANSWER "
-					 + "from question) "
-					 + "where ANSWER=? and rnum>=? and rnum<=?";
-		int startRow = (qcurrentPage-1)*qlimit+1;
-		int endRow = startRow+qlimit-1;
+		String query = "select * from question "
+					 + "where ANSWER=?";
 		try {
 			pstmt = conn.prepareStatement(query);
 			pstmt.setString(1, "N");
-			pstmt.setInt(2, startRow);
-			pstmt.setInt(3, endRow);
 			rset = pstmt.executeQuery();
 			if(rset!=null) {
 				list = new ArrayList<Question>();

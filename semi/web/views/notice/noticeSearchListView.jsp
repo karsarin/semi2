@@ -18,6 +18,17 @@ String keyword  = (String)request.getAttribute("keyword");
 <head>
 <meta charset="UTF-8">
 <title>boardListView</title>
+
+<script src="/semi/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('.main-menu ul #minfo').removeClass('active');
+		$('.main-menu ul #home').removeClass('active');
+		$('.main-menu ul #category').removeClass('active');
+		$('.main-menu ul #board').addClass('active');
+	});
+</script>
+
 <script type="text/javascript">
 	function insertPage()
 	{

@@ -11,6 +11,16 @@
 <meta charset="UTF-8">
 <title>NoticeUpdateView</title>
 
+<script src="/semi/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('.main-menu ul #minfo').removeClass('active');
+		$('.main-menu ul #home').removeClass('active');
+		$('.main-menu ul #category').removeClass('active');
+		$('.main-menu ul #board').addClass('active');
+	});
+</script>
+
 <!-- 카테고리  -->
 
 
