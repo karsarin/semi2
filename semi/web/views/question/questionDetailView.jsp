@@ -179,16 +179,14 @@ table.type10 td{
 </tr>
 
 <tr><td colspan="5" align="center">
-<% if(member != null){ %>
-	<%--쿼리스트링에는 반드시 공백 사용하면 안됨 다 붙여서 써야됨 꼭 --%>
-	<a href="/semi/views/question/questionReplyForm.jsp?no=<%= q.getQuestionNum() %>&page=<%= currentPage %>">[댓글달기]</a>
-<% if(member.getMemberId().equals(q.getQuestionWriter())){ %>
-	<a href="/semi/qupview?no=<%= q.getQuestionNum() %>&page=<%= currentPage %>">[수정페이지로 이동]</a>
-	<a href="/semi/qdelete?no=<%= q.getQuestionNum() %>">&nbsp; [삭제]</a>
-<% }
-   if(member.getMemberId().equals("admin")) { %>
-   <a href="/semi/qdelete?no=<%= q.getQuestionNum() %>">&nbsp; [삭제]</a>
-<% }} %>
+<% if(member != null){ 
+	if(member.getMemberId().equals(q.getQuestionWriter()) || member.getMemberId().equals("admin")) {%>	
+	<a href="/semi/qdelete?no=<%= q.getQuestionNum() %>">[삭제]</a>
+		<% if(member.getMemberId().equals(q.getQuestionWriter())){ %>
+			<a href="/semi/qupview?no=<%= q.getQuestionNum() %>&page=<%= currentPage %>">&nbsp; [수정]</a>
+		<% } else if(member.getMemberId().equals("admin")) { %>
+   			<a href="/semi/views/question/questionReplyForm.jsp?no=<%= q.getQuestionNum() %>&page=<%= currentPage %>">&nbsp; [답변]</a>
+<% }}} %>
 	<a href="/semi/qlist?page=<%= currentPage %>">&nbsp; [목록]</a>
 </td></tr>
 </table>

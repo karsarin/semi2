@@ -164,19 +164,33 @@ input#input{
 <h2><%= no %>번글 댓글달기</h2>
 <br>
 
-<form action="/semi/qreply" method="post">
-		<input type="hidden" name="no" value="<%=no %>">
-		<input type="hidden" name="page" value="<%=currentPage %>">
-	<table class="type10">
-	<thead><th colspan="2">답글 쓰기</th></thead>
-		
-	<tbody>
-	<tr><td class="firstTd">제목</td> <td><input type="text" name="title" id="input" ></td>	</tr>
-	<tr><td class="firstTd">작성자</td> <td><input type="text" name="writer" id="input" value="<%=member.getMemberId()%>" readonly></td></tr>
-	<tr><td colspan="2"><textarea rows="5" cols="50" name="content" class="contentbox"></textarea></td></tr>
-	<tr><td colspan="2" align="right"><input type="submit" value="댓글">&nbsp; <input type="reset" value="취소하기"></td></tr>
-	</tbody>
-	</table>
+	<form action="/semi/qreply" method="post">
+		<input type="hidden" name="no" value="<%=no%>"> <input
+			type="hidden" name="page" value="<%=currentPage%>">
+		<table class="type10">
+			<thead>
+				<th colspan="2">답글 쓰기</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="firstTd">제목</td>
+					<td><input type="text" name="title" id="input"></td>
+				</tr>
+				<tr>
+					<td class="firstTd">작성자</td>
+					<td><input type="text" name="writer" id="input"
+						value="<%=member.getMemberId()%>" readonly></td>
+				</tr>
+				<tr>
+					<td colspan="2"><textarea rows="5" cols="50" name="content"
+							class="contentbox"></textarea></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="right"><input type="submit" value="확인">&nbsp;
+						<input type="reset" value="취소"></td>
+				</tr>
+			</tbody>
+		</table>
 	</form>
 
 
@@ -184,7 +198,7 @@ input#input{
 
 
 
-<h4 align="center"><a href="/semi/qlist?page=<%=currentPage%>">목록</a></h4>
+	<h4 align="center"><a href="/semi/qlist?page=<%=currentPage%>">목록</a></h4>
 
 <br>
 

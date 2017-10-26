@@ -67,7 +67,13 @@ public class QuestionReplyServlet extends HttpServlet {
 		int result = bservice.insertQuestionReply(originQuestion, replyQuestion);
 		
 		if(result>0){
-			response.sendRedirect("/semi/qlist?page=" + currentPage);
+			int result2 = bservice.updateOriginQAnswer(originQuestion);
+			if(result2>0) response.sendRedirect("/semi/qlist?page=" + currentPage);
+			else {
+				RequestDispatcher view = request.getRequestDispatcher("views/question/questionError.jsp");
+				request.setAttribute("message", "원글 답변완료 상태로 업데이트 실패");
+				view.forward(request, response);
+			}
 		}
 		else{
 			RequestDispatcher view = request.getRequestDispatcher("views/question/questionError.jsp");
