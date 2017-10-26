@@ -21,6 +21,7 @@ import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import donation.suggest.model.service.SuggestService;
 import donation.suggest.model.vo.Suggest;
+import donation.member.model.vo.Member;
 
 
 /**
@@ -77,6 +78,8 @@ public class SuggestSendServlet extends HttpServlet {
 		String suggestWriter = mrequest.getParameter("writer");
 		String suggestReciver = mrequest.getParameter("reciver");
 		
+		
+		
 		//업로드되어 있는 파일을 '년월일시분초.확장자' 형식으로 파일명 바꾸기 처리
 		if(suggestOriginalFileName != null){
 			//변경할 파일명 만들기
@@ -118,14 +121,31 @@ public class SuggestSendServlet extends HttpServlet {
 					null, null, suggestWriter, suggestReciver);
 		}
 		
-		//서비스로 전달하고 결과받아서 뷰 선택해서 내보내기
-		if(new SuggestService().sendSuggest(suggest) > 0){
-			response.sendRedirect("/semi/suglist");
+		//수신자 아이디 존재 여부 확인
+		Boolean recid = new SuggestService().idconfirmSuggest(suggestReciver);
+		
+		
+		//수신자 아이디가 존재할 경우
+		if(!recid){
+			
+			//서비스로 전달하고 결과받아서 뷰 선택해서 내보내기
+			if(new SuggestService().sendSuggest(suggest) > 0){
+				response.sendRedirect("/semi/suglist");
+			}else{
+				
+				view = request.getRequestDispatcher("views/suggest/suggestError.jsp");
+				request.setAttribute("message", "suggest 전송 실패!");
+				view.forward(request, response);
+			}		
+			
+		//수신자 아이디가 존재하지 않을 경우
 		}else{
+			
 			view = request.getRequestDispatcher("views/suggest/suggestError.jsp");
-			request.setAttribute("message", "suggest 전송 실패!");
-			view.forward(request, response);
-		}		
+			request.setAttribute("message", "아이디가 존재하지않습니다. 확인해주세요.");
+			view.forward(request, response);	
+		
+		}
 	}
 
 	/**
