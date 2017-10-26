@@ -18,7 +18,9 @@
 		
 		<table border="1" cellspacing="0" width="600" align="center">
 			<tr><th>제목</th><td><%= suggest.getSuggestTitle() %></td></tr>
-			<tr><th>작성자</th><td><%= suggest.getSuggestWriter() %></td></tr>
+			<tr><th>기간</th><td><%= suggest.getSuggestPreoid() %></td></tr>
+			<tr><th>내용</th><td><%= suggest.getSuggestContent() %></td></tr>
+			<tr><th>발신자</th><td><%= suggest.getSuggestWriter() %></td></tr>
 			<tr><th>작성날짜</th><td><%= suggest.getSuggestDate() %></td></tr>
 			<tr><th>첨부파일</th>
 				<td>
