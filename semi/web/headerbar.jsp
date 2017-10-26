@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+
     pageEncoding="UTF-8" import="donation.member.model.vo.Member"%>
    
+
 <!DOCTYPE html >
 <html>
 <head>
@@ -62,14 +64,24 @@
 							<li><a href="javascript:goCategoryPage();">카테고리</a></li>
 							<li><a href="javascript:goBoardPage();">게시판</a></li>
 							<li>
+
 							<%--  <% if(member != null){ %>
 							
 							<% } else { %>
+=======
+							<%-- <% if(member != null){ %> --%>
+								<a href="javascript:insertCategory();">재능 등록</a>
+							<%-- <% } else { %>
+>>>>>>> refs/heads/master
 								<a href="javascript:needLogin();">재능 등록</a>
 								
+<<<<<<< HEAD
 							<% } %> 
 							
 								<a href="javascript:insertCategory();">재능 등록</a> --%>
+
+							
+
 							</li>
 							
 							
