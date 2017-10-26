@@ -26,13 +26,19 @@
 <% if(ranking !=0){ %>
 <div align="center">
 <br>
+<hr>
 <%=member.getMemberNik() %>님의 기부 랭킹은 <%= ranking %>위 입니다.<br>
 
 상위<%= (double)ranking/memberTotal*100 %>%입니다.<br>
 <%=member.getMemberNik() %>님의 총 기부금액 은<%= myDonation %>원 입니다.
 </div>
 <hr>
-<input type="">
+<form>
+<div align="center">
+<input type="date">~<input type="date">
+<br>
+</div>
+</form>
 <table align="center" border="1">
 <tr><th>No</th><th>날짜</th><th>기부금</th>
 <% for(Donate d : list){ %>

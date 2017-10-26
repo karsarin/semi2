@@ -114,7 +114,11 @@ height:200px;
 <body>
 
 	<%@ include file="../../header.jsp"%>
-	<%@ include file="../../headerbar.jsp" %>
+	<%if(member!=null && member.getMemberId().equals("admin")) { %>
+		<%@ include file="../manager/managerHeader.jsp" %>
+	<% } else { %>
+		<%@ include file="../../headerbar.jsp" %>
+	<% } %>
 	<%@ include file="../../rightList.jsp"%>
 	
 
@@ -139,6 +143,7 @@ height:200px;
 
 <br>
 
+<<<<<<< HEAD
 <form action="/semi/qreply" method="post">
 	<input type="hidden" name="no" value="<%=no %>">
 	<input type="hidden" name="page" value="<%=currentPage %>">
@@ -150,6 +155,35 @@ height:200px;
 	<tr><td colspan="2" id="textarea"><textarea rows="5" cols="50" name="content"  class="form-control" placeholder="내용을 입력하세요"></textarea></td></tr>
 	<tr><td colspan="2" align="right"><input type="submit" value="등록하기" class="btn btn-default">&nbsp; <input type="reset" value="취소하기" class="btn btn-default"></td></tr>
 	</table>
+=======
+	<form action="/semi/qreply" method="post">
+		<input type="hidden" name="no" value="<%=no%>"> <input
+			type="hidden" name="page" value="<%=currentPage%>">
+		<table class="type10">
+			<thead>
+				<th colspan="2">답글 쓰기</th>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="firstTd">제목</td>
+					<td><input type="text" name="title" id="input"></td>
+				</tr>
+				<tr>
+					<td class="firstTd">작성자</td>
+					<td><input type="text" name="writer" id="input"
+						value="<%=member.getMemberId()%>" readonly></td>
+				</tr>
+				<tr>
+					<td colspan="2"><textarea rows="5" cols="50" name="content"
+							class="contentbox"></textarea></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="right"><input type="submit" value="확인">&nbsp;
+						<input type="reset" value="취소"></td>
+				</tr>
+			</tbody>
+		</table>
+>>>>>>> refs/remotes/origin/yunJisun
 	</form>
 
 
@@ -159,6 +193,10 @@ height:200px;
 	
 
 
+<<<<<<< HEAD
+=======
+	<h4 align="center"><a href="/semi/qlist?page=<%=currentPage%>">목록</a></h4>
+>>>>>>> refs/remotes/origin/yunJisun
 
 	<div align="right">
 	<a href="/semi/qlist?page=<%=currentPage%>">목록으로 이동</a>

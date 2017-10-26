@@ -102,7 +102,13 @@ ul.sub li:hover {
 <body>
 
 	<%@ include file="../../header.jsp"%>
+<<<<<<< HEAD
 	<%@ include file="../../headerbar.jsp" %>
+=======
+	<%@ include file="../manager/managerHeader.jsp" %>
+	<%@ include file="../../rightList.jsp"%>
+	
+>>>>>>> refs/remotes/origin/yunJisun
 
 
 

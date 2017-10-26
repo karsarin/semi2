@@ -115,7 +115,11 @@ width:20%;
 <body>
 
 	<%@ include file="../../header.jsp"%>
-	<%@ include file="../../headerbar.jsp" %>
+	<%if(member!=null && member.getMemberId().equals("admin")) { %>
+		<%@ include file="../manager/managerHeader.jsp" %>
+	<% } else { %>
+		<%@ include file="../../headerbar.jsp" %>
+	<% } %>
 	<%@ include file="../../rightList.jsp"%>
 	
 
@@ -169,6 +173,7 @@ width:20%;
 		<%= q.getQuestionContent() %></td>
 </tr>
 
+<<<<<<< HEAD
 <tr><td colspan="5" align="right">
 <%  if(member != null){ %>
 	<%--쿼리스트링에는 반드시 공백 사용하면 안됨 다 붙여서 써야됨 꼭 --%>
@@ -176,8 +181,22 @@ width:20%;
 <% if(member.getMemberId().equals(q.getQuestionWriter())){ %>
 	<a href="/semi/qupview?no=<%= q.getQuestionNum() %>&page=<%= currentPage %>">[수정페이지로 이동]</a>
 	&nbsp;
+=======
+<tr><td colspan="5" align="center">
+<% if(member != null){ 
+	if(member.getMemberId().equals(q.getQuestionWriter()) || member.getMemberId().equals("admin")) {%>	
+>>>>>>> refs/remotes/origin/yunJisun
 	<a href="/semi/qdelete?no=<%= q.getQuestionNum() %>">[삭제]</a>
+<<<<<<< HEAD
 <%  }} %>
+=======
+		<% if(member.getMemberId().equals(q.getQuestionWriter())){ %>
+			<a href="/semi/qupview?no=<%= q.getQuestionNum() %>&page=<%= currentPage %>">&nbsp; [수정]</a>
+		<% } else if(member.getMemberId().equals("admin")) { %>
+   			<a href="/semi/views/question/questionReplyForm.jsp?no=<%= q.getQuestionNum() %>&page=<%= currentPage %>">&nbsp; [답변]</a>
+<% }}} %>
+	<a href="/semi/qlist?page=<%= currentPage %>">&nbsp; [목록]</a>
+>>>>>>> refs/remotes/origin/yunJisun
 </td></tr>
 </table>
 

@@ -98,9 +98,14 @@ height:200px;
 <body>
 
 	<%@ include file="../../header.jsp"%>
+<<<<<<< HEAD
 	<%@ include file="../../headerbar.jsp" %>
 	
 	
+=======
+	<%@ include file="../manager/managerHeader.jsp" %>
+	<%@ include file="../../rightList.jsp"%>
+>>>>>>> refs/remotes/origin/yunJisun
 
 <div class="row">
   <div class="col-md-2">

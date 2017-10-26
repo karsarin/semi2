@@ -20,7 +20,7 @@
  
  
 <script type="text/javascript">
-	function insertPage() {
+	function insertPage() {w
 		location.href = "views/notice/noticeWriteForm.jsp";
 		return false;
 	}
@@ -114,7 +114,17 @@ background-color:lightblue;
 <body>
 
 	<%@ include file="../../header.jsp"%>
+<<<<<<< HEAD
 	<%@ include file="../../headerbar.jsp" %>
+=======
+	<%if(member!=null && member.getMemberId().equals("admin")) { %>
+		<%@ include file="../manager/managerHeader.jsp" %>
+	<% } else { %>
+		<%@ include file="../../headerbar.jsp" %>
+	<% } %>
+	<%@ include file="../../rightList.jsp"%>
+	
+>>>>>>> refs/remotes/origin/yunJisun
 
 
 	
@@ -155,9 +165,13 @@ background-color:lightblue;
 
 					<tr>
 						<td><%=notice.getNoticeNo()%></td>
-						<td><a href="/semi/ndetail?no=<%=notice.getNoticeNo()%>">
-								<%=notice.getNoticeTitle()%>
-						</a></td>
+						<td>
+						<%if(member!=null) { %>
+							<a href="/semi/ndetail?no=<%=notice.getNoticeNo()%>"><%=notice.getNoticeTitle()%></a>
+						<% } else {%>
+							<%=notice.getNoticeTitle()%>
+						<% } %>
+						</td>
 						<td><%=notice.getNoticeWriter()%></td>
 						<td><%=notice.getNoticeDate()%></td>
 						<td>
@@ -239,6 +253,7 @@ background-color:lightblue;
 				}
 			%>
 		</div>
+<<<<<<< HEAD
 		
 		
 
@@ -286,3 +301,54 @@ background-color:lightblue;
 
 </body>
 </html>			
+=======
+				
+		<!--  검색 -->
+		<div align="center">
+			<form action="/semi/nsearch" method="post">
+				<input type="search" autocomlete name="keyword" length="50">&nbsp;
+				<input type="submit" value="제목검색">
+			</form>
+			
+			
+		<!--  글쓰기 -->
+	<% if(member!= null && member.getMemberId().equals("admin")){ %>		
+			<button onclick="javascript:insertPage();">글쓰기</button>
+	<%} %>
+	
+		</div>
+		
+		
+
+		
+		
+	
+	
+
+
+	
+	<div id="footer" style="clear: both;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-xs-12 text-left">
+					<span>Copyright &copy; 2014 Company Name</span>
+				</div>
+				<!-- /.text-center -->
+				<div class="col-md-4 hidden-xs text-right">
+					<a href="#top" id="go-top">Back to top</a>
+				</div>
+				<!-- /.text-center -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /#footer -->
+
+
+
+
+
+</body>
+</html>
+>>>>>>> refs/remotes/origin/yunJisun
