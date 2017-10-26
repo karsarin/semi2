@@ -161,14 +161,10 @@ $(document).ready(function() {
 
 <!-- 그림 끝 -->
 
-
-
-
-
-
 </head>
 
 <body>
+
 <%@ include file="../../header.jsp" %>
 
 <%if(member!=null&&member.getMemberId().equals("admin")) { %>
@@ -212,10 +208,9 @@ $(document).ready(function() {
 	</div>
 	<!-- /.main-header -->
 	<!-- /.site-header -->
-	<%@ include file="../../headerbar.jsp" %>
-<%} %> 
 	
-
+<%} %> 
+<%@ include file="../../headerbar.jsp" %>
 
 	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
@@ -232,7 +227,6 @@ $(document).ready(function() {
 					<li><a href="#">기타</a></li>
 				</ul>
 			</li>
-
 		</ul>
 	</div>
 
@@ -243,20 +237,27 @@ $(document).ready(function() {
 <form action="/clist" method="post">
 	<div>
 		<hgroup>
-			<h1 style="font-size:20pt">카테고리 게시판</h1>
-			<h3>총 <%= clistCount %>개의 재능이 등록돼 있습니다.</h3>
+		<div class="row" style="width: 1000px">
+  		<div class="col-md-4"><h1 style="font-size:20pt">카테고리 게시판</h1>
+			<h3>총 <%= clistCount %>개의 재능이 등록돼 있습니다.</h3></div>
+ 		 <div class="col-md-4"></div>
+  		<div class="col-md-4">
+  		<button type="button" class="btn btn-primary">조회순</button>
+
+			<button type="button" class="btn btn-success">구매순</button>
+
+			<button type="button" class="btn btn-info">평가순</button>
+		</div>
+		</div>
 			</hgroup>
-		<br>
+		<br><br>
+		<div class="container">
 		<% for(Category c : category){ %>
-		<!-- <div id="container">
-			<div class="grid"> -->
-			<div class="container-fluid">
-				<div class="row">
-				<div class="imgholder">
-				
-				<a href="/semi/cdetail">	<img
-						src="http://www.inwebson.com/demo/blocksit-js/demo2/images/img27.jpg" />
-						</a>
+		<div class="row" style="width:1000px">
+		  <div class="col-md-4" style="border: 1px solid black">
+		  	<div class="imgholder">			
+				<a href="/semi/cdetail?cnum=<%=c.getCategoryNo() %>&page=<%= ccurrentPage%>">
+				<img src="cuploadfiles/<%=c.getRenameImage() %>" /> </a>
 				</div>
 
 				<strong><%=c.getCategoryTitle() %></strong>
@@ -264,9 +265,12 @@ $(document).ready(function() {
 				<%=c.getCategoryDonation() %>원</p>
 				<p>★★★★ 후기 5건</p>
 			</div>
+  
+			</div>
+		
 			<%} %>
-		</div>
-	</div>
+			</div>
+	
 </form>
 	<!-- 그림 끝 -->
 
