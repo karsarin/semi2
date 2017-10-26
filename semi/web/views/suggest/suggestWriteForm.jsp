@@ -32,6 +32,14 @@
 		<td align="left"><input type="text" name="title"></td>
 	</tr>
 	<tr>
+		<th width="150">기간</th>
+		<td align="left"><input type="text" name="preoid"></td>
+	</tr>
+	<tr>
+		<th width="150">내용</th>
+		<td align="left"><textarea rows="5" cols="50" name="content"></textarea></td>
+	</tr>
+	<tr>
 		<th width="150">작성자</th>
 		<td align="left"><input type="text" name="writer" value="<%= member.getMemberId() %>" readonly></td>
 	</tr>
@@ -42,10 +50,6 @@
 	<tr>
 		<th width="150">첨부파일</th>
 	    <td align="left"><input type="file" name="file"></td>
-	</tr>
-	<tr>
-		<th width="150">내용</th>
-		<td align="left"><textarea rows="5" cols="50" name="content"></textarea></td>
 	</tr>
 	<tr>
 		<th width="150" colspan="2">

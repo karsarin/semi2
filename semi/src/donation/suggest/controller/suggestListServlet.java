@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
 import donation.suggest.model.service.SuggestService;
 import donation.suggest.model.vo.Suggest;
 
@@ -35,7 +38,10 @@ public class suggestListServlet extends HttpServlet {
 		//쪽지함 전체 조회 처리용 컨트롤러
 		response.setContentType("text/html; charset=utf-8");
 		
-		ArrayList<Suggest> list = new SuggestService().selectList();
+		
+		String suggestReciver = request.getParameter("reciver");
+		
+		ArrayList<Suggest> list = new SuggestService().selectList(suggestReciver);
 		
 		RequestDispatcher view = null;	
 		if(list != null){

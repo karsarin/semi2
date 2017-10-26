@@ -80,6 +80,7 @@ public class SuggestSendServlet extends HttpServlet {
 		
 		
 		
+		
 		//업로드되어 있는 파일을 '년월일시분초.확장자' 형식으로 파일명 바꾸기 처리
 		if(suggestOriginalFileName != null){
 			//변경할 파일명 만들기
@@ -126,11 +127,12 @@ public class SuggestSendServlet extends HttpServlet {
 		
 		
 		//수신자 아이디가 존재할 경우
-		if(!recid){
+		if(recid == true){
 			
 			//서비스로 전달하고 결과받아서 뷰 선택해서 내보내기
 			if(new SuggestService().sendSuggest(suggest) > 0){
 				response.sendRedirect("/semi/suglist");
+				
 			}else{
 				
 				view = request.getRequestDispatcher("views/suggest/suggestError.jsp");
