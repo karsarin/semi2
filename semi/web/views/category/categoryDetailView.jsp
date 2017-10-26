@@ -59,6 +59,11 @@
 	function goPurchaseView(){
 		location.href="/semi/views/category/categoryPurchaseView.jsp";
 	}
+	
+	function goSuggestion(){
+		location.href="/semi/views/suggest/suggestWriteForm.jsp";
+	}
+	
 </script>
 
 </head>
@@ -82,7 +87,7 @@
   <tr><th width="160px">연락처</th><td><%= category.getPhone() %></td></tr>
   <tr><th width="160px">이메일</th><td><%= category.getEmail() %></td></tr>
  <tr><td colspan="2" align="center"> <button type="button" class="btn btn-primary btn-lg" onclick="javascript:goPurchaseView();">재능 구매하기</button></tr>
- <tr><td align="center"><button type="button" class="btn btn-success">문의 보내기</button></td>
+ <tr><td align="center"><button type="button" class="btn btn-success" onclick="goSuggestion();">문의 보내기</button></td>
  		<td align="center"><% if(member != null && member.getConnection().equals("Y")){ %>
  				<button type="button" class="btn btn-success">채팅가능</button>
  			<%} else { %>
@@ -111,15 +116,15 @@
  	 	<tr><td><%= category.getCategoryDonation() %></td><td><%= category.getVerdict() %></td><td><%= category.getWorkDate() %></td><td></td><td><%= category.getCategoryReadcount() %></td></tr>
  	 </table>
 	<img class="mainimg" src="cuploadfiles/<%= category.getRenameImage()%>" width="855px" height="600px"> <br>
-	<font size="6">기부금 <%= category.getCategoryDonation() %>원 이상 구매 가능</font><br>
+	<font size="6">기부금 <%= category.getCategoryDonation() %>원 이상 구매 가능</font> &nbsp; <button type="button" class="btn btn-primary btn-lg" onclick="javascript:goPurchaseView();">재능 구매하기</button><br>
 	<hr>
 	</div>
 	
 	<div class="prd_detail_sub_title" style="">
-		<p><font size="4"> 재능 <font color="blue">상세 내용</font></font></p><br>
+		<p><strong><font size="4"> 재능 <font color="blue">상세 내용</font></font></strong></p><br>
 		
 		<p style="margin-bottom:20px">
-			<%= category.getCategoryContent() %>
+			<%= category.getCategoryContent() %> 
 		</p>
 	</div>
 	

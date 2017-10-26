@@ -126,17 +126,6 @@ INSERT INTO CATEGORY_GROUP VALUES(6, '번역');
 INSERT INTO CATEGORY_GROUP VALUES(7, '건강');
 INSERT INTO CATEGORY_GROUP VALUES(8, '기타');
 
-update category_board set original_image = 'images/img26.png' where category_no=2;
-update category_board set original_image = 'images/default_board.png' where category_no=2;
-update category_board set original_image = 'images/default_board.png' where category_no=3;
-update category_board set original_image = 'images/default_board.png' where category_no=4;
-update category_board set original_image = 'images/default_board.png' where category_no=5;
-update category_board set original_image = 'images/default_board.png' where category_no=6;
-update category_board set original_image = 'images/default_board.png' where category_no=7;
-update category_board set original_image = 'images/default_board.png' where category_no=8;
-update category_board set original_image = 'images/default_board.png' where category_no=9;
-update category_board set original_image = 'images/default_board.png' where category_no=10;
-
 commit;
 
 
