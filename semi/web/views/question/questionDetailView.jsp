@@ -83,12 +83,10 @@ ul.sub li a {
 ul.sub li:hover {
 	background: lightblue;
 }
-</style>
 <!-- 세로목록 끝 -->
 
-<!-- 테이블 -->
-<style>
 #detailview{
+width:66vw;
 }
 
 #textBox{
@@ -124,7 +122,13 @@ width:20%;
 <body>
 
 	<%@ include file="../../header.jsp"%>
-	<%@ include file="../../headerbar.jsp" %>
+	<%if(member.getMemberId().equals("admin")) { %>
+      <%@ include file="../manager/managerHeader.jsp" %>
+   <% } else { %>
+      <%@ include file="../../headerbar.jsp" %>
+   <% } %>
+   
+   
 	<div class="row">
   <div class="col-md-2">
   	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">
