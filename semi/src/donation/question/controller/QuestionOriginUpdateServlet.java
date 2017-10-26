@@ -58,7 +58,7 @@ public class QuestionOriginUpdateServlet extends HttpServlet {
 		//해당 컨테이너에서 구동중인 웹 애플리케이션의 루트 경로 알아냄
 		String root = request.getSession().getServletContext().getRealPath("/");
 		//업로드되는 파일이 저장될 폴더명과 루트 경로 연결 처리
-		String savePath = root + "quploadfiles";
+		String savePath = root + "uploadfiles/" + "quploadfiles";
 		//web/buploadfiles 로 지정됨
 		
 		//request 를 MultipartRequest 객체로 변환함
@@ -73,7 +73,7 @@ public class QuestionOriginUpdateServlet extends HttpServlet {
 		String oFileName = mrequest.getParameter("ofile");
 		String rFileName = mrequest.getParameter("rfile");
 		
-		String originalFileName = mrequest.getFilesystemName("upfile");
+		String originalFileName = mrequest.getFilesystemName("file");
 		Question b = null;
 		if(originalFileName != null && 
 				!oFileName.equals(originalFileName)){

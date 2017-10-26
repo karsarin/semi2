@@ -78,40 +78,25 @@ ul.sub li:hover {
 <!-- 세로목록 끝 -->
 
 
+
+
 <style>
-
-
-table.type10{
-	width : 1200px;
-	border-collapse: collapse;
-	text-align: left;
-	line-height: 1.5;
-	border : 1px solid black;
+#writetable{
+	width:69%;
+}
+#title{
+	width:80px;
 }
 
-table.type10 th{
-background-color : lightblue;
+#textarea textarea{
+height:200px;
 }
 
-table.type10 tr{
-
-	border-bottom : 1px solid;
-	height:30px;
-}
-td.firstTd{
-	width:100px;
-		
-}
-table.type10 textarea{
-width:1200px;
-height:300px;
-}
-input#input{
-width:1100px
-
-}
 
 </style>
+
+
+
 
 </head>
 
@@ -156,39 +141,42 @@ width:1100px
 	<input type="hidden" name="rfile" value="<%=question.getQuestionRenameFileName()%>">
 	<input type="hidden" name="page" value="<%=currentPage %>">
 		
-	<table class="type10">
-	<thead><th colspan="2">자유게시글 수정</th></thead>
-		
-	<tbody>
-	<tr><td class="firstTd">제목</td> <td><input type="text" name="title" id="input"  value="<%=question.getQuestionTitle()%>"></td>	</tr>
-	<tr><td class="firstTd">작성자</td> <td><input type="text" name="writer" id="input"   value="<%=question.getQuestionWriter()%>" readonly></td></tr>
-	<tr><td class="firstTd">첨부파일</td> <td  align="left">
+	<table id="writetable">
+	<th colspan="2">QA 글 수정</th>
+	
+	<tr><td id="title">제목</td> <td><input type="text" name="title" class="form-control" id="exampleInputEmail1" value="<%=question.getQuestionTitle()%>"></td>	</tr>
+	<tr><td>작성자</td> <td><input type="text" name="writer" class="form-control" id="exampleInputEmail1" value="<%=question.getQuestionWriter()%>" readonly></td></tr>
+	<tr><td>첨부파일</td> 
+	<td>
 	<%if(question.getQuestionOriginalFileName() != null){ %>
 	<input type="file" name="file" value="<%= question.getQuestionOriginalFileName()%>">
 	<%}else{ %>
 	<input type="file" name="file" >
 	<%} %>
-	</td>	</tr>
-	<tr><td colspan="2"><textarea rows="5" cols="50" name="content" class="contentbox"><%=question.getQuestionContent() %></textarea></td></tr>
-	<tr><td colspan="2" align="right"><input type="submit" value="등록하기">&nbsp; <input type="reset" value="취소하기"></td></tr>
-	</tbody>
+	</td></tr>
+	<tr><td colspan="2" id="textarea"><textarea rows="5" cols="50" name="content"  class="form-control" ><%=question.getQuestionContent()%></textarea></td></tr>
+	<tr><td colspan="2" align="right"><input type="submit" value="수정하기" class="btn btn-default">&nbsp; <input type="reset" value="취소하기" class="btn btn-default"></td></tr>
 	</table>
+
+
 	</form>
 	
 	<%}else{   //댓글일 때%> 
 	<form action="/semi/qupdate1" method="post">
 		<input type="hidden" name="no" value="<%=question.getQuestionNum() %>">
 		<input type="hidden" name="page" value="<%=currentPage %>">
-	<table class="type10">
-	<thead><th colspan="2">공지글쓰기</th></thead>
-		
-	<tbody>
-	<tr><td class="firstTd">제목</td> <td><input type="text" name="title" id="input" value="<%=question.getQuestionTitle()%>"></td>	</tr>
-	<tr><td class="firstTd">작성자</td> <td><input type="text" name="writer" id="input" value="<%=question.getQuestionWriter() %>" readonly></td></tr>
-	<tr><td colspan="2"><textarea rows="5" cols="50" name="content" class="contentbox"><%=question.getQuestionContent()%></textarea></td></tr>
-	<tr><td colspan="2" align="right"><input type="submit" value="수정하기">&nbsp; <input type="reset" value="취소하기"></td></tr>
-	</tbody>
+
+	<table id="writetable">
+	<th colspan="2">QA 답글 수정</th>
+	
+	<tr><td id="title">제목</td> <td><input type="text" name="title" class="form-control" id="exampleInputEmail1" value="<%=question.getQuestionTitle()%>"></td>	</tr>
+	<tr><td>작성자</td> <td><input type="text" name="writer" class="form-control" id="exampleInputEmail1" value="<%=question.getQuestionWriter()%>" readonly></td></tr>
+	<tr><td colspan="2" id="textarea"><textarea rows="5" cols="50" name="content"  class="form-control" ><%=question.getQuestionContent()%></textarea></td></tr>
+	<tr><td colspan="2" align="right"><input type="submit" value="수정하기" class="btn btn-default">&nbsp; <input type="reset" value="취소하기" class="btn btn-default"></td></tr>
 	</table>
+
+
+
 	</form>
 	<%} %>
 	
@@ -200,27 +188,30 @@ width:1100px
 	
 
 
+	
+	<div id="footer" style="clear: both;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-xs-12 text-left">
+					<span>Copyright &copy; 2014 Company Name</span>
+				</div>
+				<!-- /.text-center -->
+				<div class="col-md-4 hidden-xs text-right">
+					<a href="#top" id="go-top">Back to top</a>
+				</div>
+				<!-- /.text-center -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /#footer -->
+
+
+
+
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

@@ -103,7 +103,7 @@ ul.sub li:hover {
 <style>
 
 #table{
-width:60%
+width:69%
 }
 #table #no{
 width:6%
@@ -227,7 +227,7 @@ background-color:lightblue;
 
 
 
-<div align="center">
+<div align="right">
 	<form action="/semi/qsearch" method="post">
 		<input type="search" autocomlete name="keyword" length="50">&nbsp;
 		<input type="submit" value="제목검색"> 
@@ -267,14 +267,31 @@ background-color:lightblue;
 
 
 
-
-
+	<br>
+	<div align="center">
+	<a href="/semi/qlist">목록으로 이동</a>
+    </div>
 
 
 	
+	<div id="footer" style="clear: both;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-xs-12 text-left">
+					<span>Copyright &copy; 2014 Company Name</span>
+				</div>
+				<!-- /.text-center -->
+				<div class="col-md-4 hidden-xs text-right">
+					<a href="#top" id="go-top">Back to top</a>
+				</div>
+				<!-- /.text-center -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /#footer -->
 
-	
-<br><br><br>
 
 </body>
 </html>

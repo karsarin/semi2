@@ -74,10 +74,10 @@ ul.sub li:hover {
 
 <style>
 #writetable{
-	width:800px;
+	width:69%;
 }
 #title{
-	width:65px;
+	width:80px;
 }
 
 #textarea textarea{
@@ -128,8 +128,6 @@ height:200px;
 	<table id="writetable">
 	<th colspan="2">QA 글쓰기</th>
 	
-
-	
 	<tr><td id="title">제목</td> <td><input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="제목을 입력하세요"></td>	</tr>
 	<tr><td>작성자</td> <td><input type="text" name="writer" class="form-control" id="exampleInputEmail1" value="<%=member.getMemberId() %>" readonly></td></tr>
 	<tr><td>첨부파일</td> <td><input type="file" name="file" id="exampleInputFile"></td></tr>
@@ -137,18 +135,18 @@ height:200px;
 	<tr><td colspan="2" align="right"><input type="submit" value="등록하기" class="btn btn-default">&nbsp; <input type="reset" value="취소하기" class="btn btn-default"></td></tr>
 	</table>
 	</form>
-	
-	
 
 	<br>
-	<div align="right">
+	<div align="center">
 	<a href="/semi/qlist">목록으로 이동</a>
     </div>
 
 
-<br>
 
-	<div id="footer" style="clear:both;">
+
+
+	
+	<div id="footer" style="clear: both;">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-xs-12 text-left">
@@ -165,6 +163,8 @@ height:200px;
 		<!-- /.container -->
 	</div>
 	<!-- /#footer -->
+
+
 	
 </body>
 </html>

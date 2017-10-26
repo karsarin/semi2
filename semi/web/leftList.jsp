@@ -9,7 +9,7 @@
 <%-- 세로목록 --%>
 <style>
 ul#navi {
-	width: 200px;
+	width: 150px;
 	text-indent: 10px;
 	background-color:lightgray;
 	
@@ -62,7 +62,7 @@ ul.sub li:hover {
 </head>
 <body>
 
-<div style="margin-left:30px;width: 230px; height: 500px; float: left;">
+<div style="margin-left:30px; width: 230px; height: 500px; float: left;">
 	
 		<ul id="navi">
 			<li class="group">

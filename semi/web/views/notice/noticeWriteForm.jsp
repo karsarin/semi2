@@ -82,14 +82,14 @@ ul.sub li:hover {
 
 <style>
 #writetable{
-	width:800px;
+	width:69%;
 }
 #title{
-	width:65px;
+	width:80px
 }
 
 #textarea textarea{
-height:200px;
+	height:200px;
 }
 
 
@@ -127,7 +127,6 @@ height:200px;
 	</div>
 
 
-<div style="float:left;">
 
 	<form action="/semi/ninsert" method="post" enctype="multipart/form-data">
 	<table id="writetable">
@@ -136,17 +135,17 @@ height:200px;
 	<tr><td id="title">제목</td> <td><input type="text" name="title" class="form-control" id="exampleInputEmail1" placeholder="제목을 입력하세요"></td>	</tr>
 	<tr><td>작성자</td> <td><input type="text" name="writer" class="form-control" id="exampleInputEmail1" value="<%=member.getMemberId() %>" readonly></td></tr>
 	<tr><td>첨부파일</td> <td><input type="file" name="file" id="exampleInputFile"></td></tr>
-	<tr><td colspan="2" id="textarea"><textarea rows="5" cols="50" name="content"  class="form-control" placeholder="내용을 입력하세요"></textarea></td></tr>
+	<tr><td colspan="2" id="textarea"><textarea name="content"  class="form-control" placeholder="내용을 입력하세요"></textarea></td></tr>
+	
 	<tr><td colspan="2" align="right"><input type="submit" value="등록하기" class="btn btn-default">&nbsp; <input type="reset" value="취소하기" class="btn btn-default"></td></tr>
 	</table>
 	</form>	
 	
 	<br>
-	<div align="right">
+	<div align="center">
 	<a href="/semi/nlist">목록으로 이동</a>
-    </div>
-    
-</div>
+     
+	</div>
 
 
 

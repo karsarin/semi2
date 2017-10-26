@@ -76,11 +76,10 @@ ul.sub li:hover {
 </style>
 <!-- 세로목록 끝 -->
 
-
 <!-- 테이블 -->
 <style>
 #detailview{
-	width:60%;
+	width:69%;
 }
 
 #textBox{
@@ -147,14 +146,13 @@ width:20%;
 
 
 
-<table class="type10">
-<tr class="firstTr">
-<td class="firstTd"><%= q.getQuestionTitle() %></td>
-<td><%= q.getQuestionReadCount() %></td>
-<td><%= q.getQuestionDate() %> </td>
-<td><%= q.getQuestionWriter() %></td>
-
-	<td>
+<table  class="table table-hover" id="detailview">
+<tr>
+<td id="titlie"><label><%= q.getQuestionTitle() %></label></td>
+<td id="readCount"><label><%= q.getQuestionReadCount() %></label></td>
+<td id="date"><label><%= q.getQuestionDate() %> </label></td>
+<td id="writer"><label><%= q.getQuestionWriter() %></label></td>
+<td id="file">
 	<% if(q.getQuestionOriginalFileName() == null){ %>
 		첨부파일 없음
 	<% }else{ %>
@@ -166,12 +164,12 @@ width:20%;
 </tr>	
 	
 
-	<tr class="content">
+<tr id="textBox">
 		<td colspan="5">
 		<%= q.getQuestionContent() %></td>
-	</tr>
+</tr>
 
-<tr><td colspan="5" align="center">
+<tr><td colspan="5" align="right">
 <%  if(member != null){ %>
 	<%--쿼리스트링에는 반드시 공백 사용하면 안됨 다 붙여서 써야됨 꼭 --%>
 	<a href="/semi/views/question/questionReplyForm.jsp?no=<%= q.getQuestionNum() %>&page=<%= currentPage %>">[댓글달기]</a>
@@ -180,15 +178,39 @@ width:20%;
 	&nbsp;
 	<a href="/semi/qdelete?no=<%= q.getQuestionNum() %>">[삭제]</a>
 <%  }} %>
-&nbsp; 
-<a href="/semi/qlist?page=<%= currentPage %>">[목록]</a>
 </td></tr>
 </table>
 
 
 
-<br>
-<hr>
+	<br>
+	<div align="center">
+	<a href="/semi/qlist?page=<%=currentPage %>">목록으로 이동</a>
+    </div>
+
+
+
+	
+	<div id="footer" style="clear: both;">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 col-xs-12 text-left">
+					<span>Copyright &copy; 2014 Company Name</span>
+				</div>
+				<!-- /.text-center -->
+				<div class="col-md-4 hidden-xs text-right">
+					<a href="#top" id="go-top">Back to top</a>
+				</div>
+				<!-- /.text-center -->
+			</div>
+			<!-- /.row -->
+		</div>
+		<!-- /.container -->
+	</div>
+	<!-- /#footer -->
+
+
+
 
 </body>
 </html>

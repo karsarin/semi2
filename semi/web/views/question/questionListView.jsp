@@ -95,7 +95,7 @@ ul.sub li:hover {
 <style>
 
 #table{
-width:60%
+width:69%
 }
 #table #no{
 width:6%
@@ -220,7 +220,7 @@ background-color:lightblue;
 
 	
 	<!-- 검색 -->
-<div align="center">
+<div align="right">
 	<form action="/semi/qsearch" method="post">
 		<input type="search" autocomlete name="keyword" length="50">&nbsp;
 		<input type="submit" value="제목검색"> 
@@ -255,9 +255,6 @@ background-color:lightblue;
 <% }else{ %>
 	<a href="/semi/qlist?page=<%= currentPage + 1 %>">[다음]</a>
 <% } %>
-
-
-
 
 
 
