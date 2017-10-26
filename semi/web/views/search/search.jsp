@@ -185,7 +185,7 @@ $(document).ready(function() {
 	<!-- 반복 끝 -->
 
 	<!--  그림 -->
-	<div style="float:left; width:500px;">
+	<div style="float:left; width:1000px;">
 		<hgroup>
 			<h1 style="font-size:20pt">[검색 결과]</h1>
 
