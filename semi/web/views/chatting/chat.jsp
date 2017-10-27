@@ -6,7 +6,7 @@
 	<meta charset="UTF-8">
     <title>Chatting </title>
     <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 		
 		<!--  헤더바 -->
 
@@ -79,7 +79,7 @@
 		</style>
 		<!-- 세로목록 끝 -->
 
-
+		<!-- chatting style -->
 		<style type="text/css">
 		#chat ul#discussion{
 			float: left;
@@ -97,6 +97,7 @@
 		}
 		
 		</style>
+        <!-- chatting style 끝 -->
         
     </head>
     <body>
@@ -171,9 +172,6 @@
          </li>
 
       </ul>
-
-
-
    </div>
    
    <!-- 채팅 -->
@@ -184,7 +182,7 @@
 	
 
 	<!-- 아이디 입력 -->
-    <input type="hidden" id="userid" placeholder="Input User ID" value="AAAB">
+    <input type="hidden" id="userid" placeholder="Input User ID" value="<%= member.getMemberId() %>">
     
     <table id="chat">
     	<!-- 채팅 내용란 -->
@@ -226,6 +224,38 @@
             return encodedValue;
         }
         
+     	// 대화를 저장한다.
+        function storeHistory(){
+         // TODO 5. 대화를 storage에 저장한다.(key: 현재시간, value: 대화내용)
+         window.localStorage.setItem(dateToString(), panelE.value);  
+         
+         // 지난 대화 목록을 갱신한다.
+         loadHistoryList();
+        }
+        
+        // 지난 대화 목록을 불러온다.
+        function loadHistoryList(){
+         // TODO 6. storage에 저장된 대화 목록을 불러온다.
+         var list= "";
+         for(var i=0; i<window.localStorage.length; i++){
+          var key=window.localStorage.key(i);
+          list +="<option>" + key + "</option>"; 
+         }
+         
+         historyE.innerHTML = list;
+        }
+        
+        // 지정한 대화 내용을 불러온다.
+        function loadHistory(key){
+         // TODO 7. 지정한 대화 내용을 localStorage에서 불러와서 메세지 출력 창에 보여준다.
+         panelE.innerHTML = window.localStorage.getItem(key);  
+        }
+        
+     	// 지난 대화 보기 선택 시
+        historyE.onchange = function(){
+         loadHistory(historyE.value);
+        };
+        
     </script>
     
     <!-- 채팅 끝 -->
@@ -239,7 +269,7 @@
       <li style="background-color:#648CFF;color:white; text-align:center; ">새로운 재능<br> 기부문화 다재다능</li>
       <li style=" text-align:center;">
       <a href="#" onclick="window.open('../../views/usage/usage.html','usage','resizable=no ,width=650,left=500,top=100, height=650');return false">
-      <image src="../../images/verticalList1.PNG" align="center"width="198px" height="150px"></image></a>이용방법</li>
+      <image src="../../images/verticalList1.png" align="center"width="198px" height="150px"></image></a>이용방법</li>
       <a href="#" onclick="window.open('../../views/usage/usage2.html','usage1','resizable=no ,width=650,left=500,top=100, height=400');return false">
       <image src="../../images/verticalList2.png" align="center"width="198px" height="150px"></image></a>이용방법2<br>동영상편</li>
       <a href="#" onclick="window.open('../../views/usage/usage3.html','usage2','resizable=no ,width=450,left=500,top=100, height=450');return false">
@@ -271,6 +301,7 @@
       <!-- /.container -->
    </div>
    <!-- /#footer -->
+   
     </body>
 
 
