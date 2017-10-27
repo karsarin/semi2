@@ -70,6 +70,7 @@ public class CategoryInsertServlet extends HttpServlet {
 		String title = mrequest.getParameter("ctitle");
 		String writer = mrequest.getParameter("cwriter");
 		String content = mrequest.getParameter("ccontent");
+		content.replaceAll("\n", "<br>");
 		int donation = Integer.parseInt(mrequest.getParameter("cdonation"));
 		int workdate = Integer.parseInt(mrequest.getParameter("cworkdate"));
 		String email = mrequest.getParameter("cemail");

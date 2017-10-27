@@ -34,7 +34,7 @@ public class CategoryDetailViewServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		
 		int cnum = Integer.parseInt(request.getParameter("cnum"));
-		int ccurrentPage = Integer.parseInt(request.getParameter("cpage"));
+		int ccurrentPage = Integer.parseInt(request.getParameter("page"));
 		
 		CategoryService cservice = new CategoryService();
 		
@@ -44,11 +44,6 @@ public class CategoryDetailViewServlet extends HttpServlet {
 		Category category = cservice.selectCategory(cnum);
 		
 		RequestDispatcher view = null;
-		
-		System.out.println("img : " + category.getAddRenameImage1());
-		System.out.println("img : " + category.getAddRenameImage2());
-		System.out.println("img : " + category.getAddRenameImage3());
-		System.out.println("img : " + category.getAddRenameImage4());
 		
 		if(category != null)
 		{

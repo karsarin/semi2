@@ -74,6 +74,46 @@ public class Category {
 		this.verdict = verdict;
 		this.purchaseCount = purchaseCount;
 	}
+	
+	//관리자 Dao에서 사용하는 생성자
+	public Category(int categoryNo, String userId, int categoryGroup, String categoryTitle, String categoryWriter,
+			String categoryContent, Date categoryDate, int categoryReadcount, int categoryDonation, int workDate,
+			int categoryLevel, int categoryRef, int categoryReplyRef, int categoryReplySeq, String phone, String email,
+			String originalImage, String renameImage, String addImage1, String addRenameImage1, String addImage2, String addRenameImage2, 
+			String addImage3, String addRenameImage3, String addImage4, String addRenameImage4,
+			String special, String approval) {
+		super();
+		this.categoryNo = categoryNo;
+		this.userId = userId;
+		this.categoryGroup = categoryGroup;
+		this.categoryTitle = categoryTitle;
+		this.categoryWriter = categoryWriter;
+		this.categoryContent = categoryContent;
+		this.categoryDate = categoryDate;
+		this.categoryReadcount = categoryReadcount;
+		this.categoryDonation = categoryDonation;
+		this.workDate = workDate;
+		this.categoryLevel = categoryLevel;
+		this.categoryRef = categoryRef;
+		this.categoryReplyRef = categoryReplyRef;
+		this.categoryReplySeq = categoryReplySeq;
+		this.phone = phone;
+		this.email = email;
+		this.originalImage = originalImage;
+		this.renameImage = renameImage;
+		
+		this.addImage1 = addImage1;
+		this.addRenameImage1 = addRenameImage1;
+		this.addImage2 = addImage2;
+		this.addRenameImage2 = addRenameImage2;
+		this.addImage3 = addImage3;
+		this.addRenameImage3 = addRenameImage3;
+		this.addImage4 = addImage4;
+		this.addRenameImage4 = addRenameImage4;
+		
+		this.special = special;
+		this.approval = approval;
+	}
 
 	public Category(String userId, String categoryTitle, int categoryGroup, String categoryWriter, String categoryContent, int categoryDonation, 
 			int workDate, String email, String phone, String addImage1, String addRenameImage1, String addImage2, String addRenameImage2, 
