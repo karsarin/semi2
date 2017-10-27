@@ -30,10 +30,10 @@
 						<i class="fa fa-bars"></i>
 					</div>
 					<ul class="menu-first">
-						<li class="active"><a href="/semi/mgrmain">Home_관리자</a></li>
-						<li><a href="/semi/mgrmember">회원정보</a></li>
-						<li><a href="/semi/clist">카테고리</a></li>
-						<li><a href="/semi/nlist">게시판</a></li>
+						<li id="home" class="active"><a href="/semi/mgrmain">Home_관리자</a></li>
+						<li id="minfo"><a href="/semi/mgrmember">회원정보</a></li>
+						<li id="category"><a href="/semi/clist">카테고리</a></li>
+						<li id="board"><a href="/semi/nlist">게시판</a></li>
 					</ul>
 				</div>
 			</div>

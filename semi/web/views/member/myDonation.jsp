@@ -11,6 +11,7 @@
     int startPage = ((Integer)request.getAttribute("startPage")).intValue();
     int endPage = ((Integer)request.getAttribute("endPage")).intValue();
     int maxPage = ((Integer)request.getAttribute("maxPage")).intValue();
+    int listCount = ((Integer)request.getAttribute("listCount")).intValue();
     
     
     %>
@@ -26,20 +27,33 @@
 <% if(ranking !=0){ %>
 <div align="center">
 <br>
+<hr>
+
+<br><br><br><br>
 <%=member.getMemberNik() %>님의 기부 랭킹은 <%= ranking %>위 입니다.<br>
 
 상위<%= (double)ranking/memberTotal*100 %>%입니다.<br>
-<%=member.getMemberNik() %>님의 총 기부금액 은<%= myDonation %>원 입니다.
+<%=member.getMemberNik() %>님의 총 기부금액 은 총 <%= myDonation %>원 입니다.
 </div>
 <hr>
-<input type="">
+<br><br><br>
+<form action="/semi/dselect?memberid=<%= member.getMemberId() %>"method="post">
+	<div style="margin-left:420px;">
+		<a style="font-size:8pt;">총 <%= listCount %>개의 글을 찾았습니다.<a>
+		<a style="margin-left:220px;">
+		<input type="date" name ="beforedate">~<input type="date" name="afterdate">
+		<input type="submit"value="검색">
+		</a>
+	</div>
+</form>
 <table align="center" border="1">
-<tr><th>No</th><th>날짜</th><th>기부금</th>
+<tr><th>No</th><th>제 목</th><th>날짜</th><th>기부금</th>
 <% for(Donate d : list){ %>
 	<tr>
 	<td align="center"><%= d.getDonationNo() %></td>
-	<td align = "center" width="200pt"><%=d.getDonationDate() %></td>
-	<td align="center"><%= d.getDonation() %></td>
+	<td width="400pt"><a href = "#"><%= d.getMemberId() %></a></td>
+	<td width="200pt"><%=d.getDonationDate() %></td>
+	<td><%= d.getDonation() %></td>
 	</tr>
 	<% } %>
 </table>

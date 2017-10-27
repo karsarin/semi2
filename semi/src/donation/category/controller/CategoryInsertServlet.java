@@ -61,22 +61,22 @@ public class CategoryInsertServlet extends HttpServlet {
 		String root = request.getSession().getServletContext().getRealPath("/");
 		// 업로드 되는 파일이 저장을 폴더명과 루트 경로 연결 처리
 		String savePath = root + "cuploadfiles";
-		// web/uploadfiles 로 지정됨
+		// web/cuploadfiles 로 지정됨
 		
 		// request를 MultipartRequest 객체로 변환함
 		// 자동 지정된 경로에 파일 저장됨
 		MultipartRequest mrequest = new MultipartRequest(request, savePath, maxSize, "utf-8", new DefaultFileRenamePolicy());
 		
 		String title = mrequest.getParameter("ctitle");
-		String writer = "user1010";
+		String writer = mrequest.getParameter("cwriter");
 		String content = mrequest.getParameter("ccontent");
 		int donation = Integer.parseInt(mrequest.getParameter("cdonation"));
 		int workdate = Integer.parseInt(mrequest.getParameter("cworkdate"));
 		String email = mrequest.getParameter("cemail");
 		String phone = mrequest.getParameter("cphone");
-		int group = 1;
+		int group = 0;
 		
-		/*switch(mrequest.getParameter("category"))
+		switch(mrequest.getParameter("category"))
 		{
 		case "IT":
 			group = 1;
@@ -103,12 +103,23 @@ public class CategoryInsertServlet extends HttpServlet {
 			group = 8;
 			break;
 				
-		}*/
+		}
 		String originalFileName = mrequest.getFilesystemName("upfile");
+		String addImage1 = mrequest.getFilesystemName("cimage1");
+		String addImage2 = mrequest.getFilesystemName("cimage2");
+		String addImage3 = mrequest.getFilesystemName("cimage3");
+		String addImage4 = mrequest.getFilesystemName("cimage4");
+		
+		String renameFileName = null;
+		String addRenameImage1 = null;
+		String addRenameImage2 = null;
+		String addRenameImage3 = null;
+		String addRenameImage4 = null;
+		
 		Category c = null;
 		
 		System.out.println("group = " + group);
-		System.out.println(mrequest.getParameter("IT"));
+		System.out.println(mrequest.getParameter("category"));
 		
 		System.out.println("title : " + title);
 		System.out.println("writer : " + writer);
@@ -118,17 +129,23 @@ public class CategoryInsertServlet extends HttpServlet {
 		System.out.println("email : " + email);
 		System.out.println("phone : " + phone);
 		System.out.println("originalFileName :" + originalFileName);
+		System.out.println("addimage1 : " + addImage1);
+		System.out.println("addimage2 : " + addImage2);
+		System.out.println("addimage3 : " + addImage3);
+		System.out.println("addimage4 : " + addImage4);
 		
 		if(originalFileName != null)
 		{
 			// 업로드 된 파일이 있을 경우, 파일명을 "년월일시분초.확장자"로 변경함.
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
-			String renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
+			renameFileName = sdf.format(new java.sql.Date(System.currentTimeMillis())) + "."
 					+ originalFileName.substring(originalFileName.lastIndexOf(".")+1);
 			
 			// 업로드되어 있는 원래 파일의 이름을 새 이름으로 바꾸기
 			File originalFile = new File(savePath + "\\" + originalFileName);
 			File renameFile = new File(savePath + "\\" + renameFileName);
+			
+			
 			
 			// 파일 이름 바꾸기 실행 >> 실패시 직접 바꾸기함
 			// 새 파일 만들고, 원래 파일의 내용 읽어서 복사 기록하고
@@ -150,11 +167,156 @@ public class CategoryInsertServlet extends HttpServlet {
 				originalFile.delete();
 			}
 			
-			c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName);
-		} else {
-			c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, null, null);
-		}
+			c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, null, null, null, null, null, null, null, null);
+		} 
 		
+		
+		// 추가 이미지 새이름 바꾸기
+		if(addImage1 != null){
+			// 업로드 된 파일이 있을 경우, 파일명을 "년월일시분초.확장자"로 변경함.
+						SimpleDateFormat sdf1 = new SimpleDateFormat("yyyyMMddHHmmss");
+						addRenameImage1 = sdf1.format(new java.sql.Date(System.currentTimeMillis())) + "1."
+								+ addImage1.substring(addImage1.lastIndexOf(".")+1);
+						
+						// 업로드되어 있는 원래 파일의 이름을 새 이름으로 바꾸기
+						File addFile1 = new File(savePath + "\\" + addImage1);
+						File renameFile1 = new File(savePath + "\\" + addRenameImage1);
+						
+						
+						// 파일 이름 바꾸기 실행 >> 실패시 직접 바꾸기함
+						// 새 파일 만들고, 원래 파일의 내용 읽어서 복사 기록하고
+						// 원 파일 삭제함
+						if(!addFile1.renameTo(renameFile1))
+						{
+							int read = -1;
+							byte[] buf = new byte[1024];
+							
+							FileInputStream fin = new FileInputStream(addFile1);
+							FileOutputStream fout = new FileOutputStream(renameFile1);
+							
+							while((read = fin.read(buf, 0, buf.length)) != -1)
+							{
+								fout.write(buf, 0, read);
+							}
+							fin.close();
+							fout.close();
+							addFile1.delete();
+							
+						}
+						c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, addImage1, addRenameImage1, null, null, null, null, null, null);
+					} else {
+						c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, null, null, null, null, null, null, null, null);
+					}  
+		
+			if(addImage2 != null){
+			// 업로드 된 파일이 있을 경우, 파일명을 "년월일시분초.확장자"로 변경함.
+			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmmss");
+			addRenameImage2 = sdf2.format(new java.sql.Date(System.currentTimeMillis())) + "2."
+					+ addImage2.substring(addImage2.lastIndexOf(".")+1);
+			
+			// 업로드되어 있는 원래 파일의 이름을 새 이름으로 바꾸기
+			File addImage = new File(savePath + "\\" + addImage2);
+			File renameImage = new File(savePath + "\\" + addRenameImage2);
+			
+			
+			// 파일 이름 바꾸기 실행 >> 실패시 직접 바꾸기함
+			// 새 파일 만들고, 원래 파일의 내용 읽어서 복사 기록하고
+			// 원 파일 삭제함
+			if(!addImage.renameTo(renameImage))
+			{
+				int read = -1;
+				byte[] buf = new byte[1024];
+				
+				FileInputStream fin = new FileInputStream(addImage);
+				FileOutputStream fout = new FileOutputStream(renameImage);
+				
+				while((read = fin.read(buf, 0, buf.length)) != -1)
+				{
+					fout.write(buf, 0, read);
+				}
+				fin.close();
+				fout.close();
+				addImage.delete();
+				
+			}
+			c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, addImage1, addRenameImage1, addImage2, addRenameImage2, null, null, null, null);
+		} else {
+			c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, addImage1, addRenameImage1, null, null, null, null, null, null);
+			
+		}
+			
+			if(addImage3 != null){
+				// 업로드 된 파일이 있을 경우, 파일명을 "년월일시분초.확장자"로 변경함.
+				SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmmss");
+				addRenameImage3 = sdf2.format(new java.sql.Date(System.currentTimeMillis())) + "3."
+						+ addImage3.substring(addImage3.lastIndexOf(".")+1);
+				
+				// 업로드되어 있는 원래 파일의 이름을 새 이름으로 바꾸기
+				File addImage = new File(savePath + "\\" + addImage3);
+				File renameImage = new File(savePath + "\\" + addRenameImage3);
+				
+				
+				// 파일 이름 바꾸기 실행 >> 실패시 직접 바꾸기함
+				// 새 파일 만들고, 원래 파일의 내용 읽어서 복사 기록하고
+				// 원 파일 삭제함
+				if(!addImage.renameTo(renameImage))
+				{
+					int read = -1;
+					byte[] buf = new byte[1024];
+					
+					FileInputStream fin = new FileInputStream(addImage);
+					FileOutputStream fout = new FileOutputStream(renameImage);
+					
+					while((read = fin.read(buf, 0, buf.length)) != -1)
+					{
+						fout.write(buf, 0, read);
+					}
+					fin.close();
+					fout.close();
+					addImage.delete();
+					
+				}
+				c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, addImage1, addRenameImage1, addImage2, addRenameImage2, addImage3, addRenameImage3, null, null);
+			} else {
+				c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, addImage1, addRenameImage1, addImage2, addRenameImage2, null, null, null, null);
+			}
+		
+			if(addImage4 != null){
+				// 업로드 된 파일이 있을 경우, 파일명을 "년월일시분초.확장자"로 변경함.
+				SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmmss");
+				addRenameImage4 = sdf2.format(new java.sql.Date(System.currentTimeMillis())) + "4."
+						+ addImage4.substring(addImage4.lastIndexOf(".")+1);
+				
+				// 업로드되어 있는 원래 파일의 이름을 새 이름으로 바꾸기
+				File addImage = new File(savePath + "\\" + addImage4);
+				File renameImage = new File(savePath + "\\" + addRenameImage4);
+				
+				// 파일 이름 바꾸기 실행 >> 실패시 직접 바꾸기함
+				// 새 파일 만들고, 원래 파일의 내용 읽어서 복사 기록하고
+				// 원 파일 삭제함
+				if(!addImage.renameTo(renameImage))
+				{
+					int read = -1;
+					byte[] buf = new byte[1024];
+					
+					FileInputStream fin = new FileInputStream(addImage);
+					FileOutputStream fout = new FileOutputStream(renameImage);
+					
+					while((read = fin.read(buf, 0, buf.length)) != -1)
+					{
+						fout.write(buf, 0, read);
+					}
+					fin.close();
+					fout.close();
+					addImage.delete();
+					
+				}
+				c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, addImage1, addRenameImage1, addImage2, addRenameImage2, addImage3, addRenameImage3, addImage4, addRenameImage4);
+			} else {
+				c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, addImage1, addRenameImage1, addImage2, addRenameImage2, addImage3, addRenameImage3, null, null);
+			}
+						
+			
 		if(new CategoryService().insertCategory(c) > 0)
 		{
 			response.sendRedirect("/semi/clist?page=1");

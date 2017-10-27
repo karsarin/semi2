@@ -40,7 +40,6 @@ public class LoginServlet extends HttpServlet {
 		
 		Member member = new MemberService().login(memberId,memberPwd);
 		RequestDispatcher view = null;
-		System.out.println(member);
 		if(member != null){
 			HttpSession session = request.getSession();
 			session.setAttribute("member", member);

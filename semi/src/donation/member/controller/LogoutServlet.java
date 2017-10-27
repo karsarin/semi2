@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import donation.member.model.service.MemberService;
+
 /**
  * Servlet implementation class LogoutServlet
  */
@@ -29,8 +31,11 @@ public class LogoutServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 로그아웃 처리용 컨트롤러
+		request.setCharacterEncoding("utf-8");
+		String memberId = request.getParameter("userid");
 		HttpSession session = request.getSession(false);
 		if(session != null){
+			new MemberService().logout(memberId);
 			session.invalidate();
 			response.sendRedirect("index.jsp");
 		}

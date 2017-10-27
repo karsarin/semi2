@@ -13,6 +13,11 @@
     <script src="/semi/js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
     	$(function (){
+    		$('.main-menu ul #home').removeClass('active');
+    		$('.main-menu ul #category').removeClass('active');
+    		$('.main-menu ul #board').removeClass('active');
+    		$('.main-menu ul #minfo').addClass('active');
+    	    
     	    $(".memberList tr").click(function(){
     	        $.ajax({
     				url: "/semi/mgrmemberdetail",
@@ -46,7 +51,7 @@
     					console.log("에러 발생 : " + data);
     				}
     			});
-    	    });
+    	    });  	    
     	});
 	</script>
 </head>

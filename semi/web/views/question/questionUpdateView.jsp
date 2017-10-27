@@ -12,6 +12,16 @@
 <meta charset="UTF-8">
 <title>boardUpdateView</title>
 
+<script src="/semi/js/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$('.main-menu ul #minfo').removeClass('active');
+		$('.main-menu ul #home').removeClass('active');
+		$('.main-menu ul #category').removeClass('active');
+		$('.main-menu ul #board').addClass('active');
+	});
+</script>
+
 <!-- 카테고리  -->
 
 
@@ -74,21 +84,18 @@ ul.sub li a {
 ul.sub li:hover {
 	background: lightblue;
 }
-</style>
-<!-- 세로목록 끝 -->
 
 
-
-
-<style>
+<!-- 테이블 -->
 #writetable{
-	width:69%;
+width:66vw;
 }
 #title{
 	width:80px;
 }
 
 #textarea textarea{
+width:66vw;
 height:200px;
 }
 
@@ -103,13 +110,17 @@ height:200px;
 <body>
 
 	<%@ include file="../../header.jsp"%>
-	<%@ include file="../../headerbar.jsp" %>
-	<%@ include file="../../rightList.jsp"%>
+	<%if(member.getMemberId().equals("admin")) { %>
+      <%@ include file="../manager/managerHeader.jsp" %>
+   <% } else { %>
+      <%@ include file="../../headerbar.jsp" %>
+   <% } %>
 	
 
-	<div
-		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
+<div class="row">
+  <div class="col-md-2">
+  	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
@@ -117,19 +128,14 @@ height:200px;
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
-
 				</ul>
 			</li>
 		</ul>
 	</div>
-	<!-- 반복 끝 -->
-	</div>
+</div>
+  
+  <div class="col-md-8">
 
-
-
-
-	<br>
-	<h2><%= question.getQuestionNum() %>번글 수정페이지</h2>
 	
 	<%
 		//원글일 때 
@@ -186,6 +192,15 @@ height:200px;
 	<a href="javascript:history.go(-1);">이전 페이지로</a>
 	</div>
 	
+	
+
+  </div>
+	
+	
+  <div class="col-md-2">
+  	<%@ include file="../../rightList.jsp"%>
+	</div>
+  </div>
 
 
 	

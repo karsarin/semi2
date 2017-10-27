@@ -1,7 +1,10 @@
 package donation.donate.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -37,7 +40,9 @@ public class DonationSelectServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		String memberId = request.getParameter("memberid");
+
 		
+		System.out.println(request.getParameter("beforedate"));
 		int result = new DonateService().donateSelectRank(memberId);
 		int memberTotal = new MemberService().selectMemberNum();
 		int myDonation = new DonateService().myDonationTotal(memberId);
