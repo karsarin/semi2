@@ -61,7 +61,6 @@ public class Category {
 		this.email = email;
 		this.originalImage = originalImage;
 		this.renameImage = renameImage;
-		
 		this.addImage1 = addImage1;
 		this.addRenameImage1 = addRenameImage1;
 		this.addImage2 = addImage2;
@@ -69,8 +68,7 @@ public class Category {
 		this.addImage3 = addImage3;
 		this.addRenameImage3 = addRenameImage3;
 		this.addImage4 = addImage4;
-		this.addRenameImage4 = addRenameImage4;
-		
+		this.addRenameImage4 = addRenameImage4;		
 		this.special = special;
 		this.approval = approval;
 		this.verdict = verdict;
@@ -91,6 +89,9 @@ public class Category {
 		this.email = email;
 		this.phone = phone;
 		
+		this.originalImage = originalImage;
+		this.renameImage = renameImage;
+		
 		this.addImage1 = addImage1;
 		this.addRenameImage1 = addRenameImage1;
 		this.addImage2 = addImage2;
@@ -100,8 +101,7 @@ public class Category {
 		this.addImage4 = addImage4;
 		this.addRenameImage4 = addRenameImage4;
 		
-		this.originalImage = originalImage;
-		this.renameImage = renameImage;
+		
 	}
 	
 	

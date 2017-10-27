@@ -84,8 +84,31 @@ INSERT INTO CATEGORY_BOARD VALUES(8, 'user88', 8, '번역 재능', 'user88',
 INSERT INTO CATEGORY_BOARD VALUES(9, 'user99', 8, '번역 재능', 'user88', 
     '번역 재능 기부함', DEFAULT, DEFAULT, 80000, 8, 1, 0, 0, 0, 01078901234, 'user88@naver.com',
     NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
-
-
+INSERT INTO CATEGORY_BOARD VALUES(10, 'user66', 6, '음악 재능', 'user66', 
+    '음악 재능 기부함', DEFAULT, DEFAULT, 610000, 6, 1, 0, 0, 0, 01067890123, 'user66@naver.com',
+    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO CATEGORY_BOARD VALUES(11, 'user77', 7, '노하우/상담 재능', 'user77', 
+    '노하우/상담 재능 기부함', DEFAULT, DEFAULT, 70000, 1, 1, 0, 0, 0, 01089012345, 'user77@naver.com',
+    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO CATEGORY_BOARD VALUES(12, 'user88', 8, '번역 재능', 'user88', 
+    '번역 재능 기부함', DEFAULT, DEFAULT, 80000, 8, 1, 0, 0, 0, 01078901234, 'user88@naver.com',
+    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO CATEGORY_BOARD VALUES(13, 'user99', 8, '번역 재능', 'user88', 
+    '번역 재능 기부함', DEFAULT, DEFAULT, 80000, 8, 1, 0, 0, 0, 01078901234, 'user88@naver.com',
+    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO CATEGORY_BOARD VALUES(14, 'user66', 6, '음악 재능', 'user66', 
+    '음악 재능 기부함', DEFAULT, DEFAULT, 610000, 6, 1, 0, 0, 0, 01067890123, 'user66@naver.com',
+    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO CATEGORY_BOARD VALUES(15, 'user77', 7, '노하우/상담 재능', 'user77', 
+    '노하우/상담 재능 기부함', DEFAULT, DEFAULT, 70000, 1, 1, 0, 0, 0, 01089012345, 'user77@naver.com',
+    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO CATEGORY_BOARD VALUES(16, 'user88', 8, '번역 재능', 'user88', 
+    '번역 재능 기부함', DEFAULT, DEFAULT, 80000, 8, 1, 0, 0, 0, 01078901234, 'user88@naver.com',
+    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+INSERT INTO CATEGORY_BOARD VALUES(17, 'user99', 8, '번역 재능', 'user88', 
+    '번역 재능 기부함', DEFAULT, DEFAULT, 80000, 8, 1, 0, 0, 0, 01078901234, 'user88@naver.com',
+    NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, DEFAULT, DEFAULT, DEFAULT, DEFAULT);
+    
 -- 카테고리 분류 테이블
 DROP TABLE CATEGORY_GROUP CASCADE CONSTRAINTS;
 
@@ -103,18 +126,8 @@ INSERT INTO CATEGORY_GROUP VALUES(6, '번역');
 INSERT INTO CATEGORY_GROUP VALUES(7, '건강');
 INSERT INTO CATEGORY_GROUP VALUES(8, '기타');
 
-update category_board set original_image = 'images/img26.png' where category_no=2;
-update category_board set original_image = 'images/default_board.png' where category_no=2;
-update category_board set original_image = 'images/default_board.png' where category_no=3;
-update category_board set original_image = 'images/default_board.png' where category_no=4;
-update category_board set original_image = 'images/default_board.png' where category_no=5;
-update category_board set original_image = 'images/default_board.png' where category_no=6;
-update category_board set original_image = 'images/default_board.png' where category_no=7;
-update category_board set original_image = 'images/default_board.png' where category_no=8;
-update category_board set original_image = 'images/default_board.png' where category_no=9;
-update category_board set original_image = 'images/default_board.png' where category_no=10;
-
 commit;
+
 
 select *
 from category_board;
