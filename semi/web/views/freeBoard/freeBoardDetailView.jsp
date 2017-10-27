@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
+<<<<<<< HEAD
     pageEncoding="UTF-8" import="java.util.*,  donation.freeBoard.model.vo.FreeBoard, donation.freeBoard.model.vo.CommentBoard"%>
+=======
+    pageEncoding="UTF-8" import="java.util.*,  donation.board.freeBoard.model.vo.FreeBoard"%>
+>>>>>>> refs/remotes/origin/yunJisun
  
  <%
  FreeBoard fboard = (FreeBoard)request.getAttribute("fboard");
@@ -11,6 +15,7 @@
 <head>
 <meta charset="UTF-8">
 <title>noticeDetailView</title>
+<<<<<<< HEAD
 <style type="text/css">
 	#reply{
 		
@@ -25,11 +30,16 @@
 </style>
 
 <script type="text/javascript" src="/semi/js/jquery-3.2.1.min.js"></script>
+=======
+>>>>>>> refs/remotes/origin/yunJisun
 
 
 
+<<<<<<< HEAD
 	
 	
+=======
+>>>>>>> refs/remotes/origin/yunJisun
 
 <!-- 카테고리  -->
 
@@ -93,25 +103,25 @@ ul.sub li a {
 ul.sub li:hover {
 	background: aliceblue;
 }
+</style>
 <!-- 세로목록 끝 -->
 
 
+
 <!-- 테이블 -->
-#detailview{
-	width:66vw;
-}
+<style>
 
-#textBox{
-	height:200px;
+table.type10{
+	border : 1px solid #ccc;
 }
-
-#title{
-
-width:40%;
+table.type10{
+	width : 1000px;
 }
-#readCount{
-width:8%;
+table tr.firstTr{
+	height:40px;
+	background-color: lightblue;
 }
+<<<<<<< HEAD
 #date{
 width:15%;
 }
@@ -128,26 +138,23 @@ color: #4C4C4C;
 #textBox{
 	height:200px;
 	font-size : 15px;
+=======
+table td.firstTd{
+	width:600px;
+	padding-top : 10px;
+>>>>>>> refs/remotes/origin/yunJisun
 }
 
 
 
+table.type10 tr{
+	border-bottom : 1px solid #ccc;
 
-
-<!-- 댓글 -->
-#replyview{
-	width:1000px;
-}
-#commentWriter{
-	color: black;
-	font-weight: bold;
-	
-}
-#commentContent{
-	color: black;
-	font-weight: bold;
 }
 
+table.type10 td{
+	border-right : 1px solid #ccc;
+}
 </style>
 
 
@@ -158,6 +165,7 @@ color: #4C4C4C;
 <body>
 
 	<%@ include file="../../header.jsp"%>
+<<<<<<< HEAD
 	
 	
 	
@@ -217,27 +225,32 @@ color: #4C4C4C;
    <% } else { %>
       <%@ include file="../../headerbar.jsp" %>
    <% } %>
+=======
+	<%@ include file="../../headerbar.jsp" %>
+	<%@ include file="../../rightList.jsp"%>
+	
+>>>>>>> refs/remotes/origin/yunJisun
 
+	<div
+		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
 
-
-<div class="row">
-  <div class="col-md-2">
-  	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
+					<li><a href="/semi/rlist">후기 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
+
 				</ul>
 			</li>
 		</ul>
 	</div>
-</div>
-  
-  <div class="col-md-8">
+	<!-- 반복 끝 -->
+	</div>
 
+<<<<<<< HEAD
 	<!-- 게시글 -->
 	<table  class="table table-hover" id="detailview">
 	<tr id = "detailTitlebar">
@@ -251,29 +264,44 @@ color: #4C4C4C;
 		<td id="file"><label><%if(fboard.getOriginalFileName() != null){	%>		
 		<a href="/semi/ffdown?oname=<%=fboard.getOriginalFileName()%>&rname=<%=fboard.getRenameFileName()%>"> <%=fboard.getOriginalFileName() %></a>
 		<%}else{ %>
+=======
+
+
+<table class="type10">
+	<tr class="firstTr">
+		<td class="firstTd"><%= fboard.getfreeBoardTitle() %></td><td>조회:<%=fboard.getReadCount() %></td><td><%=fboard.getfreeBoardDate() %></td><td><%=fboard.getfreeBoardWriter() %></td><td>	<%if(fboard.getOriginalFileName() != null){	%>
+		
+		<a href="/semi/ffdown?oname=<%=fboard.getOriginalFileName()%>&rname=<%=fboard.getRenameFileName()%>">	<%=fboard.getOriginalFileName() %></a>
+	<%}else{ %>
+>>>>>>> refs/remotes/origin/yunJisun
 		첨부파일 없음
-		<%} %></label></td>
-	<tr id="textBox">
+	<%} %></td>
+	
+
+	<tr height="100">
 		<td colspan="5"><%=fboard.getfreeBoardContent() %></td>
 	</tr>
 
 
+	<%if(fboard.getfreeBoardWriter().equals(member.getMemberId())){ //include에서 sission값을 가지고있기 때문에 그냥 사용할 수 있다. %>
 	<tr><td colspan="5" align="right">
 		<a href="/semi/fupview?no=<%=fboard.getfreeBoardNo()%>">수정페이지로 이동</a> &nbsp; 
 		<a href="/semi/fdel?no=<%=fboard.getfreeBoardNo()%>">삭제하기</a>
 	</td></tr>
+	<%}else{ %>
 	
-	</table>
-	<!-- 게시글 -->
+	
+	<%} %>
 
+</table>
 
 	
 	
 	
-			
-	
-	
+<div align ="center">
+	<a href="/semi/flist">목록보기로 이동</a>
 
+<<<<<<< HEAD
 
 	<!-- 댓글 입력-->
 		<table>
@@ -339,41 +367,11 @@ color: #4C4C4C;
 			
 
 			
+=======
+>>>>>>> refs/remotes/origin/yunJisun
 </div>
-	
-  <div class="col-md-2">
-  	<%@ include file="../../rightList.jsp"%>
-	
-  </div>
-
-
-
-
-	
-	<div align ="center">
-		<a href="/semi/flist">목록보기로 이동</a>
-    </div>
-
-	
-	
-	<div id="footer" style="clear: both;">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-xs-12 text-left">
-					<span>Copyright &copy; 2014 Company Name</span>
-				</div>
-				<!-- /.text-center -->
-				<div class="col-md-4 hidden-xs text-right">
-					<a href="#top" id="go-top">Back to top</a>
-				</div>
-				<!-- /.text-center -->
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /#footer -->
-
+<br><br>
+<hr>
 
 
 

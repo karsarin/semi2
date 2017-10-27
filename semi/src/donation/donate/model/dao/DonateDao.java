@@ -1,8 +1,6 @@
 package donation.donate.model.dao;
 
 import java.sql.*;
-import java.util.ArrayList;
-
 import static donation.common.JDBCTemplate.*;
 import donation.donate.model.vo.Donate;
 
@@ -54,6 +52,7 @@ public class DonateDao {
 			close(rset);
 		}
 		return donation;
+<<<<<<< HEAD
 	}
 
 	public int getListCount(Connection con, String memberId) {
@@ -132,6 +131,8 @@ public class DonateDao {
 			close(pstmt);
 		}
 		return list;
+=======
+>>>>>>> refs/remotes/origin/yunJisun
 	}
 
 }

@@ -33,7 +33,6 @@ String keyword  = (String)request.getAttribute("keyword");
 	function insertPage()
 	{
 		location.href="views/notice/noticeWriteForm.jsp";
-		return false;
 	}
 </script>
 
@@ -100,21 +99,42 @@ ul.sub li a {
 ul.sub li:hover {
 	background: aliceblue;
 }
-
+</style>
 <!-- 세로목록 끝 -->
 
 
 
-#table{
-width:66vw;
+<!-- 테이블 -->
+<style>
+table.type10 {
+	width : 70%;
+	border-collapse: collapse;
+	text-align: left;
+	line-height: 1.5;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 }
+<<<<<<< HEAD
 #table #no{
 width:6%;
 text-align:center;
+=======
+
+table.type10 thead th {
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #fff;
+	background: lightblue;
+	margin: 20px 10px;
+>>>>>>> refs/remotes/origin/yunJisun
 }
-#table #title{
-width:50%
+
+table.type10 thead th.titleTh{
+	width:60%;
 }
+<<<<<<< HEAD
 #table #writer{
 width:10%;
 text-align:center;
@@ -129,10 +149,17 @@ text-align:center;
 }
 #firstTr{
 background-color:lightblue;
+=======
+
+
+table.type10 tbody td {
+	width: 150px;
+	padding: 10px;
+>>>>>>> refs/remotes/origin/yunJisun
 }
 
 </style>
-<!-- 세로목록 끝 -->
+
 
 
 
@@ -142,39 +169,43 @@ background-color:lightblue;
 
 <body>
 
-	<%@ include file="../../header.jsp"%>	
-	<%if(member != null){   %>
+	<%@ include file="../../header.jsp"%>
+	<%if(member!=null && member.getMemberId().equals("admin")) { %>
+		<%@ include file="../manager/managerHeader.jsp" %>
+	<% } else { %>
+		<%@ include file="../../headerbar.jsp" %>
+	<% } %>
+	<%@ include file="../../rightList.jsp"%>
+	
 
-	
-	
-	
-	
-	<%if(member.getMemberId().equals("admin")) { %>
-      <%@ include file="../manager/managerHeader.jsp" %>
-   <% } else { %>
-      <%@ include file="../../headerbar.jsp" %>
-   <% } %>
-   
-   <div class="row">
-  <div class="col-md-2">
-  	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">
+	<div
+		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
+
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
+					<li><a href="/semi/rlist">후기 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
+
 				</ul>
 			</li>
 		</ul>
 	</div>
+	<!-- 반복 끝 -->
+	</div>
+	
+	
 </div>
-  
-  <div class="col-md-8">
+
+
 
 	
+	
 	<!--  게시판 -->
+<<<<<<< HEAD
 			<table class="table table-hover" id="table">		
 					<tr id="firstTr">
 						<th id="no">번호</th>
@@ -182,13 +213,27 @@ background-color:lightblue;
 						<th id="writer">작성자</th>
 						<th id="date">날짜</th>
 						<th id="readCount">조회수</th>
+=======
+
+			<table class="type10">	
+				<thead>			
+					<tr>
+						<th class="noTh">번호</th>
+						<th class="titleTh">제목</th>
+						<th>작성자</th>
+						<th>날짜</th>
+						<th>첨부파일</th>
+						<th>조회수</th>
+>>>>>>> refs/remotes/origin/yunJisun
 					</tr>
+				</thead>
 
 				<%
 					for (Notice notice : list) {
 				%>
 
 
+				<tbody>
 					<tr>
 						<td id="no"><%=notice.getNoticeNo()%></td>
 						<td id="title"><a href="/semi/ndetail?no=<%=notice.getNoticeNo()%>">
@@ -202,25 +247,15 @@ background-color:lightblue;
 						}
 					%>
 				
+				</tbody>
+
+
 			</table>
 
-		<!--  table 끝 -->
-
 		
 		<!--  table 끝 -->
 		
-	<div align="right">
-	<form action="/semi/nsearch" method="post">
-		<input type="search" autocomlete name="keyword" length="50">&nbsp;
-		<input type="submit" value="제목검색"> 
 		
-	<% if(member!= null){ %>
-			<button onclick="return insertPage();">글쓰기</button>
-	
-	<%} %>
-	
-	</form>
-</div>
 		
 		
 
@@ -248,21 +283,28 @@ background-color:lightblue;
 <% } %>
 </div>
 	
+	
+	
+	<div align="center">
+	<form action="/semi/nsearch" method="post">
+		<input type="search" autocomlete name="keyword" length="50">&nbsp;
+		<input type="submit" value="제목검색"> 
+	</form>
+	
+		<% if(member!= null){ %>
+			<button onclick="javascript:insertPage();">글쓰기</button>
+	
+	<%} %>
+	
+</div>
 
-  </div>
-	
-	
-  <div class="col-md-2">
-  	<%@ include file="../../rightList.jsp"%>
-	</div>
-  </div>
+
+
 
 	
-	
-	
 
-	
-	<div id="footer" style="clear: both;">
+
+	<div id="footer" >
 		<div class="container">
 			<div class="row">
 				<div class="col-md-8 col-xs-12 text-left">
@@ -280,6 +322,7 @@ background-color:lightblue;
 	</div>
 	<!-- /#footer -->
 
+<<<<<<< HEAD
 	<%}else{   //로그인 되어 있지 않다면%>
 	
 	<%@ include file="../../headerbar.jsp" %>  
@@ -406,6 +449,8 @@ background-color:lightblue;
 	
 	
 	<%}%>
+=======
+>>>>>>> refs/remotes/origin/yunJisun
 
 </body>
 </html>

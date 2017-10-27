@@ -1,10 +1,6 @@
 package donation.donate.controller;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,11 +36,16 @@ public class DonationSelectServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=utf-8");
 		String memberId = request.getParameter("memberid");
+<<<<<<< HEAD
 
 		String beforeDate = request.getParameter("beforedate");
 		String afterDate = request.getParameter("afterdate");
+=======
+		
+>>>>>>> refs/remotes/origin/yunJisun
 		int result = new DonateService().donateSelectRank(memberId);
 		int memberTotal = new MemberService().selectMemberNum();
+<<<<<<< HEAD
 		int myDonation = new DonateService().myDonationTotal(memberId);
 		DonateService dservice = new DonateService();
 		int currentPage = 1;
@@ -66,12 +67,16 @@ public class DonationSelectServlet extends HttpServlet {
 		if(maxPage <endPage){
 			endPage = maxPage;
 		}
+=======
+		int myDonation = new DonateService().myDonationTotal(memberId); 
+>>>>>>> refs/remotes/origin/yunJisun
 		RequestDispatcher view = null;
-		if(result >=0&&memberTotal>=0&&myDonation>=0&&list!=null){
+		if(result >0&&memberTotal>0&&myDonation>=0){
 			view = request.getRequestDispatcher("views/member/myDonation.jsp");
 			request.setAttribute("result", result);
 			request.setAttribute("memberTotal", memberTotal);
 			request.setAttribute("myDonation", myDonation);
+<<<<<<< HEAD
 			request.setAttribute("list", list);
 			request.setAttribute("currentPage", currentPage);
 			request.setAttribute("maxPage", maxPage);
@@ -80,6 +85,8 @@ public class DonationSelectServlet extends HttpServlet {
 			request.setAttribute("listCount", listCount);
 			request.setAttribute("beforeDate", beforeDate);
 			request.setAttribute("afterDate", afterDate);
+=======
+>>>>>>> refs/remotes/origin/yunJisun
 			view.forward(request, response);
 		}else if(result ==0){
 			view = request.getRequestDispatcher("views/member/memberError.jsp");
@@ -92,10 +99,6 @@ public class DonationSelectServlet extends HttpServlet {
 		}else if(myDonation==-1){
 			view = request.getRequestDispatcher("views/member/memberError.jsp");
 			request.setAttribute("message", "내 전체 기부금 조회 실패!");
-			view.forward(request, response);
-		}else if(list == null){
-			view = request.getRequestDispatcher("views/member/memberError.jsp");
-			request.setAttribute("message", "내 날짜별 기부금 조회 실패!");
 			view.forward(request, response);
 		}
 	}

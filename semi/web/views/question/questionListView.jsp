@@ -28,9 +28,8 @@
 </script>
 
 <script type ="text/javascript">
-	function insertPage(){
+	function showWriteQuestion(){
 		location.href = "views/question/questionWriteForm.jsp";		
-		return false;
 	}
 	
 </script>
@@ -97,10 +96,10 @@ ul.sub li a {
 ul.sub li:hover {
 	background: aliceblue;
 }
-
-
+</style>
 <!-- 세로목록 끝 -->
 
+<<<<<<< HEAD
 #table{
 width:66vw;
 }
@@ -125,10 +124,40 @@ text-align:center;
 }
 #firstTr{
 background-color:lightblue;
+=======
+<style>
+table.type10 {
+	width :  70%;
+	border-collapse: collapse;
+	text-align: left;
+	line-height: 1.5;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+>>>>>>> refs/remotes/origin/yunJisun
+}
+
+table.type10 thead th {
+	width: 150px;
+	padding: 10px;
+	font-weight: bold;
+	vertical-align: top;
+	color: #fff;
+	background: lightblue;
+	margin: 20px 10px;
+}
+
+table.type10 thead th.titleTh{
+	width:60%;
 }
 
 
+table.type10 tbody td {
+	width: 150px;
+	padding: 10px;
+}
+
 </style>
+
 
 
 
@@ -139,39 +168,34 @@ background-color:lightblue;
 <body>
 
 	<%@ include file="../../header.jsp"%>
+	<%if(member!=null && member.getMemberId().equals("admin")) { %>
+		<%@ include file="../manager/managerHeader.jsp" %>
+	<% } else { %>
+		<%@ include file="../../headerbar.jsp" %>
+	<% } %>
+	<%@ include file="../../rightList.jsp"%>
 	
-	
-	<%if(member!=null){ //로그인 되어 있다면 %>
-	
-	
-	<%if(member.getMemberId().equals("admin")) { %>
-      <%@ include file="../manager/managerHeader.jsp" %>
-   <% } else { %>
-      <%@ include file="../../headerbar.jsp" %>
-   <% } %>
-   
-   <div class="row">
-  <div class="col-md-2">
-  	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">
+
+	<div style="margin-left: 30px; width: 230px; height: 500px; float: left;">
+
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
+					<li><a href="/semi/rlist">후기 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
+
 				</ul>
 			</li>
 		</ul>
 	</div>
-</div>
-  
-  <div class="col-md-8">
-
+	<!-- 반복 끝 -->
 	
-<table class="table table-hover" id="table">
 
 
+<<<<<<< HEAD
 		<tr id="firstTr">
 			<th id="no">번호</th>
 			<th id="titlie">제목</th>
@@ -179,14 +203,28 @@ background-color:lightblue;
 			<th id="date">날짜</th>
 			<th id="readCount">조회수</th>
 		</tr>
+=======
+>>>>>>> refs/remotes/origin/yunJisun
 
 
+
+
+<table class="type10">
+
+<thead>
+	<tr><th>번호</th><th class="titleTh">제목</th><th>작성자</th><th>날짜</th><th>첨부파일</th><th>조회수</th></tr>
+</thead>
+
+
+<tbody>
 
 <%
 	for(Question q : list){
 %>
 
-
+<!--  
+└┗┗┖┕
+-->
 
 <tr>
 	<td id="no"><%= q.getQuestionNum() %></td>
@@ -212,24 +250,11 @@ background-color:lightblue;
 </tr>
 <%  } %>
 
-
+</tbody>
 </table>
 
 
 	
-	<!-- 검색 -->
-<div align="right">
-	<form action="/semi/qsearch" method="post">
-		<input type="search" autocomlete name="keyword" length="50">&nbsp;
-		<input type="submit" value="제목검색"> 
-		
-		<!-- 글쓰기 -->
-	<% if(member!= null){ %>
-			<button onclick="return insertPage()" >글쓰기</button>	
-	<%} %>
-	</form>
-</div>
-
 
 <%-- 페이지 번호 처리 --%>
 <div align="center">
@@ -253,17 +278,23 @@ background-color:lightblue;
 <% }else{ %>
 	<a href="/semi/qlist?page=<%= currentPage + 1 %>">[다음]</a>
 <% } %>
+
+
+<!-- 검색 -->
+<div align="center">
+	<form action="/semi/qsearch" method="post">
+		<input type="search" autocomlete name="keyword" length="50">&nbsp;
+		<input type="submit" value="제목검색"> 
+	</form>
+	
+	
+	
+<!-- 글쓰기 -->
+	<% if(member!= null){ %>
+			<button onclick="showWriteQuestion()" >글쓰기</button>	
+	<%} %>
+	
 </div>
-	
-
-
-  </div>
-	
-	
-  <div class="col-md-2">
-  	<%@ include file="../../rightList.jsp"%>
-	</div>
-  </div>
 
 
 
@@ -287,6 +318,7 @@ background-color:lightblue;
 	</div>
 	<!-- /#footer -->
 
+<<<<<<< HEAD
 
 <%}else{ //로그인 되어 있지 않다면 %>
 
@@ -427,6 +459,8 @@ background-color:lightblue;
 	<%} %>
 	
 	
+=======
+>>>>>>> refs/remotes/origin/yunJisun
 
 </body>
 </html>

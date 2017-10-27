@@ -83,20 +83,40 @@ ul.sub li a {
 ul.sub li:hover {
 	background: aliceblue;
 }
+</style>
 <!-- 세로목록 끝 -->
 
-#detailview{
-width:66vw;
+
+
+<!-- 테이블 -->
+<style>
+
+table.type10{
+	border : 1px solid #ccc;
+}
+table.type10{
+	width : 1000px;
+}
+table tr.firstTr{
+	height:40px;
+	background-color: lightblue;
+}
+table td.firstTd{
+	width:600px;
+	padding-top : 10px;
 }
 
-#textBox{
-	height:200px;
+
+
+table.type10 tr{
+	border-bottom : 1px solid #ccc;
+
 }
 
-#title{
-
-width:40%;
+table.type10 td{
+	border-right : 1px solid #ccc;
 }
+<<<<<<< HEAD
 #readCount{
 width:8%;
 }
@@ -118,8 +138,9 @@ color: #4C4C4C;
 	font-size : 15px;
 }
 
+=======
+>>>>>>> refs/remotes/origin/yunJisun
 </style>
-
 
 
 
@@ -130,33 +151,35 @@ color: #4C4C4C;
 <body>
 
 	<%@ include file="../../header.jsp"%>
-	<%if(member.getMemberId().equals("admin")) { %>
-      <%@ include file="../manager/managerHeader.jsp" %>
-   <% } else { %>
-      <%@ include file="../../headerbar.jsp" %>
-   <% } %>
-   
-   
-	<div class="row">
-  <div class="col-md-2">
-  	<div style="margin-left: 30px; width: 230px; height: 300px; float: left;">
+	<%if(member!=null && member.getMemberId().equals("admin")) { %>
+		<%@ include file="../manager/managerHeader.jsp" %>
+	<% } else { %>
+		<%@ include file="../../headerbar.jsp" %>
+	<% } %>
+	<%@ include file="../../rightList.jsp"%>
+	
+
+	<div
+		style="margin-left: 30px; width: 230px; height: 500px; float: left;">
+
 		<ul id="navi">
 			<li class="group">
 				<div class="title">카테고리</div>
 				<ul class="sub">
 					<li><a href="/semi/nlist">공지사항</a></li>
 					<li><a href="/semi/flist">자유 게시판</a></li>
+					<li><a href="/semi/rlist">후기 게시판</a></li>
 					<li><a href="/semi/qlist">QnA게시판</a></li>
+
 				</ul>
 			</li>
 		</ul>
 	</div>
-</div>
-  
-  <div class="col-md-8">
+	<!-- 반복 끝 -->
+	</div>
 
-	
 
+<<<<<<< HEAD
 <table  class="table table-hover" id="detailview">
 <tr id = "detailTitlebar">
 <td id="titlie"><label><%= q.getQuestionTitle() %></label></td>
@@ -164,6 +187,24 @@ color: #4C4C4C;
 <td id="date"><label><%= q.getQuestionDate() %> </label></td>
 <td id="writer"><label><%= q.getQuestionWriter() %></label></td>
 <td id="file">
+=======
+
+
+
+
+
+
+
+
+<table class="type10">
+<tr class="firstTr">
+<td class="firstTd"><%= q.getQuestionTitle() %></td>
+<td><%= q.getQuestionReadCount() %></td>
+<td><%= q.getQuestionDate() %> </td>
+<td><%= q.getQuestionWriter() %></td>
+
+	<td>
+>>>>>>> refs/remotes/origin/yunJisun
 	<% if(q.getQuestionOriginalFileName() == null){ %>
 		첨부파일 없음
 	<% }else{ %>
@@ -175,69 +216,29 @@ color: #4C4C4C;
 </tr>	
 	
 
-<tr id="textBox">
-		<td colspan="5">
-		<%= q.getQuestionContent() %></td>
+<tr height="100">
+
+<td colspan="5">
+<%= q.getQuestionContent() %></td>
 </tr>
 
-<tr><td colspan="5" align="right">
-<%  if(member != null){ %>
-	<%--쿼리스트링에는 반드시 공백 사용하면 안됨 다 붙여서 써야됨 꼭 --%>
-	<a href="/semi/views/question/questionReplyForm.jsp?no=<%= q.getQuestionNum() %>&page=<%= currentPage %>">[댓글달기]</a>
-<% if(member.getMemberId().equals(q.getQuestionWriter())){ %>
-	<a href="/semi/qupview?no=<%= q.getQuestionNum() %>&page=<%= currentPage %>">[수정페이지로 이동]</a>
-	&nbsp;
+<tr><td colspan="5" align="center">
+<% if(member != null){ 
+	if(member.getMemberId().equals(q.getQuestionWriter()) || member.getMemberId().equals("admin")) {%>	
 	<a href="/semi/qdelete?no=<%= q.getQuestionNum() %>">[삭제]</a>
-<%  }} %>
+		<% if(member.getMemberId().equals(q.getQuestionWriter())){ %>
+			<a href="/semi/qupview?no=<%= q.getQuestionNum() %>&page=<%= currentPage %>">&nbsp; [수정]</a>
+		<% } else if(member.getMemberId().equals("admin")) { %>
+   			<a href="/semi/views/question/questionReplyForm.jsp?no=<%= q.getQuestionNum() %>&page=<%= currentPage %>">&nbsp; [답변]</a>
+<% }}} %>
+	<a href="/semi/qlist?page=<%= currentPage %>">&nbsp; [목록]</a>
 </td></tr>
 </table>
 
 
 
-	<br>
-	<div align="center">
-	<a href="/semi/qlist?page=<%=currentPage %>">목록으로 이동</a>
-    </div>
-
-
-	
-
-  </div>
-	
-	
-  <div class="col-md-2">
-  	<%@ include file="../../rightList.jsp"%>
-	</div>
-  </div>
-
-
-
-
-
-
-
-
-	
-	<div id="footer" style="clear: both;">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-8 col-xs-12 text-left">
-					<span>Copyright &copy; 2014 Company Name</span>
-				</div>
-				<!-- /.text-center -->
-				<div class="col-md-4 hidden-xs text-right">
-					<a href="#top" id="go-top">Back to top</a>
-				</div>
-				<!-- /.text-center -->
-			</div>
-			<!-- /.row -->
-		</div>
-		<!-- /.container -->
-	</div>
-	<!-- /#footer -->
-
-
-
+<br>
+<hr>
 
 </body>
 </html>
