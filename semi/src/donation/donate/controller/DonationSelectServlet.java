@@ -41,8 +41,8 @@ public class DonationSelectServlet extends HttpServlet {
 		response.setContentType("text/html; charset=utf-8");
 		String memberId = request.getParameter("memberid");
 
-		
-		System.out.println(request.getParameter("beforedate"));
+		String beforeDate = request.getParameter("beforedate");
+		String afterDate = request.getParameter("afterdate");
 		int result = new DonateService().donateSelectRank(memberId);
 		int memberTotal = new MemberService().selectMemberNum();
 		int myDonation = new DonateService().myDonationTotal(memberId);
@@ -50,12 +50,15 @@ public class DonationSelectServlet extends HttpServlet {
 		int currentPage = 1;
 		int limit = 5;
 		
+		System.out.println(beforeDate);
+		System.out.println(afterDate);
+		
 		if(request.getParameter("page")!=null)
 			currentPage = Integer.parseInt(request.getParameter("page"));
 		
 		
 		int listCount = dservice.getListCount(memberId);
-		ArrayList<Donate> list = dservice.selectList(currentPage,limit, memberId);
+		ArrayList<Donate> list = dservice.selectList(currentPage,limit, memberId,beforeDate,afterDate);
 		
 		int maxPage = (int)((double)listCount / limit + 0.9);
 		int startPage = ((int)((double)currentPage / limit + 0.9)-1) * limit + 1;
@@ -63,8 +66,6 @@ public class DonationSelectServlet extends HttpServlet {
 		if(maxPage <endPage){
 			endPage = maxPage;
 		}
-		System.out.println(memberId);
-		System.out.println(list);
 		RequestDispatcher view = null;
 		if(result >=0&&memberTotal>=0&&myDonation>=0&&list!=null){
 			view = request.getRequestDispatcher("views/member/myDonation.jsp");
@@ -77,6 +78,8 @@ public class DonationSelectServlet extends HttpServlet {
 			request.setAttribute("startPage", startPage);
 			request.setAttribute("endPage", endPage);
 			request.setAttribute("listCount", listCount);
+			request.setAttribute("beforeDate", beforeDate);
+			request.setAttribute("afterDate", afterDate);
 			view.forward(request, response);
 		}else if(result ==0){
 			view = request.getRequestDispatcher("views/member/memberError.jsp");

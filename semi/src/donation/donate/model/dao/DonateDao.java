@@ -79,15 +79,27 @@ public class DonateDao {
 		return result;
 	}
 
-	public ArrayList<Donate> selectList(Connection con, int currentPage, int limit, String memberId) {
+	public ArrayList<Donate> selectList(Connection con, int currentPage, int limit, String memberId, String beforeDate, String afterDate) {
 		ArrayList<Donate> list = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
+
 		String query = "select * from ("
 				+ "select rownum rnum,donation_no,category_title,donation,donation_date from("
 				+ "select * from donate join category_board using(category_no) order by 4)"
-				+ " where member_id = ?)where rnum>=? and rnum<=?";
-
+				+ " where member_id = ?)where rnum>=? and rnum<=? and to_char(donation_date,?) BETWEEN ? and ?";
+		System.out.println('1');
+		System.out.println(beforeDate);
+		System.out.println(afterDate);
+		System.out.println('2');
+		if(afterDate==null || afterDate.equals("")){
+			afterDate = "sysdate";
+		}
+		if(beforeDate == null || beforeDate.equals("")){
+			beforeDate = "2000-01-01";
+		}
+		System.out.println(beforeDate);
+		System.out.println(afterDate);
 		int startRow = (currentPage -1) * limit + 1;
 		int endRow = startRow + limit -1;
 		try {
@@ -95,6 +107,9 @@ public class DonateDao {
 			pstmt.setString(1, memberId);
 			pstmt.setInt(2, startRow);
 			pstmt.setInt(3, endRow);
+			pstmt.setString(4, "yyyy-MM-dd");
+			pstmt.setString(5, beforeDate);
+			pstmt.setString(6, afterDate);
 			rset = pstmt.executeQuery();
 			
 			if(rset != null){

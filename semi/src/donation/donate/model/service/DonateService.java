@@ -31,9 +31,9 @@ public class DonateService {
 		return listCount;
 	}
 
-	public ArrayList<Donate> selectList(int currentPage, int limit, String memberId) {
+	public ArrayList<Donate> selectList(int currentPage, int limit, String memberId, String beforeDate,String afterDate) {
 		Connection con = getConnection();
-		ArrayList<Donate> list = new DonateDao().selectList(con,currentPage,limit, memberId );
+		ArrayList<Donate> list = new DonateDao().selectList(con,currentPage,limit, memberId,beforeDate, afterDate);
 		close(con);
 		return list;
 	}
