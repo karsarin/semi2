@@ -23,7 +23,7 @@ public class DonateService {
 		close(con);
 		return donation;
 	}
-
+ 
 	public int getListCount(String memberId, String beforeDate,String afterDate) {
 		Connection con = getConnection();
 		int listCount = new DonateDao().getListCount(con,memberId,beforeDate, afterDate);

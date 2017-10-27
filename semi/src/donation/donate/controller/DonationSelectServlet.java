@@ -23,7 +23,7 @@ import donation.member.model.service.MemberService;
 @WebServlet("/dselect")
 public class DonationSelectServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+        
     /**
      * @see HttpServlet#HttpServlet()
      */

@@ -68,7 +68,7 @@ public class DonateDao {
 		if(beforeDate == null || beforeDate.equals("") || beforeDate.equals("null")){
 			beforeDate = "2000-01-01";
 		}
-		 
+		  
 		String query = "select count(*) from donate where member_id = ?"
 					 + " and to_char(donation_date,?) BETWEEN ? and ?";
 		
