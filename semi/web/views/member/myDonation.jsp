@@ -51,7 +51,8 @@
 </form>
 <table align="center">
 <tr><th width = "50pt">No</th><th width="400pt">제 목</th><th width="100pt">날짜</th><th width = "100pt">기부금</th>
-<% for(Donate d : list){ %>
+<% if(listCount != 0){ %>
+	<% for(Donate d : list){ %>
 	<tr>
 	<td align="center"><%= d.getDonationNo() %></td>
 	<td><a href = "#"><%= d.getMemberId() %></a></td>
@@ -59,6 +60,11 @@
 	<td><%= d.getDonation() %></td>
 	</tr>
 	<% } %>
+<% }else{ %>
+	<tr>
+		<td colspan="4" align="center" style="font-size:10pt; color:gray;">기부내역이 없습니다</td>
+	</tr>
+<% } %>
 </table>
 <div align ="center">
 <% if(currentPage <=1){ %>
@@ -76,7 +82,7 @@
 	<% if(currentPage >= maxPage){ %>
 	[다음]
 	<%}else{ %>
-	<a href="/semi/select?page=<%= currentPage %>&memberid=<%= member.getMemberId() %>&beforedate=<%= beforeDate %>&afterdate=<%= afterDate %>">[다음]</a>
+	<a href="/semi/dselect?page=<%= currentPage+1 %>&memberid=<%= member.getMemberId() %>&beforedate=<%= beforeDate %>&afterdate=<%= afterDate %>">[다음]</a>
 	<% }}else{ %>
 	<%= member.getMemberNik() %>님의 기부기록이 없습니다.
 	<% } %> 

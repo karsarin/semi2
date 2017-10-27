@@ -56,17 +56,28 @@ public class DonateDao {
 		return donation;
 	}
 
-	public int getListCount(Connection con, String memberId) {
+	public int getListCount(Connection con, String memberId, String beforeDate,String afterDate) {
 		// 내 기부횟수 총 갯수 조회
 		int result = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = "select count(*) from donate where member_id = ?";
+		if(afterDate==null || afterDate.equals("")|| afterDate.equals("null")){
+			afterDate = "sysdate";
+		}
+		if(beforeDate == null || beforeDate.equals("") || beforeDate.equals("null")){
+			beforeDate = "2000-01-01";
+		}
+		
+		String query = "select count(*) from donate where member_id = ?"
+					 + " and to_char(donation_date,?) BETWEEN ? and ?";
 		
 		try {
 			pstmt = con.prepareStatement(query);
 			pstmt.setString(1, memberId);
+			pstmt.setString(2, "yyyy-MM-dd");
+			pstmt.setString(3, beforeDate);
+			pstmt.setString(4, afterDate);
 			rset = pstmt.executeQuery();
 			if(rset.next())
 				result = rset.getInt(1);
@@ -84,22 +95,18 @@ public class DonateDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 
+		if(afterDate==null || afterDate.equals("")|| afterDate.equals("null")){
+			afterDate = "sysdate";
+		}
+		if(beforeDate == null || beforeDate.equals("") || beforeDate.equals("null")){
+			beforeDate = "2000-01-01";
+		}
+		
 		String query = "select * from ("
 				+ "select rownum rnum,donation_no,category_title,donation,donation_date from("
 				+ "select * from donate join category_board using(category_no) order by 4)"
 				+ " where member_id = ?)where rnum>=? and rnum<=? and to_char(donation_date,?) BETWEEN ? and ?";
-		System.out.println('1');
-		System.out.println(beforeDate);
-		System.out.println(afterDate);
-		System.out.println('2');
-		if(afterDate==null || afterDate.equals("")){
-			afterDate = "sysdate";
-		}
-		if(beforeDate == null || beforeDate.equals("")){
-			beforeDate = "2000-01-01";
-		}
-		System.out.println(beforeDate);
-		System.out.println(afterDate);
+		
 		int startRow = (currentPage -1) * limit + 1;
 		int endRow = startRow + limit -1;
 		try {

@@ -49,15 +49,11 @@ public class DonationSelectServlet extends HttpServlet {
 		DonateService dservice = new DonateService();
 		int currentPage = 1;
 		int limit = 5;
-		
-		System.out.println(beforeDate);
-		System.out.println(afterDate);
-		
 		if(request.getParameter("page")!=null)
 			currentPage = Integer.parseInt(request.getParameter("page"));
 		
 		
-		int listCount = dservice.getListCount(memberId);
+		int listCount = dservice.getListCount(memberId,beforeDate,afterDate);
 		ArrayList<Donate> list = dservice.selectList(currentPage,limit, memberId,beforeDate,afterDate);
 		
 		int maxPage = (int)((double)listCount / limit + 0.9);

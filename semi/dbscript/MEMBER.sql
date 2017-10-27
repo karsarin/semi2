@@ -92,6 +92,3 @@ INSERT INTO MEMBER VALUES (
 );
 COMMIT;
 
-=======
-COMMIT;
->>>>>>> refs/remotes/origin/master

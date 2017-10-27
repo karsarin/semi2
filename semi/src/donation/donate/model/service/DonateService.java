@@ -24,9 +24,9 @@ public class DonateService {
 		return donation;
 	}
 
-	public int getListCount(String memberId) {
+	public int getListCount(String memberId, String beforeDate,String afterDate) {
 		Connection con = getConnection();
-		int listCount = new DonateDao().getListCount(con,memberId);
+		int listCount = new DonateDao().getListCount(con,memberId,beforeDate, afterDate);
 		close(con);
 		return listCount;
 	}
@@ -36,6 +36,16 @@ public class DonateService {
 		ArrayList<Donate> list = new DonateDao().selectList(con,currentPage,limit, memberId,beforeDate, afterDate);
 		close(con);
 		return list;
+	}
+
+	public int getListCount(String memberId) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	public ArrayList<Donate> selectList(int currentPage, int limit, String memberId) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
