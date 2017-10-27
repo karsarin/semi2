@@ -36,8 +36,8 @@ public class MemberDao {
 				member.setMemberDate(rset.getDate("signup_date"));
 				member.setConnection(rset.getString("connection"));
 				member.setTalent(rset.getString("talent"));
-				member.setMgrChat(rset.getString("manager_chatting"));
-				member.setMgrLogin(rset.getString("manager_login"));
+				member.setMgrChat(rset.getString("mgrchat"));
+				member.setMgrLogin(rset.getString("mgrlogin"));
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

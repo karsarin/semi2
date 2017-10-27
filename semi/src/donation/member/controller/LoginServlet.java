@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
 		Member member = new MemberService().login(memberId,memberPwd);
 		RequestDispatcher view = null;
 		System.out.println(member);
-		if(member != null){
+		if(member!=null && member.getMgrLogin().equals("Y")){
 			HttpSession session = request.getSession();
 			session.setAttribute("member", member);
 			if(member.getMemberId().equals("admin")) 
@@ -51,7 +51,10 @@ public class LoginServlet extends HttpServlet {
 			view.forward(request, response);
 		}else{
 			view = request.getRequestDispatcher("views/member/memberError.jsp");
-			request.setAttribute("message", "로그인실패! 아이디 또는 암호를 확인하세요");
+			if(member==null)
+				request.setAttribute("message", "로그인실패! 아이디 또는 암호를 확인하세요");
+			else
+				request.setAttribute("message", member.getMemberId()+"님은 로그인이 제한되어있습니다.");			
 			view.forward(request, response);
 		}
 	}
