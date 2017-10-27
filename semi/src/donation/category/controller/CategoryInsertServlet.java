@@ -70,7 +70,6 @@ public class CategoryInsertServlet extends HttpServlet {
 		String title = mrequest.getParameter("ctitle");
 		String writer = mrequest.getParameter("cwriter");
 		String content = mrequest.getParameter("ccontent");
-		content.replaceAll("\n", "<br>");
 		int donation = Integer.parseInt(mrequest.getParameter("cdonation"));
 		int workdate = Integer.parseInt(mrequest.getParameter("cworkdate"));
 		String email = mrequest.getParameter("cemail");
@@ -209,7 +208,7 @@ public class CategoryInsertServlet extends HttpServlet {
 						c = new Category(writer, title, group, writer, content, donation, workdate, email, phone, originalFileName, renameFileName, null, null, null, null, null, null, null, null);
 					}  
 		
-			if(addImage1 != null && addImage2 != null){
+			if(addImage2 != null){
 			// 업로드 된 파일이 있을 경우, 파일명을 "년월일시분초.확장자"로 변경함.
 			SimpleDateFormat sdf2 = new SimpleDateFormat("yyyyMMddHHmmss");
 			addRenameImage2 = sdf2.format(new java.sql.Date(System.currentTimeMillis())) + "2."
