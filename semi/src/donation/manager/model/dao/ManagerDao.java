@@ -120,7 +120,10 @@ public class ManagerDao {
 					 + "select rownum rnum, category_no, user_Id, category_group, category_title, "
 					 + "category_writer, category_content, category_date, category_readcount, category_donation,"
 					 + "work_date, category_level, category_ref, category_reply_ref, category_reply_seq, "
-					 + "phone, email, original_image, rename_image, special, approval from category_board)"
+					 + "phone, email, original_image, rename_image, "
+					 + "add_image1, add_image2, add_image3, add_image4, "
+					 + "add_rename_image1, add_rename_image2, add_rename_image3, add_rename_image4, "
+					 + "special, approval from category_board)"
 					 + "where approval=? and rnum>=? and rnum<=?";
 		int startRow = (ccurrentPage-1)*climit+1;
 		int endRow = startRow+climit-1;
@@ -136,9 +139,12 @@ public class ManagerDao {
 					Category category = new Category(
 							rset.getInt("category_no"), rset.getString("user_Id"), rset.getInt("category_group"), rset.getString("category_title"),
 							rset.getString("category_writer"), rset.getString("category_content"), rset.getDate("category_date"), 
-							rset.getInt("category_readcount"), rset.getInt("category_donation"), rset.getInt("work_date"), 
+							rset.getInt("category_readcount"), rset.getInt("category_donation"), rset.getInt("work_date"), 							
 							rset.getInt("category_level"), rset.getInt("category_ref"), rset.getInt("category_reply_ref"), rset.getInt("category_reply_seq"),
-							rset.getString("phone"), rset.getString("email"), rset.getString("original_image"), rset.getString("rename_image"), 
+							rset.getString("phone"), rset.getString("email"), 
+							rset.getString("original_image"), rset.getString("rename_image"), 
+							rset.getString("add_image1"), rset.getString("add_rename_image1"), rset.getString("add_image2"), rset.getString("add_rename_image2"),
+							rset.getString("add_image3"), rset.getString("add_rename_image3"), rset.getString("add_image4"), rset.getString("add_rename_image4"),
 							rset.getString("special"), rset.getString("approval")
 					);
 					list.add(category);
