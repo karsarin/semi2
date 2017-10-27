@@ -109,18 +109,18 @@ function addImage4Check()
 <% %>
   <tr><th><strong>*메인 이미지 등록</strong></th><td> <input type="file" name="upfile" id="originalImage" value="<%= category.getOriginalImage() %>" required> &nbsp; 나의 재능을 잘 대표할 수 있는 이미지로 설정합니다.</td></tr>
   <tr><th><strong>*재능상세내용</strong></th> <td><textarea cols="50" row="50" name="ccontent" value="<%= category.getCategoryContent() %>"></textarea></td> </tr>
-  <tr><th><strong>재능상세이미지</strong></th>  
+  <tr><th><strong>재능상세이미지</strong></th>  <td>
  	<% if(category.getAddImage1() != null){ %>
-		<td> <input type="file" name="cimage1" id="addImage1" value="<%= category.getAddImage1() %>" onchange="addImage2Check();"> &nbsp; 추가로 4장의 이미지를 더 설정할 수 있습니다.</td><br>
+		 <input type="file" name="cimage1" id="addImage1" value="<%= category.getAddImage1() %>" onchange="addImage2Check();"> &nbsp; 추가로 4장의 이미지를 더 설정할 수 있습니다.</td><br>
 	<%} else {%>
-		<td><input type="file" name="cimage1" id="addImage1" onchange="addImage2Check();"> &nbsp; 추가로 4장의 이미지를 더 설정할 수 있습니다.</td><br>
+		<input type="file" name="cimage1" id="addImage1" onchange="addImage2Check();"> &nbsp; 추가로 4장의 이미지를 더 설정할 수 있습니다.<br>
 	<%} %>
 	
 	<% if(category.getAddImage2() != null){ %>
-		<td><input type="file" name="cimage2" id="addImage2" value="<%= category.getAddImage2()%>" onchange="addImage3Check();" disabled></td><br>
+		<input type="file" name="cimage2" id="addImage2" value="<%= category.getAddImage2()%>" onchange="addImage3Check();" disabled><br>
 	<% } else { %>
 		<input type="file" name="cimage2" id="addImage2" onchange="addImage3Check();" disabled> <br>
-	<%} %>
+	<% } %>
 	
 	<% if(category.getAddImage3() != null){ %>
 		<input type="file" name="cimage3" id="addImage3" value="<%= category.getAddImage3() %>" onchange="addImage4Check();" disabled> <br>
@@ -129,10 +129,11 @@ function addImage4Check()
 	<%} %>
 	
 	<% if(category.getAddImage4() != null){ %>
-			<input type="file" name="cimage4" value="<%= category.getAddImage4() %>" id="addImage4" disabled> <br> </td>
+			<input type="file" name="cimage4" value="<%= category.getAddImage4() %>" id="addImage4" disabled> <br>
 	<%} else { %>
-		<input type="file" name="cimage4" id="addImage4" disabled> <br> </td>
+		<input type="file" name="cimage4" id="addImage4" disabled> <br>
 	<% } %>
+	</td>
 	</tr>
 	<tr><th></th><td><input type="submit" value="재능 수정하기"></td></tr>
 	</tbody>
