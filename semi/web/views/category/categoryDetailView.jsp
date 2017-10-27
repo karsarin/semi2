@@ -64,6 +64,18 @@
 		location.href="/semi/views/suggest/suggestWriteForm.jsp";
 	}
 	
+	function confirmDelete()
+	{
+		var deleteyn = confirm("정말 재능을 삭제하시겠습니까?");
+		
+		if(deleteyn == true)
+			location.href="/semi/cdelete?cnum=<%= category.getCategoryNo()%>";
+	}
+	
+	function goUpdateView()
+	{
+		location.href="/semi/update?cnum=<%= category.getCategoryNo() %>";
+	}	
 </script>
 
 </head>
@@ -94,11 +106,14 @@
  				<button type="button" class="btn btn-danger">로그아웃상태</button>
  			<%} %>
  		</td></tr>
- 	<% if(member.getMemberId().equals(category.getCategoryWriter())){%>
- 	<tr><td colspan="2" align="center">
- 	<button type="button" class="btn btn-danger" onclick="/cdelete">재능 삭제</button>
- 	</td></tr>
+ 	<% if(member != null && member.getMemberId().equals(category.getCategoryWriter())){%>
+ 	<tr><td align="center">
+ 	<button type="button" class="btn btn-danger" onclick="confirmDelete();">재능 삭제</button>
+ 	</td>
+ 	<td align="center"><button type="button" class="btn btn-warning" onclick="goUpdateView()">재능 수정</button></td>
+ 	</tr>
  	<%} %>
+ 	
 </table>
 
 </div>
