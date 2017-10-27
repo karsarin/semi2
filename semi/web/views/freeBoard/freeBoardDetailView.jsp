@@ -167,29 +167,25 @@ color: #4C4C4C;
 					
 					
 					for(var i in json.list){
-						//한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
-						//values += json.list[i].commentNum + ", " + json.list[i].boardNum + ", " + 
-						//		decodeURIComponent(json.list[i].writer) + ", " +decodeURIComponent( json.list[i].date )+ ", " + decodeURIComponent(json.list[i].content) + "<br>";
+					//	한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
+					//	values += json.list[i].commentNum + ", " + json.list[i].boardNum + ", " + 
+					//			decodeURIComponent(json.list[i].writer) + ", " +decodeURIComponent( json.list[i].date )+ ", " + decodeURIComponent(json.list[i].content) + "<br>";
 						
 						//$("#reply").html(values);	
-						//	values +=  " 글쓴이 : "  + decodeURIComponent(json.list[i].writer) + "<br>" +   "내용 : " + decodeURIComponent(json.list[i].content) ;
-					
-					
+					//	values +=  " 글쓴이 : "  + decodeURIComponent(json.list[i].writer) + "<br>" +   "내용 : " + decodeURIComponent(json.list[i].content) ;
 						
+				
+					
 						
 						$("#reply").append(							
-							"<div id=\"replyDiv\">" + "<label id=\"commentWriter\">"+  " 글쓴이 : " + "</label>" + decodeURIComponent(json.list[i].writer) + "<br>"  +"<label id=\"commentContent\">"+ "내용 : " + "</label>" + decodeURIComponent(json.list[i].content) 
-							
-							
-							
-							<%if(true  ){%>						
-							+	 		
-							"<a>수정</a>" + "<a>삭제</a>"
-							<%}%>
-							
-							+"</div>" +"<br>");
-					
-					values = "";
+								"<div id=\"replyDiv\">" + "<label id=\"commentWriter\">"+  " 글쓴이 : " + "</label>" + decodeURIComponent(json.list[i].writer) + "<br>"  +"<label id=\"commentContent\">"+ "내용 : " + "</label>" + decodeURIComponent(json.list[i].content) 
+								<%if(  member.getMemberId().equals("admin")){%>	
+								
+								+"<button onclick=\"commentDelete()\">삭제</button>"	
+								
+								<%}%>
+								+"</div>" +"<br>");
+
 					} 	
 					
 
@@ -200,8 +196,12 @@ color: #4C4C4C;
 			
 		});	
 		
-		
-		
+
+	}
+	
+	
+	function commentDelete() {
+		location.href = "/semi/commentDelete";		
 	}
 	
 </script>
@@ -243,7 +243,8 @@ color: #4C4C4C;
 		<td id="readCount"><label>조회:<%=fboard.getReadCount() %></label></td>
 		<td id="date"><label><%=fboard.getfreeBoardDate() %></label></td>
 		<td id="writer"><label><%=fboard.getfreeBoardWriter() %></label></td>
-		<td id="file"><label><%if(fboard.getOriginalFileName() != null){	%>		
+		<td id="file"><label>
+		<%if(fboard.getOriginalFileName() != null){	%>	
 		<a href="/semi/ffdown?oname=<%=fboard.getOriginalFileName()%>&rname=<%=fboard.getRenameFileName()%>"> <%=fboard.getOriginalFileName() %></a>
 		<%}else{ %>
 		첨부파일 없음
@@ -309,12 +310,10 @@ color: #4C4C4C;
 				$("#reply").append(							
 						"<div id=\"replyDiv\">" +  "<label id=\"commentWriter\">"+ " 글쓴이 : " + "</label>"+ $("#commentWriter").val() + "<br>"	
 						+ "<label id=\"commentContent\">" + "내용 : " + "</label>"+  	$("input[name=replyinput]").val() 
-											
-						<%if((fboard.getfreeBoardWriter()).equals(member.getMemberId())){%>
-						+
-						"<a>수정</a>" + "<a>삭제</a>"
-						<%}%>
 						
+						+
+						"<a href=\"/semi/commentDelete\">삭제</a>"
+								
 						+ "</div>" + "<br>");
  				
  				var nullString = "";
