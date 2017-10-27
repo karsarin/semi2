@@ -126,20 +126,7 @@ function addImage4Check()
 </div>
   
   
-   <%@ include file="../../rightList.jsp" %> 
- 
-		
-		
-		
-		
-	
-	
-		<%@ include file="../../footerbar.jsp" %>
-		
-		
-	
-		
-		
+   <%@ include file="../../rightList.jsp" %> 		
 		
 		
 		
