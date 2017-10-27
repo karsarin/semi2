@@ -81,7 +81,7 @@ ul.sub li a {
 }
 
 ul.sub li:hover {
-	background: lightblue;
+	background: aliceblue;
 }
 <!-- 세로목록 끝 -->
 
@@ -108,6 +108,14 @@ width:13%;
 }
 #file{
 width:20%;
+}
+#detailTitlebar{
+background : lightblue;
+color: #4C4C4C;
+}
+#textBox{
+	height:200px;
+	font-size : 15px;
 }
 
 </style>
@@ -150,7 +158,7 @@ width:20%;
 	
 
 <table  class="table table-hover" id="detailview">
-<tr>
+<tr id = "detailTitlebar">
 <td id="titlie"><label><%= q.getQuestionTitle() %></label></td>
 <td id="readCount"><label><%= q.getQuestionReadCount() %></label></td>
 <td id="date"><label><%= q.getQuestionDate() %> </label></td>

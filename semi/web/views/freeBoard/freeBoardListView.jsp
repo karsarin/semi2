@@ -87,7 +87,7 @@ ul.sub li a {
 }
 
 ul.sub li:hover {
-	background: lightblue;
+	background: aliceblue;
 }
 
 <!--
@@ -96,27 +96,28 @@ ul.sub li:hover {
 }
 
 #table #no {
-	width: 6%
+	width: 6%;
+text-align:center;
 }
 
 #table #title {
-	width: 50%
+	width: 50%;
 }
 
 #table #writer {
-	width: 10%
+	width: 10%;
+text-align:center;
 }
 
 #table #date {
-	width: 15%
+	width: 15%;
+text-align:center;
 }
 
-#table #file {
-	width: 12%
-}
 
 #table #readCount {
-	width: 7%
+	width: 7%;
+text-align:center;
 }
 
 #firstTr {
@@ -191,7 +192,6 @@ ul.sub li:hover {
 					<th id="titlie">제목</th>
 					<th id="writer">작성자</th>
 					<th id="date">날짜</th>
-					<th id="file">첨부파일</th>
 					<th id="readCount">조회수</th>
 				</tr>
 
@@ -200,22 +200,13 @@ ul.sub li:hover {
 					for (FreeBoard fboard : list) {
 				%>
 				<tr>
-					<td><%=fboard.getfreeBoardNo()%></td>
-					<td><a href="/semi/fdetail?no=<%=fboard.getfreeBoardNo()%>">
+					<td id="no"><%=fboard.getfreeBoardNo()%></td>
+					<td id="titlie"><a href="/semi/fdetail?no=<%=fboard.getfreeBoardNo()%>">
 							<%=fboard.getfreeBoardTitle()%>
 					</a></td>
-					<td><%=fboard.getfreeBoardWriter()%></td>
-					<td><%=fboard.getfreeBoardDate()%></td>
-					<td>
-						<%
-							if (fboard.getOriginalFileName() != null) {
-						%> O <%
-							} else {
-						%> X <%
-							}
-						%>
-					</td>
-					<td><%=fboard.getReadCount()%></td>
+					<td id="writer"><%=fboard.getfreeBoardWriter()%></td>
+					<td id="date"><%=fboard.getfreeBoardDate()%></td>
+					<td id="readCount"><%=fboard.getReadCount()%></td>
 				</tr>
 				<%
 					}
@@ -362,7 +353,6 @@ ul.sub li:hover {
 					<th id="titlie">제목</th>
 					<th id="writer">작성자</th>
 					<th id="date">날짜</th>
-					<th id="file">첨부파일</th>
 					<th id="readCount">조회수</th>
 				</tr>
 
@@ -371,20 +361,11 @@ ul.sub li:hover {
 					for (FreeBoard fboard : list) {
 				%>
 				<tr>
-					<td><%=fboard.getfreeBoardNo()%></td>
-					<td><%=fboard.getfreeBoardTitle()%></td>
-					<td><%=fboard.getfreeBoardWriter()%></td>
-					<td><%=fboard.getfreeBoardDate()%></td>
-					<td>
-						<%
-							if (fboard.getOriginalFileName() != null) {
-						%> O <%
-							} else {
-						%> X <%
-							}
-						%>
-					</td>
-					<td><%=fboard.getReadCount()%></td>
+					<td id="no"><%=fboard.getfreeBoardNo()%></td>
+					<td id="title"><%=fboard.getfreeBoardTitle()%></td>
+					<td id="writer"><%=fboard.getfreeBoardWriter()%></td>
+					<td id="date"><%=fboard.getfreeBoardDate()%></td>
+					<td id="readCount"><%=fboard.getReadCount()%></td>
 				</tr>
 				<%
 					}

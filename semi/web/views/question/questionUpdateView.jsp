@@ -82,7 +82,7 @@ ul.sub li a {
 }
 
 ul.sub li:hover {
-	background: lightblue;
+	background: aliceblue;
 }
 
 
