@@ -69,12 +69,12 @@
 		var deleteyn = confirm("정말 재능을 삭제하시겠습니까?");
 		
 		if(deleteyn == true)
-			location.href="/semi/cdelete?cnum=<%= category.getCategoryNo()%>";
+			location.href="/semi/cdelete?cnum=<%=category.getCategoryNo()%>";
 	}
 	
 	function goUpdateView()
 	{
-		location.href="/semi/update?cnum=<%= category.getCategoryNo() %>";
+		location.href="/semi/cupdate?cnum=<%= category.getCategoryNo()%>&cpage=<%=currentPage%>";
 	}	
 </script>
 
