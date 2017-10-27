@@ -58,7 +58,7 @@ public class FreeBoardInsertServlet extends HttpServlet {
 		}
 			//업로드 할 파일의 용량 제한 : 10Mbyte 로 제한한다면
 			int maxSize = 1024 * 1024  * 10;
-			
+			 
 			//업로드된 파일의 저장 위치 지정
 			//해당 컨테이너(톰캣) 구동중인 웹 어플리케이션 루트 폴더(content directory)의 경로를 알아냄
 			//그래서 현재 톰캣에서 구동중인 어플리케이션의 경로를 알아내서 그 폴더안에 저장되게 소스코드로 지정해줌

@@ -51,7 +51,7 @@ public class FreeBoardReplyInsertServlet extends HttpServlet {
 		int result = fservice.insertReplyBoard(cboard);
 		
 		System.out.println("result : " + result);
-		
+		 
 		
 
 		ArrayList<CommentBoard> list = fservice.selectReplyBoardList(boardNum);

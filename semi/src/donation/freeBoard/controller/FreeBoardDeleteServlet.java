@@ -43,7 +43,7 @@ public class FreeBoardDeleteServlet extends HttpServlet {
 			request.setAttribute("message", "게시글삭제 실패!");
 			errorPage.forward(request, response);
 		}
-		
+		 
 
 	}
 

@@ -74,7 +74,7 @@ public class FreeBoardUpdateServlet extends HttpServlet {
 			//업로드 될 파일의 폴더명과 루트 폴더 연결 처리
 			String savePath = root + "uploadfiles/" + "fuploadfiles";
 			// web/uploadfiles 로 만들어짐
-			
+			 
 			//request 를 MultipartRequest 객체로 변환함
 			MultipartRequest mrequest = new MultipartRequest(request, savePath, maxSize, "utf-8", new DefaultFileRenamePolicy()); 
 			//MulitpartRequest 얘는 클래스
