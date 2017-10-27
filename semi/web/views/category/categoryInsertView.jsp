@@ -87,14 +87,10 @@
 </div>
 </div>
   
-  
+  <div style="margin-right:50px;">
    <%@ include file="../../rightList.jsp" %> 
- 
+ </div>
 		
-		
-		
-		
-	
 	
 		<%@ include file="../../footerbar.jsp" %>
 		
