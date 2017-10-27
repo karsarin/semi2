@@ -25,16 +25,7 @@
 </style>
 
 <script type="text/javascript" src="/semi/js/jquery-3.2.1.min.js"></script>
-
-
-
-	
-	
-
 <!-- 카테고리  -->
-
-
-
 
 <%-- 헤더바 --%>
 <link
@@ -159,8 +150,6 @@ color: #4C4C4C;
 
 	<%@ include file="../../header.jsp"%>
 	
-	
-	
 	<script type="text/javascript">
 	window.onload = function(){
 		
@@ -182,13 +171,19 @@ color: #4C4C4C;
 						//values += json.list[i].commentNum + ", " + json.list[i].boardNum + ", " + 
 						//		decodeURIComponent(json.list[i].writer) + ", " +decodeURIComponent( json.list[i].date )+ ", " + decodeURIComponent(json.list[i].content) + "<br>";
 						
-								//$("#reply").html(values);	
-				//	values +=  " 글쓴이 : "  + decodeURIComponent(json.list[i].writer) + "<br>" +   "내용 : " + decodeURIComponent(json.list[i].content) ;
-					$("#reply").append(							
+						//$("#reply").html(values);	
+						//	values +=  " 글쓴이 : "  + decodeURIComponent(json.list[i].writer) + "<br>" +   "내용 : " + decodeURIComponent(json.list[i].content) ;
+					
+					
+						
+						
+						$("#reply").append(							
 							"<div id=\"replyDiv\">" + "<label id=\"commentWriter\">"+  " 글쓴이 : " + "</label>" + decodeURIComponent(json.list[i].writer) + "<br>"  +"<label id=\"commentContent\">"+ "내용 : " + "</label>" + decodeURIComponent(json.list[i].content) 
 							
-							<%if((fboard.getfreeBoardWriter()).equals(member.getMemberId())){%>
-							+
+							
+							
+							<%if(true  ){%>						
+							+	 		
 							"<a>수정</a>" + "<a>삭제</a>"
 							<%}%>
 							

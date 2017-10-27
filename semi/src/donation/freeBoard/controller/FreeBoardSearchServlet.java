@@ -21,7 +21,7 @@ import donation.notice.model.vo.Notice;
 @WebServlet("/fsearch")
 public class FreeBoardSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+        
     /**
      * @see HttpServlet#HttpServlet()
      */

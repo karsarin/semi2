@@ -315,7 +315,7 @@ public class FreeBoardDao {
 
 		int result = 0;
 		PreparedStatement pstmt = null;
-		
+		 
 		String query ="insert into BOARD_COMMENT values ((select max(COMMENT_NUM) + 1 from BOARD_COMMENT), ?, ?, sysdate, ?)";
 		
 		try {

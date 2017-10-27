@@ -18,7 +18,7 @@ import donation.freeBoard.model.vo.FreeBoard;
 @WebServlet("/fupview")
 public class FreeBoardUpdateViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+        
     /**
      * @see HttpServlet#HttpServlet()
      */

@@ -42,7 +42,7 @@ public class FreeBoard implements java.io.Serializable{
 	}
 	public String getfreeBoardTitle() {
 		return freeBoardTitle;
-	}
+	} 
 	public void setfreeBoardTitle(String freeBoardTitle) {
 		this.freeBoardTitle = freeBoardTitle;
 	}

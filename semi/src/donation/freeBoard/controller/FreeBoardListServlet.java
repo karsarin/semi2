@@ -43,7 +43,7 @@ public class FreeBoardListServlet extends HttpServlet {
 		{
 			currentPage = Integer.parseInt(request.getParameter("page"));
 			
-		}
+		} 
 		
 		FreeBoardService fservice = new FreeBoardService();
 		

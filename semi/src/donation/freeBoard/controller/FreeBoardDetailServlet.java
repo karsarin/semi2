@@ -46,7 +46,7 @@ public class FreeBoardDetailServlet extends HttpServlet {
 				fservice.addReadCount(no); //public void - 리턴안시키고 그냥 값만 변경함
 				FreeBoard fboard = fservice.selectFreeBoard(no);
 				
-				
+				 
 				
 				RequestDispatcher view = null;
 				if(fboard != null){

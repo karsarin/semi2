@@ -126,7 +126,7 @@ public class FreeBoardService {
 		close(con);
 		return result;
 	}
-
+ 
 	public ArrayList<CommentBoard> selectReplyBoardList(int boardNum) {
 		Connection con = getConnection();
 		ArrayList<CommentBoard> list = new FreeBoardDao().selectReplyList(con, boardNum);
