@@ -98,7 +98,7 @@ ul.sub li a {
 }
 
 ul.sub li:hover {
-	background: lightblue;
+	background: aliceblue;
 }
 
 <!-- 세로목록 끝 -->
@@ -109,22 +109,23 @@ ul.sub li:hover {
 width:66vw;
 }
 #table #no{
-width:6%
+width:6%;
+text-align:center;
 }
 #table #title{
 width:50%
 }
 #table #writer{
-width:10%
+width:10%;
+text-align:center;
 }
 #table #date{
-width:15%
-}
-#table #file{
-width:12%
+width:15%;
+text-align:center;
 }
 #table #readCount{
-width:7%
+width:7%;
+text-align:center;
 }
 #firstTr{
 background-color:lightblue;
@@ -180,7 +181,6 @@ background-color:lightblue;
 						<th id="titlie">제목</th>
 						<th id="writer">작성자</th>
 						<th id="date">날짜</th>
-						<th id="file">첨부파일</th>
 						<th id="readCount">조회수</th>
 					</tr>
 
@@ -190,23 +190,13 @@ background-color:lightblue;
 
 
 					<tr>
-						<td><%=notice.getNoticeNo()%></td>
-						<td><a href="/semi/ndetail?no=<%=notice.getNoticeNo()%>">
+						<td id="no"><%=notice.getNoticeNo()%></td>
+						<td id="title"><a href="/semi/ndetail?no=<%=notice.getNoticeNo()%>">
 								<%=notice.getNoticeTitle()%>
 						</a></td>
-						<td><%=notice.getNoticeWriter()%></td>
-						<td><%=notice.getNoticeDate()%></td>
-						<td>
-							<%
-								if (notice.getOriginalFileName() != null) {
-							%> O <%
-								} else {
-							%> X
-							<%
-							 	}
-							 %>
-						</td>
-						<td><%=notice.getReadCount()%></td>
+						<td id="writer"><%=notice.getNoticeWriter()%></td>
+						<td id="date"><%=notice.getNoticeDate()%></td>
+						<td id="readCount"><%=notice.getReadCount()%></td>
 					</tr>
 					<%
 						}
@@ -320,7 +310,6 @@ background-color:lightblue;
 						<th id="titlie">제목</th>
 						<th id="writer">작성자</th>
 						<th id="date">날짜</th>
-						<th id="file">첨부파일</th>
 						<th id="readCount">조회수</th>
 					</tr>
 
@@ -330,21 +319,11 @@ background-color:lightblue;
 
 
 					<tr>
-						<td><%=notice.getNoticeNo()%></td>
-						<td><%=notice.getNoticeTitle()%></td>
-						<td><%=notice.getNoticeWriter()%></td>
-						<td><%=notice.getNoticeDate()%></td>
-						<td>
-							<%
-								if (notice.getOriginalFileName() != null) {
-							%> O <%
-								} else {
-							%> X
-							<%
-							 	}
-							 %>
-						</td>
-						<td><%=notice.getReadCount()%></td>
+						<td id="no"><%=notice.getNoticeNo()%></td>
+						<td id="title"><%=notice.getNoticeTitle()%></td>
+						<td id="writer"><%=notice.getNoticeWriter()%></td>
+						<td id="date"><%=notice.getNoticeDate()%></td>
+						<td id="readCount"><%=notice.getReadCount()%></td>
 					</tr>
 					<%
 						}

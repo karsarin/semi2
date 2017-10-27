@@ -102,7 +102,7 @@ ul.sub li a {
 }
 
 ul.sub li:hover {
-	background: lightblue;
+	background: aliceblue;
 }
 <!-- 세로목록 끝 -->
 
@@ -111,22 +111,24 @@ ul.sub li:hover {
 width:66vw;
 }
 #table #no{
-width:6%
+width:6%;
+text-align:center;
 }
 #table #title{
 width:50%
 }
 #table #writer{
-width:10%
+width:10%;
+text-align:center;
 }
 #table #date{
-width:15%
+width:15%;
+text-align:center;
 }
-#table #file{
-width:12%
-}
+
 #table #readCount{
-width:7%
+width:7%;
+text-align:center;
 }
 #firstTr{
 background-color:lightblue;
@@ -201,8 +203,8 @@ background-color:lightblue;
 
 
 <tr>
-	<td><%= q.getQuestionNum() %></td>
-	<td>
+	<td id="no"><%= q.getQuestionNum() %></td>
+	<td id="title">
 	<%-- 답글일 때는 들여쓰기하면서 앞에 ▶ 표시함 --%>
 		<% if(q.getQuestionLevel() == 1){  //원글의 댓글일 때 %>
 		&nbsp; &nbsp; ┕>
@@ -218,17 +220,9 @@ background-color:lightblue;
 			<%= q.getQuestionTitle() %>
 		<% } %>
 	</td>
-	<td ><%= q.getQuestionWriter() %></td>
-	<td ><%= q.getQuestionDate() %></td>
-	<td >
-		<% if(q.getQuestionOriginalFileName() != null){ %>
-			O
-		<% }else{ %>
-			X
-		<% } %>
-	</td>
-	
-	<td ><%= q.getQuestionReadCount() %></td>
+	<td id="writer" ><%= q.getQuestionWriter() %></td>
+	<td id="date" ><%= q.getQuestionDate() %></td>
+	<td id="readCount" ><%= q.getQuestionReadCount() %></td>
 </tr>
 <%  } %>
 
@@ -355,8 +349,8 @@ background-color:lightblue;
 
 
 <tr>
-	<td><%= q.getQuestionNum() %></td>
-	<td>
+	<td id="no"><%= q.getQuestionNum() %></td>
+	<td id="title">
 	<%-- 답글일 때는 들여쓰기하면서 앞에 ▶ 표시함 --%>
 		<% if(q.getQuestionLevel() == 1){  //원글의 댓글일 때 %>
 		&nbsp; &nbsp; ┕>
@@ -365,17 +359,9 @@ background-color:lightblue;
 		<% } %>
 			<%= q.getQuestionTitle() %>		
 	</td>
-	<td ><%= q.getQuestionWriter() %></td>
-	<td ><%= q.getQuestionDate() %></td>
-	<td >
-		<% if(q.getQuestionOriginalFileName() != null){ %>
-			O
-		<% }else{ %>
-			X
-		<% } %>
-	</td>
-	
-	<td ><%= q.getQuestionReadCount() %></td>
+	<td id="writer" ><%= q.getQuestionWriter() %></td>
+	<td id="date" ><%= q.getQuestionDate() %></td>
+	<td id="readCount" ><%= q.getQuestionReadCount() %></td>
 </tr>
 <%  } %>
 

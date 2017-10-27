@@ -95,7 +95,7 @@ ul.sub li a {
 }
 
 ul.sub li:hover {
-	background: lightblue;
+	background: aliceblue;
 }
 <!-- 세로목록 끝 -->
 

@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.*,  donation.freeBoard.model.vo.FreeBoard"%>
+    pageEncoding="UTF-8" import="java.util.*,  donation.freeBoard.model.vo.FreeBoard, donation.freeBoard.model.vo.CommentBoard"%>
  
  <%
  FreeBoard fboard = (FreeBoard)request.getAttribute("fboard");
+ CommentBoard cboard = (CommentBoard)request.getAttribute("cboard");
  %>   
     
 <!DOCTYPE html>
@@ -18,56 +19,15 @@
 	#replyDiv{
 	width:900px;
 	height:50px;
-	border-top: 1px solid black;
-	border-bottom: 1px solid black;
+	border-top: 1px solid #BDBDBD;
+	border-bottom: 1px solid #BDBDBD;
 	}
 </style>
 
 <script type="text/javascript" src="/semi/js/jquery-3.2.1.min.js"></script>
 
 
-<script type="text/javascript">
-	window.onload = function(){
-		
-		$.ajax({url: "/semi/reList",
-			data: {boardNum :  $("#boardNum").val()},
-			  type: "get", 
-			  success: function(data){
-					//console.log(data);
-					
-					var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환
-					//console.log(jsonStr);
-					var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈
-					
-					var values = $("#reply").html();	
-					
-					
-					for(var i in json.list){
-						//한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
-						//values += json.list[i].commentNum + ", " + json.list[i].boardNum + ", " + 
-						//		decodeURIComponent(json.list[i].writer) + ", " +decodeURIComponent( json.list[i].date )+ ", " + decodeURIComponent(json.list[i].content) + "<br>";
-						
-								//$("#reply").html(values);	
-				//	values +=  " 글쓴이 : "  + decodeURIComponent(json.list[i].writer) + "<br>" +   "내용 : " + decodeURIComponent(json.list[i].content) ;
-					$("#reply").append(							
-							"<div id=\"replyDiv\">" + "<label id=\"commentWriter\">"+  " 글쓴이 : " + "</label>" + decodeURIComponent(json.list[i].writer) + "<br>"  +"<label id=\"commentContent\">"+ "내용 : " + "</label>" + decodeURIComponent(json.list[i].content) + "</div>" + "<br>");
-					
-					values = "";
-					} 	
-					
 
-				},
-			  error : function(data){  //실패했을 때 구동되는 함수
-				  consolse.log("에러발생 : " + data);
-			  }
-			
-		});	
-		
-		
-		
-	}
-	
-</script>
 	
 	
 
@@ -131,7 +91,7 @@ ul.sub li a {
 }
 
 ul.sub li:hover {
-	background: lightblue;
+	background: aliceblue;
 }
 <!-- 세로목록 끝 -->
 
@@ -160,6 +120,14 @@ width:13%;
 }
 #file{
 width:20%;
+}
+#detailTitlebar{
+background : lightblue;
+color: #4C4C4C;
+}
+#textBox{
+	height:200px;
+	font-size : 15px;
 }
 
 
@@ -190,6 +158,60 @@ width:20%;
 <body>
 
 	<%@ include file="../../header.jsp"%>
+	
+	
+	
+	<script type="text/javascript">
+	window.onload = function(){
+		
+		$.ajax({url: "/semi/reList",
+			data: {boardNum :  $("#boardNum").val()},
+			  type: "get", 
+			  success: function(data){
+					//console.log(data);
+					
+					var jsonStr = JSON.stringify(data);  //객체를 문자열로 변환
+					//console.log(jsonStr);
+					var json = JSON.parse(jsonStr); //문자열을 배열 객체로 바꿈
+					
+					var values = $("#reply").html();	
+					
+					
+					for(var i in json.list){
+						//한글 깨짐을 막기 위해 문자 인코딩 처리한 json 객체의 값은 decodeURIComponent() 로 디코딩 처리함
+						//values += json.list[i].commentNum + ", " + json.list[i].boardNum + ", " + 
+						//		decodeURIComponent(json.list[i].writer) + ", " +decodeURIComponent( json.list[i].date )+ ", " + decodeURIComponent(json.list[i].content) + "<br>";
+						
+								//$("#reply").html(values);	
+				//	values +=  " 글쓴이 : "  + decodeURIComponent(json.list[i].writer) + "<br>" +   "내용 : " + decodeURIComponent(json.list[i].content) ;
+					$("#reply").append(							
+							"<div id=\"replyDiv\">" + "<label id=\"commentWriter\">"+  " 글쓴이 : " + "</label>" + decodeURIComponent(json.list[i].writer) + "<br>"  +"<label id=\"commentContent\">"+ "내용 : " + "</label>" + decodeURIComponent(json.list[i].content) 
+							
+							<%if((fboard.getfreeBoardWriter()).equals(member.getMemberId())){%>
+							+
+							"<a>수정</a>" + "<a>삭제</a>"
+							<%}%>
+							
+							+"</div>" +"<br>");
+					
+					values = "";
+					} 	
+					
+
+				},
+			  error : function(data){  //실패했을 때 구동되는 함수
+				  consolse.log("에러발생 : " + data);
+			  }
+			
+		});	
+		
+		
+		
+	}
+	
+</script>
+	
+	
 	<%if(member.getMemberId().equals("admin")) { %>
       <%@ include file="../manager/managerHeader.jsp" %>
    <% } else { %>
@@ -218,7 +240,7 @@ width:20%;
 
 	<!-- 게시글 -->
 	<table  class="table table-hover" id="detailview">
-	<tr>
+	<tr id = "detailTitlebar">
 		<input type="hidden" id="writer" value="<%=fboard.getfreeBoardWriter() %>">
 		<input type="hidden" id="commentWriter" value="<%=member.getMemberId() %>">
 		<input type="hidden" id="boardNum" value="<%=fboard.getfreeBoardNo() %>">
@@ -257,7 +279,7 @@ width:20%;
 		<table>
 		<tr><td colspan="2">댓글</td></tr>
 		<tr><td width="900px">
-		<input type="text" class="form-control"  name="replyinput">
+		<input type="text" class="form-control"  name="replyinput" id="replyinput">
 		</td>
 		<td>
 		<input type="button" onclick="insertReply()" value="등록">
@@ -292,8 +314,16 @@ width:20%;
 				$("#reply").append(							
 						"<div id=\"replyDiv\">" +  "<label id=\"commentWriter\">"+ " 글쓴이 : " + "</label>"+ $("#commentWriter").val() + "<br>"	
 						+ "<label id=\"commentContent\">" + "내용 : " + "</label>"+  	$("input[name=replyinput]").val() 
+											
+						<%if((fboard.getfreeBoardWriter()).equals(member.getMemberId())){%>
+						+
+						"<a>수정</a>" + "<a>삭제</a>"
+						<%}%>
+						
 						+ "</div>" + "<br>");
  				
+ 				var nullString = "";
+ 				$("#replyinput").html(nullString);
 			},
 			error: function(data){			
 				console.log("에러 발생 : " + data);
