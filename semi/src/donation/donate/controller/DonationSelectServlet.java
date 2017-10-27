@@ -94,6 +94,7 @@ public class DonationSelectServlet extends HttpServlet {
 			request.setAttribute("message", "내 날짜별 기부금 조회 실패!");
 			view.forward(request, response);
 		}
+		/*sss*/
 	}
 
 	/**
