@@ -9,7 +9,7 @@ public class CommentBoard {
 	private Date date;
 	private String date2;
 	private String content;
-	
+	 
 	public CommentBoard() {}
 	
 	public CommentBoard(int commentNum, int boardNum, String writer, Date date, String content) {
