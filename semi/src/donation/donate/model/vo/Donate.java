@@ -11,7 +11,7 @@ public class Donate {
 	public Donate() {
 		super();
 	}
-
+ 
 	public Donate(int donationNo, String memberId, int donation, Date donationDate) {
 		super();
 		this.donationNo = donationNo;

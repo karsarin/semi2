@@ -9,7 +9,7 @@ import donation.donate.model.dao.DonateDao;
 import donation.donate.model.vo.Donate;
 
 public class DonateService {
-
+ 
 	public int donateSelectRank(String memberId) {
 		Connection con = getConnection();
 		int result = new DonateDao().donateSelectRank(con,memberId);

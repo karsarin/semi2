@@ -51,7 +51,7 @@ public class DonationSelectServlet extends HttpServlet {
 		int limit = 5;
 		if(request.getParameter("page")!=null)
 			currentPage = Integer.parseInt(request.getParameter("page"));
-		
+		 
 		
 		int listCount = dservice.getListCount(memberId,beforeDate,afterDate);
 		ArrayList<Donate> list = dservice.selectList(currentPage,limit, memberId,beforeDate,afterDate);

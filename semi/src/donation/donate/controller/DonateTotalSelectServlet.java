@@ -26,7 +26,7 @@ public class DonateTotalSelectServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// ÃÑ±âºÎ¾× Á¶È¸ ÄÁÆ®·Ñ·¯
+		// ï¿½Ñ±ï¿½Î¾ï¿½ ï¿½ï¿½È¸ ï¿½ï¿½Æ®ï¿½Ñ·ï¿½
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 

@@ -64,11 +64,11 @@ public class DonateDao {
 		
 		if(afterDate==null || afterDate.equals("")|| afterDate.equals("null")){
 			afterDate = "sysdate";
-		}
+		} 
 		if(beforeDate == null || beforeDate.equals("") || beforeDate.equals("null")){
 			beforeDate = "2000-01-01";
 		}
-		
+		 
 		String query = "select count(*) from donate where member_id = ?"
 					 + " and to_char(donation_date,?) BETWEEN ? and ?";
 		
